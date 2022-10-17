@@ -304,10 +304,10 @@ let g:blamer_prefix = ' % '
 let g:vim_json_conceal=0
 let g:markdown_syntax_conceal=0
 
-source $HOME/.vim/nerdcommenter.vim
+""source $HOME/.vim/nerdcommenter.vim
 if has('nvim')
     highlight Normal guibg=none
-    source $HOME/.vim/coc.vim
+    ""source $HOME/.vim/coc.vim
 endif
 
 colorscheme gruvbox " 'NeoSolarized', 'nord', 'gruvbox' 'one'
