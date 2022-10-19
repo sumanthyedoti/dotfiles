@@ -1,5 +1,4 @@
-" Enable filetype plugins
-filetype plugin on
+" Enable filetype plugins filetype plugin on
 filetype indent on
 
 syntax on  " syntax highlighting
@@ -65,7 +64,6 @@ nnoremap <C-j> :resize +2<CR>
 nnoremap <C-k> :resize -2<CR>
 " hide search(find) highlight
 " Clear search (highlight)
-" map <leader><space> :let @/=''<CR><bar>:<CR>" clear search
 map <leader><space> :noh<CR>
 " Toggle spell check.
 map <F5> :setlocal spell!<CR>
