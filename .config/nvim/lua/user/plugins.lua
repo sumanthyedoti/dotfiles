@@ -84,6 +84,9 @@ return packer.startup(function(use)
       })
     end,
   })
+  -- ## Commentery
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use "tpope/vim-commentary"
   -- ## Code Conpletion
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
