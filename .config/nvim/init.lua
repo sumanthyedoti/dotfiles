@@ -7,6 +7,7 @@ require("user.lsp")
 require("user.telescope")
 require("user.dressing")
 require("user.treesitter")
+require("user.nvim-tree")
 require('lualine').setup {
   options = { theme  = 'gruvbox' },
 }
@@ -16,6 +17,8 @@ vim.cmd [[
   au TextYankPost * silent! lua vim.highlight.on_yank()
   au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
 ]]
+-- Delete without yanking if preperded by <leader>
+vim.cmd [[nnoremap <leader>dd "_dd]]
 
 -- Trim trailing whitespace
 vim.cmd [[

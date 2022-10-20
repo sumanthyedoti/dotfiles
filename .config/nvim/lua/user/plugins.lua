@@ -68,11 +68,8 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+  use 'nvim-tree/nvim-web-devicons'
+  use 'nvim-lualine/lualine.nvim'
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
   use {'stevearc/dressing.nvim'}
@@ -86,7 +83,22 @@ return packer.startup(function(use)
   })
   -- ## Commentery
   use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use "tpope/vim-commentary"
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
+  -- ## NVim Tree file explorer
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
   -- ## Code Conpletion
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -99,6 +111,14 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
+
+  -- ## git
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 
   -- ## LSP
   use 'neovim/nvim-lspconfig'

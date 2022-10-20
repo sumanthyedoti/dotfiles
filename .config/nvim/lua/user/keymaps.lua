@@ -27,7 +27,9 @@ else
   keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
 end
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
-keymap("n", "<leader>e", ":Lex 30<CR>", opts) -- Lexplorer
+-- NVim-tree
+keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>er", ":NvimTreeCollapse<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-j>", ":resize -1<CR><ESC>", opts) -- v -1
