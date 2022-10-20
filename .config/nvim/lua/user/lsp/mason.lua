@@ -1,7 +1,8 @@
 -- ## available servers list
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+-- 爵https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 -- ## servers configuraion
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- 爵https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--  packages are stored in '~/.local/share/nvim/mason/'
 
 local servers = {
 	"sumneko_lua",

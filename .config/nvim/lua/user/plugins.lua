@@ -37,8 +37,9 @@ packer.init {
     end,
   },
 }
---######################################## 
+--########################################
 -- Install your plugins here
+--  packages are stored in '~/.local/share/nvim/site/pack/packer'
 -- maybe
 -- - firenvim
 -- - dispatch
@@ -74,7 +75,15 @@ return packer.startup(function(use)
   }
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
-
+  use {'stevearc/dressing.nvim'}
+  use({
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+    end,
+  })
   -- ## Code Conpletion
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -91,7 +100,20 @@ return packer.startup(function(use)
   -- ## LSP
   use 'neovim/nvim-lspconfig'
   use "williamboman/mason.nvim" -- language server installer
-  use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig 
+  use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig
+
+  -- ## Telescope
+  use "nvim-telescope/telescope.nvim"
+  -- use "nvim-telescope/telescope-media-files.nvim"
+
+  -- ## Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use "p00f/nvim-ts-rainbow"
+  use "nvim-treesitter/playground"
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
