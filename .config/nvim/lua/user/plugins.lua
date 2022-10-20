@@ -43,8 +43,6 @@ packer.init {
 -- maybe
 -- - firenvim
 -- - dispatch
--- - bufferline
--- - gitsigns
 -- - glow, without markdown-preview
 return packer.startup(function(use)
   -- My plugins here
@@ -73,14 +71,17 @@ return packer.startup(function(use)
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
   use {'stevearc/dressing.nvim'}
-  use({
+  use {
     "ziontee113/icon-picker.nvim",
     config = function()
       require("icon-picker").setup({
         disable_legacy_commands = true
       })
     end,
-  })
+  }
+  use { 'akinsho/bufferline.nvim' }
+  use 'moll/vim-bbye' -- to close buffers
+  -- colorscheme
   -- ## Commentery
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
@@ -113,12 +114,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
 
   -- ## git
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
-  }
+  use { 'lewis6991/gitsigns.nvim' }
 
   -- ## LSP
   use 'neovim/nvim-lspconfig'

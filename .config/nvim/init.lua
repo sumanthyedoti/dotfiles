@@ -8,6 +8,7 @@ require("user.telescope")
 require("user.dressing")
 require("user.treesitter")
 require("user.nvim-tree")
+require("user.bufferline")
 require('lualine').setup {
   options = { theme  = 'gruvbox' },
 }
