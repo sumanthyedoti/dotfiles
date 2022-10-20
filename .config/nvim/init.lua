@@ -9,8 +9,9 @@ require("user.dressing")
 require("user.treesitter")
 require("user.nvim-tree")
 require("user.bufferline")
+require("user.toggleterm")
 require('lualine').setup {
-  options = { theme  = 'gruvbox' },
+  options = { theme = 'gruvbox' },
 }
 
 -- Highlight on Yank
@@ -20,6 +21,11 @@ vim.cmd [[
 ]]
 -- Delete without yanking if preperded by <leader>
 vim.cmd [[nnoremap <leader>dd "_dd]]
+
+-- format on save
+vim.cmd [[
+  au BufWritePre * :lua vim.lsp.buf.formatting()
+]]
 
 -- Trim trailing whitespace
 vim.cmd [[

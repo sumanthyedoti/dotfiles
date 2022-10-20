@@ -2,7 +2,7 @@ local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
   return
 end
-
+-- command: ToggleTerm direction=horizontal size=10
 bufferline.setup {
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
@@ -14,10 +14,12 @@ bufferline.setup {
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator = "▎",
-    buffer_close_icon = "",
+    buffer_close_icon = "|",
+    -- buffer_close_icon = "",
     -- buffer_close_icon = '',
     modified_icon = "●",
-    close_icon = "",
+    close_icon = "|",
+    -- close_icon = "",
     -- close_icon = '',
     left_trunc_marker = "",
     right_trunc_marker = "",
@@ -82,8 +84,8 @@ bufferline.setup {
     },
 
     buffer_selected = {
-      fg = {attribute='fg',highlight='#ff0000'},
-      bg = {attribute='bg',highlight='#0000ff'},
+      fg = { attribute = 'fg', highlight = '#ff0000' },
+      bg = { attribute = 'bg', highlight = '#0000ff' },
       italic = true,
       bold = true,
     },
@@ -91,8 +93,11 @@ bufferline.setup {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-
     close_button = {
+      fg = { attribute = "fg", highlight = "TabLine" },
+      bg = { attribute = "bg", highlight = "TabLine" },
+    },
+    close_button_selected = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
@@ -145,8 +150,8 @@ bufferline.setup {
       bg = { attribute = "bg", highlight = "Normal" },
     },
     separator_visible = {
-      fg = {attribute='bg',highlight='TabLine'},
-      bg = {attribute='bg',highlight='TabLine'}
+      fg = { attribute = 'bg', highlight = 'TabLine' },
+      bg = { attribute = 'bg', highlight = 'TabLine' }
     },
     indicator_selected = {
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },

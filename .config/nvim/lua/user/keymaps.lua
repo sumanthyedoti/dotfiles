@@ -39,7 +39,8 @@ keymap("n", "<C-l>", ":vertical resize +1<CR><ESC>", opts) -- h +1
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-Left>", ":bnext<CR>", opts)
+keymap("n", "<S-Right>", ":bprevious<CR>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)

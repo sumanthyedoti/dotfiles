@@ -70,7 +70,7 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
-  use {'stevearc/dressing.nvim'}
+  use { 'stevearc/dressing.nvim' }
   use {
     "ziontee113/icon-picker.nvim",
     config = function()
@@ -81,6 +81,7 @@ return packer.startup(function(use)
   }
   use { 'akinsho/bufferline.nvim' }
   use 'moll/vim-bbye' -- to close buffers
+  use "akinsho/toggleterm.nvim"
   -- colorscheme
   -- ## Commentery
   use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -120,6 +121,7 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig'
   use "williamboman/mason.nvim" -- language server installer
   use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- ## Telescope
   use "nvim-telescope/telescope.nvim"
