@@ -44,18 +44,30 @@ packer.init {
 -- - dispatch
 -- - bufferline
 -- - gitsigns
+-- - glow, without markdown-preview
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-  use "jiangmiao/auto-pairs" 
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
   use "tpope/vim-surround"
   use "andymass/vim-matchup"
-  use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-  })
+  use {
+    "AndrewRadev/switch.vim",
+    config = function()
+      local opts = { noremap = true, silent = true }
+      vim.api.nvim_set_keymap("n", "<leader>`", ":Switch<CR>", opts)
+    end
+  }
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
+
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -73,6 +85,13 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
+
+  -- ## LSP
+  use 'neovim/nvim-lspconfig'
+  use "williamboman/mason.nvim" -- language server installer
+  use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig 
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
