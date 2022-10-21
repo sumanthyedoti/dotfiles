@@ -1,5 +1,4 @@
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 -- Shorten function names
@@ -23,7 +22,15 @@ vim.g.mapleader = " "
 -- Better window navigation
 if is_mac then
   keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
+  keymap("n", "ˍ", "<C-w><C-h>", opts) -- next pane
+  keymap("n", "˝", "<C-w><C-j>", opts) -- next pane
+  keymap("n", "˚", "<C-w><C-k>", opts) -- next pane
+  keymap("n", "-", "<C-w><C-l>", opts) -- next pane
 else
+  keymap("n", "<A-h>", "<C-w><C-h>", opts) -- next pane
+  keymap("n", "<A-j>", "<C-w><C-j>", opts) -- next pane
+  keymap("n", "<A-k>", "<C-w><C-k>", opts) -- next pane
+  keymap("n", "<A-l>", "<C-w><C-l>", opts) -- next pane
   keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
 end
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
@@ -46,6 +53,7 @@ keymap("n", "<S-Right>", ":bprevious<CR>", opts)
 keymap("i", "jj", "<ESC>", opts)
 
 -- VISUAL --
+keymap("v", "<leader> ", "<ESC>", opts) -- clear search hightlight with <space><space>
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)

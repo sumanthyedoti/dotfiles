@@ -40,10 +40,21 @@ packer.init {
 --########################################
 -- Install your plugins here
 --  packages are stored in '~/.local/share/nvim/site/pack/packer'
--- maybe
--- - firenvim
--- - dispatch
--- - glow, without markdown-preview
+--[[ PACKAGES
+  firenvim
+  dispatch
+  glow, without markdown-preview
+  neogit
+  hop.nvim or leap.nvim
+  zen mode
+    twilight
+  colortils
+  neorg
+  cphealper
+    CompetiTest.nvim
+  alpha-nvim
+    neovim-session-manager
+]]
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
@@ -141,6 +152,12 @@ return packer.startup(function(use)
     end
   }
   use "lukas-reineke/indent-blankline.nvim"
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require 'colorizer'.setup()
+    end
+  }
 
 
   -- Automatically set up your configuration after cloning packer.nvim
