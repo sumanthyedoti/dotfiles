@@ -81,3 +81,6 @@ vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the 
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", opts)
 -- Packer, package manager
 vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/user/plugins.lua | PackerSync<CR>", opts)
+-- Zen
+vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
+vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
