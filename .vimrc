@@ -228,18 +228,14 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
-Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-eunuch'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'rust-lang/rust.vim'
 Plug 'rescript-lang/vim-rescript'
 Plug 'elixir-editors/vim-elixir'
-Plug 'Olical/conjure'
 
 " Themes
 Plug 'flazz/vim-colorschemes'
@@ -250,20 +246,20 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 let g:airline_powerline_fonts = 1  " arrowed blocks in status line
-let g:coc_global_extensions = [
-    \ 'coc-emmet',
-    \ 'coc-css',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-yaml',
-    \ 'coc-prettier',
-    \ 'coc-tsserver',
-    \ 'coc-snippets',
-    \ 'coc-pairs',
-    \ 'coc-elixir',
-    \ 'coc-tailwindcss',
-    \ 'coc-styled-components',
-    \]
+"let g:coc_global_extensions = [
+    "\ 'coc-emmet',
+    "\ 'coc-css',
+    "\ 'coc-html',
+    "\ 'coc-json',
+    "\ 'coc-yaml',
+    "\ 'coc-prettier',
+    "\ 'coc-tsserver',
+    "\ 'coc-snippets',
+    "\ 'coc-pairs',
+    "\ 'coc-elixir',
+    "\ 'coc-tailwindcss',
+    "\ 'coc-styled-components',
+    "\]
 
 nnoremap <leader>ut :UndotreeToggle<CR>
 nnoremap <C-p> :GFiles<CR>
@@ -326,12 +322,6 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = []
 " enable line numbers
 let NERDTreeShowLineNumbers=1
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 " make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
