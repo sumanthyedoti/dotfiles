@@ -36,7 +36,6 @@ end
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
 -- NVim-tree
 keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
-keymap("n", "<leader>er", ":NvimTreeCollapse<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-j>", ":resize -1<CR><ESC>", opts) -- v -1
@@ -80,3 +79,5 @@ vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", opts)
 vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
 -- ## buffers
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", opts)
+-- Packer, package manager
+vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/user/plugins.lua | PackerSync<CR>", opts)

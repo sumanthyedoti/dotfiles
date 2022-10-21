@@ -158,7 +158,8 @@ return packer.startup(function(use)
       require 'colorizer'.setup()
     end
   }
-
+  use { "folke/twilight.nvim", config = function() require 'user.plugins.zen-mode' end }
+  use { "folke/zen-mode.nvim", config = function() require 'user.plugins.zen-mode' end }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
