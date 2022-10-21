@@ -78,7 +78,7 @@ nvim_tree.setup {
           action = "open in tab",
           action_cb = function(node)
             vim.cmd("tabnew" .. vim.fn.fnameescape(node.absolute_path))
-            nvim_tree.toggle()
+            nvim_tree.toggle(false, true)
           end,
         },
         { key = "D", cb = tree_cb "remove" },

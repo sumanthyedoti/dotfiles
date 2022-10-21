@@ -71,4 +71,4 @@ keymap("n", "<leader>F", "<cmd>Telescope live_grep<cr>", opts)
 vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", opts)
 vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
 -- ## buffers
-vim.keymap.set("n", "<Leader>bc", "<cmd>Bdelete<cr>", opts)
+vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", opts)

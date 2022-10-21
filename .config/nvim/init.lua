@@ -10,6 +10,7 @@ require("user.treesitter")
 require("user.nvim-tree")
 require("user.bufferline")
 require("user.toggleterm")
+require("user.indent")
 require('lualine').setup {
   options = { theme = 'gruvbox' },
 }
