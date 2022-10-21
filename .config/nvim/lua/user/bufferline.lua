@@ -5,6 +5,7 @@ end
 -- command: ToggleTerm direction=horizontal size=10
 bufferline.setup {
   options = {
+    mode = "tabs", -- "buffers" to show all buffers
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"

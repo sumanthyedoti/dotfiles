@@ -23,9 +23,9 @@ vim.cmd [[
 vim.cmd [[nnoremap <leader>dd "_dd]]
 
 -- format on save
-vim.cmd [[
-  au BufWritePre * :lua vim.lsp.buf.formatting()
-]]
+-- vim.cmd [[
+--   au BufWritePre * :lua vim.lsp.buf.formatting()
+-- ]]
 
 -- Trim trailing whitespace
 vim.cmd [[
