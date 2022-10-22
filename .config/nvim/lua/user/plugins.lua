@@ -60,10 +60,7 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
+  use { "windwp/nvim-autopairs", config = function() require "user.plugins.autopairs" end }
   use "tpope/vim-surround"
   use "andymass/vim-matchup"
   use {
@@ -124,15 +121,15 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
-
-  -- ## git
-  use { 'lewis6991/gitsigns.nvim' }
-
-  -- ## LSP
+  -- LSP
   use 'neovim/nvim-lspconfig'
   use "williamboman/mason.nvim" -- language server installer
   use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+
+
+  -- ## git
+  use { 'lewis6991/gitsigns.nvim' }
 
   -- ## Telescope
   use "nvim-telescope/telescope.nvim"
@@ -145,6 +142,8 @@ return packer.startup(function(use)
   }
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
+  use "windwp/nvim-ts-autotag"
+
   use {
     'lewis6991/impatient.nvim',
     config = function()
@@ -160,6 +159,7 @@ return packer.startup(function(use)
   }
   use { "folke/twilight.nvim", config = function() require 'user.plugins.zen-mode' end }
   use { "folke/zen-mode.nvim", config = function() require 'user.plugins.zen-mode' end }
+  use "glepnir/dashboard-nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

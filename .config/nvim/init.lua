@@ -12,6 +12,9 @@ require("user.bufferline")
 require("user.toggleterm")
 require("user.indent")
 require("user.autocommands")
+require("user.plugins.dashboard")
+
+
 require('lualine').setup {
   options = { theme = 'gruvbox' },
 }

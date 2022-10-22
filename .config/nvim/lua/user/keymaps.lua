@@ -33,20 +33,20 @@ else
   keymap("n", "<A-l>", "<C-w><C-l>", opts) -- next pane
   keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
 end
+keymap("n", "<leader>a", "@q", opts) -- macro @q
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
 -- NVim-tree
 keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
-keymap("n", "<C-j>", ":resize -1<CR><ESC>", opts) -- v -1
-keymap("n", "<C-k>", ":resize +1<CR><ESC>", opts) -- v +1
-keymap("n", "<C-h>", ":vertical resize -1<CR><ESC>", opts) -- h -1
-keymap("n", "<C-l>", ":vertical resize +1<CR><ESC>", opts) -- h +1
+keymap("n", "<S-Up>", ":resize -1<CR><ESC>", opts) -- v -1
+keymap("n", "<S-Down>", ":resize +1<CR><ESC>", opts) -- v +1
+keymap("n", "<leader><Left>", ":vertical resize -1<CR><ESC>", opts) -- h -1
+keymap("n", "<leader><Down>", ":vertical resize +1<CR><ESC>", opts) -- h +1
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-Left>", ":bnext<CR>", opts)
-keymap("n", "<S-Right>", ":bprevious<CR>", opts)
+keymap("n", "<TAB>", ":bnext<CR>", opts)
+keymap("n", "<S-TAB>", ":bnext<CR>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)

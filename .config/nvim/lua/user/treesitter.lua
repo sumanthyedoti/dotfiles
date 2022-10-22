@@ -1,5 +1,9 @@
-local configs = require("nvim-treesitter.configs")
-configs.setup {
+local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+  return
+end
+
+treesitter.setup {
   ensure_installed = "all",
   sync_install = false,
   ignore_install = { "" }, -- List of parsers to ignore installing
@@ -40,5 +44,8 @@ configs.setup {
   },
   context_commentstring = {
     enable = true
+  },
+  autotag = {
+    enable = true,
   }
 }
