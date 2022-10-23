@@ -43,10 +43,12 @@ keymap("n", "<S-Up>", ":resize -1<CR><ESC>", opts) -- v -1
 keymap("n", "<S-Down>", ":resize +1<CR><ESC>", opts) -- v +1
 keymap("n", "<leader><Left>", ":vertical resize -1<CR><ESC>", opts) -- h -1
 keymap("n", "<leader><Down>", ":vertical resize +1<CR><ESC>", opts) -- h +1
-
 -- Navigate buffers
 keymap("n", "<TAB>", ":bnext<CR>", opts)
-keymap("n", "<S-TAB>", ":bnext<CR>", opts)
+keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
+-- new line
+keymap("n", "<leader>o", "o<ESC>", opts)
+keymap("n", "<leader>O", "O<ESC>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)

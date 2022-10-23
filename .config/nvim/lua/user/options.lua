@@ -44,6 +44,5 @@ for k, v in pairs(options) do
 end
 
 -- vim.cmd to pass vim-script as string
-vs = vim.cmd
+local vs = vim.cmd
 vs "set whichwrap+=<,>,[,],h,l"
-vs [[set iskeyword+=-]]

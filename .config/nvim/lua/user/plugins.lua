@@ -15,14 +15,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]]
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -37,6 +29,7 @@ packer.init {
     end,
   },
 }
+
 --########################################
 -- Install your plugins here
 --  packages are stored in '~/.local/share/nvim/site/pack/packer'
@@ -159,7 +152,9 @@ return packer.startup(function(use)
   }
   use { "folke/twilight.nvim", config = function() require 'user.plugins.zen-mode' end }
   use { "folke/zen-mode.nvim", config = function() require 'user.plugins.zen-mode' end }
+  use { "gelguy/wilder.nvim", config = function() require 'user.plugins.wilder-menu' end }
   use "glepnir/dashboard-nvim"
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
