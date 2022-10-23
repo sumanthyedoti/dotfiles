@@ -49,6 +49,8 @@ keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
 -- new line
 keymap("n", "<leader>o", "o<ESC>", opts)
 keymap("n", "<leader>O", "O<ESC>", opts)
+-- undo all changes in the buffer
+keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)
@@ -82,7 +84,7 @@ vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the 
 -- ## buffers
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", opts)
 -- Packer, package manager
-vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/user/plugins.lua | PackerSync<CR>", opts)
+vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.lua | PackerSync<CR>", opts)
 -- Zen
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)

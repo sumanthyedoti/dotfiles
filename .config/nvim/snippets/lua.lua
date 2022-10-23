@@ -95,7 +95,6 @@ cs({ -- github import for packer{{{
   i(1, ""),
 }, "auto") --}}}
 
-
 cs(-- {regexSnippet} LuaSnippet{{{
   "regexSnippet",
   fmt(
@@ -114,7 +113,7 @@ cs( -- {}
       i(4, ""),
     }
   ),
-  { pattern = "*/snippets/*.lua", "<leader>xl" }
+  { pattern = "*/snippets/*.lua", "<leader>xs" }
 ) --}}}
 
 cs(-- [luaSnippet] LuaSnippet{{{

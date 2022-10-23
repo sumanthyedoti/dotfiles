@@ -1,24 +1,10 @@
-require("user.options")
-require("user.keymaps")
-require("user.plugins")
-require("user.colorscheme")
-require("user.cmp")
-require("user.lsp")
-require("user.plugins.luasnip")
-require("user.telescope")
-require("user.dressing")
-require("user.treesitter")
-require("user.nvim-tree")
-require("user.bufferline")
-require("user.toggleterm")
-require("user.indent")
-require("user.autocommands")
-require("user.plugins.dashboard")
-
-
-require('lualine').setup {
-  options = { theme = 'gruvbox' },
-}
+require("options")
+require("keymaps")
+require("plugins")
+require("theme")
+require("lsp")
+require("autocommands")
+require("plugins.dashboard")
 
 -- Delete without yanking if preperded by <leader>
 vim.cmd [[nnoremap <leader>dd "_dd]]

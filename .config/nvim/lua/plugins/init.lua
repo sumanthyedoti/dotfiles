@@ -47,13 +47,14 @@ packer.init {
     CompetiTest.nvim
   alpha-nvim
     neovim-session-manager
+  telescope-media-files
 ]]
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-  use { "windwp/nvim-autopairs", config = function() require "user.plugins.autopairs" end }
+  use { "windwp/nvim-autopairs", config = function() require "plugins.autopairs" end }
   use "tpope/vim-surround"
   use "andymass/vim-matchup"
   use {
@@ -71,7 +72,7 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
-  use { 'stevearc/dressing.nvim' }
+  use { "stevearc/dressing.nvim", config = "require 'plugins.dressing'" } --snippet engine
   use {
     "ziontee113/icon-picker.nvim",
     config = function()
@@ -80,9 +81,10 @@ return packer.startup(function(use)
       })
     end,
   }
-  use { 'akinsho/bufferline.nvim' }
+  use { '' }
+  use { "akinsho/bufferline.nvim", config = "require 'plugins.bufferline'" } --snippet engine
+  use { "akinsho/toggleterm.nvim", config = "require 'plugins.toggleterm'" } --snippet engine
   use 'moll/vim-bbye' -- to close buffers
-  use "akinsho/toggleterm.nvim"
   -- colorscheme
   -- ## Commentery
   use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -99,19 +101,20 @@ return packer.startup(function(use)
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    config = "require 'plugins.nvim-tree'"
   }
 
   -- ## Code Conpletion
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
+  use { "L3MON4D3/LuaSnip", config = "require 'plugins.luasnip'" } --snippet engine
   use "rafamadriz/friendly-snippets"
   -- cmp plugins
-  use "hrsh7th/nvim-cmp"
+  use { "hrsh7th/nvim-cmp", config = "require'plugins.cmp'", requires = { 'L3MON4D3/LuaSnip' } }
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
   -- LSP
@@ -125,13 +128,14 @@ return packer.startup(function(use)
   use { 'lewis6991/gitsigns.nvim' }
 
   -- ## Telescope
-  use "nvim-telescope/telescope.nvim"
-  -- use "nvim-telescope/telescope-media-files.nvim"
+  use ""
+  use { "nvim-telescope/telescope.nvim", config = "require 'plugins.telescope'" }
 
   -- ## Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    config = "require 'plugins.treesitter'"
   }
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
@@ -143,16 +147,16 @@ return packer.startup(function(use)
       require('impatient').enable_profile()
     end
   }
-  use "lukas-reineke/indent-blankline.nvim"
+  use { "lukas-reineke/indent-blankline.nvim", config = "require 'plugins.indent'" }
   use {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require 'colorizer'.setup()
     end
   }
-  use { "folke/twilight.nvim", config = function() require 'user.plugins.zen-mode' end }
-  use { "folke/zen-mode.nvim", config = function() require 'user.plugins.zen-mode' end }
-  use { "gelguy/wilder.nvim", config = function() require 'user.plugins.wilder-menu' end }
+  use { "folke/twilight.nvim", config = "require 'plugins.twilight'" }
+  use { "folke/zen-mode.nvim", config = "require 'plugins.zen-mode'" }
+  use { "gelguy/wilder.nvim", config = "require 'plugins.wilder-menu'" }
   use "glepnir/dashboard-nvim"
 
 
