@@ -15,14 +15,14 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = "menu,menuone,noselect"
 
--- local check_backspace = function()
---   local col = vim.fn.col "." - 1
---   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
+local check_backspace = function()
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
 
--- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
+-- 🌐 https://github.com/neovim/nvim-lspconfig/wiki/Snippets
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -78,7 +78,7 @@ cmp.setup {
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function (entry, vim_item)
+      before = function(entry, vim_item)
         -- ...
         return vim_item
       end
