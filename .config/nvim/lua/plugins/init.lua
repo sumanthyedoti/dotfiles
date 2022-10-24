@@ -39,10 +39,14 @@ packer.init {
   glow, without markdown-preview
   neogit
   hop.nvim or leap.nvim
-  zen mode
-    twilight
+  neo-minimap  - https://youtu.be/vNyQBWfSh7c
   colortils
+    color-picker.nvim
+  syntax-tree-surfer
   neorg
+  anuvyklack/windows.nvim
+  pretty-fold.nvim
+  fold-preview.nvim
   cphealper
     CompetiTest.nvim
   alpha-nvim
@@ -157,8 +161,8 @@ return packer.startup(function(use)
   use { "folke/twilight.nvim", config = "require 'plugins.twilight'" }
   use { "folke/zen-mode.nvim", config = "require 'plugins.zen-mode'" }
   use { "gelguy/wilder.nvim", config = "require 'plugins.wilder-menu'" }
+  use { "anuvyklack/hydra.nvim", config = "require 'plugins.hydra'" }
   use "glepnir/dashboard-nvim"
-
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

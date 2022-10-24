@@ -34,3 +34,9 @@ dash.custom_center = {
     action = 'Telescope live_grep',
   },
 }
+
+local quotes = {
+  "Alasyam.. Amrutham! Visham!!",
+}
+
+dash.custom_footer = { quotes[math.random(1, #quotes)] }

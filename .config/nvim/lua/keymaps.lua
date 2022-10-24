@@ -1,6 +1,5 @@
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true } -- { nowait = true }
 local term_opts = { silent = true }
-
 -- Shorten function names
 local keymap = vim.api.nvim_set_keymap
 local is_mac = vim.fn.has('macunix')
@@ -19,38 +18,21 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- NORMAL --
--- Better window navigation
-if is_mac then
-  keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
-  keymap("n", "ˍ", "<C-w><C-h>", opts) -- next pane
-  keymap("n", "˝", "<C-w><C-j>", opts) -- next pane
-  keymap("n", "˚", "<C-w><C-k>", opts) -- next pane
-  keymap("n", "-", "<C-w><C-l>", opts) -- next pane
-else
-  keymap("n", "<A-h>", "<C-w><C-h>", opts) -- next pane
-  keymap("n", "<A-j>", "<C-w><C-j>", opts) -- next pane
-  keymap("n", "<A-k>", "<C-w><C-k>", opts) -- next pane
-  keymap("n", "<A-l>", "<C-w><C-l>", opts) -- next pane
-  keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
-end
 keymap("n", "<leader>a", "@q", opts) -- macro @q
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
 -- NVim-tree
 keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
 
--- Resize with arrows
-keymap("n", "<S-Up>", ":resize -1<CR><ESC>", opts) -- v -1
-keymap("n", "<S-Down>", ":resize +1<CR><ESC>", opts) -- v +1
-keymap("n", "<leader><Left>", ":vertical resize -1<CR><ESC>", opts) -- h -1
-keymap("n", "<leader><Down>", ":vertical resize +1<CR><ESC>", opts) -- h +1
 -- Navigate buffers
-keymap("n", "<TAB>", ":bnext<CR>", opts)
-keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
+keymap("n", "<TAB>", ":bprevious<CR>", opts)
+keymap("n", "<S-TAB>", ":bnext<CR>", opts)
 -- new line
 keymap("n", "<leader>o", "o<ESC>", opts)
 keymap("n", "<leader>O", "O<ESC>", opts)
 -- undo all changes in the buffer
 keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
+-- reg menu
+keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)
@@ -77,7 +59,7 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = 10 }))<cr>", opts)
 keymap("n", "<leader>F", "<cmd>Telescope live_grep<cr>", opts)
-
+-- == PLUGINS == --
 -- ## icon-picker
 vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", opts)
 vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register

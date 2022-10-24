@@ -286,10 +286,15 @@ table.insert(autosnippets, funcNodeWithArgs)
 table.insert(autosnippets, funcNodeWithRep)
 table.insert(autosnippets, funcNodeWithArgs2)
 
-
-
-
-
+cs("rand",
+  fmt([[
+    math.random({}, {})
+  ]], {
+    i(1, "1"),
+    i(1, "n"),
+  }),
+  "<leader>rand"
+)
 
 -- End Refactoring --
 return snippets, autosnippets
