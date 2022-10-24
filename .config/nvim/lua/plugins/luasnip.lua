@@ -75,6 +75,6 @@ vim.cmd "smap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next
 --
 -- -- More Settings --
 -- - to go to correspoding snippet file
-vim.keymap.set("n", "<Leader>s<CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true }) -- HERE
+vim.keymap.set("n", "<leader>s<CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true }) -- HERE
 -- - enter into custom snippit creation area in the file
 vim.cmd([[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>O<Esc>O]]) -- HERE !

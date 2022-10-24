@@ -63,13 +63,7 @@ return packer.startup(function(use)
   use { "windwp/nvim-autopairs", config = function() require "plugins.autopairs" end }
   use "tpope/vim-surround"
   use "andymass/vim-matchup"
-  use {
-    "AndrewRadev/switch.vim",
-    config = function()
-      local opts = { noremap = true, silent = true }
-      vim.api.nvim_set_keymap("n", "<leader>`", ":Switch<CR>", opts)
-    end
-  }
+  use { "AndrewRadev/switch.vim", config = "require 'plugins.switch'" }
   use {
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
@@ -89,7 +83,7 @@ return packer.startup(function(use)
       })
     end,
   }
-  use { '' }
+  use { "folke/todo-comments.nvim", config = "require 'plugins.todo-comments'" } --snippet engine
   use { "akinsho/bufferline.nvim", config = "require 'plugins.bufferline'" } --snippet engine
   use { "akinsho/toggleterm.nvim", config = "require 'plugins.toggleterm'" } --snippet engine
   use 'moll/vim-bbye' -- to close buffers

@@ -24,7 +24,7 @@ o.undofile = true -- enable persistent undo
 o.updatetime = 500 -- faster completion (4000ms default)
 o.writebackup = false -- if a file is being edited by another program, it is not allowed to be edited
 o.guifont = "monospace:h17" -- the font used in graphical neovim applications
-o.shortmess:append "c"
+o.shortmess:append("c")
 
 ---- setting options with for loop by iteratings a k-v pair in a table
 local options = {
@@ -46,4 +46,4 @@ end
 
 -- vim.cmd to pass vim-script as string
 local vs = vim.cmd
-vs "set whichwrap+=<,>,[,],h,l"
+vs("set whichwrap+=<,>,[,],h,l")

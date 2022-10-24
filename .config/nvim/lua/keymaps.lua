@@ -33,8 +33,8 @@ keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<TAB>", ":bprevious<CR>", opts)
 keymap("n", "<S-TAB>", ":bnext<CR>", opts)
 -- new line
-keymap("n", "<leader>o", "o<ESC>", opts)
-keymap("n", "<leader>O", "O<ESC>", opts)
+keymap("n", "<leader>o ", "o<ESC>", opts)
+keymap("n", "<leader>oo", "O<ESC>", opts)
 -- undo all changes in the buffer
 keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 -- reg menu
