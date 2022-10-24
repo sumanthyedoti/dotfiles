@@ -18,6 +18,12 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- NORMAL --
+-- loops throught windowso
+if is_mac then
+  keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
+else
+  keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
+end
 keymap("n", "<leader>a", "@q", opts) -- macro @q
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
 -- NVim-tree
@@ -33,6 +39,14 @@ keymap("n", "<leader>O", "O<ESC>", opts)
 keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 -- reg menu
 keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
+-- Keep only current window (Split) and Tab
+keymap("n", "<leader>ks", "<cmd>:only<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>kt", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
+keymap("n", "<leader>kb", "<cmd>bd<CR>", opts) -- kill current buffer
+-- keep pick buffer
+keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts)
+-- execute previous command
+keymap("n", "<leader>cp", ":<Up><CR>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)
@@ -43,6 +57,8 @@ keymap("v", "<leader> ", "<ESC>", opts) -- clear search hightlight with <space><
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 -- Move text up and down
+keymap("n", "<C-j>", ":m '>+1<CR>gv=gv", opts)
+keymap("n", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
 -- hightlight and paste, without copying

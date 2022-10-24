@@ -72,13 +72,14 @@ nvim_tree.setup {
         { key = "<C-x>", cb = tree_cb "cut" },
         { key = "<C-c>", cb = tree_cb "copy" },
         { key = "<C-v>", cb = tree_cb "paste" },
-        { key = "v", cb = tree_cb "vsplit" },
+        { key = "s", cb = tree_cb "vsplit" },
+        { key = "S", cb = tree_cb "split" },
         {
           key = "<C-t>",
           action = "open in tab",
           action_cb = function(node)
             vim.cmd("tabnew" .. vim.fn.fnameescape(node.absolute_path))
-            nvim_tree.toggle(false, true)
+            -- nvim_tree.toggle(false, true)
           end,
         },
         { key = "D", cb = tree_cb "remove" },

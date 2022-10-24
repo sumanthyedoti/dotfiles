@@ -84,9 +84,13 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then -- diable tsserver for formatting and use null-ls
-    client.server_capabilities.documentFormattingProvider = false
-  end
+  -- HERE: diable LSP server for formatting and use null-ls
+  -- if (
+  --     client.name == "tsserver"
+  --         or client.name == "sumneko_lua"
+  --     ) then
+  --   client.server_capabilities.documentFormattingProvider = false
+  -- end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end

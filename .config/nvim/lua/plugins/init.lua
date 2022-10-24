@@ -56,8 +56,8 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "nvim-lua/plenary.nvim" -- lua utility functions used by lots of plugins
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs", config = function() require "plugins.autopairs" end }
   use "tpope/vim-surround"
   use "andymass/vim-matchup"
