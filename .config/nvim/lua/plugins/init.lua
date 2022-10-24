@@ -11,7 +11,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
+  print "Installing packer, close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
 
@@ -52,6 +52,8 @@ packer.init {
   alpha-nvim
     neovim-session-manager
   telescope-media-files
+  vim-tmux-navigator
+  vim-maximizer
 ]]
 return packer.startup(function(use)
   -- My plugins here
@@ -73,9 +75,11 @@ return packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   }
   use 'nvim-tree/nvim-web-devicons'
-  use 'nvim-lualine/lualine.nvim'
+  use { "nvim-lualine/lualine.nvim", config = "require 'plugins.lualine'" } --snippet engine
+  -- colorschemes
   use 'flazz/vim-colorschemes'
   use 'folke/tokyonight.nvim' -- colorscheme
+  use 'bluz71/vim-nightfly-guicolors'
   use { "stevearc/dressing.nvim", config = "require 'plugins.dressing'" } --snippet engine
   use {
     "ziontee113/icon-picker.nvim",
@@ -121,18 +125,21 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua" -- for neovim Lua API
+  use "onsails/lspkind.nvim"
   -- LSP
-  use 'neovim/nvim-lspconfig'
+  use 'neovim/nvim-lspconfig' -- config lsp servers
+  use({ "glepnir/lspsaga.nvim", branch = "main", })
   use "williamboman/mason.nvim" -- language server installer
   use "williamboman/mason-lspconfig.nvim" -- bridges mason.nvim with the nvim-lspconfig
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "jose-elias-alvarez/typescript.nvim"
 
 
   -- ## git
   use { 'lewis6991/gitsigns.nvim' }
 
   -- ## Telescope
-  use ""
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { "nvim-telescope/telescope.nvim", config = "require 'plugins.telescope'" }
 
   -- ## Treesitter
@@ -161,7 +168,7 @@ return packer.startup(function(use)
   use { "folke/twilight.nvim", config = "require 'plugins.twilight'" }
   use { "folke/zen-mode.nvim", config = "require 'plugins.zen-mode'" }
   use { "gelguy/wilder.nvim", config = "require 'plugins.wilder-menu'" }
-  use { "anuvyklack/hydra.nvim", config = "require 'plugins.hydra'" }
+  use { "anuvyklack/hydra.nvim", config = "require 'plugins.hydra'" } -- submodes and menus
   use "glepnir/dashboard-nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim

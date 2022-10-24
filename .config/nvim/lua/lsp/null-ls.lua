@@ -12,14 +12,15 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   debug = false,
   -- 🌐 https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
-  sources = {
+  sources = { -- HERE: list
     formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
     formatting.black.with({ extra_args = { "--fast" } }),
     formatting.stylua,
     diagnostics.eslint,
     completion.spell,
   },
-  on_attach = function(client, bufnr) -- format on save
+  -- format on save
+  on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {

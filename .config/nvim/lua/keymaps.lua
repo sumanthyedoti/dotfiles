@@ -40,9 +40,11 @@ keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 -- reg menu
 keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
 -- Keep only current window (Split) and Tab
-keymap("n", "<leader>ks", "<cmd>:only<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>ks", "<cmd>only<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>kt", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
 keymap("n", "<leader>kb", "<cmd>bd<CR>", opts) -- kill current buffer
+-- treesitter playground
+keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", opts) -- kill all remaining splits
 -- keep pick buffer
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts)
 -- execute previous command
