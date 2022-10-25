@@ -14,6 +14,11 @@ if not mlc_status_ok then
 	return
 end
 
+local mnl_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mnl_status_ok then
+	return
+end
+
 local servers = { -- HEREL: LSP servers
 	"sumneko_lua",
 	"rust_analyzer",
@@ -39,8 +44,17 @@ local settings = {
 	max_concurrent_installers = 4,
 }
 
-mason.setup(settings)
-mason_lspconfig.setup({
+mason.setup(settings) -- :Mason
+mason_lspconfig.setup({ -- :LspInstall
 	ensure_installed = servers,
 	automatic_installation = true,
+})
+
+-- 🌐 https://github.com/jayp0521/mason-null-ls.nvim#available-null-ls-sources
+mason_null_ls.setup({ -- :NullLsInstall
+	ensure_installed = {
+		"prettier",
+		"stylua",
+		"eslint_d",
+	},
 })

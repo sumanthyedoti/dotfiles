@@ -7,11 +7,11 @@ require("autocommands")
 require("plugins.dashboard")
 
 -- Delete without yanking if preperded by <leader>
-vim.cmd [[nnoremap <leader>dd "_dd]]
-vim.cmd [[nnoremap <leader>D "_D]]
-vim.cmd [[nnoremap <leader>cc "_cc]]
-vim.cmd [[nnoremap <leader>C "_C]]
-vim.cmd [[nnoremap <leader>x "_x]]
-vim.cmd [[vnoremap <leader>d "_d]]
-vim.cmd [[vnoremap <leader>c "_c]]
-vim.cmd [[vnoremap <leader>x "_x]]
+vim.cmd([[nnoremap <leader>dd "_dd]])
+vim.cmd([[nnoremap <leader>D "_D]])
+vim.cmd([[nnoremap <leader>cc "_cc]])
+vim.cmd([[nnoremap <leader>C "_C]])
+vim.cmd([[nnoremap <leader>x "_x]])
+vim.cmd([[vnoremap <leader>d "_d]])
+vim.cmd([[vnoremap <leader>c "_c]])
+vim.keymap.set("n", "x", '"_x') -- remove yank for normal 'x'

@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true } -- { nowait = true }
 local term_opts = { silent = true }
 -- Shorten function names
 local keymap = vim.api.nvim_set_keymap
-local is_mac = vim.fn.has('macunix')
+local is_mac = vim.fn.has("macunix")
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -20,9 +20,9 @@ vim.g.mapleader = " "
 -- NORMAL --
 -- loops throught windowso
 if is_mac then
-  keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
+	keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
 else
-  keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
+	keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
 end
 keymap("n", "<leader>a", "@q", opts) -- macro @q
 keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
@@ -35,20 +35,40 @@ keymap("n", "<S-TAB>", ":bnext<CR>", opts)
 -- new line
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
+-- Disbale 'ZZ' command to save and quit¬
+keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', opts)
+keymap("n", "ZZ", ':echom "--> :w :q <-- "<CR>', opts)
 -- undo all changes in the buffer
 keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 -- reg menu
 keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
+-- splits
+keymap("n", "<leader>S", "<cmd>split<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>s ", "<cmd>vsplit<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>ss", "<cmd>vsplit<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>so", "<cmd>only<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>sq", ":q<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader><C-q>", ":q<CR>", opts) -- kill all remaining splits
+-- window.split navigation
+keymap("n", "<leader>jh", "<C-w>h<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>jj", "<C-w>j<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>jk", "<C-w>k<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>jh", "<C-w>h<CR>", opts) -- kill all remaining splits
 -- Keep only current window (Split) and Tab
-keymap("n", "<leader>ks", "<cmd>only<CR>", opts) -- kill all remaining splits
-keymap("n", "<leader>kt", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
-keymap("n", "<leader>kb", "<cmd>bd<CR>", opts) -- kill current buffer
+keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
+keymap("n", "<leader>bd", "<cmd>bd<CR>", opts) -- kill current buffer
 -- treesitter playground
 keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", opts) -- kill all remaining splits
 -- keep pick buffer
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts)
+-- buffer list
+keymap("n", "<leader>bl", "<cmd>ls<cr>:b", opts)
 -- execute previous command
 keymap("n", "<leader>cp", ":<Up><CR>", opts)
+keymap("n", "<C-s>", ":w<CR>", opts)
+-- increment/descrement
+keymap("n", "-", "<C-x>", opts)
+keymap("n", "=", "<C-a>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)
@@ -75,8 +95,8 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- ## Telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
--- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = 10 }))<cr>", opts)
-keymap("n", "<leader>F", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", opts)
 -- == PLUGINS == --
 -- ## icon-picker
 vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", opts)
@@ -88,3 +108,6 @@ vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.l
 -- Zen
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
+-- Format command
+vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+keymap("n", "<leader>F", "<cmd>Format<cr>", opts)
