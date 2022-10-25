@@ -5,10 +5,7 @@ syntax on  " syntax highlighting
 
 "map Esc key to 'jj'
 imap jj <Esc>
-imap <buffer> <C-o> <esc>o
 imap <buffer> <C-;> <esc>A;  " add semicolon
-" Delete characters forward
-inoremap <C-d> <Del>
 let mapleader = " "  " map leader key (\) to Space bar
 " Disbale 'ZZ' command to save and quit
 nnoremap Z <C-o>:echom "--> :w :q <-- "<CR>
