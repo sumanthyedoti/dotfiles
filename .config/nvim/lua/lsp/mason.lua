@@ -23,7 +23,7 @@ local servers = { -- HEREL: LSP servers
 	"sumneko_lua",
 	"rust_analyzer",
 	"jsonls",
-	"quick-link-js",
+	"quick_link_js",
 	"tsserver",
 	"html",
 	"cssls",

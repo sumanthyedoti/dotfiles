@@ -43,8 +43,8 @@ keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 -- reg menu
 keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
 -- splits
-keymap("n", "<leader>S", "<cmd>split<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>s ", "<cmd>vsplit<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>S", "<cmd>split<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>ss", "<cmd>vsplit<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>so", "<cmd>only<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>sq", ":q<CR>", opts) -- kill all remaining splits
@@ -54,13 +54,12 @@ keymap("n", "<leader>jh", "<C-w>h<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>jj", "<C-w>j<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>jk", "<C-w>k<CR>", opts) -- kill all remaining splits
 keymap("n", "<leader>jh", "<C-w>h<CR>", opts) -- kill all remaining splits
--- Keep only current window (Split) and Tab
+-- Buffers
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
-keymap("n", "<leader>bd", "<cmd>bd<CR>", opts) -- kill current buffer
+keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", opts) -- kill current buffer
+keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts) -- pick buffer
 -- treesitter playground
 keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", opts) -- kill all remaining splits
--- keep pick buffer
-keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts)
 -- buffer list
 keymap("n", "<leader>bl", "<cmd>ls<cr>:b", opts)
 -- execute previous command

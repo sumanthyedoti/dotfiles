@@ -38,7 +38,7 @@ packer.init({
   dispatch
   glow, without markdown-preview
   neogit
-  hop.nvim or leap.nvim
+  leap.nvim
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
   colortils
     color-picker.nvim
