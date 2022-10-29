@@ -31,14 +31,13 @@ window:
   dynamic_padding: true
 
   #### Window decorations
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  ## Values for `decorations`:
+  ##     - full: Borders and title bar
+  ##     - none: Neither borders nor title bar
+  ## Values for `decorations` (macOS only):
+  ##     - transparent: Title bar, transparent background and title bar buttons
+  ##     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -73,7 +72,7 @@ scrolling:
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  multiplier: 2
+  multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
   #auto_scroll: false
@@ -508,19 +507,18 @@ window:
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
-#cursor:
-  style: Block # -> ▇ Block, _ Underline, ▎ Beam
-  blinking: Always
+cursor:
+  style:
+    shape: Block # -> ▇ Block, _ Underline, ▎ Beam
+    blinking: Always
   blink-interval: 750
+  ## If this is `true`, the cursor will be rendered as a hollow box when the window is not focused.
+  unfocused_hollow: false
 
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
-  #unfocused_hollow: true
-
-# Live config reload (changes require restart)
-#live_config_reload: true
+## Live config reload (changes require restart)
+live_config_reload: true
 
 #### Shell
 ## You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.

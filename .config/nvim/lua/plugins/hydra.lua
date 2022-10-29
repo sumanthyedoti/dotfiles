@@ -1,4 +1,7 @@
-local Hydra = require("hydra")
+local status_ok, Hydra = pcall(require, "hydra")
+if not status_ok then
+	return
+end
 
 Hydra({
 	name = "Side scroll",

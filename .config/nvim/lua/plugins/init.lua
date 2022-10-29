@@ -1,5 +1,4 @@
 local fn = vim.fn
-
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -56,6 +55,7 @@ packer.init({
   vim-maximizer
   vim-illuminate
   prettier.nvim
+  vim-dadbod
 ]]
 return packer.startup(function(use)
 	-- My plugins here
@@ -152,6 +152,7 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 		config = "require 'plugins.treesitter'",
 	})
+	-- use({ "nvim-treesitter/nvim-treesitter-context", config = "require 'plugins.treesitter-context'" })
 	use("p00f/nvim-ts-rainbow")
 	use("nvim-treesitter/playground")
 	use("windwp/nvim-ts-autotag")
@@ -173,6 +174,7 @@ return packer.startup(function(use)
 	use({ "folke/zen-mode.nvim", config = "require 'plugins.zen-mode'" })
 	use({ "gelguy/wilder.nvim", config = "require 'plugins.wilder-menu'" })
 	use({ "anuvyklack/hydra.nvim", config = "require 'plugins.hydra'" }) -- submodes and menus
+	use({ "ellisonleao/glow.nvim", config = "require 'plugins.glow'" }) -- markdown preview
 	use("glepnir/dashboard-nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
