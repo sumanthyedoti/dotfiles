@@ -57,6 +57,7 @@ packer.init({
   prettier.nvim
   vim-dadbod
   nvim-notify
+  overseer.nvim
 ]]
 return packer.startup(function(use)
 	-- My plugins here
@@ -71,6 +72,7 @@ return packer.startup(function(use)
 	})
 	use("tpope/vim-surround")
 	use("andymass/vim-matchup")
+	use({ "ggandor/leap.nvim", config = "require 'plugins.leap'" })
 	use({ "AndrewRadev/switch.vim", config = "require 'plugins.switch'" })
 	use({
 		"iamcco/markdown-preview.nvim",

@@ -5,6 +5,8 @@
 - starship
 - stow
 - alacritty
+- lazygit
+  - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer
 - nvim
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)

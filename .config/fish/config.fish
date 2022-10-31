@@ -14,6 +14,9 @@ if test (uname) = "Darwin"
   eval (/opt/homebrew/bin/brew shellenv)
 end
 
+# ALIASES
+alias lg="lazygit"
+
 # starship
 starship init fish | source
 

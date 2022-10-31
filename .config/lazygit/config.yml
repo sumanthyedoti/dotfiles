@@ -1,0 +1,4 @@
+keybinding:
+  universal:
+    quit: 'Q'
+    quitWithoutChangingDirectory: '<c-q>'

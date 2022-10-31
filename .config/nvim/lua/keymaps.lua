@@ -73,6 +73,10 @@ keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", opts)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", opts)
+keymap("i", "<C-j>", "<ESC>i", opts) -- move backwards
+keymap("i", "<C-k>", "<ESC>la", opts) -- move forwards
+keymap("i", "<C-h>", "<ESC>dbxi", opts) -- clear one word backwards
+keymap("i", "<C-l>", "<ESC>ldei", opts) -- clear one word forwards
 
 -- VISUAL --
 keymap("v", "<leader> ", "<ESC>", opts) -- clear search hightlight with <space><space>
