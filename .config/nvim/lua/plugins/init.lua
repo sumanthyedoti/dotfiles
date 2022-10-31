@@ -56,6 +56,7 @@ packer.init({
   vim-illuminate
   prettier.nvim
   vim-dadbod
+  nvim-notify
 ]]
 return packer.startup(function(use)
 	-- My plugins here
@@ -80,7 +81,8 @@ return packer.startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use({ "nvim-lualine/lualine.nvim", config = "require 'plugins.lualine'" }) --snippet engine
 	-- colorschemes
-	use("flazz/vim-colorschemes")
+	use("EdenEast/nightfox.nvim")
+	use({ "ellisonleao/gruvbox.nvim" })
 	use("folke/tokyonight.nvim") -- colorscheme
 	use("bluz71/vim-nightfly-guicolors")
 	use({ "stevearc/dressing.nvim", config = "require 'plugins.dressing'" }) --snippet engine

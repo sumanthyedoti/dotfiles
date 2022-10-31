@@ -44,7 +44,7 @@ local options = {
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	wrap = false, -- display lines as one long line
-	scrolloff = 6, -- number of screen lines to keep above and below the cursor
+	scrolloff = 8, -- number of screen lines to keep above and below the cursor
 	sidescrolloff = 4,
 }
 for k, v in pairs(options) do
