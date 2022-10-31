@@ -4,7 +4,7 @@
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	pager = delta
+	; pager = delta ; print everything
 [web]
 	browser = google-chrome
 [color "branch"]
@@ -46,7 +46,7 @@
 	user = sumanthyedoti
 [alias]
   s = status
-  udiff = diff ; untracted
+  diff2 = diff @~..@ ; last two commits, can also use "show"
   sdiff = diff --staged
   ll = log --oneline
   lll = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s  %C(dim green)(%cr)  [%an]\" --abbrev-commit -30
