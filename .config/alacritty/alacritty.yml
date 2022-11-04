@@ -497,8 +497,8 @@ colors: *nord  #colorscheme
 
 #### Background opacity -- from `0.0` to `1.0`.
 window:
-  opacity: 0.8
-  background_opacity: 0.80
+  opacity: 0.9
+  background_opacity: 0.9
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

@@ -1,7 +1,11 @@
 ## Dependecies
 
 - brew (Mac)
+- node
+  - nvm
 - fish
+  - fisher
+    - nvm
 - starship
 - stow
 - alacritty
@@ -14,7 +18,6 @@
   - `:PLugInstall`
   - `:CocUpdate`
 - emacs
-- node
 - python
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
