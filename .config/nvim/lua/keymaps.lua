@@ -54,7 +54,7 @@ keymap("n", "<leader>jk", "<C-w>k<CR>", opts)
 keymap("n", "<leader>jh", "<C-w>h<CR>", opts)
 -- Buffers
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
-keymap("n", "<leader>bd", "<>BufferLinePickClose<CR>", opts) -- kill current buffer
+keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", opts) -- pick close current buffer
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts) -- pick buffer
 -- treesitter playground
 keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", opts) -- kill all remaining splits
@@ -110,5 +110,5 @@ vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.l
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
 -- Format command
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]])
 keymap("n", "<leader>F", "<cmd>Format<cr>", opts)

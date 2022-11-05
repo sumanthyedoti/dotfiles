@@ -7,18 +7,6 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local completion = null_ls.builtins.completion
 
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
---
--- local lsp_formatting = function(bufnr)
--- 	vim.lsp.buf.formatting({
--- 		filter = function(client)
--- 			-- apply whatever logic you want (in this example, we'll only use null-ls)
---       vim.notify(client.name)
--- 			return client.name == "null-ls"
--- 		end,
--- 		bufnr = bufnr,
--- 	})
--- end
 local lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(client)

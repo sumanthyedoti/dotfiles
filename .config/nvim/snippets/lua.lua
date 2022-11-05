@@ -314,5 +314,11 @@ cs(
 	"<leader>rand"
 )
 
+cs("return", {
+	t({ "do", "" }),
+	t({ "  return", "" }),
+	t("end"),
+})
+
 -- End Refactoring --
 return snippets, autosnippets

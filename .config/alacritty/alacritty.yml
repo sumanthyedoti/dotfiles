@@ -101,8 +101,8 @@ font:
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
-    family: Hack Nerd Font
-    # family: JetBrains Mono
+    # family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -113,8 +113,8 @@ font:
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
-    family: Hack Nerd Font
-    # family: JetBrains Mono
+    # family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -125,8 +125,8 @@ font:
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
-    family: Hack Nerd Font
-    # family: JetBrains Mono
+    # family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -137,8 +137,8 @@ font:
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
-    family: Hack Nerd Font
-    # family: JetBrains Mono
+    # family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -512,8 +512,8 @@ dynamic_title: true
 cursor:
   style:
     shape: Block # -> ▇ Block, _ Underline, ▎ Beam
-    blinking: Always
-  blink-interval: 750
+    # blinking: Always
+  # blink-interval: 750
   ## If this is `true`, the cursor will be rendered as a hollow box when the window is not focused.
   unfocused_hollow: false
 
