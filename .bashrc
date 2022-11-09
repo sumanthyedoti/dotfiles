@@ -1,4 +1,6 @@
 eval "$(starship init bash)"
+# zoxide
+eval "$(zoxide init bash)"
 
 # mkdir and cd
 mkcd () {
@@ -6,7 +8,9 @@ mkcd () {
 }
 
 # ALIASES
+alias g="git"
 alias lg="lazygit"
+alias z="zoxide"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

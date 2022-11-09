@@ -30,8 +30,8 @@ keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <spac
 keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
 
 -- Navigate buffers
-keymap("n", "<TAB>", ":bprevious<CR>", opts)
-keymap("n", "<S-TAB>", ":bnext<CR>", opts)
+keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
+keymap("n", "<TAB>", ":bnext<CR>", opts)
 -- new line
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)

@@ -15,10 +15,12 @@ if test (uname) = "Darwin"
 end
 
 # ALIASES
+alias g="git"
 alias lg="lazygit"
+alias z="zoxide"
 
-# starship
 starship init fish | source
+zoxide init fish | source
 
 # Setting PATH for Python 3.10
 # The original version is saved in /Users/sumanthyedoti/.config/fish/config.fish.pysave
@@ -29,3 +31,5 @@ set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
+# pyenv
+pyenv init - | source

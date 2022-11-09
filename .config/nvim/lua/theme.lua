@@ -50,7 +50,7 @@ require("nightfox").setup({
 })
 
 -- HERE: colorscheme
-local colorscheme = "gruvbox" -- "gruvbox", "nightfly", "tokyonight-night"
+local colorscheme = "tokyonight-night" -- "gruvbox", "nightfly", "tokyonight-night"
 --[[ Nightfox
   dark: "nightfox", "duskfox", "nordfox", "terafox", "carbonfox"
   light: "dayfox", "dawnfox" ]]

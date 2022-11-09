@@ -120,16 +120,6 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig.eslint.setup({
-	-- TODO: Disabled when there is no eslint file to prevent "No ESLint configuration found" exceptions
-	-- ".eslintrc",
-	-- ".eslintrc.js",
-	-- ".eslintrc.cjs",
-	-- ".eslintrc.yaml",
-	-- ".eslintrc.yml",
-	-- ".eslintrc.json"
-})
-
 -- configure typescript server with plugin
 typescript.setup({
 	server = {

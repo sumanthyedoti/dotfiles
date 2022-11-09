@@ -23,7 +23,8 @@ null_ls.setup({
 	-- 🌐 https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
 	-- 🌐 https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 	sources = { -- HERE: list
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettierd,
 		formatting.stylua,
 		diagnostics.eslint_d,
 		completion.spell,

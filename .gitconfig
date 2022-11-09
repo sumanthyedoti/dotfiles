@@ -46,6 +46,9 @@
 	user = sumanthyedoti
 [alias]
   s = status
+  co = checkout
+  sh = stash
+  b = branch
   diff2 = diff @~..@ ; last two commits, can also use "show"
   sdiff = diff --staged
   ll = log --oneline
