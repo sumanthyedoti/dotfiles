@@ -14,8 +14,8 @@
 - nvim
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
   - install LSPs, formatters, linters like
-    - stylua
-    - typescript-language-server
+    - stylua,
+    - typescript, typescript-language-server
     - eslint
     - Prettier
     - vscode-languageserver

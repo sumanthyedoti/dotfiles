@@ -46,13 +46,15 @@
 	user = sumanthyedoti
 [alias]
   s = status
+  a = add
+  c = commit
   co = checkout
   sh = stash
   b = branch
+  email = config user.email
   diff2 = diff @~..@ ; last two commits, can also use "show"
   sdiff = diff --staged
-  ll = log --oneline
-  lll = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s  %C(dim green)(%cr)  [%an]\" --abbrev-commit -30
+  ll = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s  %C(dim green)(%cr)  [%an]\" --abbrev-commit -30
   last = log -1 HEAD --stat
   ; branches
   brs = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate

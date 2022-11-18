@@ -68,7 +68,7 @@ keymap("n", "-", "<C-x>", opts)
 keymap("n", "=", "<C-a>", opts)
 -- ## Telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>f ", "<cmd>Telescope find_files hidden=true<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", opts)
 
 -- INSERT --
