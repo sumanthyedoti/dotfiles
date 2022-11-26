@@ -97,6 +97,7 @@ cs( -- for([%w_]+) JS For Loop snippet{{{
 		}
 	)
 ) --}}}
+
 cs( -- [while] JS While Loop snippet{{{
 	"while",
 	fmt(
@@ -160,6 +161,22 @@ test ("{}") () => {{
 		{
 			i(1, "test_message"),
 			i(2, "// test logic"),
+		}
+	)
+)
+cs(
+	"stylesrn",
+	fmt(
+		[[
+const styles = StyleSheet.create({{
+  {}: {{
+    {}
+  }}
+}})
+  ]],
+		{
+			i(1, "container"),
+			i(2, ""),
 		}
 	)
 ) --}}}
