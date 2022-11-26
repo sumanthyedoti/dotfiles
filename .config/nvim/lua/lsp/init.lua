@@ -122,6 +122,7 @@ lspconfig["html"].setup({
 
 -- configure typescript server with plugin
 typescript.setup({
+	capabilities = capabilities,
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
@@ -129,6 +130,7 @@ typescript.setup({
 })
 
 -- lspconfig.tsserver.setup({
+-- 	capabilities = capabilities,
 -- 	on_attach = on_attach,
 -- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 -- 	cmd = { "typescript-language-server", "--stdio" },
@@ -137,7 +139,10 @@ typescript.setup({
 lspconfig.jsonls.setup({
 	settings = {
 		json = {
-			schemas = require("schemastore").json.schemas(),
+			schemas = require("schemastore").json.schemas({
+				select = {},
+				ignore = {},
+			}),
 			validate = { enable = true },
 		},
 	},

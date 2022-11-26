@@ -35,6 +35,7 @@ keymap("n", "<TAB>", ":bnext<CR>", opts)
 -- new line
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
+keymap("n", "<leader>cl", "0d$", opts)
 -- Disbale 'ZZ' command to save and quit¬
 keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', opts)
 keymap("n", "ZZ", ':echom "--> :w :q <-- "<CR>', opts)
@@ -56,6 +57,7 @@ keymap("n", "<leader>jh", "<C-w>h<CR>", opts)
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
 keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", opts) -- pick close current buffer
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts) -- pick buffer
+keymap("n", "C-b", "<cmd>bd<CR>", opts) -- pick buffer
 -- treesitter playground
 keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", opts) -- kill all remaining splits
 -- buffer list
@@ -109,6 +111,3 @@ vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.l
 -- Zen
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
--- Format command
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]])
-keymap("n", "<leader>F", "<cmd>Format<cr>", opts)

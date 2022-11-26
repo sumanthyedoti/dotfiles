@@ -52,7 +52,7 @@ mason_lspconfig.setup({ -- :LspInstall
 -- 🌐 https://github.com/jayp0521/mason-null-ls.nvim#available-null-ls-sources
 mason_null_ls.setup({ -- :NullLsInstall
 	ensure_installed = {
-		"prettier",
+		"prettierd",
 		"stylua",
 		"eslint_d",
 	},

@@ -149,6 +149,21 @@ cs("f_uniqueValues", {
 })
 cs("f_client_scrollToTop", t("const scrollToTop = () => window.scrollTo(0, 0)"))
 
+cs( -- [while] JS While Loop snippet{{{
+	"test",
+	fmt(
+		[[
+test ("{}") () => {{
+  {}
+}})
+  ]],
+		{
+			i(1, "test_message"),
+			i(2, "// test logic"),
+		}
+	)
+) --}}}
+
 -- End Refactoring --
 
 return snippets, autosnippets

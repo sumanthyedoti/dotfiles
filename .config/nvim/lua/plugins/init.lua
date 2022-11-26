@@ -138,13 +138,15 @@ return packer.startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("williamboman/mason.nvim") -- language server installer
 	use("williamboman/mason-lspconfig.nvim") -- bridges mason.nvim with the nvim-lspconfig
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-	use("jayp0521/mason-null-ls.nvim")
 	use("jose-elias-alvarez/typescript.nvim")
 	use("b0o/schemastore.nvim")
+	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	use("jayp0521/mason-null-ls.nvim")
+	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })
+	use({ "f-person/git-blame.nvim" })
 
 	-- ## Telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
