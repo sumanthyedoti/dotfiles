@@ -4,7 +4,14 @@
 <C-o> -- close suggestions PUM
 ]]
 
-local ls = require("luasnip") --{{{
+local ls_ok, ls = pcall(require, "luasnip")
+if not ls_ok then
+	vim.notify("luasnip load failed")
+	return
+end
+
+require("luasnip/loaders/from_vscode").lazy_load()
+
 local s = ls.s
 local i = ls.i
 local t = ls.t
@@ -18,6 +25,19 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 local snippets, autosnippets = {}, {} --}}}
+
+local filename = function()
+	return f(function(_args, snip)
+		local name = vim.split(snip.snippet.env.TM_FILENAME, ".", true)
+		return name[1] or ""
+	end)
+end
+
+local same = function(index)
+	return f(function(args)
+		return args[1]
+	end, { index })
+end
 
 local group = vim.api.nvim_create_augroup("Js Snippets", { clear = true })
 local file_pattern = "*.js"
@@ -164,6 +184,27 @@ test ("{}") () => {{
 		}
 	)
 )
+
+-- React
+cs("imr", t('import React from "react"'))
+cs("improptypes", t('import PropTypes from "prop-types"'))
+cs(
+	"proptypes",
+	fmt(
+		[[
+{}.propTypes = {{
+  {}: PropTypes.string
+}}
+  ]],
+		{
+			filename(),
+			i(1, "title"),
+		}
+	)
+)
+cs("imrn", fmt('import {{ {} }} from "react-native"', i(1, "View")))
+
+-- React Native
 cs(
 	"stylesrn",
 	fmt(
@@ -180,7 +221,25 @@ const styles = StyleSheet.create({{
 		}
 	)
 ) --}}}
+cs(
+	"rnbutton",
+	fmt(
+		[[
+      <Button onPress={} title="{}" />
+]],
+		{
+			i(0, "onPress"),
+			i(0, "Press Here"),
+		}
+	)
+)
 
--- End Refactoring --
+-- ls.filetype_extend("javascript", { "html" })
+ls.filetype_extend("typescript", { "javascript" })
+ls.filetype_extend("typescriptreact", { "javascript" })
+ls.filetype_extend("typescript", { "javascriptreact" })
+ls.filetype_extend("typescriptreact", { "javascriptreact" })
+-- ls.filetype_extend("javascriptreact", { "html" })
+-- ls.filetype_extend("typescriptreact", { "html" })
 
 return snippets, autosnippets

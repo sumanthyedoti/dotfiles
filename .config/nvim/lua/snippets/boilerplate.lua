@@ -4,7 +4,12 @@
 <C-o> -- close suggestions PUM
 ]]
 
-local ls = require("luasnip") --{{{
+local ls_ok, ls = pcall(require, "luasnip")
+if not ls_ok then
+	vim.notify("luasnip load failed")
+	return
+end
+
 local s = ls.s --> snippet
 local i = ls.i --> insert node
 local t = ls.t --> text node
@@ -19,6 +24,19 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 local snippets, autosnippets = {}, {} --}}}
+
+local filename = function()
+	return f(function(_args, snip)
+		local name = vim.split(snip.snippet.env.TM_FILENAME, ".", true)
+		return name[1] or ""
+	end)
+end
+
+local same = function(index)
+	return f(function(args)
+		return args[1]
+	end, { index })
+end
 
 local group = vim.api.nvim_create_augroup("Lua Snippets", { clear = true })
 local file_pattern = "*.lua" -- HERE: change this for 'cs' function

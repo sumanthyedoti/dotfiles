@@ -1,7 +1,11 @@
-local ls = require("luasnip") --{{{
+local ls_ok, ls = pcall(require, "luasnip")
+if not ls_ok then
+	vim.notify("luasnip load failed")
+	return
+end
 
--- require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets/" })
 require("luasnip").config.setup({ store_selection_keys = "<A-p>" })
 
 vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]) --}}}
@@ -9,25 +13,25 @@ vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_sni
 -- Virtual Text{{{
 local types = require("luasnip.util.types")
 ls.config.set_config({
-  history = true, --keep around last snippet local to jump back
-  updateevents = "TextChanged,TextChangedI", --update changes as you type
-  enable_autosnippets = true,
-  ext_opts = {
-    [types.choiceNode] = {
-      active = {
-        virt_text = { { "●", "GruvboxOrange" } },
-      },
-    },
-    -- [types.insertNode] = {
-    -- 	active = {
-    -- 		virt_text = { { "●", "GruvboxBlue" } },
-    -- 	},
-    -- },
-  },
+	history = true, --keep around last snippet local to jump back
+	updateevents = "TextChanged,TextChangedI", --update changes as you type
+	enable_autosnippets = true,
+	ext_opts = {
+		[types.choiceNode] = {
+			active = {
+				virt_text = { { "●", "GruvboxOrange" } },
+			},
+		},
+		-- [types.insertNode] = {
+		-- 	active = {
+		-- 		virt_text = { { "●", "GruvboxBlue" } },
+		-- 	},
+		-- },
+	},
 }) --}}}
 -- Key Mapping --{{{
-vim.cmd "imap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'"
-vim.cmd "smap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'"
+vim.cmd("imap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'")
+vim.cmd("smap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-e>'")
 -- vim.keymap.set({ "i", "s" }, "<A-p>", function()
 -- 	if ls.expand_or_jumpable() then
 -- 		ls.expand()

@@ -1,4 +1,8 @@
-local ls = require("luasnip") --{{{ - LOCAL LS = REQUIRE("LUASNIP") --{{{
+local ls_ok, ls = pcall(require, "luasnip")
+if not ls_ok then
+	vim.notify("luasnip load failed")
+	return
+end
 local s = ls.s --> snippet
 local i = ls.i --> insert node
 local t = ls.t --> text node

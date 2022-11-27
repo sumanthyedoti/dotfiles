@@ -87,7 +87,7 @@ return packer.startup(function(use)
 	use({ "ellisonleao/gruvbox.nvim" })
 	use("folke/tokyonight.nvim") -- colorscheme
 	use("bluz71/vim-nightfly-guicolors")
-	use({ "stevearc/dressing.nvim", config = "require 'plugins.dressing'" }) --snippet engine
+	use({ "stevearc/dressing.nvim", config = "require 'plugins.dressing'" })
 	use({
 		"ziontee113/icon-picker.nvim",
 		config = function()
@@ -96,9 +96,9 @@ return packer.startup(function(use)
 			})
 		end,
 	})
-	use({ "folke/todo-comments.nvim", config = "require 'plugins.todo-comments'" }) --snippet engine
-	use({ "akinsho/bufferline.nvim", config = "require 'plugins.bufferline'" }) --snippet engine
-	use({ "akinsho/toggleterm.nvim", config = "require 'plugins.toggleterm'" }) --snippet engine
+	use({ "folke/todo-comments.nvim", config = "require 'plugins.todo-comments'" })
+	use({ "akinsho/bufferline.nvim", config = "require 'plugins.bufferline'" })
+	use({ "akinsho/toggleterm.nvim", config = "require 'plugins.toggleterm'" })
 	use("moll/vim-bbye") -- to close buffers
 	-- colorscheme
 	-- ## Commentery
