@@ -162,7 +162,7 @@ c({}, {{ {} }}),
 
 cs( -- choice_node_snippet luaSnip choice node{{{
 	"line",
-	sn(1, { t('t({"'), i(1, "line"), t('", ""}') }),
+	sn(1, { t('t({"'), i(1, "line"), t('", ""})') }),
 	{ pattern = "*/snippets/*.lua", "jcn" }
 ) --}}}
 

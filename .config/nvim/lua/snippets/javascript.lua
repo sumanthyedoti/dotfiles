@@ -234,6 +234,48 @@ cs(
 	)
 )
 
+cs("rnsfcc", {
+	t({ "alignItems: 'center',", "" }),
+	t({ "justifyContent: 'center',", "" }),
+})
+cs("rnstest", {
+	t({ "borderColor: '#f00',", "" }),
+	t({ "borderStyle: 'solid',", "" }),
+	t({ "borderWidth: 1,", "" }),
+})
+
+cs("rndim", {
+	t({ "const {width, height} = Dimensions.get('window')", "" }),
+})
+
+cs("irnrean", {
+	t({ "import Animated from 'react-native-reanimated'", "" }),
+})
+
+cs(
+	"rnreanscroll",
+	fmt(
+		[[
+      const {} = useSharedValue(0)
+
+      const {} = useAnimatedScrollHandler({{
+        onScroll: (event) => {{
+          {}.value = event.contentOffset.y
+        }},
+      }})
+    ]],
+		{
+			i(1, "scrollOffsetY"),
+			i(2, "scrollHandler"),
+			rep(1),
+		}
+	)
+)
+
+-- RN reanimated
+
+-- End Refactoring --
+
 -- ls.filetype_extend("javascript", { "html" })
 ls.filetype_extend("typescript", { "javascript" })
 ls.filetype_extend("typescriptreact", { "javascript" })
