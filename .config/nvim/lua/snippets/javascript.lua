@@ -211,13 +211,14 @@ cs(
 		[[
 const styles = StyleSheet.create({{
   {}: {{
-    {}
+    {}: {}
   }}
 }})
   ]],
 		{
 			i(1, "container"),
-			i(2, ""),
+			i(2, "flex"),
+			i(3, "1"),
 		}
 	)
 ) --}}}
@@ -248,7 +249,7 @@ cs("rndim", {
 	t({ "const {width, height} = Dimensions.get('window')", "" }),
 })
 
-cs("irnrean", {
+cs("imrnrean", {
 	t({ "import Animated from 'react-native-reanimated'", "" }),
 })
 

@@ -58,6 +58,7 @@ packer.init({
   vim-dadbod
   nvim-notify
   overseer.nvim
+  GitHub Copilot
 ]]
 return packer.startup(function(use)
 	-- My plugins here
