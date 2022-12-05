@@ -13,6 +13,8 @@ if not ts_status_ok then
 	return
 end
 
+local util = require("lspconfig/util")
+
 -- Change the Diagnostic symbols in the sign column (gutter)
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
@@ -178,6 +180,21 @@ lspconfig["sumneko_lua"].setup({
 					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
+		},
+	},
+})
+
+lspconfig.gopls.setup({
+	capabilities = capabilities,
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod" },
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
 		},
 	},
 })

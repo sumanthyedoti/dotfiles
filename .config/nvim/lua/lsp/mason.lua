@@ -22,6 +22,8 @@ end
 local servers = { -- HEREL: LSP servers
 	"sumneko_lua",
 	"rust_analyzer",
+	"gopls",
+	"golangci_lint_ls",
 	"jsonls",
 	"tsserver",
 	"html",
@@ -55,5 +57,7 @@ mason_null_ls.setup({ -- :NullLsInstall
 		"prettierd",
 		"stylua",
 		"eslint_d",
+		"gofmt",
+		"golangci_lint_ls",
 	},
 })

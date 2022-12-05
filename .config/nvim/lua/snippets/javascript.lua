@@ -246,15 +246,20 @@ cs("rnstest", {
 })
 
 cs("rndim", {
-	t({ "const {width, height} = Dimensions.get('window')", "" }),
+	t({ "const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window')", "" }),
+})
+cs("rnusedim", {
+	t({ "const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions()", "" }),
 })
 
-cs("imrnrean", {
+-- RN reanimated
+
+cs("imrean", {
 	t({ "import Animated from 'react-native-reanimated'", "" }),
 })
 
 cs(
-	"rnreanscroll",
+	"reanscroll",
 	fmt(
 		[[
       const {} = useSharedValue(0)
@@ -273,7 +278,60 @@ cs(
 	)
 )
 
--- RN reanimated
+cs( -- useSharedValue
+	"reanusesh",
+	fmt(
+		[[
+      const {} = useSharedValue({})
+    ]],
+		{
+			i(1, "sharedValue"),
+			i(2, "0"),
+		}
+	)
+)
+
+cs( -- useAnimatedStyle
+	"reanstyle",
+	fmt(
+		[[
+  const {} = useAnimatedStyle(() => {{
+    return {{
+    {}
+    }}
+  }})
+    ]],
+		{
+			i(1, "rStyles"),
+			i(2, ""),
+		}
+	)
+)
+
+cs( -- useAnimatedStyle with translation
+	"reanstyletanslate",
+	fmt(
+		[[
+  const {} = useAnimatedStyle(() => {{
+    return {{
+      transform: [
+        {{
+          translateX: {}.value,
+        }},
+        {{
+          translateY: {}.value,
+        }},
+      ],
+    }}
+  }})
+    ]],
+		{
+			i(1, "rStyles"),
+			i(2, "touchX"),
+			i(3, "touchY"),
+		}
+	)
+)
 
 -- End Refactoring --
 

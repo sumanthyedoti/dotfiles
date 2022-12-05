@@ -19,6 +19,7 @@
     - eslint
     - Prettier
     - vscode-languageserver
+    - golangci-lint
 - vim-plug
   - `:PLugInstall`
   - `:CocUpdate`
@@ -26,7 +27,9 @@
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins
+
 ### CLI tools
+
 - starship
 - ripgrep
 - zoxide

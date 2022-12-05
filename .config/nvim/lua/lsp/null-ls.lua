@@ -22,7 +22,12 @@ null_ls.setup({
 		formatting.prettierd,
 		formatting.stylua,
 		diagnostics.eslint_d,
+		formatting.gofmt,
+		diagnostics.golangci_lint,
 		completion.spell,
+		completion.luasnip,
+		completion.tags,
+		completion.vsnip,
 		-- require("typescript.extensions.null-ls.code-actions"),
 	},
 	-- format on save
