@@ -58,6 +58,8 @@ mason_null_ls.setup({ -- :NullLsInstall
 		"stylua",
 		"eslint_d",
 		"gofmt",
-		"golangci_lint_ls",
+		"goimports",
+		"golangci_lint",
+		"golines",
 	},
 })

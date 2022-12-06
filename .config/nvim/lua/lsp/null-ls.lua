@@ -23,6 +23,8 @@ null_ls.setup({
 		formatting.stylua,
 		diagnostics.eslint_d,
 		formatting.gofmt,
+		formatting.goimports,
+		formatting.golines,
 		diagnostics.golangci_lint,
 		completion.spell,
 		completion.luasnip,

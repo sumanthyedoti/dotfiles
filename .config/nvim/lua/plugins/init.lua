@@ -88,7 +88,6 @@ return packer.startup(function(use)
 	use({ "ellisonleao/gruvbox.nvim" })
 	use("folke/tokyonight.nvim") -- colorscheme
 	use("bluz71/vim-nightfly-guicolors")
-	use({ "stevearc/dressing.nvim", config = "require 'plugins.dressing'" })
 	use({
 		"ziontee113/icon-picker.nvim",
 		config = function()
@@ -101,6 +100,10 @@ return packer.startup(function(use)
 	use({ "akinsho/bufferline.nvim", config = "require 'plugins.bufferline'" })
 	use({ "akinsho/toggleterm.nvim", config = "require 'plugins.toggleterm'" })
 	use("moll/vim-bbye") -- to close buffers
+	use({
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	})
 	-- colorscheme
 	-- ## Commentery
 	use("JoosepAlviste/nvim-ts-context-commentstring")
@@ -144,6 +147,7 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("jayp0521/mason-null-ls.nvim")
 	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
+	use({ "fatih/vim-go" })
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })

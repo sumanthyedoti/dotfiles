@@ -19,7 +19,7 @@ ls.config.set_config({
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
-				virt_text = { { "●", "GruvboxOrange" } },
+				virt_text = { { "↢", "GruvboxOrange" } },
 			},
 		},
 		-- [types.insertNode] = {

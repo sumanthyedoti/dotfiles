@@ -54,6 +54,9 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 local keymap = vim.keymap
+-- local keymap = vim.api.nvim_set_keymap
+
+require("lsp.saga")
 
 -- enable keybinds only for when lsp server available
 local on_attach = function(client, bufnr)
@@ -72,6 +75,7 @@ local on_attach = function(client, bufnr)
 	-- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 	-- keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 	keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
+	keymap.set("n", "<leader>ca", "<cmd>CodeActionMenu<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 
 	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
@@ -186,6 +190,7 @@ lspconfig["sumneko_lua"].setup({
 
 lspconfig.gopls.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	cmd = { "gopls" },
 	filetypes = { "go", "gomod" },
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),

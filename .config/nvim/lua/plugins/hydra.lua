@@ -19,19 +19,19 @@ Hydra({
 	},
 })
 
-Hydra({ -- TODO
-	name = "LSP",
-	mode = "n",
-	body = "<leader>l",
-	heads = {
-		{ "r", "<leader>rn" },
-
-		-- exit this Hydra
-		{ "q", nil, { exit = true, nowait = true } },
-		{ ";", nil, { exit = true, nowait = true } },
-		{ "<Esc>", nil, { exit = true, nowait = true } },
-	},
-})
+-- Hydra({ -- TODO
+-- 	name = "LSP",
+-- 	mode = "n",
+-- 	body = "<leader>l",
+-- 	heads = {
+-- 		{ "r", "<leader>rn" },
+--
+-- 		-- exit this Hydra
+-- 		{ "q", nil, { exit = true, nowait = true } },
+-- 		{ ";", nil, { exit = true, nowait = true } },
+-- 		{ "<Esc>", nil, { exit = true, nowait = true } },
+-- 	},
+-- })
 
 Hydra({
 	name = "Change / Resize Window",

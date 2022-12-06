@@ -36,6 +36,8 @@ keymap("n", "<TAB>", ":bnext<CR>", opts)
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
 keymap("n", "<leader>cl", "0d$", opts)
+keymap("n", "P", "@:<CR>", opts)
+
 -- Disbale 'ZZ' command to save and quit¬
 keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', opts)
 keymap("n", "ZZ", ':echom "--> :w :q <-- "<CR>', opts)
