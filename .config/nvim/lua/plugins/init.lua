@@ -37,7 +37,6 @@ packer.init({
   dispatch
   glow, without markdown-preview
   neogit
-  leap.nvim
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
   colortils
     color-picker.nvim
@@ -136,6 +135,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua") -- for neovim Lua API
+	use("hrsh7th/cmp-vsnip")
 	use("onsails/lspkind.nvim")
 	-- LSP
 	use("neovim/nvim-lspconfig") -- config lsp servers

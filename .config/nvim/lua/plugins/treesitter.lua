@@ -41,8 +41,6 @@ treesitter.setup({
 		"ocaml",
 		"ocaml_interface",
 		"ocamllex",
-		"php",
-		"phpdoc",
 		"prisma",
 		"python",
 		"regex",

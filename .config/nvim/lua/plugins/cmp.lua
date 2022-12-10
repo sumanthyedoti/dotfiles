@@ -26,7 +26,8 @@ end
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			luasnip.lsp_expand(args.body) -- For `luasnip`
+			vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
 	mapping = {
@@ -93,6 +94,7 @@ cmp.setup({
 		{ name = "nvim_lsp", max_item_count = 6 },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "vsnip" },
 		{ name = "buffer", max_item_count = 6 },
 		{ name = "path" },
 	},

@@ -24,6 +24,7 @@ local servers = { -- HEREL: LSP servers
 	"rust_analyzer",
 	"gopls",
 	"golangci_lint_ls",
+	"elixirls",
 	"jsonls",
 	"tsserver",
 	"html",
@@ -61,5 +62,8 @@ mason_null_ls.setup({ -- :NullLsInstall
 		"goimports",
 		"golangci_lint",
 		"golines",
+		"mix",
+		"surface",
+		"credo",
 	},
 })

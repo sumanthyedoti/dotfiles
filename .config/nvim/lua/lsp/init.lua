@@ -188,6 +188,20 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
+lspconfig.elixirls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "elixir-ls" },
+	settings = {
+		elixirls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+})
+
 lspconfig.gopls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
