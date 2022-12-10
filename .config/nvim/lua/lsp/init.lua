@@ -69,8 +69,8 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "gpd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
 	-- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	keymap.set("n", "<K>", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 	-- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 	-- keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
@@ -192,12 +192,13 @@ lspconfig.elixirls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = { "elixir-ls" },
+	flags = {
+		debounce_text_changes = 150,
+	},
 	settings = {
-		elixirls = {
-			analyses = {
-				unusedparams = true,
-			},
-			staticcheck = true,
+		elixirLS = {
+			dialyzerEnabled = false,
+			fetchDeps = false,
 		},
 	},
 })

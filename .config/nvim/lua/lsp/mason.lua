@@ -62,8 +62,8 @@ mason_null_ls.setup({ -- :NullLsInstall
 		"goimports",
 		"golangci_lint",
 		"golines",
+		-- =elixir=
 		"mix",
-		"surface",
-		"credo",
+		-- "credo",
 	},
 })

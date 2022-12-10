@@ -42,6 +42,7 @@ packer.init({
     color-picker.nvim
   syntax-tree-surfer
   neorg
+  nvim-dap (mason)
   anuvyklack/windows.nvim
   pretty-fold.nvim
   fold-preview.nvim
@@ -135,6 +136,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua") -- for neovim Lua API
+	use("hrsh7th/vim-vsnip")
 	use("hrsh7th/cmp-vsnip")
 	use("onsails/lspkind.nvim")
 	-- LSP

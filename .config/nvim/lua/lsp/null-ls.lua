@@ -22,13 +22,17 @@ null_ls.setup({
 		formatting.prettierd,
 		formatting.stylua,
 		diagnostics.eslint_d,
+
+		-- = go =
 		formatting.gofmt,
 		formatting.goimports,
 		formatting.golines,
 		diagnostics.golangci_lint,
+
+		-- = elixir =
 		formatting.mix,
-		formatting.surface,
-		diagnostics.credo,
+		-- diagnostics.credo,
+
 		completion.spell,
 		completion.luasnip,
 		completion.tags,
