@@ -75,7 +75,7 @@ cmp.setup({
 			menu = {
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[nLua]",
-				luasnip = "[lsnip]",
+				luasnip = "[snip]",
 				vsnip = "[vsnip]",
 				buffer = "[buff]",
 				path = "[path]",

@@ -65,6 +65,7 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/plenary.nvim") -- lua utility functions used by lots of plugins
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
+	use({ "stevearc/dressing.nvim" })
 	use({
 		"windwp/nvim-autopairs",
 		config = function()

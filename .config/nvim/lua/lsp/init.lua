@@ -121,6 +121,16 @@ end
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- 🌐 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
+lspconfig["clangd"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+	offset_encoding = "utf-32",
+})
+
 -- configure html server
 lspconfig["html"].setup({
 	capabilities = capabilities,

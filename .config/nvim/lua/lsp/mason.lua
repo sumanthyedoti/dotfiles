@@ -21,6 +21,7 @@ end
 
 local servers = { -- HEREL: LSP servers
 	"sumneko_lua",
+	"clangd",
 	"rust_analyzer",
 	"gopls",
 	"golangci_lint_ls",
@@ -55,8 +56,9 @@ mason_lspconfig.setup({ -- :LspInstall
 -- 🌐 https://github.com/jayp0521/mason-null-ls.nvim#available-null-ls-sources
 mason_null_ls.setup({ -- :NullLsInstall
 	ensure_installed = {
-		"prettierd",
 		"stylua",
+		"clang_format",
+		"prettierd",
 		"eslint_d",
 		"gofmt",
 		"goimports",

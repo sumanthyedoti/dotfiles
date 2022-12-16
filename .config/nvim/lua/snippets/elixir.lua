@@ -107,6 +107,10 @@ end --}}}
 
 -- Start Refactoring --
 
+cs("useg", t("use GenServer"))
+cs("uses", t("use Supervisor"))
+cs("implg", t("@impl GenServer"))
+
 -- End Refactoring --
 
 return snippets, autosnippets

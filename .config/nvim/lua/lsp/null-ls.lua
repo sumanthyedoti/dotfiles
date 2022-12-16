@@ -23,6 +23,9 @@ null_ls.setup({
 		formatting.stylua,
 		diagnostics.eslint_d,
 
+		-- = c/cpp =
+		formatting.clang_format,
+
 		-- = go =
 		formatting.gofmt,
 		formatting.goimports,

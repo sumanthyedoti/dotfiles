@@ -20,6 +20,11 @@ local snippets, autosnippets = {}, {} --}}}
 local group = vim.api.nvim_create_augroup("Lua Snippets", { clear = true })
 local file_pattern = "*.lua"
 
+-- = Expansions =
+-- TM_CURRENT_LINE -- line number
+-- TM_FILENAME -- file name
+-- TM_DIRECTORY -- parent directory name
+
 -- == create snippet
 -- takes trigger, body, opts -> "trig"/or/{pattern = file_pattern, "trig"}
 local function cs(trigger, nodes, opts)

@@ -20,6 +20,7 @@
     - Prettier
     - vscode-languageserver
     - golangci-lint
+    - elixir-ls
 - vim-plug
   - `:PLugInstall`
   - `:CocUpdate`
@@ -38,4 +39,5 @@
 - fd
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
+- cheat.sh
 - glow - markdown previewer
