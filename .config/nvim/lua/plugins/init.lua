@@ -152,7 +152,7 @@ return packer.startup(function(use)
 	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
 	use({ "fatih/vim-go" })
 
-	use({ "vlime/vlime" })
+	use({ "jpalardy/vim-slime" })
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })

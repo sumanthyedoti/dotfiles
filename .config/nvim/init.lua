@@ -14,3 +14,5 @@ vim.cmd([[nnoremap <leader>C "_C]])
 vim.cmd([[nnoremap <leader>x "_x]])
 vim.cmd([[vnoremap <leader>d "_d]])
 vim.cmd([[vnoremap <leader>c "_c]])
+
+vim.cmd([[let g:slime_target = "tmux"]])
