@@ -31,7 +31,7 @@ packer.init({
 
 --########################################
 -- Install your plugins here
---  packages are stored in '~/.local/share/nvim/site/pack/packer'
+--  packages are stored in '~/.local/share/nvim/site/pack/packer/start'
 --[[ PACKAGES
   firenvim
   dispatch
@@ -151,6 +151,8 @@ return packer.startup(function(use)
 	use("jayp0521/mason-null-ls.nvim")
 	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
 	use({ "fatih/vim-go" })
+
+	use({ "vlime/vlime" })
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })
