@@ -1,6 +1,7 @@
 ## Dependecies
 
 - brew (Mac)
+  - rlwrap
 - rbenv (Mac)
 - node
   - nvm
@@ -21,7 +22,7 @@
     - vscode-languageserver
     - golangci-lint
     - elixir-ls
-    - common-lisp - [ get-started ](https://lisp-lang.org/learn/getting-started/)
+    - common-lisp - [ get-started ](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
       - [ vlime ](https://github.com/vlime/vlime), run `sbcl --load <your bundle dir>/vlime/lisp/start-vlime.lisp`
         - `\cc` to connect
         - `\ss` to REPL current line
@@ -46,3 +47,4 @@
 - cheat.sh
 - glow - markdown previewer
 - pandoc
+- [roswell](https://github.com/roswell/roswell)

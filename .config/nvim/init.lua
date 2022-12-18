@@ -1,3 +1,5 @@
+print("Hello, World!")
+
 require("options")
 require("keymaps")
 require("plugins")

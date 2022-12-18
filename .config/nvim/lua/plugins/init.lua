@@ -42,6 +42,7 @@ packer.init({
     color-picker.nvim
   syntax-tree-surfer
   neorg
+  harpoon
   nvim-dap (mason)
   anuvyklack/windows.nvim
   pretty-fold.nvim
@@ -66,6 +67,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- lua utility functions used by lots of plugins
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use({ "stevearc/dressing.nvim" })
+	use({ "liuchengxu/vim-clap" })
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
@@ -89,6 +91,7 @@ return packer.startup(function(use)
 	use({ "ellisonleao/gruvbox.nvim" })
 	use("folke/tokyonight.nvim") -- colorscheme
 	use("bluz71/vim-nightfly-guicolors")
+	use({ "rose-pine/neovim", as = "rose-pine" })
 	use({
 		"ziontee113/icon-picker.nvim",
 		config = function()
@@ -152,7 +155,17 @@ return packer.startup(function(use)
 	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
 	use({ "fatih/vim-go" })
 
+	-- ## lisp
+	-- 'guns/vim-sexp'
+	-- 'tpope/vim-sexp-mappings-for-regular-people'
 	use({ "jpalardy/vim-slime" })
+	-- use("Olical/conjure")
+	-- use("vlime/vlime")
+	--[[\cc: create a server connection.
+        \cs: choose a server connection.
+        \ss: send the current line to REPL for evaluation.
+        \i: toggle interactive mode (in interactive mode, press <CR> will execute the code)
+      ]]
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })
