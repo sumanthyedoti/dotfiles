@@ -107,14 +107,18 @@ end --}}}
 
 -- Start Refactoring --
 
-cs( -- useSharedValue
-	"defvar",
-	fmt([[ (defvar *{}* {}) ]], { i(1, "x"), i(2, "10") })
-)
+cs("defvar", fmt([[ (defvar *{}* {}) ]], { i(1, "x"), i(2, "10") }))
 
-cs( -- useSharedValue
-	"defparameter",
-	fmt([[ (defparameter *{}* {}) ]], { i(1, "x"), i(2, "10") })
+cs("defparameter", fmt([[ (defparameter *{}* {}) ]], { i(1, "x"), i(2, "10") }))
+
+cs(
+	"defun",
+	fmt(
+		[[
+  (defun {} ({})
+    ({})) ]],
+		{ i(1, "funame"), i(2, ""), i(3, "") }
+	)
 )
 
 -- End Refactoring --

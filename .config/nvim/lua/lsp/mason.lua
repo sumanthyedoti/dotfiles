@@ -67,6 +67,5 @@ mason_null_ls.setup({ -- :NullLsInstall
 		-- =elixir=
 		"mix",
 		-- "credo",
-		"joker",
 	},
 })

@@ -110,6 +110,7 @@ end --}}}
 cs("useg", t("use GenServer"))
 cs("uses", t("use Supervisor"))
 cs("implg", t("@impl GenServer"))
+cs("fn", fmt([[ fn {} -> {} end ]], { i(1, "param"), i(2, "body") }))
 
 -- End Refactoring --
 

@@ -7,6 +7,7 @@ local is_mac = vim.fn.has("macunix")
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
+vim.g.maplocalleader = "z"
 -- vim.g.maplocalleader = " "
 
 -- Modes
@@ -36,7 +37,7 @@ keymap("n", "<TAB>", ":bnext<CR>", opts)
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
 keymap("n", "<leader>cl", "0d$", opts)
-keymap("n", "P", "@:<CR>", opts) -- last terminal command
+keymap("n", "P", "@:<CR>", opts) -- last/previous terminal command
 
 -- Disbale 'ZZ' command to save and quit¬
 keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', opts)
@@ -115,3 +116,5 @@ vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.l
 -- Zen
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
+-- Slime
+vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", opts)

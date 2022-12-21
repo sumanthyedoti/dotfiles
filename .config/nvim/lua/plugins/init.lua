@@ -57,6 +57,7 @@ packer.init({
   vim-illuminate
   prettier.nvim
   vim-dadbod
+  sleuth.vim
   nvim-notify
   overseer.nvim
   GitHub Copilot
@@ -91,7 +92,7 @@ return packer.startup(function(use)
 	use({ "ellisonleao/gruvbox.nvim" })
 	use("folke/tokyonight.nvim") -- colorscheme
 	use("bluz71/vim-nightfly-guicolors")
-	use({ "rose-pine/neovim", as = "rose-pine" })
+	use("navarasu/onedark.nvim")
 	use({
 		"ziontee113/icon-picker.nvim",
 		config = function()
@@ -156,9 +157,9 @@ return packer.startup(function(use)
 	use({ "fatih/vim-go" })
 
 	-- ## lisp
-	-- 'guns/vim-sexp'
-	-- 'tpope/vim-sexp-mappings-for-regular-people'
 	use({ "jpalardy/vim-slime" })
+	use({ "guns/vim-sexp" })
+	use({ "tpope/vim-sexp-mappings-for-regular-people" })
 	-- use("Olical/conjure")
 	-- use("vlime/vlime")
 	--[[\cc: create a server connection.
