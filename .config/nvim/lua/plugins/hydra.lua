@@ -47,6 +47,10 @@ Hydra({
 		{ "k", "<C-w>k" },
 		{ "l", "<C-w>l" },
 
+		-- split
+		{ "s", ":split<CR>" },
+		{ "v", ":vsplit<CR>" },
+
 		-- resizing window
 		{ "H", "<C-w>3<" },
 		{ "L", "<C-w>3>" },
