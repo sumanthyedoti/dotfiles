@@ -27,6 +27,9 @@ zoxide init fish | source
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
+# rust/cargo
+set PATH $HOME/.cargo/bin $PATH
+
 # Andorind Studio
 set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
