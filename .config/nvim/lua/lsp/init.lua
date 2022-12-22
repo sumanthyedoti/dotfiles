@@ -122,15 +122,6 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- 🌐 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
-lspconfig["clangd"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	cmd = { "clangd" },
-	filetypes = { "c", "cpp" },
-	offset_encoding = "utf-32",
-})
-
 -- configure html server
 lspconfig["html"].setup({
 	capabilities = capabilities,
@@ -226,6 +217,25 @@ lspconfig.gopls.setup({
 			},
 			staticcheck = true,
 		},
+	},
+})
+
+lspconfig["clangd"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+	offset_encoding = "utf-32",
+})
+
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "rust_analyzer" },
+	filetypes = { "rust" },
+	root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
+	settings = {
+		["rust-analyzer"] = {},
 	},
 })
 

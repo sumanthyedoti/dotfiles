@@ -155,9 +155,15 @@ return packer.startup(function(use)
 	use("jayp0521/mason-null-ls.nvim")
 	use({ "MunifTanjim/prettier.nvim", config = "require 'plugins.prettier'" })
 	use({ "fatih/vim-go" })
+	use({ "simrat39/rust-tools.nvim", config = "require 'plugins.rust-tools'" })
+
+	-- Debugging
+	-- use("mfussenegger/nvim-dap")
+	-- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	-- ## lisp
 	use({ "jpalardy/vim-slime" })
+	use({ "gpanders/nvim-parinfer" })
 	use({ "guns/vim-sexp" })
 	use({ "tpope/vim-sexp-mappings-for-regular-people" })
 	-- use("Olical/conjure")

@@ -5,6 +5,12 @@
 - rbenv (Mac)
 - node
   - nvm
+- elixir
+- rust
+- go
+- common-lisp - [ get-started ](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
+  - quicklisp
+  - sbcl
 - python
   - pyenv
 - fish
@@ -21,18 +27,12 @@
     - Prettier
     - vscode-languageserver
     - golangci-lint
+    - rust-analyzer
     - elixir-ls
-    - common-lisp - [ get-started ](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
-      - [ vlime ](https://github.com/vlime/vlime), run `sbcl --load <your bundle dir>/vlime/lisp/start-vlime.lisp`
-        - `\cc` to connect
-        - `\ss` to REPL current line
-- vim-plug
-  - `:PLugInstall`
-  - `:CocUpdate`
-- emacs
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins
+- emacs
 
 ### CLI tools
 
