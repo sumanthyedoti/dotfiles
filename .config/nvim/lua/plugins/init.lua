@@ -177,7 +177,15 @@ return packer.startup(function(use)
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })
-	use({ "apzelos/blamer.nvim", config = "require 'plugins.blamer" })
+	use({
+		"apzelos/blamer.nvim",
+		config = function()
+			vim.g.blamer_enabled = 1
+			vim.g.blamer_delay = 500
+			vim.g.blamer_show_in_insert_modes = 0
+			vim.g.blamer_prefix = "  "
+		end,
+	})
 
 	-- ## Telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
