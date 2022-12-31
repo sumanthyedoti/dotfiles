@@ -90,6 +90,8 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 
+	keymap.set("n", "<leader>ld", "<cmd>Lspsaga hover_doc<CR>", opts) -- show diagnostics for cursor
+
 	keymap.set("n", "<leader>ol", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
 	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -231,11 +233,26 @@ lspconfig["clangd"].setup({
 lspconfig["rust_analyzer"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "rust_analyzer" },
+	cmd = { "rust-analyzer" },
 	filetypes = { "rust" },
 	root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
 	settings = {
-		["rust-analyzer"] = {},
+		["rust-analyzer"] = {
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			cargo = {
+				buildScripts = {
+					enable = true,
+				},
+			},
+			procMacro = {
+				enable = true,
+			},
+		},
 	},
 })
 

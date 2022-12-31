@@ -75,6 +75,7 @@ return packer.startup(function(use)
 			require("plugins.autopairs")
 		end,
 	})
+	use("mattn/webapi-vim")
 	use("tpope/vim-surround")
 	use("andymass/vim-matchup")
 	use({ "ggandor/leap.nvim", config = "require 'plugins.leap'" })
@@ -176,7 +177,7 @@ return packer.startup(function(use)
 
 	-- ## git
 	use({ "lewis6991/gitsigns.nvim" })
-	use({ "f-person/git-blame.nvim" })
+	use({ "apzelos/blamer.nvim", config = "require 'plugins.blamer" })
 
 	-- ## Telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })

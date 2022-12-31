@@ -38,6 +38,8 @@ keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
 keymap("n", "<leader>cl", "0d$", opts)
 keymap("n", "P", "@:<CR>", opts) -- last/previous terminal command
+-- add semi-colon
+keymap("n", "<leader>;", "A;<esc>", opts)
 
 -- Disbale 'ZZ' command to save and quit¬
 keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', opts)
@@ -59,6 +61,7 @@ keymap("n", "<leader>jh", "<C-w>h<CR>", opts)
 -- Buffers
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", opts) -- kill all remaining BufferLine tabs
 keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", opts) -- pick close current buffer
+keymap("n", "<leader>bc", "<cmd>Bdelete<CR>", opts) -- close buffer (by vim-bbye)
 keymap("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>", opts)
 keymap("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>", opts)
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", opts) -- pick buffer
@@ -118,3 +121,5 @@ vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)
 -- Slime
 vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", opts)
+-- LazyGit
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
