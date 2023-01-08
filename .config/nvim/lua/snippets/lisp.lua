@@ -121,6 +121,16 @@ cs(
 	)
 )
 
+cs(
+	"defmacro",
+	fmt(
+		[[
+  (demacro {} ({})
+    ({})) ]],
+		{ i(1, "mname"), i(2, ""), i(3, "") }
+	)
+)
+
 -- End Refactoring --
 
 return snippets, autosnippets

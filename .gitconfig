@@ -58,3 +58,4 @@
   last = log -1 HEAD --stat
   ; branches
   brs = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+  root = rev-parse --show-toplevel
