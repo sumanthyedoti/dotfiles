@@ -1,5 +1,9 @@
+## Setup
+- git clone this repo into `~/.dotfiles`
+- run `stow .`
+- nvim
+  - `:PackerSync`
 ## Dependecies
-
 - brew (Mac)
   - rlwrap
 - rbenv (Mac)
@@ -8,14 +12,16 @@
 - elixir
 - rust
 - go
-- common-lisp - [ get-started ](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
+- common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
   - quicklisp
   - sbcl
 - python
   - pyenv
 - fish
-  - fisher
-    - nvm
+  - [fisher](https://github.com/jorgebucaran/fisher)
+    - [nvm](https://github.com/jorgebucaran/nvm.fish)
+  - [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
+    - [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
 - stow
 - alacritty
 - nvim
