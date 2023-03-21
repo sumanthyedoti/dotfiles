@@ -20,7 +20,7 @@ if not mnl_status_ok then
 end
 
 local servers = { -- HEREL: LSP servers
-	"sumneko_lua",
+	"lua_ls",
 	"clangd",
 	"rust_analyzer",
 	"gopls",
