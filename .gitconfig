@@ -53,6 +53,8 @@
   co = checkout
   sh = stash
   b = branch
+  cam = commit --amend
+  can = commit --amend --no-edit
   email = config user.email
   diff2 = diff @~..@ ; last two commits, can also use "show"
   sdiff = diff --staged
