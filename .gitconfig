@@ -49,12 +49,15 @@
 [alias]
   s = status
   a = add
-  c = commit
   co = checkout
   sh = stash
   b = branch
+  c = commit
   cam = commit --amend
   can = commit --amend --no-edit
+  r = rebase
+  rcon = rebase --continue
+  rat = rebase --abort
   email = config user.email
   diff2 = diff @~..@ ; last two commits, can also use "show"
   sdiff = diff --staged
