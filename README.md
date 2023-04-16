@@ -54,3 +54,4 @@
 - glow - markdown previewer
 - pandoc
 - [roswell](https://github.com/roswell/roswell)
+- [hyperfine](https://github.com/sharkdp/hyperfine)

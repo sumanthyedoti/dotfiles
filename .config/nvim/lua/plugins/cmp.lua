@@ -93,18 +93,25 @@ cmp.setup({
 	},
 	-- HERE
 	sources = {
-		{ name = "nvim_lsp", max_item_count = 6 },
+		{
+			name = "nvim_lsp",
+			max_item_count = 6,
+		},
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		-- { name = "vsnip" },
 		{ name = "buffer", max_item_count = 6 },
-		{ name = "path" },
+		{ name = "path", keyword_length = 1 },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
 	window = {
+		completion = cmp.config.window.bordered({
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			-- border = "double",
+		}),
 		documentation = {
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 		},
