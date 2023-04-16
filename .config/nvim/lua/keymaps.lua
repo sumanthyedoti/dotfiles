@@ -19,7 +19,7 @@ vim.g.maplocalleader = "z"
 --   command_mode = "c",
 
 -- NORMAL --
--- loops throught windowso
+-- loops throught windows
 if is_mac then
 	keymap("n", "ø", "<C-w><C-w>", opts) -- next pane
 else
@@ -55,10 +55,9 @@ keymap("n", "<leader>U", "<cmd>edit!<CR>", opts)
 keymap("n", "<leader>R", "<cmd>:reg<CR>", opts)
 
 -- splits
-keymap("n", "<leader>s ", "<cmd>vsplit<CR>", opts) -- split right
-keymap("n", "<leader>ss", "<cmd>vsplit<CR>", opts) -- split right
-keymap("n", "<leader>S", "<cmd>split<CR>", opts) -- split left
-keymap("n", "<leader>so", "<cmd>only<CR>", opts) -- kill all remaining splits
+keymap("n", "<leader>sv", "<cmd>vsplit<CR>", opts) -- split right
+keymap("n", "<leader>sx", "<cmd>split<CR>", opts) -- split left
+keymap("n", "<leader>s-", "<cmd>only<CR>", opts) -- kill all remaining splits
 
 -- window.split navigation
 keymap("n", "<leader>jh", "<C-w>h<CR>", opts)
@@ -123,8 +122,11 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Sustitute --
 -- yank and mark at 'x'
-keymap("n", "<leader>sp", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_opts)
-keymap("v", "<leader>sp", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_opts)
+keymap("n", "<leader>s ", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_opts)
+keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_opts)
+
+-- Miscellaneous
+keymap("n", "<leader>so", "<cmd>source %<CR>", opts) -- source current file
 
 -- == PLUGINS == --
 -- ## icon-picker
