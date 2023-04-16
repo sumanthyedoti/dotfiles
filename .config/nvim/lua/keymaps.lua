@@ -121,9 +121,10 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
--- Sustitute
-keymap("n", "<leader>sp", ":%s/<C-r><C-w>/<C-r>0/g<cr>", term_opts)
-keymap("v", "<leader>sp", '"zy:%s/<C-r>z/<C-r>0/g<cr>', term_opts)
+-- Sustitute --
+-- yank and mark at 'x'
+keymap("n", "<leader>sp", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_opts)
+keymap("v", "<leader>sp", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_opts)
 
 -- == PLUGINS == --
 -- ## icon-picker
