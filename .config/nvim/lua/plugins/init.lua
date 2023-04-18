@@ -101,6 +101,7 @@ lazy.setup({
 	}, --snippet engine
 	"dstein64/vim-startuptime",
 	-- colorschemes
+  "EdenEast/nightfox.nvim",
 	"ellisonleao/gruvbox.nvim",
 	"folke/tokyonight.nvim",
 	"bluz71/vim-nightfly-guicolors",
