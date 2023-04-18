@@ -18,19 +18,6 @@ for i, fg in ipairs(gradient) do
 	gradient[i] = wilder.make_hl("WilderGradient" .. i, "Pmenu", { { a = 1 }, { a = 1 }, { foreground = fg } })
 end
 
--- wilder.set_option(
--- 	"renderer",
--- 	wilder.popupmenu_renderer({
--- 		highlights = {
--- 			gradient = gradient, -- must be set
--- 			-- selected_gradient key can be set to apply gradient highlighting for the selected candidate.
--- 		},
--- 		highlighter = wilder.highlighter_with_gradient({
--- 			wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
--- 		}),
--- 	})
--- )
-
 wilder.set_option("pipeline", {
 	wilder.branch(
 		wilder.cmdline_pipeline({
@@ -46,8 +33,13 @@ wilder.set_option("pipeline", {
 wilder.set_option(
 	"renderer",
 	wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-		highlighter = wilder.basic_highlighter(),
+		-- highlighter = wilder.basic_highlighter(),
+		highlighter = wilder.highlighter_with_gradient({
+			wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
+		}),
 		highlights = {
+			accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
+			gradient = gradient, -- must be set
 			border = "Normal", -- highlight to use for the border
 		},
 		-- 'single', 'double', 'rounded' or 'solid'
