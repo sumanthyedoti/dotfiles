@@ -39,7 +39,7 @@ keymap("n", "<TAB>", ":bnext<CR>", opts)
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
 keymap("n", "<leader>cl", "0d$", opts)
-keymap("n", "P", "@:<CR>", opts) -- last/previous terminal command
+keymap("n", "<leader>P", "@:<CR>", opts) -- last/previous terminal command
 
 -- add semi-colon
 keymap("n", "<leader>;", "A;<esc>", opts)
