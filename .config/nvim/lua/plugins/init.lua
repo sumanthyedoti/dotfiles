@@ -99,6 +99,7 @@ lazy.setup({
 			require("plugins.lualine")
 		end,
 	}, --snippet engine
+	"dstein64/vim-startuptime",
 	-- colorschemes
 	"ellisonleao/gruvbox.nvim",
 	"folke/tokyonight.nvim",
@@ -124,6 +125,8 @@ lazy.setup({
 		config = function()
 			require("plugins.bufferline")
 		end,
+		version = "v3.*",
+		dependencies = "nvim-tree/nvim-web-devicons",
 	},
 	{
 		"akinsho/toggleterm.nvim",
