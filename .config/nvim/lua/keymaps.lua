@@ -26,20 +26,20 @@ else
 	keymap("n", "<A-o>", "<C-w><C-w>", opts) -- next pane
 end
 keymap("n", "<leader>a", "@q", opts) -- macro @q
-keymap("n", "<leader> ", ":noh<CR>", opts) -- clear search hightlight with <space><space>
+keymap("n", "<leader> ", "<cmd>noh<CR>", opts) -- clear search hightlight with <space><space>
 
 -- NVim-tree
 keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
-keymap("n", "<TAB>", ":bnext<CR>", opts)
+keymap("n", "<S-TAB>", "<cmd>bprevious<CR>", opts)
+keymap("n", "<TAB>", "<cmd>bnext<CR>", opts)
 
 -- new line
 keymap("n", "<leader>o ", "o<ESC>", opts)
 keymap("n", "<leader>oo", "O<ESC>", opts)
 keymap("n", "<leader>cl", "0d$", opts)
-keymap("n", "P", "@:<CR>", opts) -- last/previous terminal command
+keymap("n", "<leader>P", "@:<CR>", opts) -- last/previous terminal command
 
 -- add semi-colon
 keymap("n", "<leader>;", "A;<esc>", opts)
@@ -134,8 +134,8 @@ vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", opts)
 vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
 -- ## buffers
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", opts)
--- Packer, package manager
-vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.lua | PackerSync<CR>", opts)
+-- package manager
+vim.keymap.set("n", "<leader>pp", "<cmd>source ~/.config/nvim/lua/plugins/init.lua | Lazy sync<CR>", opts)
 -- Zen
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", opts)
 vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", opts)

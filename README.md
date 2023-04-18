@@ -2,7 +2,10 @@
 - git clone this repo into `~/.dotfiles`
 - run `stow .`
 - nvim
-  - `:PackerSync`
+  - [Prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)
+  - `:Lazy Sync`
+  - `:UpdateRemotePlugins`
+
 ## Dependecies
 - brew (Mac)
   - rlwrap

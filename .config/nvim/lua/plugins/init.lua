@@ -1,8 +1,9 @@
 local fn = vim.fn
 -- Automatically install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
+	PACKMAN_BOOTSTRAP = vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
@@ -10,9 +11,16 @@ if not vim.loop.fs_stat(lazypath) then
 		"--branch=stable", -- latest stable release
 		lazypath,
 	})
-	print("Installing packer, close and reopen Neovim...")
+	print("Installing Lazy.nvim, close and reopen Neovim...")
 end
 vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "z"
+
+if PACKMAN_BOOTSTRAP then
+	require("lazy").sync()
+end
 
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
@@ -22,7 +30,7 @@ end
 
 --########################################
 -- Install your plugins here
---  packages are stored in '~/.local/share/nvim/site/pack/packer/start'
+--  packages are stored in '~/.local/share/nvim/lazy'
 --[[ PACKAGES
   firenvim
   dispatch
@@ -54,7 +62,6 @@ end
   GitHub Copilot
 ]]
 lazy.setup({
-	"wbthomason/packer.nvim", -- Have packer manage itself
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	"stevearc/dressing.nvim",
@@ -81,7 +88,7 @@ lazy.setup({
 	},
 	{
 		"iamcco/markdown-preview.nvim",
-		run = function()
+		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
@@ -93,11 +100,11 @@ lazy.setup({
 		end,
 	}, --snippet engine
 	-- colorschemes
-	"EdenEast/nightfox.nvim",
 	"ellisonleao/gruvbox.nvim",
-	"folke/tokyonight.nvim", -- colorscheme
+	"folke/tokyonight.nvim",
 	"bluz71/vim-nightfly-guicolors",
 	"navarasu/onedark.nvim",
+
 	{
 		"ziontee113/icon-picker.nvim",
 		config = function()
@@ -202,7 +209,7 @@ lazy.setup({
 
 	-- Debugging
 	-- use("mfussenegger/nvim-dap")
-	-- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
+	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	-- ## lisp
 	{ "jpalardy/vim-slime" },
@@ -231,7 +238,8 @@ lazy.setup({
 	},
 
 	-- ## Telescope
-	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+	-- run `make` inside `telescope-fzf-native` plugin directory
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
 		config = function()
@@ -242,7 +250,7 @@ lazy.setup({
 	-- ## Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		build = ":TSUpdate",
 		config = function()
 			require("plugins.treesitter")
 		end,

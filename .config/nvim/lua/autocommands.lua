@@ -1,11 +1,11 @@
 -- Highlight on Yank
 vim.api.nvim_exec(
 	[[
-  augroup yankHighlight
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank()
-    autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
-  augroup END
+  " augroup yankHighlight
+  "   autocmd!
+  "   au TextYankPost * silent! lua vim.highlight.on_yank()
+  "   autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
+  " augroup END
 ]],
 	false
 )
@@ -25,7 +25,7 @@ vim.cmd([[
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
     " -- autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
-    autocmd BufWinEnter * :set formatoptions-=cro
+    " autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
   augroup end
 
