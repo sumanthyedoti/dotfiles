@@ -44,6 +44,7 @@ end
   harpoon
   Wansmer/treesj
   dail.nvim
+  doom.nvim
   nvim-dap (mason)
   anuvyklack/windows.nvim
   pretty-fold.nvim
@@ -58,6 +59,7 @@ end
   vim-illuminate
   prettier.nvim
   vim-dadbod
+  hologram.nvim
   sleuth.vim
   nvim-notify
   overseer.nvim
@@ -103,8 +105,7 @@ local plugins = {
 	{
 		"dstein64/vim-startuptime",
 		cmd = "StartupTime",
-		-- init is called during startup. Configuration for vim plugins typically should be set in an init function
-		init = function()
+		init = function() -- init is called during startup. Configuration for vim plugins typically should be set in an init function
 			vim.g.startuptime_tries = 6
 		end,
 	},
@@ -117,6 +118,7 @@ local plugins = {
 
 	{
 		"ziontee113/icon-picker.nvim",
+		keys = { "<leader>ii" },
 		config = function()
 			require("icon-picker").setup({
 				disable_legacy_commands = true,
@@ -125,12 +127,14 @@ local plugins = {
 	},
 	{
 		"folke/todo-comments.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.todo-comments")
 		end,
 	},
 	{
 		"akinsho/bufferline.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.bufferline")
 		end,
@@ -139,11 +143,11 @@ local plugins = {
 	},
 	{
 		"akinsho/toggleterm.nvim",
+		key = "<C-y>",
 		config = function()
 			require("plugins.toggleterm")
 		end,
 	},
-	"kdheepak/lazygit.nvim",
 	"moll/vim-bbye", -- to close buffers
 	{
 		"weilbith/nvim-code-action-menu",
@@ -279,12 +283,6 @@ local plugins = {
 	"windwp/nvim-ts-autotag",
 
 	{
-		"lewis6991/impatient.nvim",
-		config = function()
-			require("impatient").enable_profile()
-		end,
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("plugins.indent")
@@ -298,12 +296,16 @@ local plugins = {
 	},
 	{
 		"folke/twilight.nvim",
+		keys = { "<leader>zt" },
+		cmd = "Twilight",
 		config = function()
 			require("plugins.twilight")
 		end,
 	},
 	{
 		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		keys = { "<leader>zz" },
 		config = function()
 			require("plugins.zen-mode")
 		end,
@@ -331,9 +333,13 @@ local plugins = {
 	}, -- markdown preview
 	{
 		"glepnir/dashboard-nvim",
+		event = "VimEnter",
 		config = function()
-			require("plugins.dashboard")
+			require("dashboard").setup({
+				theme = "doom",
+			})
 		end,
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 }
 

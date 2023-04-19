@@ -136,9 +136,6 @@ vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", OPTS) --> Yank the 
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", OPTS)
 -- package manager
 vim.keymap.set("n", "<leader>pp", ":Lazy sync<CR>", OPTS)
--- Zen
-vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<CR>", OPTS)
-vim.keymap.set("n", "<leader>zt", "<cmd>:Twilight<CR>", OPTS)
 -- Slime
 vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", OPTS)
 -- LazyGit
