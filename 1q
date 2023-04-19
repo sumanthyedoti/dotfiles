@@ -1,4 +1,5 @@
--- Automatically install lazy.nvim
+local fn = vim.fn
+-- Automatically install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -12,7 +13,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 	print("Installing Lazy.nvim, close and reopen Neovim...")
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
@@ -61,11 +61,10 @@ end
   overseer.nvim
   GitHub Copilot
 ]]
-
-local plugins = {
+lazy.setup({
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	"stevearc/dressing.nvim",
 	{
 		"windwp/nvim-autopairs",
 		config = function()
@@ -73,7 +72,7 @@ local plugins = {
 		end,
 	},
 	"mattn/webapi-vim",
-	{ "tpope/vim-surround", event = "BufRead" },
+	"tpope/vim-surround",
 	"andymass/vim-matchup",
 	{
 		"ggandor/leap.nvim",
@@ -89,7 +88,7 @@ local plugins = {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
-		config = function()
+		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
@@ -100,7 +99,7 @@ local plugins = {
 			require("plugins.lualine")
 		end,
 	}, --snippet engine
-	{ "dstein64/vim-startuptime" },
+	"dstein64/vim-startuptime",
 	-- colorschemes
 	"EdenEast/nightfox.nvim",
 	"ellisonleao/gruvbox.nvim",
@@ -136,10 +135,10 @@ local plugins = {
 			require("plugins.toggleterm")
 		end,
 	},
-	"kdheepak/lazygit.nvim",
 	"moll/vim-bbye", -- to close buffers
 	{
 		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
 	},
 	-- colorscheme
 	-- ## Commentery
@@ -314,21 +313,4 @@ local plugins = {
 		end,
 	}, -- markdown preview
 	"glepnir/dashboard-nvim",
-}
-
-local options = {
-	install = { missing = true, colorscheme = { "tokyonight" } },
-	checker = { enabled = true, notify = true },
-	change_detection = {
-		enabled = true,
-		notify = true,
-	},
-	performance = {
-		cache = {
-			enabled = true,
-			reset_packpath = true,
-		},
-	},
-}
-
-lazy.setup(plugins, options)
+})
