@@ -42,6 +42,8 @@ end
   syntax-tree-surfer
   neorg
   harpoon
+  Wansmer/treesj
+  dail.nvim
   nvim-dap (mason)
   anuvyklack/windows.nvim
   pretty-fold.nvim
@@ -68,39 +70,44 @@ local plugins = {
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
 	{
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		lazy = true,
 		config = function()
 			require("plugins.autopairs")
 		end,
 	},
-	"mattn/webapi-vim",
-	{ "tpope/vim-surround", event = "BufRead" },
-	"andymass/vim-matchup",
+	{ "mattn/webapi-vim", event = "BufEnter" },
+	{ "tpope/vim-surround", lazy = true, event = "BufEnter" },
+	{ "andymass/vim-matchup", event = "BufEnter" },
 	{
 		"ggandor/leap.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.leap")
 		end,
 	},
 	{
 		"AndrewRadev/switch.vim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.switch")
 		end,
 	},
-	{
-		"iamcco/markdown-preview.nvim",
-		config = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("plugins.lualine")
 		end,
 	}, --snippet engine
-	{ "dstein64/vim-startuptime" },
+	{
+		"dstein64/vim-startuptime",
+		cmd = "StartupTime",
+		-- init is called during startup. Configuration for vim plugins typically should be set in an init function
+		init = function()
+			vim.g.startuptime_tries = 6
+		end,
+	},
 	-- colorschemes
 	"EdenEast/nightfox.nvim",
 	"ellisonleao/gruvbox.nvim",
@@ -146,6 +153,7 @@ local plugins = {
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	{
 		"numToStr/Comment.nvim",
+		event = "BufEnter",
 		config = function()
 			require("Comment").setup()
 		end,
@@ -154,6 +162,7 @@ local plugins = {
 	-- ## NVim Tree file explorer
 	{
 		"nvim-tree/nvim-tree.lua",
+		event = "BufEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
@@ -163,32 +172,34 @@ local plugins = {
 		end,
 	},
 
-	-- ## Code Conpletion
+	-- ## Code Completion
 	-- snippets
 	{
 		"L3MON4D3/LuaSnip",
+		event = "InsertEnter .lua",
 		config = function()
 			require("plugins.luasnip")
 		end,
 	}, --snippet engine
 	"rafamadriz/friendly-snippets",
-	-- cmp plugins
 	{
-		"hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp", -- cmp plugins
 		config = function()
 			require("plugins.cmp")
 		end,
-		dependencies = { "L3MON4D3/LuaSnip" },
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip", -- snippet completions
+			"hrsh7th/cmp-buffer", -- buffer completions
+			"hrsh7th/cmp-path", -- path completions
+			"hrsh7th/cmp-cmdline", -- cmdline completions
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-vsnip",
+			"onsails/lspkind.nvim",
+		},
 	},
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
-	"hrsh7th/cmp-buffer", -- buffer completions
-	"hrsh7th/cmp-path", -- path completions
-	"hrsh7th/cmp-cmdline", -- cmdline completions
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
-	"hrsh7th/vim-vsnip",
-	"hrsh7th/cmp-vsnip",
-	"onsails/lspkind.nvim",
 	-- LSP
 	"neovim/nvim-lspconfig", -- config lsp servers
 	{ "glepnir/lspsaga.nvim", branch = "main" },
@@ -230,9 +241,10 @@ local plugins = {
       ]]
 
 	-- ## git
-	{ "lewis6991/gitsigns.nvim" },
+	{ "lewis6991/gitsigns.nvim", event = "BufEnter" },
 	{
 		"apzelos/blamer.nvim",
+		event = "VeryLazy",
 		config = function()
 			vim.g.blamer_enabled = 1
 			vim.g.blamer_delay = 500
@@ -244,9 +256,10 @@ local plugins = {
 
 	-- ## Telescope
 	-- run `make` inside `telescope-fzf-native` plugin directory
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", event = "BufEnter" },
 	{
 		"nvim-telescope/telescope.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.telescope")
 		end,
@@ -297,23 +310,31 @@ local plugins = {
 	},
 	{
 		"gelguy/wilder.nvim",
+		keys = { { ":", mode = "n" }, { "/", mode = "n" }, { "?", mode = "n" } },
 		config = function()
 			require("plugins.wilder-menu")
 		end,
 	},
 	{
 		"anuvyklack/hydra.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.hydra")
 		end,
 	}, -- submodes and menus
 	{
 		"ellisonleao/glow.nvim",
+		cmd = "Glow",
 		config = function()
 			require("plugins.glow")
 		end,
 	}, -- markdown preview
-	"glepnir/dashboard-nvim",
+	{
+		"glepnir/dashboard-nvim",
+		config = function()
+			require("plugins.dashboard")
+		end,
+	},
 }
 
 local options = {
