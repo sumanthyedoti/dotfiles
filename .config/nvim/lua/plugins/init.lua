@@ -335,9 +335,7 @@ local plugins = {
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		config = function()
-			require("dashboard").setup({
-				theme = "doom",
-			})
+			require("dashboard").setup(require("plugins.dashboard"))
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},

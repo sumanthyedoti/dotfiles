@@ -88,11 +88,6 @@ keymap("n", "<C-s>", ":w<CR>", OPTS)
 keymap("n", "-", "<C-x>", OPTS)
 keymap("n", "=", "<C-a>", OPTS)
 
--- ## Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", OPTS)
-keymap("n", "<leader>f ", "<cmd>Telescope find_files hidden=true<cr>", OPTS)
-keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)
-
 -- INSERT --
 keymap("i", "jj", "<ESC>", OPTS)
 keymap("i", "<C-j>", "<ESC>i", OPTS) -- move backwards
@@ -140,3 +135,7 @@ vim.keymap.set("n", "<leader>pp", ":Lazy sync<CR>", OPTS)
 vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", OPTS)
 -- LazyGit
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", OPTS)
+-- ## Telescope
+keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", OPTS)
+keymap("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>", OPTS)
+keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)
