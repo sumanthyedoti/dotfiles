@@ -68,7 +68,7 @@ keymap("n", "<leader>jh", "<C-w>h<CR>", OPTS)
 -- Buffers
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", OPTS) -- kill all remaining BufferLine tabs
 keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", OPTS) -- pick close current buffer
-keymap("n", "<leader>bc", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
+keymap("n", "<leader>bw", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
 keymap("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>", OPTS)
 keymap("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>", OPTS)
 keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer
@@ -137,6 +137,5 @@ vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", OPTS)
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", OPTS)
 -- ## Telescope
 keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", OPTS)
-keymap("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>", OPTS)
 keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)
-keymap("n", "<leader>F.", "<cmd>Telescope live_grep hidden=true<cr>", OPTS)
+keymap("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>", OPTS)

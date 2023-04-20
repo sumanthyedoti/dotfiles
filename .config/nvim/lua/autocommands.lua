@@ -1,22 +1,3 @@
--- Remember position of last edit and return on reopen
-vim.cmd([[
-  if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  endif
-]])
-
--- Highlight on Yank
-vim.api.nvim_exec(
-	[[
-  " augroup yankHighlight
-  "   autocmd!
-  "   au TextYankPost * silent! lua vim.highlight.on_yank()
-  "   autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
-  " augroup END
-]],
-	false
-)
-
 -- Trim trailing whitespace
 vim.cmd([[
   fun! TrimWhitespace()
@@ -34,6 +15,20 @@ vim.cmd([[
     " -- autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})
     " autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
+  augroup end
+
+  " -- Highlight on Yank
+  augroup yankHighlight
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank()
+    autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
+  augroup END
+
+  " -- Remember position of last edit and return on reopen
+  augroup lastPosition
+    if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
   augroup end
 
   augroup _git

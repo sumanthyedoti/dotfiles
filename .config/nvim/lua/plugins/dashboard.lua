@@ -1,3 +1,8 @@
+local status_ok, dashboard = pcall(require, "dapui")
+if not status_ok then
+	return
+end
+
 local quotes = {
 	"Alasyam.. Amrutham! Visham!!",
 	"Start creating..",
@@ -9,7 +14,7 @@ local function desc(content)
 	return string.format("%-20s", content)
 end
 
-return {
+dashboard.setup({
 	theme = "doom",
 	config = {
 		header = {
@@ -32,6 +37,7 @@ return {
 			-- "⠀⠀⠘⢧⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⡆⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀",
 			-- "⠀⠀⠀⠈⢷⣄⠀⠀⠀⠀⠀⠀⠈⠿⣿⣿⣿⠿⠁⠀⠀⠀⣸⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀",
 			-- "⠀⠀⠀⠀⠀⠙⢷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀",
+			-- lo
 			-- "⠀⠀⠀⠀⠀⠀⠀⠈⠙⠶⢦⣤⣄⣀⣀⣀⣀⣠⣤⣾⡿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀",
 			-- "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 			"÷------------------------------------------------÷",
@@ -79,4 +85,4 @@ return {
 		},
 		footer = { quotes[math.random(1, #quotes)] },
 	},
-}
+})

@@ -5,4 +5,8 @@ end
 
 leap.add_default_mappings()
 
-local o = leap.opts
+leap.opts = {}
+
+vim.cmd([[
+  autocmd ColorScheme * lua require('leap').init_highlight(true)
+]])

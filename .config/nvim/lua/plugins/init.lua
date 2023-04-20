@@ -87,6 +87,9 @@ local plugins = {
 		config = function()
 			require("plugins.leap")
 		end,
+		dependencies = {
+			"tpope/vim-repeat",
+		},
 	},
 	{
 		"AndrewRadev/switch.vim",
@@ -98,6 +101,7 @@ local plugins = {
 	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.lualine")
 		end,
@@ -118,7 +122,7 @@ local plugins = {
 
 	{
 		"ziontee113/icon-picker.nvim",
-		keys = { "<leader>ii" },
+		event = "BufEnter",
 		config = function()
 			require("icon-picker").setup({
 				disable_legacy_commands = true,
@@ -143,23 +147,28 @@ local plugins = {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		key = "<C-y>",
+		keys = "<C-y>",
 		config = function()
 			require("plugins.toggleterm")
 		end,
 	},
-	"moll/vim-bbye", -- to close buffers
 	{
-		"weilbith/nvim-code-action-menu",
+		"moll/vim-bbye", -- to close buffers key -> ⎵bw
+		event = "BufEnter",
 	},
-	-- colorscheme
+	{
+		"weilbith/nvim-code-action-menu", -- key mapped in lsp/init
+		event = "BufEnter",
+		config = function()
+			vim.g.code_action_menu_show_action_kind = false
+		end,
+	},
 	-- ## Commentery
-	"JoosepAlviste/nvim-ts-context-commentstring",
 	{
 		"numToStr/Comment.nvim",
 		event = "BufEnter",
 		config = function()
-			require("Comment").setup()
+			require("plugins.comment")
 		end,
 	},
 
@@ -176,34 +185,6 @@ local plugins = {
 		end,
 	},
 
-	-- ## Code Completion
-	-- snippets
-	{
-		"L3MON4D3/LuaSnip",
-		event = "InsertEnter .lua",
-		config = function()
-			require("plugins.luasnip")
-		end,
-	}, --snippet engine
-	"rafamadriz/friendly-snippets",
-	{
-		"hrsh7th/nvim-cmp", -- cmp plugins
-		config = function()
-			require("plugins.cmp")
-		end,
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip", -- snippet completions
-			"hrsh7th/cmp-buffer", -- buffer completions
-			"hrsh7th/cmp-path", -- path completions
-			"hrsh7th/cmp-cmdline", -- cmdline completions
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
-			"hrsh7th/vim-vsnip",
-			"hrsh7th/cmp-vsnip",
-			"onsails/lspkind.nvim",
-		},
-	},
 	-- LSP
 	"neovim/nvim-lspconfig", -- config lsp servers
 	{ "glepnir/lspsaga.nvim", branch = "main" },
@@ -230,6 +211,42 @@ local plugins = {
 	-- Debugging
 	-- use("mfussenegger/nvim-dap")
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
+
+	-- ## Code Completion
+	-- snippets
+	{
+		"rafamadriz/friendly-snippets",
+		event = "InsertEnter",
+	},
+	{
+		"hrsh7th/nvim-cmp", -- cmp plugins
+		event = "InsertEnter",
+		config = function()
+			require("plugins.cmp")
+		end,
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip", -- snippet completions
+			"hrsh7th/cmp-buffer", -- buffer completions
+			"hrsh7th/cmp-path", -- path completions
+			"hrsh7th/cmp-cmdline", -- cmdline completions
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-vsnip",
+			"onsails/lspkind.nvim",
+			"petertriho/cmp-git",
+		},
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "1.*",
+		config = function()
+			require("plugins.luasnip")
+		end,
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
+	}, --snippet engine
 
 	-- ## lisp
 	{ "jpalardy/vim-slime" },
@@ -335,7 +352,7 @@ local plugins = {
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		config = function()
-			require("dashboard").setup(require("plugins.dashboard"))
+			require("plugins.dashboard")
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},

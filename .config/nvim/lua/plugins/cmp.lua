@@ -13,6 +13,40 @@ if not kind_status_ok then
 	return
 end
 
+require("cmp_git").setup()
+
+lspkind.init({
+	mode = "symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
+	preset = "codicons",
+	symbol_map = {
+		Text = "",
+		Method = "",
+		Function = "",
+		Constructor = "",
+		Field = "ﰠ",
+		Variable = "",
+		Class = "ﴯ",
+		Interface = "",
+		Module = "",
+		Property = "ﰠ",
+		Unit = "塞",
+		Value = "",
+		Enum = "",
+		Keyword = "",
+		Snippet = "",
+		Color = "",
+		File = "",
+		Reference = "",
+		Folder = "",
+		EnumMember = "",
+		Constant = "",
+		Struct = "פּ",
+		Event = "",
+		Operator = "",
+		TypeParameter = "𝕋",
+	},
+})
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -25,10 +59,20 @@ end
 -- 🌐 https://github.com/neovim/nvim-lspconfig/wiki/Snippets
 cmp.setup({
 	snippet = {
+		-- REQUIRED - must specify a snippet engine
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip`
-			-- vim.fn["vsnip#anonymous"](args.body) -- vsnip
+			vim.fn["vsnip#anonymous"](args.body) -- vsnip
 		end,
+	},
+	window = {
+		completion = cmp.config.window.bordered({
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			-- border = "double",
+		}),
+		documentation = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
 	},
 	mapping = {
 		["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -67,7 +111,19 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	},
-
+	-- HERE:
+	sources = {
+		{
+			name = "nvim_lsp",
+			max_item_count = 6,
+		},
+		{ name = "nvim_lua" },
+		{ name = "luasnip" },
+		{ name = "vsnip" },
+		{ name = "buffer", max_item_count = 6 },
+		{ name = "path", keyword_length = 1 },
+		{ name = "git" },
+	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
@@ -76,45 +132,23 @@ cmp.setup({
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[nLua]",
 				luasnip = "[snip]",
-				-- vsnip = "[vsnip]",
+				vsnip = "[vsnip]",
 				buffer = "[buff]",
 				path = "[path]",
+				git = "[git]",
 			},
-			mode = "symbol", -- show only symbol annotations
-			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-			ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			maxwidth = 50,
+			ellipsis_char = "...",
 			-- The function below will be called before any actual modifications from lspkind
-			-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
 			before = function(_entry, vim_item)
 				-- ...
 				return vim_item
 			end,
 		}),
 	},
-	-- HERE
-	sources = {
-		{
-			name = "nvim_lsp",
-			max_item_count = 6,
-		},
-		{ name = "nvim_lua" },
-		{ name = "luasnip" },
-		-- { name = "vsnip" },
-		{ name = "buffer", max_item_count = 6 },
-		{ name = "path", keyword_length = 1 },
-	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
-	},
-	window = {
-		completion = cmp.config.window.bordered({
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-			-- border = "double",
-		}),
-		documentation = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		},
 	},
 	experimental = {
 		ghost_text = false,
