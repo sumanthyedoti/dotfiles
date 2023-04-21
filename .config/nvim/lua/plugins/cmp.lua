@@ -118,10 +118,10 @@ cmp.setup({
 			max_item_count = 6,
 		},
 		{ name = "nvim_lua" },
-		{ name = "luasnip" },
-		{ name = "vsnip" },
 		{ name = "buffer", max_item_count = 6 },
 		{ name = "path", keyword_length = 1 },
+		{ name = "luasnip" },
+		{ name = "vsnip" },
 		{ name = "git" },
 	},
 	formatting = {

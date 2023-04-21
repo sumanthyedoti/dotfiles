@@ -99,10 +99,11 @@ local on_attach = function(client, bufnr)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
-		keymap.set("n", "<leader>io", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "<leader>ai", ":TypescriptAddMissingImports<CR>", opts)
+		keymap.set("n", "<leader>ltf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
+		keymap.set("n", "<leader>lto", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
+		keymap.set("n", "<leader>ltx", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
+		keymap.set("n", "<leader>lti", ":TypescriptAddMissingImports<CR>", opts)
+		keymap.set("n", "<leader>lta", ":TypescriptFixAll<CR>", opts)
 	end
 
 	-- == cursor hover
