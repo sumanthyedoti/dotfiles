@@ -71,7 +71,7 @@ keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", OPTS) -- pick close cu
 keymap("n", "<leader>bw", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
 keymap("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>", OPTS)
 keymap("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>", OPTS)
-keymap("n", "<leader>gb", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer
+keymap("n", "<leader>bg", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer / go to selcted buffer
 keymap("n", "C-b", "<cmd>bd<CR>", OPTS)
 
 -- treesitter playground

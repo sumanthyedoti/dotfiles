@@ -156,14 +156,7 @@ local plugins = {
 		"moll/vim-bbye", -- to close buffers key -> ⎵bw
 		event = "BufEnter",
 	},
-	{
-		"weilbith/nvim-code-action-menu", -- key mapped in lsp/init
-		event = "BufEnter",
-		config = function()
-			vim.g.code_action_menu_show_action_kind = false
-		end,
-	},
-	-- ## Commentery
+	-- Commentery
 	{
 		"numToStr/Comment.nvim",
 		event = "BufEnter",
@@ -196,6 +189,7 @@ local plugins = {
 	"jayp0521/mason-null-ls.nvim",
 	{
 		"MunifTanjim/prettier.nvim",
+		ft = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "yaml", "json" },
 		config = function()
 			require("plugins.prettier")
 		end,
