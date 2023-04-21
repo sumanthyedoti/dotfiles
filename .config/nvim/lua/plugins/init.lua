@@ -42,6 +42,7 @@ end
   syntax-tree-surfer
   neorg
   harpoon
+  andweeb/presence.nvim (Discord)
   Wansmer/treesj
   which-key
   dail.nvim
@@ -123,6 +124,7 @@ local plugins = {
 	"folke/tokyonight.nvim",
 	"bluz71/vim-nightfly-guicolors",
 	"navarasu/onedark.nvim",
+	{ "catppuccin/nvim", name = "catppuccin" },
 
 	{
 		"ziontee113/icon-picker.nvim",
