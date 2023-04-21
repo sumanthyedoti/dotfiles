@@ -86,8 +86,8 @@ local on_attach = function(client, bufnr)
 	--[[ Diagnostics ]]
 	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
 	-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
-	keymap.set("n", "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>dc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
+	keymap.set("n", "<leader>dl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", opts) -- show  diagnostics for line
+	keymap.set("n", "<leader>dc", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", opts) -- show diagnostics for cursor
 	keymap.set("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	keymap.set("n", "<leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts) -- show diagnostics for buffer
 	keymap.set("n", "<leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show diagnostics for workspace
@@ -110,8 +110,11 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-	-- Floating terminal
-	keymap.set("n", "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", opts)
+	keymap.set("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", opts) -- Floating terminal
+
+	-- Call hierarchy
+	keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
+	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps

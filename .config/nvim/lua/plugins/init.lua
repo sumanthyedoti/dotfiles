@@ -93,7 +93,7 @@ local plugins = {
 	},
 	{
 		"AndrewRadev/switch.vim",
-		event = "BufEnter",
+		vent = "BufEnter",
 		config = function()
 			require("plugins.switch")
 		end,
