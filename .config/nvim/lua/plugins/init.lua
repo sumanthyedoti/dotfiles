@@ -178,10 +178,13 @@ local plugins = {
 		end,
 	},
 
-	-- LSP
+	--[[ LSP ]]
 	"neovim/nvim-lspconfig", -- config lsp servers
 	{ "glepnir/lspsaga.nvim", branch = "main" },
-	"williamboman/mason.nvim", -- language server installer
+	{
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate", -- updates registry contents
+	},
 	"williamboman/mason-lspconfig.nvim", -- bridges mason.nvim with the nvim-lspconfig
 	"jose-elias-alvarez/typescript.nvim",
 	"b0o/schemastore.nvim",
@@ -202,11 +205,11 @@ local plugins = {
 		end,
 	},
 
-	-- Debugging
+	--[[ Debugging ]]
 	-- use("mfussenegger/nvim-dap")
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
-	-- ## Code Completion
+	--[[ Code Completion ]]
 	-- snippets
 	{
 		"rafamadriz/friendly-snippets",
