@@ -114,7 +114,7 @@ local on_attach = function(client, bufnr)
 
 	-- Call hierarchy
 	keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
-	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
+	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
@@ -141,7 +141,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- 🌐 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- configure html server

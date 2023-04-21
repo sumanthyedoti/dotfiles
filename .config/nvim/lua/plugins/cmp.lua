@@ -16,7 +16,7 @@ end
 require("cmp_git").setup()
 
 lspkind.init({
-	mode = "symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
+	mode = "text_symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
 	preset = "codicons",
 	symbol_map = {
 		Text = "",
@@ -61,8 +61,7 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - must specify a snippet engine
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip`
-			vim.fn["vsnip#anonymous"](args.body) -- vsnip
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -81,10 +80,7 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-o>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		}),
+		["<C-o>"] = cmp.mapping.close(),
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -112,18 +108,18 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	-- HERE:
-	sources = {
+	sources = cmp.config.sources({
 		{
 			name = "nvim_lsp",
-			max_item_count = 6,
+			max_item_count = 4,
 		},
-		{ name = "nvim_lua" },
-		{ name = "buffer", max_item_count = 6 },
-		{ name = "path", keyword_length = 1 },
-		{ name = "luasnip" },
-		{ name = "vsnip" },
-		{ name = "git" },
-	},
+		{ name = "nvim_lua", max_item_count = 3 },
+		{ name = "path", keyword_length = 1, max_item_count = 6 },
+		{ name = "luasnip", max_item_count = 4 },
+		{ name = "cmp_git" },
+	}, {
+		{ name = "buffer", max_item_count = 4, keyword_length = 3 },
+	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
@@ -132,10 +128,9 @@ cmp.setup({
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[nLua]",
 				luasnip = "[snip]",
-				vsnip = "[vsnip]",
 				buffer = "[buff]",
 				path = "[path]",
-				git = "[git]",
+				cmp_git = "[git]",
 			},
 			maxwidth = 50,
 			ellipsis_char = "...",
@@ -151,6 +146,7 @@ cmp.setup({
 		select = false,
 	},
 	experimental = {
-		ghost_text = false,
+		new_menu = true,
+		ghost_text = true,
 	},
 })

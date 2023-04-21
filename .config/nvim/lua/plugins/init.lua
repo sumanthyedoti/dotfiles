@@ -43,6 +43,7 @@ end
   neorg
   harpoon
   Wansmer/treesj
+  which-key
   dail.nvim
   doom.nvim
   nvim-dap (mason)
@@ -58,12 +59,15 @@ end
   vim-maximizer
   vim-illuminate
   prettier.nvim
-  vim-dadbod
+  vim-dadbod (for sql) [https://youtu.be/_DnmphIwnjo?t=980]
   hologram.nvim
   sleuth.vim
   nvim-notify
   overseer.nvim
   GitHub Copilot
+  TODO:
+  - configure gitsigns
+  - configure hydra
 ]]
 
 local plugins = {
@@ -147,7 +151,7 @@ local plugins = {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		keys = "<C-y>",
+		keys = { { "<C-y>", "<cmd>:ToggleTerm" } },
 		config = function()
 			require("plugins.toggleterm")
 		end,
@@ -179,17 +183,17 @@ local plugins = {
 	},
 
 	--[[ LSP ]]
-	"neovim/nvim-lspconfig", -- config lsp servers
-	{ "glepnir/lspsaga.nvim", branch = "main" },
+	{ "neovim/nvim-lspconfig", event = "BufEnter" }, -- config lsp servers
+	{ "glepnir/lspsaga.nvim", branch = "main", event = "BufEnter" },
 	{
 		"williamboman/mason.nvim",
+		event = "BufEnter",
 		build = ":MasonUpdate", -- updates registry contents
 	},
-	"williamboman/mason-lspconfig.nvim", -- bridges mason.nvim with the nvim-lspconfig
-	"jose-elias-alvarez/typescript.nvim",
-	"b0o/schemastore.nvim",
-	"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
-	"jayp0521/mason-null-ls.nvim",
+	{ "williamboman/mason-lspconfig.nvim", event = "BufEnter" }, -- bridges mason.nvim with the nvim-lspconfig
+	{ "jose-elias-alvarez/typescript.nvim", ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" } },
+	{ "b0o/schemastore.nvim", ft = { "json" } },
+	{ "jose-elias-alvarez/null-ls.nvim", event = "BufEnter" }, -- for formatters and linters
 	{
 		"MunifTanjim/prettier.nvim",
 		ft = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "yaml", "json" },
@@ -197,17 +201,14 @@ local plugins = {
 			require("plugins.prettier")
 		end,
 	},
-	{ "fatih/vim-go" },
+	{ "fatih/vim-go", ft = { "go" } },
 	{
 		"simrat39/rust-tools.nvim",
+		ft = { "rust" },
 		config = function()
 			require("plugins.rust-tools")
 		end,
 	},
-
-	--[[ Debugging ]]
-	-- use("mfussenegger/nvim-dap")
-	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	--[[ Code Completion ]]
 	-- snippets
@@ -228,16 +229,14 @@ local plugins = {
 			"hrsh7th/cmp-cmdline", -- cmdline completions
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
-			"hrsh7th/vim-vsnip",
-			"hrsh7th/cmp-vsnip",
 			"onsails/lspkind.nvim",
 			"petertriho/cmp-git",
 		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "1.*",
+		version = "1.*", -- follow latest release.
+		event = "InsertEnter",
 		config = function()
 			require("plugins.luasnip")
 		end,
@@ -245,11 +244,15 @@ local plugins = {
 		build = "make install_jsregexp",
 	}, --snippet engine
 
+	--[[ Debugging ]]
+	-- use("mfussenegger/nvim-dap")
+	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
+
 	-- ## lisp
-	{ "jpalardy/vim-slime" },
-	{ "gpanders/nvim-parinfer" },
-	{ "guns/vim-sexp" },
-	{ "tpope/vim-sexp-mappings-for-regular-people" },
+	{ "jpalardy/vim-slime", ft = { "lisp", "lsp" } },
+	{ "gpanders/nvim-parinfer", ft = { "lisp", "lsp" } },
+	{ "guns/vim-sexp", ft = { "lisp", "lsp" } },
+	{ "tpope/vim-sexp-mappings-for-regular-people", ft = { "lisp", "lsp" } },
 	-- use("Olical/conjure")
 	-- use("vlime/vlime")
 	--[[\cc: create a server connection.
@@ -259,7 +262,13 @@ local plugins = {
       ]]
 
 	-- ## git
-	{ "lewis6991/gitsigns.nvim", event = "BufEnter" },
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufEnter",
+		config = function()
+			require("plugins.gitsigns")
+		end,
+	},
 	{
 		"apzelos/blamer.nvim",
 		event = "VeryLazy",
@@ -274,10 +283,15 @@ local plugins = {
 
 	-- ## Telescope
 	-- run `make` inside `telescope-fzf-native` plugin directory
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", event = "BufEnter" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "BufEnter",
+		-- keys = {
+		-- 	{ "<leader>f ", "<cmd>Telescope find_files<cr>" },
+		-- 	{ "<leader>f.", "<cmd>Telescope live_grep<cr>" },
+		-- 	{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>" },
+		-- },
 		config = function()
 			require("plugins.telescope")
 		end,
@@ -286,40 +300,48 @@ local plugins = {
 	-- ## Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = true,
 		build = ":TSUpdate",
 		config = function()
 			require("plugins.treesitter")
 		end,
+		dependencies = {
+			"p00f/nvim-ts-rainbow",
+			"nvim-treesitter/playground",
+			"windwp/nvim-ts-autotag",
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				config = function()
+					require("plugins.treesitter-context")
+				end,
+			},
+		},
 	},
-	-- use({ "nvim-treesitter/nvim-treesitter-context", config = "require 'plugins.treesitter-context'" })
-	"p00f/nvim-ts-rainbow",
-	"nvim-treesitter/playground",
-	"windwp/nvim-ts-autotag",
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = "BufEnter",
 		config = function()
 			require("plugins.indent")
 		end,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
+		event = "BufEnter",
 		config = function()
 			require("colorizer").setup()
 		end,
 	},
 	{
 		"folke/twilight.nvim",
-		keys = { "<leader>zt" },
-		cmd = "Twilight",
+		keys = { { "<leader>zt", ":Twilight" } },
 		config = function()
 			require("plugins.twilight")
 		end,
 	},
 	{
 		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		keys = { "<leader>zz" },
+		keys = { { "<leader>zz", ":ZenMode" } },
 		config = function()
 			require("plugins.zen-mode")
 		end,
@@ -366,6 +388,36 @@ local options = {
 		cache = {
 			enabled = true,
 			reset_packpath = true,
+		},
+	},
+	ui = {
+		-- a number <1 is a percentage., >1 is a fixed size
+		size = { width = 0.8, height = 0.8 },
+		wrap = true, -- wrap the lines in the ui
+		-- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+		border = "none",
+		icons = {
+			cmd = " ",
+			config = "",
+			event = "",
+			ft = " ",
+			init = " ",
+			import = " ",
+			keys = " ",
+			lazy = "∾ ",
+			loaded = "●",
+			not_loaded = "○",
+			plugin = " ",
+			runtime = " ",
+			source = " ",
+			start = "",
+			task = "✔ ",
+			list = {
+				"●",
+				"➜",
+				"★",
+				"‒",
+			},
 		},
 	},
 }
