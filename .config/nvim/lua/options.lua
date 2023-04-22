@@ -2,12 +2,13 @@
 local o = vim.opt
 o.backup = false -- creates a backup file
 o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+o.ignorecase = true -- ignore case in search patterns
+o.lazyredraw = true -- does not redraw for macros
 o.cmdheight = 2 -- more space in the neovim command line for displaying messages
 o.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 o.conceallevel = 0 -- so that `` is visible in markdown files
 o.fileencoding = "utf-8" -- the encoding written to a file
 o.hlsearch = true -- highlight all matches on previous search pattern
-o.ignorecase = true -- ignore case in search patterns
 o.smartcase = true -- smart case
 o.backspace = "indent,eol,start"
 o.title = true

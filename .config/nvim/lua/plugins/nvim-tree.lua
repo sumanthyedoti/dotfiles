@@ -8,7 +8,6 @@
 -- I - toggle gitignored
 -- <C-x> - Horizontal split
 -- <C-r> - Vertical split
--- <C-x> - Horizontal split
 -- a - create
 -- x - cut
 -- c - copy

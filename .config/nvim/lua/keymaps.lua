@@ -75,7 +75,7 @@ keymap("n", "<leader>bg", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer / go t
 keymap("n", "C-b", "<cmd>bd<CR>", OPTS)
 
 -- treesitter playground
-keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", OPTS) -- kill all remaining splits
+keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", OPTS)
 
 -- buffer list
 keymap("n", "<leader>bl", "<cmd>ls<cr>:b", OPTS)
@@ -122,6 +122,7 @@ keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_OPTS)
 
 -- Miscellaneous
 keymap("n", "<leader>so", "<cmd>source %<CR>", OPTS) -- source current file
+keymap("n", "<leader>Y", "<cmd>%y<CR>", OPTS) -- yank current file
 
 -- == PLUGINS == --
 -- ## icon-picker

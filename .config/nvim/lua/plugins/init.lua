@@ -34,13 +34,11 @@ end
 --[[ PACKAGES
   firenvim
   dispatch
-  glow, without markdown-preview
   neogit
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
   colortils
     color-picker.nvim
   syntax-tree-surfer
-  neorg
   harpoon
   andweeb/presence.nvim (Discord)
   Wansmer/treesj
@@ -56,6 +54,7 @@ end
   alpha-nvim
     neovim-session-manager
   telescope-media-files
+  telescope-file-browser
   vim-tmux-navigator
   vim-maximizer
   vim-illuminate
@@ -66,6 +65,31 @@ end
   nvim-notify
   overseer.nvim
   GitHub Copilot
+  neoformat
+  nvim-peekup
+  nabla.nvim
+  Markdown:
+  - vim-markdown
+  - vim-markdown-toc
+  - Preview:
+    - glow
+    - markdown-preview
+  Writing:
+  - goyo.vim
+  - true-zen.nvim
+  - zen-mode.nvim
+  Note taking:
+  - vimwiki
+  - todo.txt-vim
+  - vim-dotoo
+  - Taskwarrior + VimWiki + TaskWiki
+  - Neorg
+  - nvim-orgmode
+  - telekasten.nvim
+  - Obsidian.nvim
+  michaelb/sniprun *
+  codi.vim
+  vim-slime
   TODO:
   - configure gitsigns
   - configure hydra
@@ -153,7 +177,15 @@ local plugins = {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		keys = { { "<C-y>", "<cmd>:ToggleTerm" } },
+		keys = {
+			{ "<C-y>", "<cmd>:ToggleTerm", mode = { "n", "t" } },
+			{ "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", mode = { "n", "t" } },
+			{ "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>th", "<cmd>lua _HTOP_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>td", "<cmd>lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
+		},
 		config = function()
 			require("plugins.toggleterm")
 		end,

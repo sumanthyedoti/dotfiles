@@ -42,10 +42,10 @@ Hydra({
 	},
 	heads = {
 		-- move between windows
-		{ "h", "<C-w>h" },
-		{ "j", "<C-w>j" },
-		{ "k", "<C-w>k" },
-		{ "l", "<C-w>l" },
+		{ "<left>", "<C-w>h" },
+		{ "<down>", "<C-w>j" },
+		{ "<up>", "<C-w>k" },
+		{ "<right>", "<C-w>l" },
 
 		-- split
 		{ "s", ":split<CR>" },

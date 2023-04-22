@@ -110,8 +110,6 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-	keymap.set("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", opts) -- Floating terminal
-
 	-- Call hierarchy
 	keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
 	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
