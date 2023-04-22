@@ -95,6 +95,7 @@ end
   - configure hydra
 ]]
 
+local lisp_filetypes = { "lisp", "lsp", "el" }
 local plugins = {
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
@@ -283,10 +284,10 @@ local plugins = {
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	-- ## lisp
-	{ "jpalardy/vim-slime", ft = { "lisp", "lsp" } },
-	{ "gpanders/nvim-parinfer", ft = { "lisp", "lsp" } },
-	{ "guns/vim-sexp", ft = { "lisp", "lsp" } },
-	{ "tpope/vim-sexp-mappings-for-regular-people", ft = { "lisp", "lsp" } },
+	{ "jpalardy/vim-slime", ft = lisp_filetypes },
+	{ "gpanders/nvim-parinfer", ft = lisp_filetypes },
+	{ "guns/vim-sexp", ft = lisp_filetypes },
+	{ "tpope/vim-sexp-mappings-for-regular-people", ft = lisp_filetypes },
 	-- use("Olical/conjure")
 	-- use("vlime/vlime")
 	--[[\cc: create a server connection.
