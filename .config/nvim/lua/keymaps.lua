@@ -123,6 +123,7 @@ keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_OPTS)
 -- Miscellaneous
 keymap("n", "<leader>so", "<cmd>source %<CR>", OPTS) -- source current file
 keymap("n", "<leader>Y", "<cmd>%y<CR>", OPTS) -- yank current file
+keymap("n", "<leader>rn", "<cmd>set relativenumber!<CR>", OPTS) -- toggle relativenumber
 
 -- == PLUGINS == --
 -- ## icon-picker
