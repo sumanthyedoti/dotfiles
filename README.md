@@ -42,6 +42,7 @@
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins
 - emacs
+  - `M-x all-the-icons-install-fonts`
 
 ### CLI tools
 
