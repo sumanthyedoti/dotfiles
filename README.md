@@ -29,7 +29,7 @@
 - alacritty
 - nvim
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
-  - install LSPs, formatters, linters like
+  - install LSPs, formatters, linters
     - stylua,
     - typescript, typescript-language-server
     - eslint
