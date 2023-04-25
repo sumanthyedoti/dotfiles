@@ -122,12 +122,12 @@
 	(add-hook 'after-init-hook #'global-flycheck-mode))
 
 (use-package helpful ; better *help* buffer
-	:config
-	(global-set-key (kbd "C-h f") #'helpful-callable)
-	(global-set-key (kbd "C-h v") #'helpful-variable)
-	(global-set-key (kbd "C-h k") #'helpful-key)
-	(global-set-key (kbd "C-h x") #'helpful-command)
-	(global-set-key (kbd "C-c C-d") #'helpful-at-point))
+	:bind
+	("C-c h f" . helpful-callable)
+	("C-c h v" . helpful-variable)
+	("C-c h k" . helpful-key)
+	("C-c h x" . helpful-command)
+	("C-c h ." . helpful-at-point))
 
 (use-package general
 	:config
