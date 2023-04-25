@@ -1,3 +1,62 @@
-* Title 1
-** Title 2
-*** Title 3
+* First Heading
+	content
+	*bold*
+	_underline_
+	/italic/
+	[[https://example.com][link]]
+** Sub-heading
+		content1
+** Another sub-heading
+		content2
+* Second heading
+	content
+** list
+*** unordered list
+	- 2nd
+		content
+		sdfjsdf
+	- 1st
+	- sdfsdfj
+*** order list
+	1. jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf
+		 sdjsd
+		 sdfkjsdhf
+	2. fskdfjsdfj
+	3. sdfsdjf
+		 jsdflsjf
+	4. sdfjlsdjf
+	5. sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj
+*** list with checkbox
+	- [ ] check/uncheck with `C-c C-x C-b`
+	- [ ] shdfksdfh
+	lksdjkflsjdf
+	1. [ ] klsdjflsdjk
+		 lsdjflsdfj
+	2. [X] lksjdflskdjf
+	3. [ ] sjdfsdfj
+
+
+** table
+	| Name             | Age                   |
+	|------------------+-----------------------|
+	| Sumanth          | 25                    |
+	| sdfhkshfsdfkjhsd | sdfjshf               |
+	| sdhjfksdfh       | skjkdfhsdf            |
+	| sdhfksdjfhk      | sdfjh                 |
+	| skdjhfsrdk       | sdfjhksdfhksjdfhksjhf |
+
+* Src blocks
+#+begin_src emacs-lisp
+	(defun greet ()
+		message "Hello!")
+#+end_src
+
+* TODO Section to do
+	- change to-do state of the parent section -> `C-c C-t`
+	- Can also use `Shfit + <- / ->` on the section title to change to todo state
+	- Use the above shortcut on list changes the bullet style
+** TODO Sub-section
+	- Change to-do state of the sub-section
+*** Another
+	- and here
+**** One more

@@ -1,7 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
-; (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
 
 (package-initialize)
 (unless package-archive-contents
@@ -24,6 +24,31 @@
 (use-package evil-surround
 	:config
 	(global-evil-surround-mode 1))
+;; Turn on indentation and auto-fill mode for Org files
+
+(defun sy/org-mode-setup ()
+	(org-indent-mode)
+	(variable-pitch-mode 1)
+	(auto-fill-mode 0)
+	(visual-line-mode 1)
+	(setq evil-auto-indent nil))
+
+(use-package org
+	:hook
+	(org-mode . sy/org-mode-setup)
+	:config
+	(setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
+				org-hide-emphasis-markers t))
+
+(use-package org-bullets
+	:after org
+	:hook (org-mode . org-bullets-mode)
+	:custom
+	(org-bullets-bullet-list '("⭐" "✪" "❄" "◈")) ;  "" "🌸" "🌻" "🌷"
+	)
+
+
+
 
 (use-package magit
 	:commands (magit-status magit-get-current-status))
@@ -160,6 +185,9 @@
 (setq-default tab-width 2
 							indent-tabs-mode t)
 
+(tooltip-mode -1)
+(set-fringe-mode 15) ; margin at left
+
 ;; kill current buffer without asking which
 ;(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
@@ -195,7 +223,50 @@
 (setq inhibit-startup-screen t ; don't show the splash screen
 			ring-bell-function 'ingore ; remove bell sound, set visual bell instead
 			visible-bell t)
-(set-face-attribute 'default nil :font "Fira Code" :height 140) ; font and font-size
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 140) ; font and font-size
+
+;; Set the fixed pitch face
+(set-face-attribute 'fixed-pitch nil
+										:font "JetBrains Mono"
+										:weight 'light
+										:height 200)
+
+;;; Set the variable pitch face
+;(set-face-attribute 'variable-pitch nil
+;										:font "Roboto Slab"
+;										:height 240
+;										:weight 'light)
+;
+;;; Ensure that anything that should be fixed-pitch in Org files appears that way
+;(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+;(set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
+;(set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+;(set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+;(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+;(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+;(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+;(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+
+
+(use-package visual-fill-column ; to center org-mode content
+	:config
+	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
+	(setq visual-fill-column-width 120
+				visual-fill-column-center-text t)
+	:hook
+	(org-mode visual-fill-column-mode))
+
+;(font-lock-add-keywords 'org-mode ; replace list hyphen with dot
+;												'(("^ *\\([-]\\) "
+;													 (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) ""))))))
+
+;(dolist (face '((org-level-1 .  1.4)
+;								(org-level-2 .  1.3)
+;								(org-level-3 .  1.2)
+;								(org-level-4 .  1.12)
+;								(org-level-5 .  1.0)))
+;	(set-face-attribute (car face) nil :font "Roboto Mono" :weight 'regular :height (cdr face)))
+
 
 ;; == modes
 (tool-bar-mode -1)
@@ -203,25 +274,22 @@
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (global-hl-line-mode 1)
-;; == line numbers ==
-(column-number-mode 1)
 (size-indication-mode 1) ; file size, in modeline
+;; == line numbers ==
 (line-number-mode 1) ; in modeline
-(global-display-line-numbers-mode -1)
+(column-number-mode 1) ; in modeline
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers 'relative)
 ; disable line numbers in some modes
-(dolist (mode '(org-mode-hook
-								term-mode-hook
+(dolist (mode '(term-mode-hook
 								shell-mode-hook
 								eshell-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+;; scroll
 (setq scroll-margin 4
 			scroll-conservatively 100000
 			scroll-preserve-screen-position 1)
-
-(setq display-line-numbers 'relative)
-(tooltip-mode -1)
-(set-fringe-mode 15) ; margin at left
 
 
 (recentf-mode 1) ; --  M-x recentf-open-files -> to open recent files
@@ -265,9 +333,9 @@
 				(t . (semilight 1.2)))
 			modus-themes-scale-headings t) ; scale heading with the above style. Important for heading style to work
 
-; (load-theme 'modus-vivendi t)
 (use-package all-the-icons
 	:if (display-graphic-p))
+
 (use-package doom-modeline
 	:ensure t
 	:init (doom-modeline-mode 1)
@@ -275,25 +343,32 @@
 	(setq doom-modeline-height 36)
 	(setq doom-modeline-bar-width 10)
 	(setq doom-modeline-hud t))
+
+(use-package stripe-buffer
+	:config
+	())
 (use-package doom-themes ; load theme with `M-x load-theme`
 	:ensure t
 	:config
 	;; Global settings (defaults)
 	(setq doom-themes-enable-bold t
-	 doom-themes-enable-italic t
-	 doom-themes-padded-modeline t)
-	(load-theme 'doom-gruvbox t) ; <- change theme here
-
+				doom-themes-enable-italic t
+				doom-themes-padded-modeline t)
 	;; Enable flashing mode-line on errors
 	(doom-themes-visual-bell-config)
 	;; Enable custom neotree theme (all-the-icons must be installed!)
 	(doom-themes-neotree-config)
 	;; or for treemacs users
-	(setq doom-themes-treemacs-theme "doom-atoms") ; use "doom-colors" for less minimal icon theme
+	(setq doom-themes-treemacs-theme nil) ; use "doom-colors" for less minimal icon theme
 	; themes-list -> https://github.com/doomemacs/themes#theme-list
 	(doom-themes-treemacs-config)
 	;; Corrects (and improves) org-mode's native fontification.
 	(doom-themes-org-config))
+
+;; HERE: change theme <--
+;(load-theme 'modus-vivendi t)
+(load-theme 'doom-gruvbox t)
+
 
 
 ;; ;; rebind switch-window
@@ -317,16 +392,3 @@
 (load customize-file 'noerror 'nomessage)
 
 (message "Hello")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-	 '(magit rg helm-projectile projectile which-key use-package spaceline smartparens smart-mode-line-powerline-theme rainbow-delimiters lua-mode helpful helm general flycheck expand-region evil-surround doom-themes doom-modeline company all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
