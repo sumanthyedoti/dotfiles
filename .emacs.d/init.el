@@ -26,19 +26,21 @@
 	(global-evil-surround-mode 1))
 ;; Turn on indentation and auto-fill mode for Org files
 
-(defun sy/org-mode-setup ()
-	(org-indent-mode)
-	(variable-pitch-mode 1)
-	(auto-fill-mode 0)
-	(visual-line-mode 1)
-	(setq evil-auto-indent nil))
-
 (use-package org
-	:hook
-	(org-mode . sy/org-mode-setup)
 	:config
 	(setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
-				org-hide-emphasis-markers t))
+				org-hide-emphasis-markers t)
+	(visual-line-mode 1)
+	;(org-indent-mode)
+	;(setq evil-auto-indent nil)
+	(auto-fill-mode 0)
+	(custom-set-faces
+	 '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
+	 '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
+	 '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
+	 '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
+	 '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+	 ))
 
 (use-package org-bullets
 	:after org
@@ -47,8 +49,12 @@
 	(org-bullets-bullet-list '("⭐" "✪" "❄" "◈")) ;  "" "🌸" "🌻" "🌷"
 	)
 
-
-
+(use-package visual-fill-column ; to center org-mode content
+	:config
+	(setq visual-fill-column-width 120
+				visual-fill-column-center-text t)
+	:hook
+	(org-mode . visual-fill-column-mode))
 
 (use-package magit
 	:commands (magit-status magit-get-current-status))
@@ -75,7 +81,6 @@
 		 helm-semantic-fuzzy-match t
 		 helm-imenu-fuzzy-match t
 		 helm-apropos-fuzzy-match t)
-
 	(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 	(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 	(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z, default is <tab>
@@ -134,8 +139,9 @@
 
 (use-package rainbow-delimiters
 	:hook (prog-mode . rainbow-delimiters-mode)) ; prog-mode is base mode for any programming language mode
+
 (use-package smartparens
-	;:hook (prog-hook #'smartparens-mode)
+	:hook (prog-hook #'smartparens-mode)
 	:config
 	(smartparens-global-mode 1)
 	(show-paren-mode t))
@@ -224,37 +230,6 @@
 			ring-bell-function 'ingore ; remove bell sound, set visual bell instead
 			visible-bell t)
 (set-face-attribute 'default nil :font "JetBrains Mono" :height 140) ; font and font-size
-
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil
-										:font "JetBrains Mono"
-										:weight 'light
-										:height 200)
-
-;;; Set the variable pitch face
-;(set-face-attribute 'variable-pitch nil
-;										:font "Roboto Slab"
-;										:height 240
-;										:weight 'light)
-;
-;;; Ensure that anything that should be fixed-pitch in Org files appears that way
-;(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-;(set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
-;(set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-;(set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-;(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-;(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-;(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-;(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
-
-
-(use-package visual-fill-column ; to center org-mode content
-	:config
-	(add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
-	(setq visual-fill-column-width 120
-				visual-fill-column-center-text t)
-	:hook
-	(org-mode visual-fill-column-mode))
 
 ;(font-lock-add-keywords 'org-mode ; replace list hyphen with dot
 ;												'(("^ *\\([-]\\) "
