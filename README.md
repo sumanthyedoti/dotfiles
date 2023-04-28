@@ -50,6 +50,8 @@
 	- `prefix + I` to fetch the plugins
 - emacs
 	- `M-x all-the-icons-install-fonts`
+    - install `libtool-bin`
+- cmake
 
 ### CLI tools
 - starship

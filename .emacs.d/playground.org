@@ -1,23 +1,24 @@
 * First Heading
-	content
-	*bold*
-	_underline_
-	/italic/
-	[[https://example.com][link]]
+** String format
+	- *bold*
+	- _underline_
+	- /italic/
+	[[https://example.com][- link]]
+		- to open a link, `C-x C-f`
 ** Sub-heading
-		content1
-** Another sub-heading
-		content2
+		lorem ipsum
 * Second heading
-	content
+	lorem ipsum
 ** list
 *** unordered list
+SCHEDULED: <2023-04-26 Wed>
 	- 2nd
 		content
 		sdfjsdf
 	- 1st
 	- sdfsdfj
 *** order list
+DEADLINE: <2023-04-26 Wed>
 	1. jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf jhfksjflsjf
 		 sdjsd
 		 sdfkjsdhf
@@ -28,13 +29,12 @@
 	5. sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj sdflsjflsdfj
 *** list with checkbox
 	- [ ] check/uncheck with `C-c C-x C-b`
-	- [ ] shdfksdfh
-	lksdjkflsjdf
-	1. [ ] klsdjflsdjk
-		 lsdjflsdfj
+	- [ ] list item
+		lorem ipsum
+	1. [ ] list item
+		 lorem ipsum
 	2. [X] lksjdflskdjf
 	3. [ ] sjdfsdfj
-
 
 ** table
 	| Name             | Age                   |
@@ -48,7 +48,7 @@
 * Src blocks
 #+begin_src emacs-lisp
 	(defun greet ()
-		message "Hello!")
+		(message "Hello!"))
 #+end_src
 
 * TODO Section to do
@@ -60,3 +60,36 @@
 *** Another
 	- and here
 **** One more
+
+* NEXT Schedule
+DEADLINE: <2023-04-27 Thu>
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:58]
+- State "DONE"       from "NEXT"       [2023-04-25 Tue 23:57]
+:END:
+	- Let org-mode know the agenda files with `org-agenda-files`
+	- Schedule -- `M-x org-schedule` / `C-c C-s`
+	- Deadline - `M-x org-deadline` / `C-c C-d`
+		- can set warning days offset to show up in agenda, with `org-deadline-warning-days` variable
+	- Check agenda - `M-x org-agenda`
+*** Repeated tasked
+		 - every year - <2010-04-27 Thu +1y>
+		- [[https://orgmode.org/manual/Repeated-tasks.html][Documentation]]
+
+* Babel
+**** Tangle
+- configure the tangle of the block to a file by adding `:tangle _filename_`
+- tangle the block by running `org-babel-tangle`
+#+begin_src emacs-lisp :tangle ./tangle.el
+(message "Tangled")
+#+end_src
+**** Configure and tagle all the blocks in an org file
+- by putting the `+PROPERTY` at top of the file
+#+begin_src
+	+PROPERTY: header-args:emacs-lisp :tangle ./tangle.el
+#+end_src

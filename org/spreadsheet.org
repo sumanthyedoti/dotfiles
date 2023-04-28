@@ -1,0 +1,2 @@
+* Notes
+		 - [[https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html][Documentation]]
