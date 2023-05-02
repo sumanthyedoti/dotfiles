@@ -37,7 +37,8 @@ set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 # pyenv
 pyenv init - | source
 
-# emacs vterm
+#### emacs
+# vterm
 function vterm_printf;
     if begin; [  -n "$TMUX" ]  ; and  string match -q -r "screen|tmux" "$TERM"; end
         # tell tmux to pass the escape sequences through
@@ -47,5 +48,12 @@ function vterm_printf;
         printf "\eP\e]%s\007\e\\" "$argv"
     else
         printf "\e]%s\e\\" "$argv"
+    end
+end
+# vterm clear scrollback
+if [ "$INSIDE_EMACS" = 'vterm' ]
+    function clear
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
     end
 end

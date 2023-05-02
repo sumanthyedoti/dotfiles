@@ -26,7 +26,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 . "$HOME/.cargo/env"
 
-# emacs vterm
+#### emacs
+# vterm
 vterm_printf() {
     if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
         # Tell tmux to pass the escape sequences through
@@ -38,3 +39,10 @@ vterm_printf() {
         printf "\e]%s\e\\" "$1"
     fi
 }
+# vterm clear scrollback `C-C c_l`
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    function clear() {
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
+    }
+fi

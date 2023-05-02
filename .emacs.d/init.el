@@ -14,32 +14,53 @@
 (setq use-package-always-ensure t) ; `:enusre t` for all projects
 
 ;; Download and enable Evil
-(unless (package-installed-p 'evil)
-	(package-install 'evil))
-(require 'evil)
+;(unless (package-installed-p 'evil))
+;	(package-install 'evil))
+;(require 'evil)
 ;; enable evil mode
-(evil-mode 1)
+;(evil-mode 1)
+(setq evil-want-keybinding nil)
+(use-package evil
+	;; Pre-load configuration
+	:config
+	(setq evil-want-integration t)
+	(setq evil-respect-visual-line-mode t)
+	;(setq evil-undo-system 'undo-tree)
+	(evil-mode 1)
+	;; Set Emacs state modes
+	(dolist (mode '(custom-mode
+									eshell-mode
+									git-rebase-mode
+																				;erc-mode
+																				;circe-server-mode
+																				;circe-chat-mode
+																				;circe-query-mode
+																				;sauron-mode
+									term-mode))
+		(add-to-list 'evil-emacs-state-modes mode)))
 
-;; evil-surround
 (use-package evil-surround
 	:config
 	(global-evil-surround-mode 1))
-;; Turn on indentation and auto-fill mode for Org files
+(use-package evil-collection
+	:after evil
+	:config
+	(evil-collection-init))
 
 (use-package org
 	:config
 	(setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
-				org-hide-emphasis-markers t
-				org-deadline-warning-days 3
-				org-agenda-start-with-log-mode t
-				org-log-done 'time
-				org-log-into-drawer t
-				org-agenda-files '("~/org"))
+	 org-hide-emphasis-markers t
+	 org-deadline-warning-days 3
+	 org-agenda-start-with-log-mode t
+	 org-log-done 'time
+	 org-log-into-drawer t
+	 org-agenda-files '("~/org"))
 	(setq org-todo-keywords ; before "|" are active, after are done
-				'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-					(sequence "BACKLOG(b)" "REFINED(r)" "IN_DEV(d)" "DONE(d)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
+	 '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+		 (sequence "BACKLOG(b)" "REFINED(r)" "IN_DEV(d)" "DONE(d)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
 	;(setq org-agenda-custom-commands) ; TODO: https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
-																				; TODO - org-capture-templates
+					 ; TODO - org-capture-templates
 	; TODO - org-habit
 	(visual-line-mode 1)
 	;(org-indent-mode)
@@ -50,10 +71,11 @@
 	 '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
 	 '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
 	 '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
-	 '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
-	 )
-																				; org-babel
-	(require 'org-tempo) ; by type <sh<tab>, code-block with shell appears
+	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+
+																	; org-babel
+	(require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
+	; `<s` to begin src block
 	(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 	(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 	(add-to-list 'org-structure-template-alist '("py" . "src python"))
@@ -73,13 +95,13 @@
 	:after org
 	:hook (org-mode . org-bullets-mode)
 	:custom
-	(org-bullets-bullet-list '("⭐" "✪" "❄" "◈")) ;  "" "🌸" "🌻" "🌷"
-	)
+	(org-bullets-bullet-list '("⭐" "✪" "❄" "◈"))) ;  "" "🌸" "🌻" "🌷"
+
 
 (use-package visual-fill-column ; to center org-mode content
 	:config
 	(setq visual-fill-column-width 120
-				visual-fill-column-center-text t)
+	 visual-fill-column-center-text t)
 	:hook
 	(org-mode . visual-fill-column-mode))
 
@@ -91,8 +113,17 @@
 (use-package vterm
 	:config
 	(setq vterm-max-scrollback 10000
-				term-prompt-regexp "^[^#$%>\n]*[#$%>]] *"
-				vterm-shell "fish"))
+	 term-prompt-regexp "^[^#$%>\n]*[#$%>]] *"
+	 vterm-shell "fish"))
+
+(use-package all-the-icons
+	:if (display-graphic-p))
+
+(use-package all-the-icons-dired
+	:if (display-graphic-p)
+	:hook (dired-mode . all-the-icons-dired-mode)
+	:config (setq all-the-icons-dired-monochrome nil))
+
 
 (use-package helm
 	; spin-offs - helm-swoop
@@ -106,19 +137,21 @@
 	("C-s" . helm-occur)
 	:config
 	(setq helm-split-window-in-side-p t
-		 helm-move-to-line-cycle-in-source t
-		 helm-scroll-amount 10
-		 heml-M-x-fuzzy-match t
-		 helm-buffer-fuzzy-matching t
-		 helm-recentf-fuzzy-match t
-		 helm-semantic-fuzzy-match t
-		 helm-imenu-fuzzy-match t
-		 helm-apropos-fuzzy-match t)
+	 helm-move-to-line-cycle-in-source t
+	 helm-scroll-amount 10
+	 heml-M-x-fuzzy-match t
+	 helm-buffer-fuzzy-matching t
+	 helm-recentf-fuzzy-match t
+	 helm-semantic-fuzzy-match t
+	 helm-imenu-fuzzy-match t
+	 helm-apropos-fuzzy-match t)
 	(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 	(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 	(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z, default is <tab>
 	(helm-mode 1)
-	(helm-autoresize-mode t)) ; automatically to fit the number of candidates
+																				; automatically to fit the number of candidates
+	(helm-autoresize-mode t)
+	)
 
 (use-package projectile
 	:diminish projectile-mode
@@ -129,8 +162,8 @@
 	:config
 	(setq projectile-project-search-path '("~/projects/" "~/work/" ("~/dev/") ("~/abc/") ("~/ABC/") ("~/dev/") ("~/org/") ("~/")))
 	(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-	(projectile-mode 1)
-)
+	(projectile-mode 1))
+
 
 (use-package helm-projectile
 	:ensure t
@@ -145,10 +178,10 @@
 	(add-hook 'after-init-hook #'global-company-mode)
 	;(setq company-global-modes '(not eshell-mode comint-mode erc-mode rcirc-mode))
 	(setq company-selection-wrap-around t
-		 company-tooltip-align-annotations t
-		 company-idle-delay 0.3
-		 company-minimum-prefix-length 2
-		 company-tooltip-limit 10))
+	 company-tooltip-align-annotations t
+	 company-idle-delay 0.3
+	 company-minimum-prefix-length 2
+	 company-tooltip-limit 10))
 
 (use-package flycheck
 	; supoported language - https://www.flycheck.org/en/latest/languages.html
@@ -194,18 +227,70 @@
 (use-package expand-region
 	:bind ("C-=" . er/expand-region))
 
+(use-package dired-single)
+
+;;; dired-hacks [https://github.com/Fuco1/dired-hacks]
+(use-package dired-open
+	:config
+	(setq dired-open-externsions '(("png" . "feh")
+																 ("jpg" . "feh")
+																 ("jpeg" . "feh")
+																 ("mp4" . "mpv")
+																 ("mkv" . "mpv")
+																 )))
+(use-package dired-rainbow
+	:config
+	(progn
+		(dired-rainbow-define-chmod directory "#6cb2eb" "d.*")
+		(dired-rainbow-define html "#eb5286" ("css" "less" "sass" "scss" "htm" "html" "jhtm" "mht" "eml" "mustache" "xhtml"))
+		(dired-rainbow-define xml "#f2d024" ("xml" "xsd" "xsl" "xslt" "wsdl" "bib" "json" "msg" "pgn" "rss" "yaml" "yml" "rdata"))
+		(dired-rainbow-define document "#9561e2" ("docm" "doc" "docx" "odb" "odt" "pdb" "pdf" "ps" "rtf" "djvu" "epub" "odp" "ppt" "pptx"))
+		(dired-rainbow-define markdown "#ffed4a" ("org" "etx" "info" "markdown" "md" "mkd" "nfo" "pod" "rst" "tex" "textfile" "txt"))
+		(dired-rainbow-define database "#6574cd" ("xlsx" "xls" "csv" "accdb" "db" "mdb" "sqlite" "nc"))
+		(dired-rainbow-define media "#de751f" ("mp3" "mp4" "MP3" "MP4" "avi" "mpeg" "mpg" "flv" "ogg" "mov" "mid" "midi" "wav" "aiff" "flac"))
+		(dired-rainbow-define image "#f66d9b" ("tiff" "tif" "cdr" "gif" "ico" "jpeg" "jpg" "png" "psd" "eps" "svg"))
+		(dired-rainbow-define log "#c17d11" ("log"))
+		(dired-rainbow-define shell "#f6993f" ("awk" "bash" "bat" "sed" "sh" "zsh" "vim"))
+		(dired-rainbow-define interpreted "#38c172" ("py" "ipynb" "rb" "pl" "t" "msql" "mysql" "pgsql" "sql" "r" "clj" "cljs" "scala" "js"))
+		(dired-rainbow-define compiled "#4dc0b5" ("asm" "cl" "lisp" "el" "c" "h" "c++" "h++" "hpp" "hxx" "m" "cc" "cs" "cp" "cpp" "go" "f" "for" "ftn" "f90" "f95" "f03" "f08" "s" "rs" "hi" "hs" "pyc" ".java"))
+		(dired-rainbow-define executable "#8cc4ff" ("exe" "msi"))
+		(dired-rainbow-define compressed "#51d88a" ("7z" "zip" "bz2" "tgz" "txz" "gz" "xz" "z" "Z" "jar" "war" "ear" "rar" "sar" "xpi" "apk" "xz" "tar"))
+		(dired-rainbow-define packaged "#faad63" ("deb" "rpm" "apk" "jad" "jar" "cab" "pak" "pk3" "vdf" "vpk" "bsp"))
+		(dired-rainbow-define encrypted "#ffed4a" ("gpg" "pgp" "asc" "bfe" "enc" "signature" "sig" "p12" "pem"))
+		(dired-rainbow-define fonts "#6cb2eb" ("afm" "fon" "fnt" "pfb" "pfm" "ttf" "otf"))
+		(dired-rainbow-define partition "#e3342f" ("dmg" "iso" "bin" "nrg" "qcow" "toast" "vcd" "vmdk" "bak"))
+		(dired-rainbow-define vc "#0074d9" ("git" "gitignore" "gitattributes" "gitmodules"))
+		(dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")
+		))
+(use-package dired-hide-dotfiles
+	:config
+	;; To hide dot-files by default
+	(dired-hide-dotfiles-mode)
+	;; To toggle hiding
+	(evil-collection-define-key 'normal 'dired-mode-map "H" #'dired-hide-dotfiles-mode))
+
+
+(use-package dired
+	:ensure nil
+	;; dired config
+	:config
+ (evil-collection-define-key 'normal 'dired-mode-map
+		"h" 'dired-single-up-directory
+		"l" 'dired-single-buffer))
+
+
 
 ;; TODO
-																		 ;general
-																		 ; curx
-																		 ; avy
-																		 ; yasnippet
-																		 ; ace-window
-																		 ; winner-mode
-																				; flycheck
-																				; enable flycheck
-																				; projectile
-																				; magit [https://youtu.be/INTu30BHZGk?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ&t=1769]
+															 ;general
+															 ; curx
+															 ; avy
+															 ; yasnippet
+															 ; ace-window
+															 ; winner-mode
+																	; flycheck
+																	; enable flycheck
+																	; projectile
+																	; magit [https://youtu.be/INTu30BHZGk?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ&t=1769]
 
 
 
@@ -214,6 +299,9 @@
 ;; used by tool like git
 (setq user-full-name "Sumanth Yedoti"
 			user-mail-address "sumanth.yedoti@gmail.com")
+
+;; ESC Cancels All
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (setq gc-cons-threshold 10000000) ; 10mb
 (setq large-file-warning-threshold 50000000) ; 50mb
@@ -240,6 +328,10 @@
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+;; dired
+;; - directories first
+(setq dired-listing-switches "-agho --group-directories-first")
+(setq delete-by-moving-to-trash t)
 
 ;; backups
 (setq backup-directory-alist
@@ -337,9 +429,6 @@
 				(t . (semilight 1.2)))
 			modus-themes-scale-headings t) ; scale heading with the above style. Important for heading style to work
 
-(use-package all-the-icons
-	:if (display-graphic-p))
-
 (use-package doom-modeline
 	:ensure t
 	:init (doom-modeline-mode 1)
@@ -353,8 +442,8 @@
 	:config
 	;; Global settings (defaults)
 	(setq doom-themes-enable-bold t
-				doom-themes-enable-italic t
-				doom-themes-padded-modeline t)
+	 doom-themes-enable-italic t
+	 doom-themes-padded-modeline t)
 	;; Enable flashing mode-line on errors
 	(doom-themes-visual-bell-config)
 	;; Enable custom neotree theme (all-the-icons must be installed!)
@@ -370,11 +459,6 @@
 ;(load-theme 'modus-vivendi t)
 (load-theme 'doom-gruvbox t)
 
-
-
-;; ;; rebind switch-window
-;; (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; -- Remove Keybind
 ;(global-unset-key (kbd "C-x b"))
@@ -399,8 +483,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+	 '("e3daa8f18440301f3e54f2093fe15f4fe951986a8628e98dcd781efbec7a46f2" default))
+ '(helm-minibuffer-history-key "M-p")
+ '(org-agenda-files
+	 '("/home/sumanthyedoti/org/birthdays.org" "/home/sumanthyedoti/org/sample.org"))
  '(package-selected-packages
-	 '(vterm which-key visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround eterm-256color doom-themes doom-modeline company all-the-icons)))
+	 '(dired-hide-dotfiles dired-rainbow dired-open all-the-icons-dired dired-single dired evil-collection vterm which-key visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround eterm-256color doom-themes doom-modeline company all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
