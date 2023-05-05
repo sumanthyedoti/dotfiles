@@ -13,6 +13,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t) ; `:enusre t` for all projects
 
+(use-package no-littering)
+
 ;; Download and enable Evil
 ;(unless (package-installed-p 'evil))
 ;	(package-install 'evil))
@@ -31,13 +33,13 @@
 	(dolist (mode '(custom-mode
 									eshell-mode
 									git-rebase-mode
-																				;erc-mode
-																				;circe-server-mode
-																				;circe-chat-mode
-																				;circe-query-mode
-																				;sauron-mode
+																		 ;erc-mode
+																		 ;circe-server-mode
+																		 ;circe-chat-mode
+																		 ;circe-query-mode
+																		 ;sauron-mode
 									term-mode))
-		(add-to-list 'evil-emacs-state-modes mode)))
+	 (add-to-list 'evil-emacs-state-modes mode)))
 
 (use-package evil-surround
 	:config
@@ -60,7 +62,7 @@
 	 '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
 		 (sequence "BACKLOG(b)" "REFINED(r)" "IN_DEV(d)" "DONE(d)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
 	;(setq org-agenda-custom-commands) ; TODO: https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
-					 ; TODO - org-capture-templates
+		 ; TODO - org-capture-templates
 	; TODO - org-habit
 	(visual-line-mode 1)
 	;(org-indent-mode)
@@ -73,7 +75,7 @@
 	 '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
 	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
-																	; org-babel
+															 ;; org-babel
 	(require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
 	; `<s` to begin src block
 	(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
@@ -92,18 +94,17 @@
 	(add-to-list 'org-structure-template-alist '("sql" . "src sql")))
 
 (use-package org-bullets
-	:after org
 	:hook (org-mode . org-bullets-mode)
 	:custom
 	(org-bullets-bullet-list '("⭐" "✪" "❄" "◈"))) ;  "" "🌸" "🌻" "🌷"
 
 
 (use-package visual-fill-column ; to center org-mode content
+	:hook
+	(org-mode . visual-fill-column-mode)
 	:config
 	(setq visual-fill-column-width 120
-	 visual-fill-column-center-text t)
-	:hook
-	(org-mode . visual-fill-column-mode))
+	 visual-fill-column-center-text t))
 
 (use-package magit
 	:commands (magit-status magit-get-current-status))
@@ -149,9 +150,8 @@
 	(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 	(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z, default is <tab>
 	(helm-mode 1)
-																				; automatically to fit the number of candidates
-	(helm-autoresize-mode t)
-	)
+	(helm-autoresize-mode t))
+
 
 (use-package projectile
 	:diminish projectile-mode
@@ -166,13 +166,12 @@
 
 
 (use-package helm-projectile
-	:ensure t
+	:after (helm projectile)
 	:config
 	(helm-projectile-on)
 	(setq helm-projectile-fuzzy-match t))
 
 (use-package company
-	:ensure t
 	:diminish company-mode
 	:config
 	(add-hook 'after-init-hook #'global-company-mode)
@@ -183,9 +182,12 @@
 	 company-minimum-prefix-length 2
 	 company-tooltip-limit 10))
 
+(use-package company-box
+	:after company
+	:hook (company-mode . company-box-mode))
+
 (use-package flycheck
 	; supoported language - https://www.flycheck.org/en/latest/languages.html
-	:ensure t
 	:diminish flycheck-mode
 	:config
 	(add-hook 'after-init-hook #'global-flycheck-mode))
@@ -199,6 +201,7 @@
 	("C-c h ." . helpful-at-point))
 
 (use-package general
+	:after evil
 	:config
 	(general-create-definer sy/leader
 	 :prefix "C-c")
@@ -219,15 +222,14 @@
 
 
 (use-package which-key
-	:init (which-key-mode)
+	:defer 0
 	:diminish which-key-mode
 	:config
+	(which-key-mode)
 	(setq which-key-idle-delay 0.5))
 
 (use-package expand-region
 	:bind ("C-=" . er/expand-region))
-
-(use-package dired-single)
 
 ;;; dired-hacks [https://github.com/Fuco1/dired-hacks]
 (use-package dired-open
@@ -236,32 +238,32 @@
 																 ("jpg" . "feh")
 																 ("jpeg" . "feh")
 																 ("mp4" . "mpv")
-																 ("mkv" . "mpv")
-																 )))
+																 ("mkv" . "mpv"))))
+
 (use-package dired-rainbow
 	:config
 	(progn
-		(dired-rainbow-define-chmod directory "#6cb2eb" "d.*")
-		(dired-rainbow-define html "#eb5286" ("css" "less" "sass" "scss" "htm" "html" "jhtm" "mht" "eml" "mustache" "xhtml"))
-		(dired-rainbow-define xml "#f2d024" ("xml" "xsd" "xsl" "xslt" "wsdl" "bib" "json" "msg" "pgn" "rss" "yaml" "yml" "rdata"))
-		(dired-rainbow-define document "#9561e2" ("docm" "doc" "docx" "odb" "odt" "pdb" "pdf" "ps" "rtf" "djvu" "epub" "odp" "ppt" "pptx"))
-		(dired-rainbow-define markdown "#ffed4a" ("org" "etx" "info" "markdown" "md" "mkd" "nfo" "pod" "rst" "tex" "textfile" "txt"))
-		(dired-rainbow-define database "#6574cd" ("xlsx" "xls" "csv" "accdb" "db" "mdb" "sqlite" "nc"))
-		(dired-rainbow-define media "#de751f" ("mp3" "mp4" "MP3" "MP4" "avi" "mpeg" "mpg" "flv" "ogg" "mov" "mid" "midi" "wav" "aiff" "flac"))
-		(dired-rainbow-define image "#f66d9b" ("tiff" "tif" "cdr" "gif" "ico" "jpeg" "jpg" "png" "psd" "eps" "svg"))
-		(dired-rainbow-define log "#c17d11" ("log"))
-		(dired-rainbow-define shell "#f6993f" ("awk" "bash" "bat" "sed" "sh" "zsh" "vim"))
-		(dired-rainbow-define interpreted "#38c172" ("py" "ipynb" "rb" "pl" "t" "msql" "mysql" "pgsql" "sql" "r" "clj" "cljs" "scala" "js"))
-		(dired-rainbow-define compiled "#4dc0b5" ("asm" "cl" "lisp" "el" "c" "h" "c++" "h++" "hpp" "hxx" "m" "cc" "cs" "cp" "cpp" "go" "f" "for" "ftn" "f90" "f95" "f03" "f08" "s" "rs" "hi" "hs" "pyc" ".java"))
-		(dired-rainbow-define executable "#8cc4ff" ("exe" "msi"))
-		(dired-rainbow-define compressed "#51d88a" ("7z" "zip" "bz2" "tgz" "txz" "gz" "xz" "z" "Z" "jar" "war" "ear" "rar" "sar" "xpi" "apk" "xz" "tar"))
-		(dired-rainbow-define packaged "#faad63" ("deb" "rpm" "apk" "jad" "jar" "cab" "pak" "pk3" "vdf" "vpk" "bsp"))
-		(dired-rainbow-define encrypted "#ffed4a" ("gpg" "pgp" "asc" "bfe" "enc" "signature" "sig" "p12" "pem"))
-		(dired-rainbow-define fonts "#6cb2eb" ("afm" "fon" "fnt" "pfb" "pfm" "ttf" "otf"))
-		(dired-rainbow-define partition "#e3342f" ("dmg" "iso" "bin" "nrg" "qcow" "toast" "vcd" "vmdk" "bak"))
-		(dired-rainbow-define vc "#0074d9" ("git" "gitignore" "gitattributes" "gitmodules"))
-		(dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")
-		))
+	 (dired-rainbow-define-chmod directory "#6cb2eb" "d.*")
+	 (dired-rainbow-define html "#eb5286" ("css" "less" "sass" "scss" "htm" "html" "jhtm" "mht" "eml" "mustache" "xhtml"))
+	 (dired-rainbow-define xml "#f2d024" ("xml" "xsd" "xsl" "xslt" "wsdl" "bib" "json" "msg" "pgn" "rss" "yaml" "yml" "rdata"))
+	 (dired-rainbow-define document "#9561e2" ("docm" "doc" "docx" "odb" "odt" "pdb" "pdf" "ps" "rtf" "djvu" "epub" "odp" "ppt" "pptx"))
+	 (dired-rainbow-define markdown "#ffed4a" ("org" "etx" "info" "markdown" "md" "mkd" "nfo" "pod" "rst" "tex" "textfile" "txt"))
+	 (dired-rainbow-define database "#6574cd" ("xlsx" "xls" "csv" "accdb" "db" "mdb" "sqlite" "nc"))
+	 (dired-rainbow-define media "#de751f" ("mp3" "mp4" "MP3" "MP4" "avi" "mpeg" "mpg" "flv" "ogg" "mov" "mid" "midi" "wav" "aiff" "flac"))
+	 (dired-rainbow-define image "#f66d9b" ("tiff" "tif" "cdr" "gif" "ico" "jpeg" "jpg" "png" "psd" "eps" "svg"))
+	 (dired-rainbow-define log "#c17d11" ("log"))
+	 (dired-rainbow-define shell "#f6993f" ("awk" "bash" "bat" "sed" "sh" "zsh" "vim"))
+	 (dired-rainbow-define interpreted "#38c172" ("py" "ipynb" "rb" "pl" "t" "msql" "mysql" "pgsql" "sql" "r" "clj" "cljs" "scala" "js"))
+	 (dired-rainbow-define compiled "#4dc0b5" ("asm" "cl" "lisp" "el" "c" "h" "c++" "h++" "hpp" "hxx" "m" "cc" "cs" "cp" "cpp" "go" "f" "for" "ftn" "f90" "f95" "f03" "f08" "s" "rs" "hi" "hs" "pyc" ".java"))
+	 (dired-rainbow-define executable "#8cc4ff" ("exe" "msi"))
+	 (dired-rainbow-define compressed "#51d88a" ("7z" "zip" "bz2" "tgz" "txz" "gz" "xz" "z" "Z" "jar" "war" "ear" "rar" "sar" "xpi" "apk" "xz" "tar"))
+	 (dired-rainbow-define packaged "#faad63" ("deb" "rpm" "apk" "jad" "jar" "cab" "pak" "pk3" "vdf" "vpk" "bsp"))
+	 (dired-rainbow-define encrypted "#ffed4a" ("gpg" "pgp" "asc" "bfe" "enc" "signature" "sig" "p12" "pem"))
+	 (dired-rainbow-define fonts "#6cb2eb" ("afm" "fon" "fnt" "pfb" "pfm" "ttf" "otf"))
+	 (dired-rainbow-define partition "#e3342f" ("dmg" "iso" "bin" "nrg" "qcow" "toast" "vcd" "vmdk" "bak"))
+	 (dired-rainbow-define vc "#0074d9" ("git" "gitignore" "gitattributes" "gitmodules"))
+	 (dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")))
+
 (use-package dired-hide-dotfiles
 	:config
 	;; To hide dot-files by default
@@ -274,9 +276,29 @@
 	:ensure nil
 	;; dired config
 	:config
+	(add-hook 'dired-mode-hook 'dired-hide-details-mode)
  (evil-collection-define-key 'normal 'dired-mode-map
 		"h" 'dired-single-up-directory
 		"l" 'dired-single-buffer))
+
+(use-package lsp-mode
+	:commands (lsp lsp-deferred)
+	:hook (prog-mode . lsp-deferred)
+	:init
+	(setq lsp-keymap-prefix "C-c l"))
+(use-package lsp-ui
+	:hook (lsp-mode . lsp-ui-mode))
+
+(use-package typescript-mode
+	:mode "\\.ts\\'"
+	:hook (typescript-mode . lsp-defferred)
+	:config
+	(setq typescript-indent-level 2)
+	(add-hook 'typescript-mode-hook #'flycheck-mode)
+	(add-hook 'typescript-mode-hook #'company-mode))
+
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+
 
 
 
@@ -299,6 +321,10 @@
 ;; used by tool like git
 (setq user-full-name "Sumanth Yedoti"
 			user-mail-address "sumanth.yedoti@gmail.com")
+
+;; !! do not create back-up files
+(setq make-backup-files nil)
+
 
 ;; ESC Cancels All
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -328,10 +354,27 @@
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;; dired
+;;; startup time
+(add-hook 'emacs-startup-hook
+					(lambda ()
+						(message "*** Emacs loaded in %s seconds with %d garbage collections."
+										 (emacs-init-time "%.2f")
+										 gcs-done)))
+
+;;; == dired ==
 ;; - directories first
 (setq dired-listing-switches "-agho --group-directories-first")
 (setq delete-by-moving-to-trash t)
+
+;; Open directories in a single Dired buffer
+(defun my-dired-mode-hook ()
+	(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+	(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))))
+(add-hook 'dired-mode-hook 'my-dired-mode-hook)
+(setq dired-dwim-target t)
+(setq dired-recursive-copies 'always)
+(setq dired-recursive-deletes 'top)
+
 
 ;; backups
 (setq backup-directory-alist
@@ -430,7 +473,6 @@
 			modus-themes-scale-headings t) ; scale heading with the above style. Important for heading style to work
 
 (use-package doom-modeline
-	:ensure t
 	:init (doom-modeline-mode 1)
 	:config
 	(setq doom-modeline-height 36)
@@ -438,7 +480,6 @@
 	(setq doom-modeline-hud t))
 
 (use-package doom-themes ; load theme with `M-x load-theme`
-	:ensure t
 	:config
 	;; Global settings (defaults)
 	(setq doom-themes-enable-bold t
@@ -483,13 +524,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-	 '("e3daa8f18440301f3e54f2093fe15f4fe951986a8628e98dcd781efbec7a46f2" default))
  '(helm-minibuffer-history-key "M-p")
- '(org-agenda-files
-	 '("/home/sumanthyedoti/org/birthdays.org" "/home/sumanthyedoti/org/sample.org"))
  '(package-selected-packages
-	 '(dired-hide-dotfiles dired-rainbow dired-open all-the-icons-dired dired-single dired evil-collection vterm which-key visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround eterm-256color doom-themes doom-modeline company all-the-icons)))
+	 '(lsp-ui typescript-mode company-box lsp-mode which-key vterm visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets no-littering magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround evil-collection eterm-256color doom-themes doom-modeline dired-rainbow dired-open dired-hide-dotfiles company all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
