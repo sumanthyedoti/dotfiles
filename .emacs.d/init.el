@@ -48,6 +48,9 @@
 	:after evil
 	:config
 	(evil-collection-init))
+(use-package evil-nerd-commenter
+	; M-; -> to add comment to the line
+	:bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package org
 	:config
@@ -152,7 +155,6 @@
 	(helm-mode 1)
 	(helm-autoresize-mode t))
 
-
 (use-package projectile
 	:diminish projectile-mode
 	:bind
@@ -173,6 +175,7 @@
 
 (use-package company
 	:diminish company-mode
+	:hook (prog-mode . company-mode)
 	:config
 	(add-hook 'after-init-hook #'global-company-mode)
 	;(setq company-global-modes '(not eshell-mode comint-mode erc-mode rcirc-mode))
@@ -285,9 +288,12 @@
 	:commands (lsp lsp-deferred)
 	:hook (prog-mode . lsp-deferred)
 	:init
-	(setq lsp-keymap-prefix "C-c l"))
+	(setq lsp-keymap-prefix "C-c l") ; `C-l`, `s-l`, `C-c l`
+	)
 (use-package lsp-ui
-	:hook (lsp-mode . lsp-ui-mode))
+	:hook (lsp-mode . lsp-ui-mode)
+	:config
+	(setq lsp-ui-doc-position 'top))
 
 (use-package typescript-mode
 	:mode "\\.ts\\'"
@@ -526,7 +532,7 @@
  ;; If there is more than one, they won't work right.
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-	 '(lsp-ui typescript-mode company-box lsp-mode which-key vterm visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets no-littering magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround evil-collection eterm-256color doom-themes doom-modeline dired-rainbow dired-open dired-hide-dotfiles company all-the-icons-dired)))
+	 '(evil-nerd-commenter lsp-ui typescript-mode company-box lsp-mode which-key vterm visual-fill-column use-package stripe-buffer spaceline smartparens smart-mode-line-powerline-theme rg rainbow-delimiters org-bullets no-littering magit lua-mode helpful helm-projectile general flycheck expand-region evil-surround evil-collection eterm-256color doom-themes doom-modeline dired-rainbow dired-open dired-hide-dotfiles company all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
