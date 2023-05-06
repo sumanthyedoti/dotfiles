@@ -103,7 +103,7 @@ local on_attach = function(client, bufnr)
 		require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 	end, opts)
 
-	keymap.set("n", "lf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+	keymap.set("n", "<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 
 	keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline<CR>", opts) -- toggle outline
 

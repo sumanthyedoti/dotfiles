@@ -133,10 +133,6 @@ vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", OPTS) --> Yank the 
 vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", OPTS)
 -- package manager
 vim.keymap.set("n", "<leader>pp", ":Lazy sync<CR>", OPTS)
--- Slime
-vim.keymap.set("n", "<C-c><C-v>", "<cmd>%SlimeSend<CR>", OPTS)
--- LazyGit
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>", OPTS)
 -- ## Telescope
 keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", OPTS)
 keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)

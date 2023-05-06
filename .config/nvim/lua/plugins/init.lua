@@ -63,6 +63,7 @@ end
   hologram.nvim
   sleuth.vim
   nvim-notify
+  neogit
   overseer.nvim
   GitHub Copilot
   neoformat
@@ -83,19 +84,29 @@ end
   - todo.txt-vim
   - vim-dotoo
   - Taskwarrior + VimWiki + TaskWiki
-  - Neorg
-  - nvim-orgmode
   - telekasten.nvim
   - Obsidian.nvim
   michaelb/sniprun *
   codi.vim
-  vim-slime
   TODO:
   - configure gitsigns
   - configure hydra
 ]]
 
 local lisp_filetypes = { "lisp", "lsp", "el" }
+local repl_filetypes = {
+	"lisp",
+	"lsp",
+	"scehme",
+	"el",
+	"clojure",
+	"javascript",
+	"javascriptreact",
+	"typescript",
+	"typescriptreact",
+	"python",
+	"elixir",
+}
 local plugins = {
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
@@ -179,13 +190,13 @@ local plugins = {
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ "<C-y>", "<cmd>:ToggleTerm", mode = { "n", "t" } },
-			{ "<leader>tt", "<cmd>Lspsaga term_toggle<CR>", mode = { "n", "t" } },
-			{ "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "t" } },
-			{ "<leader>th", "<cmd>lua _HTOP_TOGGLE()<CR>", mode = { "n", "t" } },
-			{ "<leader>td", "<cmd>lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
-			{ "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
-			{ "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<C-y>", ":ToggleTerm<CR>", mode = { "n", "t" } },
+			{ "<leader>tt", ":Lspsaga term_toggle<CR>", mode = { "n", "t" } },
+			{ "<leader>tg", ":lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>th", ":lua _HTOP_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tn", ":lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tp", ":lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
 		},
 		config = function()
 			require("plugins.toggleterm")
@@ -284,7 +295,19 @@ local plugins = {
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	-- ## lisp
-	{ "jpalardy/vim-slime", ft = lisp_filetypes },
+	{
+		"jpalardy/vim-slime",
+		ft = repl_filetypes,
+		keys = {
+			{ "<leader>Lo", ":%SlimeSend<cr>", mode = { "n" } },
+			{ "<leader>Lp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
+			{ "<leader>Lp", ":'<,'>SlimeSend<cr>", mode = { "v" } },
+			{ "<leader>Ll", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
+		},
+		config = function()
+			vim.cmd([[let g:slime_target = "tmux"]])
+		end,
+	},
 	{ "gpanders/nvim-parinfer", ft = lisp_filetypes },
 	{ "guns/vim-sexp", ft = lisp_filetypes },
 	{ "tpope/vim-sexp-mappings-for-regular-people", ft = lisp_filetypes },
@@ -323,9 +346,9 @@ local plugins = {
 		"nvim-telescope/telescope.nvim",
 		event = "BufEnter",
 		-- keys = {
-		-- 	{ "<leader>f ", "<cmd>Telescope find_files<cr>" },
-		-- 	{ "<leader>f.", "<cmd>Telescope live_grep<cr>" },
-		-- 	{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>" },
+		-- 	{ "<leader>f ", ":Telescope find_files<cr>" },
+		-- 	{ "<leader>f.", ":Telescope live_grep<cr>" },
+		-- 	{ "<leader>ff", ":Telescope find_files hidden=true<cr>" },
 		-- },
 		config = function()
 			require("plugins.telescope")
@@ -352,7 +375,6 @@ local plugins = {
 			},
 		},
 	},
-
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufEnter",
@@ -369,14 +391,14 @@ local plugins = {
 	},
 	{
 		"folke/twilight.nvim",
-		keys = { { "<leader>zt", ":Twilight" } },
+		keys = { { "<leader>zt", ":Twilight<cr>" } },
 		config = function()
 			require("plugins.twilight")
 		end,
 	},
 	{
 		"folke/zen-mode.nvim",
-		keys = { { "<leader>zz", ":ZenMode" } },
+		keys = { { "<leader>zz", ":ZenMode<cr>" } },
 		config = function()
 			require("plugins.zen-mode")
 		end,
