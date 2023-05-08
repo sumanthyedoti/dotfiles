@@ -100,6 +100,9 @@ local repl_filetypes = {
 	"scehme",
 	"el",
 	"clojure",
+	"haskell",
+	"elm",
+	"ocaml",
 	"javascript",
 	"javascriptreact",
 	"typescript",
@@ -107,6 +110,7 @@ local repl_filetypes = {
 	"python",
 	"elixir",
 }
+
 local plugins = {
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
