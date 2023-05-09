@@ -84,7 +84,7 @@
 	 '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
 	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
-														;; org-babel
+	;; org-babel
 	(require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
 	(setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
 	;; configure the languages that can be executed inside org-mode code blocks
