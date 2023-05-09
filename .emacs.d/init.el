@@ -64,13 +64,15 @@
 				org-log-into-drawer t
 				org-agenda-files '("~/org")
 				org-pretty-entities t
+				org-clock-display-default-range 'thisweek
 				org-latex-compiler "xelatex")
 	(setq org-todo-keywords ; before "|" are active, after are done
-				'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-					(sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d)" "DEV-DONE(d)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
-																				;(setq org-agenda-custom-commands) ; TODO: https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
-																				; TODO - org-capture-templates
-																				; TODO - org-habit
+				'((sequence "TODO(t)" "NEXT(n)" "PROGRESS(p)" "|" "DONE(d!)")
+					(sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(i)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
+	;; (setq org-agenda-custom-commands)
+	;; TODO: https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
+	;; TODO - org-capture-templates
+	;; TODO - org-habit
 	(visual-line-mode 1)
 	;(org-indent-mode)
 	(setq evil-auto-indent t)
@@ -549,3 +551,22 @@
 (load customize-file 'noerror 'nomessage)
 
 (message "Hello")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-minibuffer-history-key "M-p")
+ '(org-agenda-files
+	 '("~/org/org-mode.org" "/home/sumanthyedoti/org/README.org" "/home/sumanthyedoti/org/cli-tool.org" "/home/sumanthyedoti/org/emacs-lisp.org" "/home/sumanthyedoti/org/sample.org" "/home/sumanthyedoti/org/spreadsheet.org" "/home/sumanthyedoti/org/workflow.org")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+ '(org-src-block ((t (:background "#000")))))
