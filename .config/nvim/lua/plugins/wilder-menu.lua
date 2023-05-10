@@ -3,6 +3,21 @@ if not status_ok then
 	return
 end
 
+local gradient = {
+	"#f4468f",
+	"#ff5e63",
+	"#ff843d",
+	"#f89b31",
+	"#e6b32e",
+	"#d2c934",
+	"#bfde43",
+	"#aff05b",
+}
+
+for i, fg in ipairs(gradient) do
+	gradient[i] = wilder.make_hl("WilderGradient" .. i, "Pmenu", { { a = 1 }, { a = 1 }, { foreground = fg } })
+end
+
 wilder.set_option("pipeline", {
 	wilder.branch(
 		wilder.cmdline_pipeline({
@@ -15,11 +30,16 @@ wilder.set_option("pipeline", {
 	),
 })
 
-wilder.setup({ modes = { ":", "/", "?" } })
 wilder.set_option(
 	"renderer",
 	wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
+		-- highlighter = wilder.basic_highlighter(),
+		highlighter = wilder.highlighter_with_gradient({
+			wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
+		}),
 		highlights = {
+			accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
+			gradient = gradient, -- must be set
 			border = "Normal", -- highlight to use for the border
 		},
 		-- 'single', 'double', 'rounded' or 'solid'
@@ -28,3 +48,5 @@ wilder.set_option(
 		reverse = 1,
 	}))
 )
+
+wilder.setup({ modes = { ":", "/", "?" } })

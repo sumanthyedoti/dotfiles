@@ -1,6 +1,6 @@
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>`", ":Switch<CR>", opts)
-
+vim.api.nvim_set_keymap("n", "<leader>`", ":Switch<CR>", OPTS)
+vim.g.switch_mapping = "" -- avoid defalt mapping
 vim.g.switch_custom_definitions = {
-  {"_", "-"} -- TODO: fix
+	{ "_", "-" },
+	{ "null", "undefined" },
 }

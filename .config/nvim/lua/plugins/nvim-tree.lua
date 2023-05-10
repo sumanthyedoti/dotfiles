@@ -1,6 +1,27 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 
+--[[
+-- E - expand all
+-- W - collapase
+-- H - toggle .dotfiles
+-- I - toggle gitignored
+-- <C-x> - Horizontal split
+-- <C-r> - Vertical split
+-- a - create
+-- x - cut
+-- c - copy
+-- p - paste
+-- m - mark
+-- bmv - bulk move marked
+-- y - copy name
+-- Y - copy relative path
+-- r - rename
+-- e - edit basename
+-- o - open
+--  - close directory
+--]]
+
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
 	return
@@ -27,12 +48,6 @@ nvim_tree.setup({
 	},
 	disable_netrw = true,
 	hijack_netrw = true,
-	open_on_setup = false,
-	ignore_ft_on_setup = {
-		"startify",
-		"dashboard",
-		"alpha",
-	},
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = true,
@@ -74,11 +89,6 @@ nvim_tree.setup({
 					end,
 				},
 				{ key = { "<CR>", "o" }, cb = tree_cb("edit") },
-				{ key = "<C-x>", cb = tree_cb("cut") },
-				{ key = "<C-c>", cb = tree_cb("copy") },
-				{ key = "<C-v>", cb = tree_cb("paste") },
-				{ key = "s", cb = tree_cb("vsplit") },
-				{ key = "S", cb = tree_cb("split") },
 				{
 					key = "<C-t>",
 					action = "open in tab",

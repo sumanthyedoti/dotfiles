@@ -63,46 +63,64 @@ local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	-- HERE: LSP keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- see definition and make edits in window
-	keymap.set("n", "gpd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+	-- keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- see definition and make edits in window
+	keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>") -- see definition and make edits in window
+	keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>") -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+
+	--[[ Documentation and signature help ]]
 	-- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	keymap.set("n", "<K>", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "<leader>K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+	keymap.set("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+	keymap.set("n", "<leader>pt", "<cmdkk>Lspsaga peek_type_definition<CR>", opts) -- see definition and make edits in window
 
 	-- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 	-- keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-	keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	keymap.set("n", "<leader>ca", "<cmd>CodeActionMenu<CR>", opts) -- see available code actions
+	keymap.set({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 
+	--[[ Diagnostics ]]
 	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
 	-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
-	keymap.set("n", "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>lc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-
-	keymap.set("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-
+	keymap.set("n", "<leader>dl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", opts) -- show  diagnostics for line
+	keymap.set("n", "<leader>dc", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", opts) -- show diagnostics for cursor
+	keymap.set("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	keymap.set("n", "<leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts) -- show diagnostics for buffer
+	keymap.set("n", "<leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show diagnostics for workspace
 	-- keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
 	-- keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+	---- Diagnostic jump with filters such as only jumping to an error
+	keymap.set("n", "[e", function()
+		require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
+	keymap.set("n", "]e", function()
+		require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+	end, opts)
 
-	keymap.set("n", "<leader>ld", "<cmd>Lspsaga hover_doc<CR>", opts) -- show diagnostics for cursor
+	keymap.set("n", "<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
 
-	keymap.set("n", "<leader>ol", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+	keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline<CR>", opts) -- toggle outline
 
 	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
+	-- Call hierarchy
+	keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
+	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
-		keymap.set("n", "<leader>io", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "<leader>ai", ":TypescriptAddMissingImports<CR>", opts)
+		keymap.set("n", "<leader>ltf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
+		keymap.set("n", "<leader>lto", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
+		keymap.set("n", "<leader>ltx", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
+		keymap.set("n", "<leader>lti", ":TypescriptAddMissingImports<CR>", opts)
+		keymap.set("n", "<leader>lta", ":TypescriptFixAll<CR>", opts)
 	end
 
 	-- == cursor hover
@@ -121,7 +139,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- 🌐 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- configure html server
