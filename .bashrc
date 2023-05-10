@@ -12,6 +12,9 @@ alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
 
+# aliases for scripts
+alias gas="~/.dotfiles/scripts/git_auto_sync.sh"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
   [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
@@ -45,4 +48,6 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
         vterm_printf "51;Evterm-clear-scrollback";
         tput clear;
     }
+    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 fi
+

@@ -19,6 +19,9 @@ alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
 
+# aliases for scripts
+alias gas="~/.dotfiles/scripts/git_auto_sync.sh"
+
 starship init fish | source
 zoxide init fish | source
 
