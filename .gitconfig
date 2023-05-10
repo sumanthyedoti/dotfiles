@@ -48,6 +48,7 @@
 	user = sumanthyedoti
 [alias]
   s = status
+  ss = status --short
   a = add
   co = checkout
   sh = stash
@@ -59,8 +60,9 @@
   rcon = rebase --continue
   rat = rebase --abort
   email = config user.email
-  diff2 = diff @~..@ ; last two commits, can also use "show"
-  sdiff = diff --staged
+  d = diff
+  d2 = diff @~..@ ; last two commits, can also use "show"
+  sd = diff --staged
   ll = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s  %C(dim green)(%cr)  [%an]\" --abbrev-commit -30
   last = log -1 HEAD --stat
   ; branches
