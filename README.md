@@ -52,7 +52,6 @@
 	- `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
 - cmake
-- [syncthing](https://syncthing.net/downloads/)
 
 ### CLI tools
 - starship
