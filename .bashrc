@@ -13,7 +13,7 @@ alias lg="lazygit"
 alias z="zoxide"
 
 # aliases for scripts
-alias gas="~/.dotfiles/scripts/git_auto_sync.sh"
+alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
