@@ -58,9 +58,10 @@
     - install `libtool-bin`
     - `sudo ln -f ~/.dotfiles/.emacs.d/exwm/exwm.desktop /usr/share/xsessions/exwm.desktop`
 - cmake
-- xmonad WM
+- XMonad WM
     - xmonad-contrib
     - xmobar
+        - after change, `killall xmobar` and reload(`M-q`) XMonad
     - dmenu
     - xterm
     - nitrogen
