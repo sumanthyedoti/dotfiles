@@ -11,14 +11,17 @@ mkcd () {
 alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
+alias emacs="emacs -mm"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 
 # NVM
+if [[ $(uname) == "Darwin" ]]; then
 export NVM_DIR="$HOME/.nvm"
   [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
   [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
 
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
@@ -46,3 +49,5 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 fi
 
+chmod 755 ~/.dotfiles/.scripts/*
+bash ~/.dotfiles/.scripts/autostart.sh

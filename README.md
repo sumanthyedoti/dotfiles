@@ -14,12 +14,17 @@
 	- `:UpdateRemotePlugins`
 
 ## Dependecies
+- stow
 - brew (Mac)
 	- rlwrap
 - rbenv (Mac)
 - node
 	- nvm
 - elixir
+- haskell
+    - ghcup
+        - stack
+        - ghc
 - rust
 - go
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
@@ -32,7 +37,6 @@
 		- [nvm](https://github.com/jorgebucaran/nvm.fish)
 	- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
 		- [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
-- stow
 - alacritty
 - nvim
 	- [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
@@ -51,7 +55,14 @@
 - emacs
 	- `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
+    - `sudo ln -f ~/.dotfiles/.emacs.d/exwm/exwm.desktop /usr/share/xsessions/exwm.desktop`
 - cmake
+- xmonad
+    - xmonad-contrib
+
+### Linux WM
+- sxhkd
+- wmctrl
 
 ### CLI tools
 - starship

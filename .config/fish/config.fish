@@ -18,6 +18,7 @@ end
 alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
+alias emacs="emacs -mm"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
@@ -60,3 +61,6 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
         tput clear;
     end
 end
+
+chmod 755 ~/.dotfiles/.scripts/*
+bash ~/.dotfiles/.scripts/autostart.sh
