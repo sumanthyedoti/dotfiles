@@ -115,6 +115,7 @@ cmp.setup({
 		},
 		{ name = "nvim_lua", max_item_count = 3 },
 		{ name = "path", keyword_length = 1, max_item_count = 6 },
+		{ name = "orgmode" },
 		{ name = "luasnip", max_item_count = 4 },
 		{ name = "cmp_git" },
 	}, {
@@ -127,6 +128,7 @@ cmp.setup({
 			menu = {
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[nLua]",
+				orgmode = "[org]",
 				luasnip = "[snip]",
 				buffer = "[buff]",
 				path = "[path]",

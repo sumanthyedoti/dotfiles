@@ -50,6 +50,9 @@ window:
   #   - SimpleFullscreen
   #startup_mode: Windowed
 
+  #### Background opacity -- from `0.0` to `1.0`.
+  opacity: 0.9
+
   # Window title
   title: Alacritty
 
@@ -68,7 +71,8 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 5000
+  history: 8000
+  multiplier: 3
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -102,7 +106,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrainsMono Nerd Font Mono # 🌐 https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures
+    family: JetBrains Mono # 🌐 https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -114,7 +118,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -126,7 +130,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -138,7 +142,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -494,11 +498,6 @@ colors: *nord  #colorscheme
 #  animation: EaseOutExpo
 #  duration: 0
 #  color: '#ffffff'
-
-#### Background opacity -- from `0.0` to `1.0`.
-window:
-  opacity: 0.9
-  background_opacity: 0.9
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

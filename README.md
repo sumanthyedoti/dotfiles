@@ -37,6 +37,7 @@
 		- [nvm](https://github.com/jorgebucaran/nvm.fish)
 	- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
 		- [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
+- kitty
 - alacritty
 - nvim
 	- [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
@@ -57,8 +58,13 @@
     - install `libtool-bin`
     - `sudo ln -f ~/.dotfiles/.emacs.d/exwm/exwm.desktop /usr/share/xsessions/exwm.desktop`
 - cmake
-- xmonad
+- xmonad WM
     - xmonad-contrib
+    - xmobar
+    - dmenu
+    - xterm
+    - nitrogen
+    - compton
 
 ### Linux WM
 - sxhkd
