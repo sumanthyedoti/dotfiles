@@ -1,25 +1,26 @@
 ## Setup
+
 - Install the Tools and Dependecies first
- - git clone this repo into `~/.dotfiles`
+- git clone this repo into `~/.dotfiles`
 - run `stow .`
 - Install Fonts
-	- Hack (nerd)
-	- Jetbrains Mono (nerd)
-	- Roboto Slab
-	- Roboto Mono
-	- [Iosevka](https://github.com/be5invis/Iosevka)
+  - Hack (nerd)
+  - Jetbrains Mono (nerd)
+  - Roboto Slab
+  - Roboto Mono
+  - [Iosevka](https://github.com/be5invis/Iosevka)
 - nvim
-	- [Prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)
-	- `:Lazy Sync`
-	- `:UpdateRemotePlugins`
+  - [Prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)
+  - `:Lazy Sync`
+  - `:UpdateRemotePlugins`
 
 ## Dependecies
 - stow
 - brew (Mac)
-	- rlwrap
+  - rlwrap
 - rbenv (Mac)
 - node
-	- nvm
+  - nvm
 - elixir
 - haskell
     - ghcup
@@ -28,10 +29,10 @@
 - rust
 - go
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
-	- quicklisp
-	- sbcl
+  - quicklisp
+  - sbcl
 - python
-	- pyenv
+  - pyenv
 - fish
 	- [fisher](https://github.com/jorgebucaran/fisher)
 		- [nvm](https://github.com/jorgebucaran/nvm.fish)
@@ -40,23 +41,23 @@
 - kitty
 - alacritty
 - nvim
-	- [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
-	- install LSPs, formatters, linters
-		- stylua,
-		- typescript, typescript-language-server
-		- eslint
-		- Prettier
-		- vscode-languageserver
-		- golangci-lint
-		- rust-analyzer
-		- elixir-ls
+  - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
+  - install LSPs, formatters, linters
+    - stylua,
+    - typescript, typescript-language-server
+    - eslint
+    - Prettier
+    - vscode-languageserver
+    - golangci-lint
+    - rust-analyzer
+    - elixir-ls
 - tmux
-	- [tpm](https://github.com/tmux-plugins/tpm)
-	- `prefix + I` to fetch the plugins
+  - [tpm](https://github.com/tmux-plugins/tpm)
+  - `prefix + I` to fetch the plugins
 - emacs
-	- `M-x all-the-icons-install-fonts`
+  - `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
-    - `sudo ln -f ~/.dotfiles/.emacs.d/exwm/exwm.desktop /usr/share/xsessions/exwm.desktop`
+  - install `coreutils` (in mac, for dired)
 - cmake
 - XMonad WM
     - xmonad-contrib
@@ -72,6 +73,7 @@
 - wmctrl
 
 ### CLI tools
+
 - starship
 - ripgrep
 - zoxide
@@ -79,7 +81,7 @@
 - exa
 - fd
 - lazygit
-	- link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
+  - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - cheat.sh
 - glow - markdown previewer
 - pandoc
