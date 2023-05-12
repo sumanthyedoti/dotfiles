@@ -59,14 +59,14 @@
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
 - cmake
-- XMonad WM
-    - xmonad-contrib
+- [XMonad WM](https://xmonad.org/download.html)
+    - xmonad-contrib (community library for additional features)
     - xmobar
         - after change, `killall xmobar` and reload(`M-q`) XMonad
     - dmenu
     - xterm
     - nitrogen
-    - compton
+    - picom
 
 ### Linux WM
 - sxhkd

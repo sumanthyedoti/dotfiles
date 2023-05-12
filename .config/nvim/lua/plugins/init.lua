@@ -232,6 +232,9 @@ local plugins = {
 		end,
 	},
 
+	{ "mattn/emmet-vim", ft = { "html", "css" } },
+	{ "mg979/vim-visual-multi" },
+
 	--[[ LSP ]]
 	{ "neovim/nvim-lspconfig", event = "BufEnter" }, -- config lsp servers
 	{ "glepnir/lspsaga.nvim", branch = "main", event = "BufEnter" },

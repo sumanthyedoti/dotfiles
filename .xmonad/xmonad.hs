@@ -13,7 +13,7 @@ import System.Exit
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 import XMonad.Actions.DynamicWorkspaces
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -40,7 +40,11 @@ myBorderWidth   = 2
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod4Mask -- super
+altMask :: KeyMask
+altMask = mod1Mask
+superMask :: KeyMask
+superMask = mod4Mask
+myModMask       = superMask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -85,7 +89,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_r     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
@@ -137,6 +141,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     ----- ==== custom keybindings ====
     , ((modm .|. shiftMask, xK_q), removeWorkspace)
+    -- volume
+    -- , ((0, XF86AudioRaiseVolume),  spawn "amixer -D pulse sset Master 9%+")
+    -- , ((0, XF86AudioLowerVolume),  spawn "amixer -D pulse sset Master 10%-")
+    -- , ((0, XF86AudioMute),         spawn "amixer -D pulse sset Master toggle")
+    , ((modm .|. shiftMask, xK_f), sendMessage ToggleStruts)
     ]
     ++
 
@@ -188,7 +197,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+-- myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -252,7 +262,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
           spawnOnce "nitrogen --restore &"
-          spawnOnce "compton &"
+          spawnOnce "picom --experimental-backends &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
