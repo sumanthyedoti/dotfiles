@@ -380,13 +380,6 @@ local plugins = {
 	},
 
 	{
-		"nvim-orgmode/orgmode",
-		config = function()
-			require("plugins.orgmode")
-		end,
-	},
-
-	{
 		"norcalli/nvim-colorizer.lua",
 		event = "BufEnter",
 		config = function()
@@ -407,7 +400,6 @@ local plugins = {
 			require("plugins.zen-mode")
 		end,
 	},
-	{ "xiyaowong/transparent.nvim", cmd = { "TransparentEnable", "TransparentToggle" } },
 	{
 		"gelguy/wilder.nvim",
 		keys = { { ":", mode = "n" }, { "/", mode = "n" }, { "?", mode = "n" } },
