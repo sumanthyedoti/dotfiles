@@ -15,6 +15,7 @@
   - `:UpdateRemotePlugins`
 
 ## Dependecies
+
 - stow
 - brew (Mac)
   - rlwrap
@@ -23,9 +24,9 @@
   - nvm
 - elixir
 - haskell
-    - ghcup
-        - stack
-        - ghc
+  - ghcup
+    - stack
+    - ghc
 - rust
   - rustup
 - go
@@ -37,10 +38,10 @@
 - python
   - pyenv
 - fish
-	- [fisher](https://github.com/jorgebucaran/fisher)
-		- [nvm](https://github.com/jorgebucaran/nvm.fish)
-	- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-		- [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
+  - [fisher](https://github.com/jorgebucaran/fisher)
+    - [nvm](https://github.com/jorgebucaran/nvm.fish)
+  - [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
+    - [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
 - kitty
 - alacritty
 - nvim
@@ -65,17 +66,20 @@
   - install `coreutils` (in mac, for dired)
 - cmake
 - [XMonad WM](https://xmonad.org/download.html)
-    - xmonad-contrib (community library for additional features)
-    - xmobar
-        - after change, `killall xmobar` and reload(`M-q`) XMonad
-    - dmenu
-    - xterm
-    - nitrogen
-    - picom
+  - xmonad-contrib (community library for additional features)
+  - xmobar
+    - after change, `killall xmobar` and reload(`M-q`) XMonad
+  - dmenu
+  - xterm
+  - nitrogen
+  - picom
 
 ### Linux WM
+
 - sxhkd
-- wmctrl
+- mpv
+  - youtube-dl
+- ffmpeg
 
 ### CLI tools
 
