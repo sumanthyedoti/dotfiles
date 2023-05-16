@@ -371,7 +371,13 @@ local plugins = {
 			},
 		},
 	},
-	{
+  {
+    'nvim-orgmode/orgmode',
+    config = function()
+      require("plugins.orgmode")
+    end
+  },
+  {
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufEnter",
 		config = function()

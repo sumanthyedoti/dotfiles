@@ -85,21 +85,21 @@
 	 '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
 	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
-	;; org-babel
-	(require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
-	(setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
-	;; configure the languages that can be executed inside org-mode code blocks
-	(org-babel-do-load-languages
-	 'org-babel-load-languages
-	 '((python . t)
-		 (js . t)
-		 (ocaml . t)
-		 (haskell . t)
-	;; (rust . t)
-	;; (elixir . t)
-		 (C . t)
-	;; (cpp . t)
-		 (shell . t)))
+	;;;; org-babel
+	;; (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
+	;; (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
+	;; ;; configure the languages that can be executed inside org-mode code blocks
+	;; (org-babel-do-load-languages
+	;;  'org-babel-load-languages
+	;;  '((python . t)
+	;;	 (js . t)
+	;;	 (ocaml . t)
+	;;	 (haskell . t)
+	;; ;; (rust . t)
+	;; ;; (elixir . t)
+	;;	 (C . t)
+	;; ;; (cpp . t)
+	;;	 (shell . t)))
 	;; `<s` to begin src block
 	(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 	(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -126,13 +126,6 @@
 	:hook (org-mode . org-bullets-mode))
 	;; :custom
 	;; (org-bullets-bullet-list '("🟠" "🔵" "🪐" "⬤" "•")) ; ⭐✪🌸🌻🌷⦿⦾🪐🔵🟠🟣⬤•
-
-(use-package visual-fill-column ; to center org-mode content
-	:hook
-	(org-mode . visual-fill-column-mode)
-	:config
-	(setq visual-fill-column-width 120
-	 visual-fill-column-center-text t))
 
 (use-package magit
 	:commands (magit-status magit-get-current-status))
@@ -309,26 +302,26 @@
 		"h" 'dired-single-up-directory
 		"l" 'dired-single-buffer))
 
-(use-package lsp-mode
-	:commands (lsp lsp-deferred)
-	:hook (prog-mode . lsp-deferred)
-	:init
-	(setq lsp-keymap-prefix "C-c l")) ; `C-l`, `s-l`, `C-c l`
+;; (use-package lsp-mode
+;;	:commands (lsp lsp-deferred)
+;;	:hook (prog-mode . lsp-deferred)
+;;	:init
+;;	(setq lsp-keymap-prefix "C-c l")) ; `C-l`, `s-l`, `C-c l`
 
-(use-package lsp-ui
-	:hook (lsp-mode . lsp-ui-mode)
-	:config
-	(setq lsp-ui-doc-position 'top))
+;; (use-package lsp-ui
+;;	:hook (lsp-mode . lsp-ui-mode)
+;;	:config
+;;	(setq lsp-ui-doc-position 'top))
 
-(use-package typescript-mode
-	:mode "\\.ts\\'"
-	:hook (typescript-mode . lsp-defferred)
-	:config
-	(setq typescript-indent-level 2)
-	(add-hook 'typescript-mode-hook #'flycheck-mode)
-	(add-hook 'typescript-mode-hook #'company-mode))
+;; (use-package typescript-mode
+;;	:mode "\\.ts\\'"
+;;	:hook (typescript-mode . lsp-defferred)
+;;	:config
+;;	(setq typescript-indent-level 2)
+;;	(add-hook 'typescript-mode-hook #'flycheck-mode)
+;;	(add-hook 'typescript-mode-hook #'company-mode))
 
-(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 
 
