@@ -25,7 +25,7 @@ o.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in millis
 o.undofile = true -- enable persistent undo
 o.updatetime = 500 -- faster completion (4000ms default)
 o.writebackup = false -- if a file is being edited by another program, it is not allowed to be edited
-o.guifont = "monospace:h17" -- the font used in graphical neovim applications
+o.guifont = "JetBrainsMono Nerd Font:h17" -- the font used in graphical neovim applications
 o.shortmess:append("c")
 o.path:append({ "**" }) -- find files searching into subfolders
 o.wildoptions = "pum"

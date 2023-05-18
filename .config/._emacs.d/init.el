@@ -1,7 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 
 (package-initialize)
 (unless package-archive-contents
@@ -12,6 +12,8 @@
   (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t) ; `:enusre t` for all projects
+
+ (setq debug-on-error t)
 
 (use-package no-littering)
 
@@ -33,11 +35,11 @@
   (dolist (mode '(custom-mode
                   eshell-mode
                   git-rebase-mode
-         ;; erc-mode
-         ;; circe-server-mode
-         ;; circe-chat-mode
-         ;; circe-query-mode
-         ;; sauron-mode
+   ;; erc-mode
+   ;; circe-server-mode
+   ;; circe-chat-mode
+   ;; circe-query-mode
+   ;; sauron-mode
                   term-mode))
    (add-to-list 'evil-emacs-state-modes mode)))
 
@@ -51,38 +53,62 @@
 (use-package evil-nerd-commenter
   ; M-; -> to add comment to the line
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+(defmacro cfg/with-ignored-builtin-package (pkg &rest body)
+  "Ignore builtin PKG while executing BODY."
+  (declare (indent defun))
+  (let ((pb-orig (gensym))
+        (pbv-orig (gensym))
+        (ret (gensym)))
+   `(let ((,pb-orig package--builtins)
+          (,pbv-orig package--builtin-versions))
+     (unless package--builtins
+      (package-initialize))
+     (setf package--builtins
+      (assoc-delete-all ,pkg package--builtins))
+     (setf package--builtin-versions
+      (assoc-delete-all ,pkg package--builtin-versions))
+     (setf ,ret (progn ,@body))
+     (setf package--builtins ,pb-orig)
+     (setf package--builtin-versions ,pbv-orig)
+     ,ret)))
 
-(use-package org                        ; org-mode
-  :config
-  (custom-set-faces
-   '(org-src-block ((t (:background "#000")))))
-  (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
-   org-hide-emphasis-markers t
-   org-deadline-warning-days 3
-   org-agenda-start-with-log-mode t
-   org-log-done 'time
-   org-log-into-drawer t
-   org-agenda-files '("~/org")
-   org-pretty-entities t
-   org-clock-display-default-range 'thisweek
-   org-latex-compiler "xelatex")
-  (setq org-todo-keywords ; before "|" are active, after are done
-   '((sequence "TODO(t)" "NEXT(n)" "PROGRESS(p)" "|" "DONE(d!)")
-     (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(i)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
+(cfg/with-ignored-builtin-package 'org
+          (use-package org
+                     ;; gnu must be there, other versions could be buggy!
+           :pin gnu
+           :ensure t
+           :config
+           (require 'org-compat)
+;; put your whole org config here:
+           (custom-set-faces
+            '(org-src-block ((t (:background "#000")))))
+           (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
+            org-hide-emphasis-markers t
+            org-deadline-warning-days 3
+            org-agenda-start-with-log-mode t
+            org-log-done 'time
+            org-log-into-drawer t
+            org-agenda-files '("~/org")
+            org-pretty-entities t
+            org-clock-display-default-range 'thisweek
+            org-latex-compiler "xelatex")
+           (setq org-todo-keywords ; before "|" are active, after are done
+            '((sequence "TODO(t)" "NEXT(n)" "PROGRESS(p)" "|" "DONE(d!)")
+              (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(i)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")))
   ;; (setq org-agenda-custom-commands)
   ;; TODO: https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
   ;; TODO - org-capture-templates
   ;; TODO - org-habit
-  (visual-line-mode 1)
+           (visual-line-mode 1)
   ;(org-indent-mode)
-  (setq evil-auto-indent t)
-  (auto-fill-mode 0)
-  (custom-set-faces
-   '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
-   '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
-   '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
-   '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
-   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+           (setq evil-auto-indent t)
+           (auto-fill-mode 0)
+           (custom-set-faces
+            '(org-level-1 ((t (:inherit outline-1 :height 1.6))))
+            '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
+            '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
+            '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
+            '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
   ;;;; org-babel
   ;; (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
@@ -100,20 +126,24 @@
   ;; ;; (cpp . t)
   ;;	 (shell . t)))
   ;; `<s` to begin src block
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("x" . "src latex"))
-  (add-to-list 'org-structure-template-alist '("js" . "src js"))
-  (add-to-list 'org-structure-template-alist '("cl" . "src C"))
-  (add-to-list 'org-structure-template-alist '("cpp" . "src cpp"))
-  (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
-  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
-  (add-to-list 'org-structure-template-alist '("css" . "src css"))
-  (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
-  (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
-  (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
+           (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+           (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+           (add-to-list 'org-structure-template-alist '("py" . "src python"))
+           (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+           (add-to-list 'org-structure-template-alist '("x" . "src latex"))
+           (add-to-list 'org-structure-template-alist '("js" . "src js"))
+           (add-to-list 'org-structure-template-alist '("cl" . "src C"))
+           (add-to-list 'org-structure-template-alist '("cpp" . "src cpp"))
+           (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
+           (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
+           (add-to-list 'org-structure-template-alist '("css" . "src css"))
+           (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
+           (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
+           (add-to-list 'org-structure-template-alist '("sql" . "src sql"))))
+
+;;... and stop before parentheses.
+
+
 
 (use-package evil-org
   :after org

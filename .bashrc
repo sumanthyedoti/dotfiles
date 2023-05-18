@@ -30,7 +30,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-. "$HOME/.cargo/env"
+export PATH=$HOME/.emacs.d/bin:$PATH
 
 #### emacs
 # vterm
@@ -54,5 +54,5 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 fi
 
-chmod 755 ~/.dotfiles/.scripts/*
-bash ~/.dotfiles/.scripts/autostart.sh
+# chmod 755 ~/.dotfiles/.scripts/*
+# bash ~/.dotfiles/.scripts/autostart.sh

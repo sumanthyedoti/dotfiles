@@ -106,7 +106,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrains Mono # 🌐 https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures
+    family: JetBrainsMono Nerd Font
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -118,7 +118,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
@@ -130,7 +130,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -142,7 +142,7 @@ font:
     # family: RobotoMono Nerd Font
     # family: Hack
     # family: Hack Nerd Font
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
@@ -467,7 +467,7 @@ schemes:
 # *solarized-dark
 # *tomorrow-night
 
-colors: *nord  #colorscheme
+colors: *doom-one  #colorscheme
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

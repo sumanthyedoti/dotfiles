@@ -129,7 +129,7 @@ set visualbell
 set list
 set listchars=tab::\ ,eol:¬,extends:>,precedes:<
 set encoding=UTF-8
-set guifont="Fira Code Regular"
+set guifont="JetBrainsMono Nerd Font"
 
 " sync with system clipboard
 set clipboard=unnamed

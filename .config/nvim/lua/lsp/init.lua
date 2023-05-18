@@ -209,6 +209,14 @@ lspconfig["lua_ls"].setup({
 	},
 })
 
+lspconfig.clojure_lsp.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "clojure-lsp" },
+	filetypes = { "clojure", "edn" },
+  root_pattern = { "project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn" }
+})
+
 lspconfig.elixirls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,

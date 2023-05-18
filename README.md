@@ -27,7 +27,10 @@
         - stack
         - ghc
 - rust
+  - rustup
 - go
+- clojure
+  - Leiningen
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
   - quicklisp
   - sbcl
@@ -51,6 +54,7 @@
     - golangci-lint
     - rust-analyzer
     - elixir-ls
+    - [clojure-lsp](https://clojure-lsp.io/installation/)
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins

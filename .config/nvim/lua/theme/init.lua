@@ -1,7 +1,9 @@
 -- HERE: colorscheme
 require("theme.catppuccin")
-local colorscheme = "tokyonight-night"
--- "gruvbox", "nightfly", "tokyonight-night" "onedark"
+
+COLORSCHEME = "night-owl"
+local colorscheme = COLORSCHEME
+-- "gruvbox", "nightfly", "tokyonight-night" "onedark" "night-owl"
 --[[ Nightfox
   dark: "nightfox", "duskfox", "nordfox", "terafox", "carbonfox"
   light: "dayfox", "dawnfox" ]]

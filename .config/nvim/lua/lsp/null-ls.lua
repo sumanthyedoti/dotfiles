@@ -35,6 +35,9 @@ null_ls.setup({
 		formatting.golines,
 		diagnostics.golangci_lint,
 
+    -- ==clojure==
+    formatting.joker,
+
 		-- = elixir =
 		formatting.mix,
 		-- diagnostics.credo,

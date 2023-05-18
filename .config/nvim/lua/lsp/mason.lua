@@ -22,6 +22,7 @@ end
 local servers = { -- HEREL: LSP servers
 	"lua_ls",
 	"clangd",
+  "clojure_lsp",
 	"rust_analyzer",
 	-- "gopls",
 	-- "golangci_lint_ls",

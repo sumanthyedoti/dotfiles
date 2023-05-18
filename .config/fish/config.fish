@@ -38,6 +38,7 @@ set PATH $HOME/.cargo/bin $PATH
 set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
+
 # pyenv
 pyenv init - | source
 
@@ -62,5 +63,5 @@ if [ "$INSIDE_EMACS" = 'vterm' ]
     end
 end
 
-chmod 755 ~/.dotfiles/.scripts/*
-bash ~/.dotfiles/.scripts/autostart.sh
+# chmod 755 ~/.dotfiles/.scripts/*
+# bash ~/.dotfiles/.scripts/autostart.sh

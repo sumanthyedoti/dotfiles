@@ -164,6 +164,7 @@ local plugins = {
 	"folke/tokyonight.nvim",
 	"bluz71/vim-nightfly-guicolors",
 	"navarasu/onedark.nvim",
+  "haishanh/night-owl.vim",
 	{ "catppuccin/nvim", name = "catppuccin" },
 
 	{
@@ -282,6 +283,7 @@ local plugins = {
 			"hrsh7th/cmp-cmdline", -- cmdline completions
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
+      "hrsh7th/cmp-emoji",
 			"onsails/lspkind.nvim",
 			"petertriho/cmp-git",
 		},
@@ -301,6 +303,9 @@ local plugins = {
 	-- use("mfussenegger/nvim-dap")
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
+  {
+    "Olical/conjure",
+  },
 	-- ## lisp
 	{
 		"jpalardy/vim-slime",
@@ -360,7 +365,7 @@ local plugins = {
 			require("plugins.treesitter")
 		end,
 		dependencies = {
-			"p00f/nvim-ts-rainbow",
+			"HiPhish/nvim-ts-rainbow2",
 			"nvim-treesitter/playground",
 			"windwp/nvim-ts-autotag",
 			{
@@ -438,7 +443,7 @@ local plugins = {
 }
 
 local options = {
-	install = { missing = true, colorscheme = { "tokyonight" } },
+	install = { missing = true, colorscheme = { COLORSCHEME } },
 	checker = { enabled = true, notify = true },
 	change_detection = {
 		enabled = true,

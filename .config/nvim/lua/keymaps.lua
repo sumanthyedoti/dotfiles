@@ -54,10 +54,8 @@ keymap("n", "<leader>U", "<cmd>edit!<CR>", OPTS)
 -- reg menu
 keymap("n", "<leader>R", "<cmd>:reg<CR>", OPTS)
 
--- splits
-keymap("n", "<leader>sv", "<cmd>vsplit<CR>", OPTS) -- split right
-keymap("n", "<leader>sx", "<cmd>split<CR>", OPTS) -- split left
-keymap("n", "<leader>s-", "<cmd>only<CR>", OPTS) -- kill all remaining splits
+-- splits windows
+keymap("n", "<C-w>-", "<cmd>only<CR>", OPTS) -- kill all remaining splits
 
 -- window.split navigation
 keymap("n", "<leader>jh", "<C-w>h<CR>", OPTS)
