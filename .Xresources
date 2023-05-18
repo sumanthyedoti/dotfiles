@@ -1,1 +1,8 @@
+XTerm*termName: xterm-256color
+
+! font rendering
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
 Xft.dpi: 150

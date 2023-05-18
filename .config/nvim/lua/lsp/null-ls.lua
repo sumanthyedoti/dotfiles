@@ -37,6 +37,7 @@ null_ls.setup({
 
     -- ==clojure==
     formatting.joker,
+    diagnostics.clj_kondo,
 
 		-- = elixir =
 		formatting.mix,

@@ -19,7 +19,7 @@ local util = require("lspconfig/util")
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
 	{ name = "DiagnosticSignWarn", text = "" },
-	{ name = "DiagnosticSignHint", text = "ﴞ" },
+	{ name = "DiagnosticSignHint", text = "⚡" },
 	{ name = "DiagnosticSignInfo", text = "" },
 }
 

@@ -55,6 +55,7 @@
     - rust-analyzer
     - elixir-ls
     - [clojure-lsp](https://clojure-lsp.io/installation/)
+      - joker, clj-kondo
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins
