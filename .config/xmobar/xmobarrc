@@ -5,24 +5,56 @@ Config { font = "xft:Ubuntu Mono:pixelsize=19:antialias=true:hinting=true"
        , bgColor = "black"
        , fgColor = "grey"
        , alpha = 255
-       , position = Static { xpos = 0, ypos = 0, width = 3840, height = 20 }
+       , position = Static { xpos = 0, ypos = 0, width = 3840, height = 26 }
        , textOffset = -1
        , iconOffset = -1
-       , lowerOnStart = True
-       , pickBroadest = False
-       , persistent = False
-       , hideOnStart = False
        , iconRoot = "."
-       , allDesktops = True
-       , overrideRedirect = True
-       , commands = [ Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
+       , commands = [
+                    Run Cpu ["-t"," <total>%"
+                    , "--low"      , "40"         -- units: %
+                    , "--high"     , "70"         -- units: %
+                    , "--low"      , "darkgreen"
+                    , "--normal"   , "darkorange"
+                    , "--high"     , "darkred"
+                    ] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run Date "   %a %b %_d %Y" "date" 10
+                    , Run Date "   %H:%M:%S  " "time" 10
+                    -- battery monitor
+                    , Run Battery        [ "--template" , "🔋: <acstatus>"
+                    , "--Low"      , "10"        -- units: %
+                    , "--High"     , "80"        -- units: %
+                    , "--low"      , "darkred"
+                    , "--normal"   , "darkorange"
+                    , "--high"     , "darkgreen"
+
+                    , "--" -- battery specific options
+                    -- discharging status
+                    , "-o"	, "<left>% (<timeleft>)"
+                    -- AC "on" status
+                    , "-O"	, "<fc=#dAA520>Charging</fc>"
+                    -- charged status
+                    , "-i"	, "<fc=#006000>Charged</fc>"
+                    ] 50
+                    -- network activity monitor (dynamic interface resolution)
+                    , Run DynNetwork     [ "--template" , " <rx>kB/s ⇅ <tx>kB/s"
+                    , "--Low"      , "1000"       -- units: B/s
+                    , "--High"     , "5000"       -- units: B/s
+                    , "--low"      , "darkgreen"
+                    , "--normal"   , "darkorange"
+                    , "--high"     , "darkred"
+                    ] 10
                     ]
+       -- general behavior
+       , lowerOnStart =     True    -- send to bottom of window stack on start
+       , hideOnStart =      False   -- start with window unmapped (hidden)
+       , allDesktops =      True    -- show on all desktops
+       , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+       , pickBroadest =     False   -- choose widest display (multi-monitor)
+       , persistent =       True    -- enable/disable hiding (True = disabled)
+       -- layout
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% }\
-                    \{ <fc=#ee9a00>%date%</fc>"
+       , template = "<fc=#168eca> </fc>• | %cpu% | %memory% - %swap% }{ %battery% | %dynnetwork% | <fc=#ee9a00>%date% | %time%</fc>"
        }

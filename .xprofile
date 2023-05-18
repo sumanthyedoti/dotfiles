@@ -1,0 +1,13 @@
+# The xprofile file is sourced by display managers (such as LightDM, GDM, or SDDM) when you log in to your X session.
+# It is typically used for setting environment variables, launching daemons,
+# and performing user-specific configurations that should apply to the entire X session.
+
+xrandr --output HDMI1 --mode 3840x2160 --primary
+
+# Wallpaper
+nitrogen --restore &
+
+# Compositior
+picom -f &
+
+

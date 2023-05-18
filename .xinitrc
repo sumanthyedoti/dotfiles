@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# The xinitrc file is read by the startx command, which is often used when you start an X session manually,
+# without a display manager. It is responsible for launching the X server, window manager,
+# and any other applications you want to run in your X session.
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -51,3 +55,9 @@ fi
 echo "XINITRC"
 xrandr --output HDMI1 --mode 3840x2160 --primary
 exec xmonad
+
+# Wallpaper
+nitrogen --restore &
+
+# Compositior
+picom -f &
