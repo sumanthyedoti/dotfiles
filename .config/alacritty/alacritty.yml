@@ -180,34 +180,6 @@ draw_bold_text_with_bright_colors: true
 #######################################
 schemes:
   ### Doom One ###
-  doom-one: &doom-one
-    primary:
-      background: '#000000'
-      foreground: '#ffffff'
-    cursor:
-      text: CellBackground
-      cursor: '#ffffff'
-    selection:
-      text: CellForeground
-      background: '#3e4451'
-    normal:
-      black:   '#000000'
-      red:     '#e45659'
-      green:   '#98be65'
-      yellow:  '#e5c07b'
-      blue:    '#61afef'
-      magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#ffffff'
-    bright:
-      black:   '#000000'
-      red:     '#e45659'
-      green:   '#98be65'
-      yellow:  '#e5c07b'
-      blue:    '#61afef'
-      magenta: '#c678dd'
-      cyan:    '#56b6c2'
-      white:   '#ffffff'
   ### Dracula ###
   dracula: &dracula
     primary:
@@ -226,7 +198,8 @@ schemes:
       focused_match:
         foreground: '#44475a'
         background: '#ffb86c'
-      bar:
+    colors:
+      footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
     line_indicator:
@@ -458,7 +431,6 @@ schemes:
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
 # Available themes are:
-# *doom-one
 # *dracula
 # *gruvbox-dark
 # *monokai-pro
@@ -467,7 +439,7 @@ schemes:
 # *solarized-dark
 # *tomorrow-night
 
-colors: *doom-one  #colorscheme
+colors: *oceanic-next  #colorscheme
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
