@@ -1,2 +1,10 @@
-control + alt + f
-    firefox
+control + alt + v
+    pavucontrol
+control + alt + e
+    emacs
+control + alt + b
+    google-chrome-stable
+control + alt + t
+    alacritty
+
+

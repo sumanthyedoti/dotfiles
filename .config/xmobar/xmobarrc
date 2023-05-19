@@ -20,7 +20,7 @@ Config { font = "xft:Ubuntu Mono:pixelsize=19:antialias=true:hinting=true"
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Date "   %a %b %_d %Y" "date" 10
-                    , Run Date "   %H:%M:%S  " "time" 10
+                    , Run Date "   %H:%M:%S" "time" 10
                     -- battery monitor
                     , Run Battery        [ "--template" , "🔋: <acstatus>"
                     , "--Low"      , "10"        -- units: %
@@ -56,5 +56,5 @@ Config { font = "xft:Ubuntu Mono:pixelsize=19:antialias=true:hinting=true"
        -- layout
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %cpu% | %memory% - %swap% }{ %battery% | %dynnetwork% | <fc=#ee11a00>%date% | %time%</fc>"
+       , template = " %cpu% | %memory% - %swap% }{ %battery% | %dynnetwork% | <fc=#ee9a00>%date% | %time%</fc> "
        }
