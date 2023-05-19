@@ -304,8 +304,21 @@ local plugins = {
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
   {
+    -- 🌐  https://github.com/Olical/conjure/wiki/
     "Olical/conjure",
+		keys = {
+			{ "<leader>Co", ":ConjureEvalBuf<cr>", mode = { "n" } },
+			{ "<leader>Cp", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
+			{ "<leader>CP", ":ConjureEvalRootForm<cr>", mode = { "n" } },
+			{ "<leader>Cc", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
+			{ "<leader>CC", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
+			{ "<leader>Cp", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
+			{ "<leader>Cl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
+			{ "<leader>Cw", ":ConjureEvalWord<cr>", mode = { "n" } },
+		},
   },
+  "tpope/vim-dispatch",
+  "clojure-vim/vim-jack-in",
 	-- ## lisp
 	{
 		"jpalardy/vim-slime",

@@ -36,7 +36,7 @@ null_ls.setup({
 		diagnostics.golangci_lint,
 
     -- ==clojure==
-    formatting.joker,
+    formatting.cljstyle,
     diagnostics.clj_kondo,
 
 		-- = elixir =

@@ -66,7 +66,7 @@ keymap("n", "<leader>jh", "<C-w>h<CR>", OPTS)
 -- Buffers
 keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", OPTS) -- kill all remaining BufferLine tabs
 keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", OPTS) -- pick close current buffer
-keymap("n", "<leader>bw", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
+keymap("n", "<leader>bq", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
 keymap("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>", OPTS)
 keymap("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>", OPTS)
 keymap("n", "<leader>bg", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer / go to selcted buffer

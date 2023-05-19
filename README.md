@@ -56,7 +56,7 @@
     - rust-analyzer
     - elixir-ls
     - [clojure-lsp](https://clojure-lsp.io/installation/)
-      - joker, clj-kondo
+      - joker, clj-kondo, cljstyle
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins
@@ -91,7 +91,6 @@
 - fd
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
-- cheat.sh
 - glow - markdown previewer
 - pandoc
 - [roswell](https://github.com/roswell/roswell)

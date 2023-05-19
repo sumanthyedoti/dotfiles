@@ -5,3 +5,4 @@
 .xmonad/xmonad.errors
 .lsp
 .clj-kondo
+.nrepl-port

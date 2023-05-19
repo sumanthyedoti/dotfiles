@@ -13,7 +13,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t) ; `:enusre t` for all projects
 
- (setq debug-on-error t)
+(setq debug-on-error t)
 
 (use-package no-littering)
 
@@ -89,7 +89,7 @@
             org-log-done 'time
             org-log-into-drawer t
             org-agenda-files '("~/org")
-            org-pretty-entities t
+            ; org-pretty-entities t
             org-clock-display-default-range 'thisweek
             org-latex-compiler "xelatex")
            (setq org-todo-keywords ; before "|" are active, after are done
