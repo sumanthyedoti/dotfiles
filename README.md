@@ -36,6 +36,7 @@
   - quicklisp
   - sbcl
 - python
+  - pip
   - pyenv
 - fish
   - [fisher](https://github.com/jorgebucaran/fisher)

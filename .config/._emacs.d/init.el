@@ -74,7 +74,7 @@
 
 (cfg/with-ignored-builtin-package 'org
           (use-package org
-                     ;; gnu must be there, other versions could be buggy!
+                       ;; gnu must be there, other versions could be buggy!
            :pin gnu
            :ensure t
            :config
@@ -108,10 +108,9 @@
             '(org-level-2 ((t (:inherit outline-2 :height 1.4))))
             '(org-level-3 ((t (:inherit outline-3 :height 1.25))))
             '(org-level-4 ((t (:inherit outline-4 :height 1.15))))
-            '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+            '(org-level-5 ((t (:inherit outline-5 :height 1.0))))))
 
   ;;;; org-babel
-  ;; (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;; (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
   ;; ;; configure the languages that can be executed inside org-mode code blocks
   ;; (org-babel-do-load-languages
@@ -125,6 +124,7 @@
   ;;	 (C . t)
   ;; ;; (cpp . t)
   ;;	 (shell . t)))
+  (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;; `<s` to begin src block
            (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
            (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -139,7 +139,7 @@
            (add-to-list 'org-structure-template-alist '("css" . "src css"))
            (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
            (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
-           (add-to-list 'org-structure-template-alist '("sql" . "src sql"))))
+           (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
 
 ;;... and stop before parentheses.
 

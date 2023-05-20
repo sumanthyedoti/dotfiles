@@ -24,8 +24,15 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24 :weight 'semi-light)
+     doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono" :size 28)
+     doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 32))
+(after! doom-theme
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -60,16 +67,65 @@
 ;;;; org
 (setq org-directory "~/org/")
 (after! org
-           (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
-            org-hide-emphasis-markers t
-            org-deadline-warning-days 3
-            org-agenda-start-with-log-mode t
-            org-log-done 'time
-            org-log-into-drawer t
-            org-agenda-files '("~/org")
-            ; org-pretty-entities t
-            org-clock-display-default-range 'thisweek
-            org-latex-compiler "xelatex"))
+  (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
+        org-hide-emphasis-markers t
+        org-deadline-warning-days 3
+        org-agenda-start-with-log-mode t
+        org-log-done 'time
+        org-log-into-drawer t
+        org-agenda-files '("~/org")
+                                        ; org-pretty-entities t
+        org-clock-display-default-range 'thisweek
+        org-latex-compiler "xelatex")
+  (custom-set-faces
+   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+
+  (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
+
+  ;; configure the languages that can be executed inside org-mode code blocks
+  (require 'ob-emacs-lisp)
+  (require 'ob-clojure)
+  (require 'ob-js)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     ;; (lua . t)
+     (js . t)
+     (clojure . t)
+     ;; (ocaml . t)
+     ;; (haskell . t)
+     ;;(rust . t)
+     ;; (elixir . t)
+     ;;(C . t)))
+     ;; (cpp . t)
+     ))
+
+
+  (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
+  ;;; `<s` to begin src block
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("x" . "src latex"))
+  (add-to-list 'org-structure-template-alist '("js" . "src js"))
+  (add-to-list 'org-structure-template-alist '("cl" . "src C"))
+  (add-to-list 'org-structure-template-alist '("cpp" . "src cpp"))
+  (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
+  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
+  (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
+  (add-to-list 'org-structure-template-alist '("ex" . "src elixir"))
+  (add-to-list 'org-structure-template-alist '("css" . "src css"))
+  (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
+  (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
+  (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
+
 
 ;;;; dired
 (after! dired

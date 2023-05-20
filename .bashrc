@@ -31,7 +31,12 @@ export PATH=$HOME/.cargo/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+# doom emacs
 export PATH=$HOME/.emacs.d/bin:$PATH
+
+# calibre
+export CALIBRE_USE_DARK_PALETTE=1
 
 #### emacs
 # vterm
@@ -57,3 +62,4 @@ fi
 
 # chmod 755 ~/.dotfiles/.scripts/*
 # bash ~/.dotfiles/.scripts/autostart.sh
+. "$HOME/.cargo/env"

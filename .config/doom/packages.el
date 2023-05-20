@@ -48,3 +48,14 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+
+;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+(package! paredit)
+;; key bindings and code colorization for Clojure
+(package! clojure-mode)
+;; extra syntax highlighting for clojure
+(package! clojure-mode-extra-font-locking)
+;; integration with a Clojure REPL
+(package! cider)
+
