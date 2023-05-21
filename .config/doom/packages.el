@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! ob-typescript)
+(package! prettier-js)
 
 ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
 (package! paredit)
@@ -58,4 +60,3 @@
 (package! clojure-mode-extra-font-locking)
 ;; integration with a Clojure REPL
 (package! cider)
-

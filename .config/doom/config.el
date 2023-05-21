@@ -33,7 +33,9 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
-;;
+(setq
+ projectile-project-search-path  '("~/org/" "~/.dotfiles"))
+
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -77,6 +79,17 @@
                                         ; org-pretty-entities t
         org-clock-display-default-range 'thisweek
         org-latex-compiler "xelatex")
+  (set-face-attribute 'org-link nil
+                      :weight 'normal
+                      :background nil)
+  (set-face-attribute 'org-code nil
+                      :weight 'normal
+                      :foreground "#a9a1e1"
+                      :background nil)
+  (set-face-attribute 'org-date nil
+                      :weight 'normal
+                      :foreground "#5b6268"
+                      :background nil)
   (custom-set-faces
    '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
    '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
@@ -96,14 +109,14 @@
      (python . t)
      ;; (lua . t)
      (js . t)
-     (clojure . t)
+     (clojure . t)))
      ;; (ocaml . t)
      ;; (haskell . t)
      ;;(rust . t)
      ;; (elixir . t)
      ;;(C . t)))
      ;; (cpp . t)
-     ))
+
 
 
   (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears

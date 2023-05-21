@@ -12,6 +12,8 @@ import Data.Monoid
 import System.Exit
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
+import XMonad.Actions.NoBorders
+import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
 
@@ -102,6 +104,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
+
+    -- Toogle borders for the current workspace
+    -- , ((modm .|. shiftMask,  xK_b),   withFocused toggleBorder)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -198,7 +203,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 -- myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
-myLayout = avoidStruts (tiled ||| Full)
+myLayout = tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -295,7 +300,7 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
+        layoutHook         = avoidStruts $ smartBorders $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
