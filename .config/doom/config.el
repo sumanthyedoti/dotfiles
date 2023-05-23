@@ -73,7 +73,14 @@
         org-hide-emphasis-markers t
         org-deadline-warning-days 3
         org-agenda-start-with-log-mode t
+        org-agenda-skip-scheduled-if-done t
         org-log-done 'time
+        ;; before "|" are active, after are done
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "|" "DONE(d)")
+                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(i)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)"))
+        org-priority-faces '((65 :foreground "#e45649") ; ASCII 65, same as writing ?A
+                             (66 :foreground "#da8548")
+                             (67 :foreground "#0098dd"))
         org-log-into-drawer t
         org-agenda-files '("~/org")
                                         ; org-pretty-entities t
@@ -97,27 +104,22 @@
    '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
+  ;;;; org-babel
   (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
-
   ;; configure the languages that can be executed inside org-mode code blocks
-  (require 'ob-emacs-lisp)
-  (require 'ob-clojure)
-  (require 'ob-js)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
      ;; (lua . t)
-     (js . t)
-     (clojure . t)))
      ;; (ocaml . t)
      ;; (haskell . t)
      ;;(rust . t)
      ;; (elixir . t)
      ;;(C . t)))
      ;; (cpp . t)
-
-
+     (js . t)
+     (clojure . t)))
 
   (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;;; `<s` to begin src block
@@ -138,7 +140,6 @@
   (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
   (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
-
 
 ;;;; dired
 (after! dired

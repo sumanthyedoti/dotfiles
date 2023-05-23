@@ -1,5 +1,9 @@
 .config/nvim/plugin
 .config/fish/fish_variables
+.config/fish/completions/
+.config/fish/conf.d/
+.config/fish/fish_plugins
+.config/fish/functions/
 .xmonad/build-x86_64-linux/
 .xmonad/xmonad-x86_64-linux
 .xmonad/xmonad.errors
