@@ -19,6 +19,7 @@ alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
 alias emacs="emacs -mm"
+alias rsync="rsync -h --progress"
 alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
 # aliases for scripts
@@ -41,11 +42,14 @@ set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 
+# doom emacs
+set -x PATH "$HOME/.emacs.d/bin:$PATH"
+
 # calibre
 set -Ux CALIBRE_USE_DARK_PALETTE 1
 
 # pyenv
-pyenv init - | source
+#pyenv init - | source
 
 #### emacs
 # vterm

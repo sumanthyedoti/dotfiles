@@ -60,4 +60,4 @@ exec xmonad
 nitrogen --restore &
 
 # Compositior
-picom -f &
+#picom -f &

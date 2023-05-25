@@ -97,7 +97,7 @@ local lisp_filetypes = { "lisp", "lsp", "el" }
 local repl_filetypes = {
 	"lisp",
 	"lsp",
-	"scehme",
+	"scheme",
 	"el",
 	"clojure",
 	"haskell",
@@ -109,6 +109,17 @@ local repl_filetypes = {
 	"typescriptreact",
 	"python",
 	"elixir",
+}
+local conjure_filetypes = {
+	"lisp",
+	"lsp",
+	"clojure",
+	"clojurescript",
+	"haskell",
+	"scheme",
+	"rust",
+	"python",
+	"lua",
 }
 
 local plugins = {
@@ -164,7 +175,7 @@ local plugins = {
 	"folke/tokyonight.nvim",
 	"bluz71/vim-nightfly-guicolors",
 	"navarasu/onedark.nvim",
-  "haishanh/night-owl.vim",
+	"haishanh/night-owl.vim",
 	{ "catppuccin/nvim", name = "catppuccin" },
 
 	{
@@ -271,6 +282,18 @@ local plugins = {
 		event = "InsertEnter",
 	},
 	{
+		"f-person/git-blame.nvim",
+		keys = {
+			{ "<leader>gb", ":GitBlameToggle<cr>", mode = { "n" } },
+		},
+		config = function()
+			vim.cmd([[
+      let g:gitblame_enabled = 0
+      let g:gitblame_message_template = '<author>  <summary>   <date>'
+      ]])
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp", -- cmp plugins
 		event = "InsertEnter",
 		config = function()
@@ -283,7 +306,7 @@ local plugins = {
 			"hrsh7th/cmp-cmdline", -- cmdline completions
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
-      "hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-emoji",
 			"onsails/lspkind.nvim",
 			"petertriho/cmp-git",
 		},
@@ -303,22 +326,23 @@ local plugins = {
 	-- use("mfussenegger/nvim-dap")
 	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
-  {
-    -- 🌐  https://github.com/Olical/conjure/wiki/
-    "Olical/conjure",
+	{
+		-- 🌐  https://github.com/Olical/conjure/wiki/
+		"Olical/conjure",
+		ft = conjure_filetypes,
 		keys = {
-			{ "<leader>Co", ":ConjureEvalBuf<cr>", mode = { "n" } },
-			{ "<leader>Cp", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
-			{ "<leader>CP", ":ConjureEvalRootForm<cr>", mode = { "n" } },
-			{ "<leader>Cc", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
-			{ "<leader>CC", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
-			{ "<leader>Cp", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
-			{ "<leader>Cl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
-			{ "<leader>Cw", ":ConjureEvalWord<cr>", mode = { "n" } },
+			{ "<C-c>o", ":ConjureEvalBuf<cr>", mode = { "n" } },
+			{ "<C-c>p", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
+			{ "<C-c>P", ":ConjureEvalRootForm<cr>", mode = { "n" } },
+			{ "<C-c>c", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
+			{ "<C-c>C", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
+			{ "<C-c>p", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
+			{ "<C-c>l", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
+			{ "<C-c>w", ":ConjureEvalWord<cr>", mode = { "n" } },
 		},
-  },
-  "tpope/vim-dispatch",
-  "clojure-vim/vim-jack-in",
+	},
+	"tpope/vim-dispatch",
+	"clojure-vim/vim-jack-in",
 	-- ## lisp
 	{
 		"jpalardy/vim-slime",
@@ -389,13 +413,13 @@ local plugins = {
 			},
 		},
 	},
-  {
-    'nvim-orgmode/orgmode',
-    config = function()
-      require("plugins.orgmode")
-    end
-  },
-  {
+	{
+		"nvim-orgmode/orgmode",
+		config = function()
+			require("plugins.orgmode")
+		end,
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufEnter",
 		config = function()

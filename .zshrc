@@ -12,6 +12,7 @@ alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
 alias emacs="emacs -mm"
+alias rsync="rsync -h --progress"
 alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
 # aliases for scripts

@@ -24,7 +24,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24 :weight 'semi-light)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 26 :weight 'semi-light)
      doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono" :size 28)
      doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 32))
 (after! doom-theme
@@ -72,6 +72,7 @@
   (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
         org-hide-emphasis-markers t
         org-deadline-warning-days 3
+        fill-column 100
         org-agenda-start-with-log-mode t
         org-agenda-skip-scheduled-if-done t
         org-log-done 'time
@@ -98,10 +99,10 @@
                       :foreground "#5b6268"
                       :background nil)
   (custom-set-faces
-   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
-   '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
-   '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+   '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+   '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
   ;;;; org-babel
@@ -111,14 +112,16 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
-     ;; (lua . t)
-     ;; (ocaml . t)
-     ;; (haskell . t)
-     ;;(rust . t)
-     ;; (elixir . t)
-     ;;(C . t)))
-     ;; (cpp . t)
+     (lua . t)
+     (ocaml . t)
+     (haskell . t)
+     ;(rust . t)
+     ;(elixir . t)
+     (C . t)
+     ;(cpp . t)
      (js . t)
+     ;(go . t)
+     (shell . t)
      (clojure . t)))
 
   (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
@@ -164,4 +167,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;;; 'key-bindings'
+(map! :leader
+      :desc "Insert right arrow"
+      "I a" (lambda () (interactive) (insert "→")))
+
 (message "Loaded your config")
+

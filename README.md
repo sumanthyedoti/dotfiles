@@ -37,7 +37,7 @@
   - sbcl
 - python
   - pip
-  - pyenv
+  - pyenv (?)
 - fish
   - [fisher](https://github.com/jorgebucaran/fisher)
     - [nvm](https://github.com/jorgebucaran/nvm.fish)

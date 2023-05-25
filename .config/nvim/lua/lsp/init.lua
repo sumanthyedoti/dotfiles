@@ -78,8 +78,8 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "<leader>pt", "<cmdkk>Lspsaga peek_type_definition<CR>", opts) -- see definition and make edits in window
 
-	-- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-	-- keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+	-- keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+	-- keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
 	keymap.set({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 
@@ -111,8 +111,8 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 	-- Call hierarchy
-	keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
-	keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+	keymap.set("n", "<leader>Ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
+	keymap.set("n", "<leader>CO", "<cmd>Lspsaga outgoing_calls<CR>")
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
@@ -214,7 +214,7 @@ lspconfig.clojure_lsp.setup({
 	on_attach = on_attach,
 	cmd = { "clojure-lsp" },
 	filetypes = { "clojure", "edn" },
-  root_pattern = { "project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn" }
+	root_pattern = { "project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn" },
 })
 
 lspconfig.elixirls.setup({
