@@ -15,12 +15,14 @@ if test (uname) = "Darwin"
 end
 
 # ALIASES
+alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
 alias emacs="emacs -mm"
 alias rsync="rsync -h --progress"
 alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5" ghcr.io/filbranden/vimgolf'
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"

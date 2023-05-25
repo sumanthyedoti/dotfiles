@@ -50,14 +50,14 @@
 ;(unpin! t)
 
 
-(package! ob-typescript)
-(package! prettier-js)
-
-;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
-(package! paredit)
-;; key bindings and code colorization for Clojure
-(package! clojure-mode)
-;; extra syntax highlighting for clojure
-(package! clojure-mode-extra-font-locking)
-;; integration with a Clojure REPL
-(package! cider)
+;(package! ob-typescript)
+;(package! prettier-js)
+;
+;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+;(package! paredit)
+;;; key bindings and code colorization for Clojure
+;(package! clojure-mode)
+;;; extra syntax highlighting for clojure
+;(package! clojure-mode-extra-font-locking)
+;;; integration with a Clojure REPL
+;(package! cider)
