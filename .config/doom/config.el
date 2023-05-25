@@ -111,13 +111,13 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (python . t)
-     (lua . t)
-     (ocaml . t)
-     (haskell . t)
+     ;(python . t)
+     ;(lua . t)
+     ;(ocaml . t)
+     ;(haskell . t)
      ;(rust . t)
      ;(elixir . t)
-     (C . t)
+     ;(C . t)
      ;(cpp . t)
      (js . t)
      ;(go . t)
