@@ -76,7 +76,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
 	keymap.set("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "<leader>pt", "<cmdkk>Lspsaga peek_type_definition<CR>", opts) -- see definition and make edits in window
+	keymap.set("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", opts) -- see definition and make edits in window
 
 	-- keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 	-- keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
