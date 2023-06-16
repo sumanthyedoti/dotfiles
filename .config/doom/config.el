@@ -98,6 +98,8 @@
                       :weight 'normal
                       :foreground "#5b6268"
                       :background nil)
+  (add-to-list 'org-emphasis-alist
+               '("~" (:foreground "#c7aa5f" :background "#0f212e")))
   (custom-set-faces
    '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
    '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
@@ -108,16 +110,19 @@
   ;;;; org-babel
   (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
   ;; configure the languages that can be executed inside org-mode code blocks
+  (use-package! ob-clojure
+    :init
+    (setq org-babel-clojure-backend 'cider))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     ;(python . t)
+     (python . t)
      ;(lua . t)
      ;(ocaml . t)
      ;(haskell . t)
      ;(rust . t)
      ;(elixir . t)
-     ;(C . t)
+     (C . t)
      ;(cpp . t)
      (js . t)
      ;(go . t)
