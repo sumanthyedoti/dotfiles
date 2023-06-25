@@ -15,6 +15,10 @@ if test (uname) = "Darwin"
 end
 
 # ALIASES
+alias .="pwd"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ...="cd ../../.."
 alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"

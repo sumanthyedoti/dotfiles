@@ -122,6 +122,7 @@
      ;(haskell . t)
      ;(rust . t)
      ;(elixir . t)
+     (java . t)
      (C . t)
      ;(cpp . t)
      (js . t)
