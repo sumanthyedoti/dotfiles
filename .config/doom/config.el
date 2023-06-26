@@ -179,6 +179,10 @@
       :desc "Insert right arrow"
       "I a" (lambda () (interactive) (insert "→")))
 
+
+;;;;;
+;; Elixir
+;;;;;
 (use-package! elixir-mode
   :ensure t
   :hook
@@ -193,17 +197,17 @@
 
 ;; Elixir REPL management with inf-elixir
 (defun elixir-inf-switch ()
-  "Switch to inf elixir window"
+  "Switch to inf-elixir window or open new one"
   (interactive)
   (let ((bufs (mapcar #'buffer-name (buffer-list))))
     (elixir-inf-helper bufs)))
-(defun elixir-inf-helper (lis)
+(defun elixir-inf-helper (list)
   "find terminal and switch to term buffer"
   (cond
-   ((eq '() lis)
+   ((eq '() list)
     (inf-elixir-set-repl))
-   ((string= (car lis) "Inf-Elixir")
-    (switch-to-buffer-other-window (car lis)))
+   ((string= (car list) "Inf-Elixir")
+    (switch-to-buffer-other-window (car list)))
    (t
     (elixir-inf-helper (cdr lis)))))
 ;;;; inf keybindings
@@ -211,15 +215,13 @@
  :keymaps 'inf-elixir-mode-map
  :prefix "C-c"
  "C-z" '(previous-multiframe-window :which-key "other window"))
-(general-define-key
- :keymaps 'elixir-mode-map
- "C-<return>" '(inf-elixir-send-line :which-key "send line"))
 ;; elixir
 (general-define-key
  :keymaps 'elixir-mode-map
  :prefix "C-c"
  "C-c" '(inf-elixir-send-buffer :which-key "elixir inf send buffer")
  "C-z" '(elixir-inf-switch :which-key "elixir inf switch"))
+;;;;; Elixir - End
 
 (message "Loaded your config")
 
