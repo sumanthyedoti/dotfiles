@@ -58,3 +58,4 @@
 (package! clojure-mode-extra-font-locking)
 ;;; integration with a Clojure REPL
 (package! cider)
+(package! inf-elixir)
