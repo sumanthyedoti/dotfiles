@@ -190,10 +190,18 @@
 (use-package! inf-elixir
   :bind (("C-c i i" . 'inf-elixir)
          ("C-c i p" . 'inf-elixir-project)
-         ("C-c i l" . 'inf-elixir-send-line)
-         ("C-c i r" . 'inf-elixir-send-region)
-         ("C-c i b" . 'inf-elixir-send-buffer)
+         ("C-c i l" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-line)))
+         ("C-c i v" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-region)))
+         ("C-c i b" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-buffer)))
+         ("C-c i r" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))
+         ("C-c i L" . 'inf-elixir-send-line)
+         ("C-c i V" . 'inf-elixir-send-region)
+         ("C-c i B" . 'inf-elixir-send-buffer)
          ("C-c i R" . 'inf-elixir-reload-module)))
+
+(defun inf-elixir-other-window (command)
+  (funcall command)
+  (other-window -1))
 
 ;; Elixir REPL management with inf-elixir
 (defun elixir-inf-switch ()
@@ -209,18 +217,14 @@
    ((string= (car list) "Inf-Elixir")
     (switch-to-buffer-other-window (car list)))
    (t
-    (elixir-inf-helper (cdr lis)))))
+    (elixir-inf-helper (cdr list)))))
 ;;;; inf keybindings
 (general-define-key
- :keymaps 'inf-elixir-mode-map
- :prefix "C-c"
- "C-z" '(previous-multiframe-window :which-key "other window"))
+ "C-c C-z" '(previous-multiframe-window :which-key "other window"))
 ;; elixir
 (general-define-key
- :keymaps 'elixir-mode-map
- :prefix "C-c"
- "C-c" '(inf-elixir-send-buffer :which-key "elixir inf send buffer")
- "C-z" '(elixir-inf-switch :which-key "elixir inf switch"))
+ "C-c C-c" '(inf-elixir-send-buffer :which-key "elixir inf send buffer")
+ "C-c C-z" '(elixir-inf-switch :which-key "elixir inf switch"))
 ;;;;; Elixir - End
 
 (message "Loaded your config")
