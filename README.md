@@ -100,3 +100,5 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - [fzf](https://github.com/junegunn/fzf)
 - tree-sitter `npm install -g tree-sitter-cli`
+- tldr
+- cht.sh

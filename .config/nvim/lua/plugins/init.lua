@@ -213,6 +213,7 @@ local plugins = {
 			{ "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>tn", ":lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>tp", ":lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tc", ":lua _CHT_SH_TOGGLE()<CR>", mode = { "n", "t" } },
 		},
 		config = function()
 			require("plugins.toggleterm")
