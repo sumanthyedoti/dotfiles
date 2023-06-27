@@ -41,6 +41,7 @@
 - fish
   - [fisher](https://github.com/jorgebucaran/fisher)
     - [nvm](https://github.com/jorgebucaran/nvm.fish)
+    - [fzf](https://github.com/PatrickF1/fzf.fish)
   - [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
     - [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
 - kitty
