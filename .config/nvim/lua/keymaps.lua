@@ -39,7 +39,8 @@ keymap("n", "<TAB>", "<cmd>bnext<CR>", OPTS)
 keymap("n", "<leader>o ", "o<ESC>", OPTS)
 keymap("n", "<leader>oo", "O<ESC>", OPTS)
 keymap("n", "<leader>cl", "0d$", OPTS)
-keymap("n", "<leader>P", "@:<CR>", OPTS) -- last/previous terminal command
+-- execute previous command
+keymap("n", "<leader>P", ":<Up><CR>", OPTS)
 
 -- add semi-colon
 keymap("n", "<leader>;", "A;<esc>", OPTS)
@@ -77,9 +78,7 @@ keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", OPTS)
 
 -- buffer list
 keymap("n", "<leader>bl", "<cmd>ls<cr>:b", OPTS)
-
--- execute previous command
-keymap("n", "<leader>cp", ":<Up><CR>", OPTS)
+-- save
 keymap("n", "<C-s>", ":w<CR>", OPTS)
 
 -- increment/descrement
@@ -136,3 +135,4 @@ vim.keymap.set("n", "<leader>pp", ":Lazy sync<CR>", OPTS)
 keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", OPTS)
 keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)
 keymap("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>", OPTS)
+keymap("n", "<leader>bs", "<cmd>Telescope buffers<cr>", OPTS) -- buffers (tabs) list

@@ -65,6 +65,6 @@ function _PYTHON_TOGGLE()
 end
 
 local cht = Terminal:new({ cmd = "cht.sh --shell", hidden = true })
-function _CHT_SH_TOGGLE()
+function _CHT_SH()
 	cht:toggle()
 end

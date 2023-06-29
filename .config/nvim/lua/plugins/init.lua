@@ -213,7 +213,7 @@ local plugins = {
 			{ "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>tn", ":lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>tp", ":lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
-			{ "<leader>tc", ":lua _CHT_SH_TOGGLE()<CR>", mode = { "n", "t" } },
+			{ "<leader>tc", ":lua _CHT_SH()<CR>", mode = { "n", "t" } },
 		},
 		config = function()
 			require("plugins.toggleterm")
@@ -275,6 +275,12 @@ local plugins = {
 			require("plugins.rust-tools")
 		end,
 	},
+	{
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("plugins.harpoon")
+		end,
+	},
 
 	--[[ Code Completion ]]
 	-- snippets
@@ -282,18 +288,18 @@ local plugins = {
 		"rafamadriz/friendly-snippets",
 		event = "InsertEnter",
 	},
-	{
-		"f-person/git-blame.nvim",
-		keys = {
-			{ "<leader>gb", ":GitBlameToggle<cr>", mode = { "n" } },
-		},
-		config = function()
-			vim.cmd([[
-      let g:gitblame_enabled = 0
-      let g:gitblame_message_template = '<author>  <summary>   <date>'
-      ]])
-		end,
-	},
+	-- {
+	-- 	"f-person/git-blame.nvim",
+	-- 	keys = {
+	-- 		{ "<leader>gb", ":GitBlameToggle<cr>", mode = { "n" } },
+	-- 	},
+	-- 	config = function()
+	-- 		vim.cmd([[
+	--      let g:gitblame_enabled = 0
+	--      let g:gitblame_message_template = '<author>  <summary>   <date>'
+	--      ]])
+	-- 	end,
+	-- },
 	{
 		"hrsh7th/nvim-cmp", -- cmp plugins
 		event = "InsertEnter",
@@ -373,6 +379,9 @@ local plugins = {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "BufEnter",
+		keys = {
+			{ "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", mode = { "n" } },
+		},
 		config = function()
 			require("plugins.gitsigns")
 		end,

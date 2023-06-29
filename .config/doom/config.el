@@ -178,6 +178,18 @@
 (map! :leader
       :desc "Insert right arrow"
       "I a" (lambda () (interactive) (insert "→")))
+(map! :prefix "C-c"
+      :desc "sp-forward-slurp-sexp"
+      "s f" 'sp-forward-slurp-sexp)
+(map! :prefix "C-c"
+      :desc "sp-backward-slurp-sexp"
+      "s b" 'sp-backward-slurp-sexp)
+(map! :prefix "C-c"
+      :desc "sp-forward-barf-sexp"
+      "b f" 'sp-forward-barf-sexp)
+(map! :prefix "C-c"
+      :desc "sp-backward-barf-sexp"
+      "b b" 'sp-backward-barf-sexp)
 
 
 ;;;;;
@@ -189,17 +201,19 @@
   (elixir-mode . inf-elixir-minor-mode))
 (use-package! inf-elixir
   :bind (("C-c i i" . 'inf-elixir)
-         ("C-c i p" . 'inf-elixir-project)
+         ("C-c i P" . 'inf-elixir-project)
          ("C-c i l" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-line)))
-         ("C-c i L" . 'inf-elixir-send-line)
-         ("C-c i v" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-region)))
-         ("C-c i V" . 'inf-elixir-send-region)
+         ("C-c i r" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-region)))
          ("C-c i b" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-buffer)))
-         ("C-c i B" . 'inf-elixir-send-buffer)
-         ("C-c i r" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))
-         ("C-c i R" . 'inf-elixir-reload-module)))
+         ("C-c i R" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))
+         ("C-c i L" . 'inf-elixir-send-line)
+         ("C-c i R" . 'inf-elixir-send-region)
+         ("C-c i R" . 'inf-elixir-send-region)
+         ("C-c i B" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-buffer)))
+         ("C-c i R" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))))
 
 (defun inf-elixir-other-window (command)
+  (interactive)
   (funcall command)
   (other-window -1))
 
