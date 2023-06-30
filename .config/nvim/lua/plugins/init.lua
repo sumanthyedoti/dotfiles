@@ -379,17 +379,17 @@ local plugins = {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "BufEnter",
-		keys = {
-			{ "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", mode = { "n" } },
-		},
 		config = function()
 			require("plugins.gitsigns")
 		end,
 	},
 	{
 		"sindrets/diffview.nvim",
+		keys = {
+			{ "<leader>gg", ":DiffviewOpen<cr>", mode = { "n", "v" } },
+		},
 		config = function()
-			require("plugins.diffview")
+			require("plugins.gitsigns")
 		end,
 	},
 
