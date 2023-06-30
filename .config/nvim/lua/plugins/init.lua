@@ -39,7 +39,6 @@ end
   colortils
     color-picker.nvim
   syntax-tree-surfer
-  harpoon
   andweeb/presence.nvim (Discord)
   Wansmer/treesj
   which-key
@@ -320,7 +319,7 @@ local plugins = {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		version = "1.*", -- follow latest release.
+		version = "<CurrentMajor>.*", -- follow latest release.
 		event = "InsertEnter",
 		config = function()
 			require("plugins.luasnip")
@@ -338,13 +337,12 @@ local plugins = {
 		"Olical/conjure",
 		ft = conjure_filetypes,
 		keys = {
-			{ "<C-c>o", ":ConjureEvalBuf<cr>", mode = { "n" } },
+			{ "<C-c>b", ":ConjureEvalBuf<cr>", mode = { "n" } },
 			{ "<C-c>p", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
 			{ "<C-c>P", ":ConjureEvalRootForm<cr>", mode = { "n" } },
 			{ "<C-c>c", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
 			{ "<C-c>C", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
 			{ "<C-c>p", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
-			{ "<C-c>l", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
 			{ "<C-c>w", ":ConjureEvalWord<cr>", mode = { "n" } },
 		},
 	},
@@ -355,10 +353,10 @@ local plugins = {
 		"jpalardy/vim-slime",
 		ft = repl_filetypes,
 		keys = {
-			{ "<leader>Lo", ":%SlimeSend<cr>", mode = { "n" } },
-			{ "<leader>Lp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
-			{ "<leader>Lp", ":'<,'>SlimeSend<cr>", mode = { "v" } },
-			{ "<leader>Ll", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
+			{ "<leader>sb", ":%SlimeSend<cr>", mode = { "n" } },
+			{ "<leader>sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
+			{ "<leader>sp", ":'<,'>SlimeSend<cr>", mode = { "v" } },
+			{ "<leader>sl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
 		},
 		config = function()
 			vim.cmd([[let g:slime_target = "tmux"]])
@@ -392,7 +390,6 @@ local plugins = {
 			require("plugins.gitsigns")
 		end,
 	},
-
 	-- ## Telescope
 	-- run `make` inside `telescope-fzf-native` plugin directory
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },

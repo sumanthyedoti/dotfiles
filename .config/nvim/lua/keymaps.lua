@@ -39,6 +39,7 @@ keymap("n", "<TAB>", "<cmd>bnext<CR>", OPTS)
 keymap("n", "<leader>o ", "o<ESC>", OPTS)
 keymap("n", "<leader>oo", "O<ESC>", OPTS)
 keymap("n", "<leader>cl", "0d$", OPTS)
+
 -- execute previous command
 keymap("n", "<leader>P", ":<Up><CR>", OPTS)
 
@@ -80,6 +81,8 @@ keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", OPTS)
 keymap("n", "<leader>bl", "<cmd>ls<cr>:b", OPTS)
 -- save
 keymap("n", "<C-s>", ":w<CR>", OPTS)
+-- quit
+keymap("n", "<leader>Q", ":q<CR>", OPTS)
 
 -- increment/descrement
 keymap("n", "-", "<C-x>", OPTS)
@@ -114,8 +117,8 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_OPTS)
 
 -- Sustitute --
 -- yank and mark at 'x'
-keymap("n", "<leader>s ", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_OPTS)
-keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_OPTS)
+--keymap("n", "<leader>s ", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_OPTS)
+--keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_OPTS)
 
 -- Miscellaneous
 keymap("n", "<leader>so", "<cmd>source %<CR>", OPTS) -- source current file

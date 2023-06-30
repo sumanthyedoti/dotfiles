@@ -12,10 +12,9 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local s = ls.s
-local i = ls.i
-local t = ls.t
-
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
 local c = ls.choice_node
 local f = ls.function_node
 local d = ls.dynamic_node

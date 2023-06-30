@@ -10,10 +10,9 @@ if not ls_ok then
 	return
 end
 
-local s = ls.s --> snippet
-local i = ls.i --> insert node
-local t = ls.t --> text node
-
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
 local c = ls.choice_node --
 local f = ls.function_node -- can only return string
 local d = ls.dynamic_node -- takes positon number and can return other nodes
