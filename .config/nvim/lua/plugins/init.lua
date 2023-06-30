@@ -386,6 +386,12 @@ local plugins = {
 			require("plugins.gitsigns")
 		end,
 	},
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("plugins.diffview")
+		end,
+	},
 
 	-- ## Telescope
 	-- run `make` inside `telescope-fzf-native` plugin directory
