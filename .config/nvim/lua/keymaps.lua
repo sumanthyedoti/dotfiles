@@ -126,7 +126,7 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_OPTS)
 -- Miscellaneous
 keymap("n", "<leader>so", "<cmd>source %<CR>", OPTS) -- source current file
 keymap("n", "<leader>Y", "<cmd>%y<CR>", OPTS) -- yank current file
-keymap("n", "<leader>rn", "<cmd>set relativenumber!<CR>", OPTS) -- toggle relativenumber
+keymap("n", "<leader>rn", "<cmd>set number<cr><cmd>set relativenumber!<CR>", OPTS) -- toggle relativenumber
 keymap("n", "<leader>wr", "<cmd>set wrap!<CR>", OPTS) -- toggle relativenumber
 
 -- == PLUGINS == --

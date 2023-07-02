@@ -13,6 +13,7 @@
   - [Prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)
   - `:Lazy Sync`
   - `:UpdateRemotePlugins`
+  - `:call firenvim#install(0)`
 
 ## Dependecies
 

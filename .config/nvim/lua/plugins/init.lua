@@ -32,7 +32,6 @@ end
 -- Install your plugins here
 --  packages are stored in '~/.local/share/nvim/lazy'
 --[[ PACKAGES
-  firenvim
   dispatch
   neogit
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
@@ -41,7 +40,6 @@ end
   syntax-tree-surfer
   andweeb/presence.nvim (Discord)
   Wansmer/treesj
-  which-key
   dail.nvim
   doom.nvim
   nvim-dap (mason)
@@ -126,15 +124,6 @@ local plugins = {
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
-	{
-		"Shougo/deoplete.nvim",
-		build = ":UpdateRemotePlugins",
-		config = function()
-			vim.cmd([[
-        let g:deoplete#enable_at_startup = 1
-      ]])
-		end,
-	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -496,6 +485,17 @@ local plugins = {
 			require("plugins.glow")
 		end,
 	}, -- markdown preview
+	{
+		"glacambre/firenvim",
+		cond = not not vim.g.started_by_firenvim,
+		build = function()
+			require("lazy").load({ plugins = "firenvim", wait = true })
+			vim.fn["firenvim#install"](0)
+		end,
+		config = function()
+			require("plugins.firenvim")
+		end,
+	},
 	{
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",

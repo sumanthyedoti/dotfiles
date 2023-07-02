@@ -51,6 +51,8 @@
   ss = status --short
   a = add
   co = checkout
+  p = pull
+  P = push
   sh = stash
   b = branch
   c = commit
