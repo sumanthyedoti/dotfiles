@@ -5,6 +5,7 @@ require("theme")
 require("lsp")
 require("autocommands")
 require("plugins.dashboard")
+require("custom")
 
 -- Delete without yanking if preperded by <leader>
 vim.cmd([[nnoremap <leader>dd "_dd]])

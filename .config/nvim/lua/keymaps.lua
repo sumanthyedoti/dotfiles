@@ -36,8 +36,8 @@ keymap("n", "<S-TAB>", "<cmd>bprevious<CR>", OPTS)
 keymap("n", "<TAB>", "<cmd>bnext<CR>", OPTS)
 
 -- new line
-keymap("n", "<leader>o ", "o<ESC>", OPTS)
-keymap("n", "<leader>oo", "O<ESC>", OPTS)
+keymap("n", "<leader>o ", "mzo<ESC>`z", OPTS)
+keymap("n", "<leader>oo", "mzO<ESC>`z", OPTS)
 keymap("n", "<leader>cl", "0d$", OPTS)
 
 -- execute previous command
@@ -87,6 +87,9 @@ keymap("n", "<leader>Q", ":q<CR>", OPTS)
 -- increment/descrement
 keymap("n", "-", "<C-x>", OPTS)
 keymap("n", "=", "<C-a>", OPTS)
+
+-- reload file
+keymap("n", "<leader>bR", "mZ:Bdelete<CR>`Z", OPTS)
 
 -- INSERT --
 keymap("i", "jj", "<ESC>", OPTS)

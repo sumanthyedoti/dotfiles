@@ -57,6 +57,7 @@ end
   vim-tmux-navigator
   vim-maximizer
   vim-illuminate
+  vim-clap
   prettier.nvim
   vim-dadbod (for sql) [https://youtu.be/_DnmphIwnjo?t=980]
   hologram.nvim
@@ -125,6 +126,15 @@ local plugins = {
 	"nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	{ "stevearc/dressing.nvim", event = "VeryLazy" },
+	{
+		"Shougo/deoplete.nvim",
+		build = ":UpdateRemotePlugins",
+		config = function()
+			vim.cmd([[
+        let g:deoplete#enable_at_startup = 1
+      ]])
+		end,
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -342,7 +352,7 @@ local plugins = {
 			{ "<C-c>P", ":ConjureEvalRootForm<cr>", mode = { "n" } },
 			{ "<C-c>c", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
 			{ "<C-c>C", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
-			{ "<C-c>p", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
+			{ "<C-c>v", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
 			{ "<C-c>w", ":ConjureEvalWord<cr>", mode = { "n" } },
 		},
 	},
@@ -355,7 +365,7 @@ local plugins = {
 		keys = {
 			{ "<leader>sb", ":%SlimeSend<cr>", mode = { "n" } },
 			{ "<leader>sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
-			{ "<leader>sp", ":'<,'>SlimeSend<cr>", mode = { "v" } },
+			{ "<leader>sv", ":'<,'>SlimeSend<cr>", mode = { "v" } },
 			{ "<leader>sl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
 		},
 		config = function()
@@ -385,6 +395,7 @@ local plugins = {
 		"sindrets/diffview.nvim",
 		keys = {
 			{ "<leader>gg", ":DiffviewOpen<cr>", mode = { "n", "v" } },
+			{ "<leader>g ", ":DiffviewClose<cr>", mode = { "n", "v" } },
 		},
 		config = function()
 			require("plugins.gitsigns")
@@ -423,6 +434,9 @@ local plugins = {
 				config = function()
 					require("plugins.treesitter-context")
 				end,
+			},
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
 		},
 	},
