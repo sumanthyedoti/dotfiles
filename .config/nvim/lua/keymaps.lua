@@ -1,9 +1,20 @@
 OPTS = { noremap = true, silent = true } -- { nowait = true }
 local term_OPTS = { silent = true }
 -- Shorten function names
-local function map(mode, key, action)
+local function map(mode, key, action, opts)
+	local all_opts = {}
+	if opts then
+		for k, v in pairs(OPTS) do
+			all_opts[k] = v
+		end
+		for k, v in pairs(opts) do
+			all_opts[k] = v
+		end
+	else
+		all_opts = OPTS
+	end
 	local keymap = vim.api.nvim_set_keymap
-	keymap(mode, key, action, OPTS) -- next pane
+	keymap(mode, key, action, all_opts) -- next pane
 end
 local is_mac = vim.fn.has("macunix")
 
@@ -14,6 +25,7 @@ vim.g.maplocalleader = "z"
 -- vim.g.maplocalleader = " "
 
 -- Modes
+--
 --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
@@ -40,8 +52,8 @@ map("n", "<TAB>", "<cmd>bnext<CR>")
 
 -- new line
 map("n", "<leader>o ", "mzo<ESC>`z")
-map("n", "<leader>oo", "mzO<ESC>`z")
-map("n", "<leader>cl", "0d$")
+map("n", "<leader>oo", "mzO<ESC>`z", { desc = "Add line above" })
+map("n", "<leader>cl", "0d$", { desc = "Add line below" })
 
 -- execute previous command
 map("n", "<leader>P", ":<Up><CR>")
