@@ -1,108 +1,27 @@
-local ls_ok, ls = pcall(require, "luasnip")
-if not ls_ok then
-	vim.notify("luasnip load failed")
-	return
-end
-local s = ls.s --> snippet
-local i = ls.i --> insert node
-local t = ls.t --> text node
+local utils = require("snippets.utils")
+local s = utils.s
+local f = utils.f
+local d = utils.d
+local fmt = utils.fmt
+local rep = utils.rep
+local i = utils.i
+local t = utils.t
+local sn = utils.sn
+local c = utils.c
+local filename = utils.filename
+local currentline = utils.currentline
+local same = utils.same
 
-local c = ls.choice_node
-local f = ls.function_node
-local d = ls.dynamic_node
-local sn = ls.snippet_node
-
-local fmt = require("luasnip.extras.fmt").fmt
-local rep = require("luasnip.extras").rep
-
-local snippets, autosnippets = {}, {} --}}}
-
-local group = vim.api.nvim_create_augroup("Lua Snippets", { clear = true })
-local file_pattern = "*.lua"
-
--- = Expansions =
--- TM_CURRENT_LINE -- line number
--- TM_FILENAME -- file name
--- TM_DIRECTORY -- parent directory name
-
--- == create snippet
--- takes trigger, body, opts -> "trig"/or/{pattern = file_pattern, "trig"}
-local function cs(trigger, nodes, opts)
-	local snippet = s(trigger, nodes)
-	local target_table = snippets
-
-	local pattern = file_pattern
-	local keymaps = {}
-
-	if opts ~= nil then
-		-- check for custom pattern
-		if opts.pattern then
-			pattern = opts.pattern
-		end
-
-		-- if opts is a string
-		if type(opts) == "string" then
-			if opts == "auto" then
-				target_table = autosnippets
-			else
-				table.insert(keymaps, { "i", opts })
-			end
-		end
-
-		-- if opts is a table
-		if opts ~= nil and type(opts) == "table" then
-			for _, keymap in ipairs(opts) do
-				if type(keymap) == "string" then
-					table.insert(keymaps, { "i", keymap })
-				else
-					table.insert(keymaps, keymap)
-				end
-			end
-		end
-
-		-- set autocmd for each keymap
-		if opts ~= "auto" then
-			for _, keymap in ipairs(keymaps) do
-				vim.api.nvim_create_autocmd("BufEnter", {
-					pattern = pattern,
-					group = group,
-					callback = function()
-						vim.keymap.set(keymap[1], keymap[2], function()
-							ls.snip_expand(snippet)
-						end, { noremap = true, silent = true, buffer = true })
-					end,
-				})
-			end
-		end
-	end
-
-	table.insert(target_table, snippet) -- insert snippet into appropriate table
-end --}}}
+local snippets, autosnippets = {}, {}
+local cs = utils.create_snippet(snippets, autosnippets)
 
 -- Start Refactoring --
-
 cs("CMD", { -- [CMD] multiline vim.cmd{{{
 	t({ "vim.cmd[[", "  " }),
 	i(1, ""),
 	t({ "", "]]" }),
 }) --}}}
 cs("cmd", fmt("vim.cmd[[{}]]", { i(1, "") })) -- single line vim.cmd
-cs({ -- github import for packer{{{
-	trig = "https://github%.com/([%w-%._]+)/([%w-%._]+)!",
-	regTrig = true,
-	hidden = true,
-}, {
-	t([[use "]]),
-	f(function(_, snip)
-		return snip.captures[1]
-	end),
-	t("/"),
-	f(function(_, snip)
-		return snip.captures[2]
-	end),
-	t({ [["]], "" }),
-	i(1, ""),
-}, "auto") --}}}
 
 cs( -- {regexSnippet} LuaSnippet{{{
 	"regexSnippet",
@@ -215,59 +134,6 @@ local {} = {}
 	"lv"
 ) --}}}
 
--- Tutorial Snippets go here --
-local myFirstSnippet = s("t_num", {
-	t({ "one", "" }),
-	i(1, "2"),
-	t({ "", "three", "" }),
-	i(2, "4"),
-})
-
-local secondSnippet = s(
-	"t_fun",
-	fmt(
-		[[
-  local {} = function({})
-    {} {{ curly braces }}
-  end
-]],
-		{
-			i(1, "name"),
-			i(2, "arg"),
-			i(3, "-- body"),
-		}
-	)
-)
-
-local choiceSnippet = s(
-	"t_ch",
-	fmt(
-		[[
-  local {} = function({})
-    {} {{ curly braces }}
-  end
-]],
-		{
-			i(1, "name"),
-			c(2, { t(""), i(1, "arg") }),
-			i(3, "arg"),
-		}
-	)
-)
-
-table.insert(snippets, myFirstSnippet)
-table.insert(snippets, secondSnippet)
-table.insert(snippets, choiceSnippet)
-
-local auto1 = s({ trig = "t_auto" }, t("-- this is trig is shown in PUM if passed to 'snippets'"))
-local auto2 = s({ trig = "t_aauto" }, t("-- this is trig is not shown in PUM if passed to 'autosnippets'"))
-local autod = s({ trig = "t_auto%d", regTrig = true }, t("-- this is autosnippet"))
-table.insert(snippets, auto1)
--- autosnippets appear as the trigger matches
-table.insert(autosnippets, auto2)
-table.insert(autosnippets, autod)
-
--- ## Function Nodes
 -- should return string
 local firstFuncNode = s({ trig = "t_funn" }, {
 	f(function()
@@ -311,23 +177,11 @@ table.insert(autosnippets, funcNodeWithArgs2)
 
 cs(
 	"rand",
-	fmt(
-		[[
-    math.random({}, {})
-  ]],
-		{
-			i(1, "1"),
-			i(1, "n"),
-		}
-	),
-	"<leader>rand"
+	fmt("math.random(1, {})", {
+		i(1, "100"),
+	})
 )
 
-cs("return", {
-	t({ "do", "" }),
-	t({ "  return", "" }),
-	t("end"),
-})
-
 -- End Refactoring --
+
 return snippets, autosnippets

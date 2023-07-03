@@ -63,7 +63,7 @@ end, { silent = true })
 
 set(mode, "<a-l>", function()
 	if ls.choice_active() then
-		ls.change_choice(-1)
+		ls.change_choice(1)
 	end
 end)
 

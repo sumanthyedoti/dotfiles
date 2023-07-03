@@ -18,23 +18,7 @@ local cs = utils.create_snippet(snippets, autosnippets)
 
 -- Start Refactoring --
 
-cs( -- [while] JS While Loop snippet{{{
-	"main",
-	fmt(
-		[[
-package main
-
-import (
-	"fmt"
-)
-
-func main() {{
-	fmt.Println("Hello world")
-}}
-  ]],
-		{}
-	)
-)
-
+--
 -- End Refactoring --
+
 return snippets, autosnippets
