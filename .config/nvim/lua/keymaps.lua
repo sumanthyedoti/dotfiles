@@ -1,11 +1,14 @@
 OPTS = { noremap = true, silent = true } -- { nowait = true }
 local term_OPTS = { silent = true }
 -- Shorten function names
-local keymap = vim.api.nvim_set_keymap
+local function map(mode, key, action)
+	local keymap = vim.api.nvim_set_keymap
+	keymap(mode, key, action, OPTS) -- next pane
+end
 local is_mac = vim.fn.has("macunix")
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", OPTS)
+map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = "z"
 -- vim.g.maplocalleader = " "
@@ -21,124 +24,124 @@ vim.g.maplocalleader = "z"
 -- NORMAL --
 -- loops throught windows
 if is_mac then
-	keymap("n", "ø", "<C-w><C-w>", OPTS) -- next pane
+	map("n", "ø", "<C-w><C-w>") -- next pane
 else
-	keymap("n", "<A-o>", "<C-w><C-w>", OPTS) -- next pane
+	map("n", "<A-o>", "<C-w><C-w>") -- next pane
 end
-keymap("n", "<leader>a", "@q", OPTS) -- macro @q
-keymap("n", "<leader> ", "<cmd>noh<CR>", OPTS) -- clear search hightlight with <space><space>
+map("n", "<leader>a", "@q") -- macro @q
+map("n", "<leader> ", "<cmd>noh<CR>") -- clear search hightlight with <space><space>
 
 -- NVim-tree
-keymap("n", "<leader>e ", ":NvimTreeToggle<cr>", OPTS)
+map("n", "<leader>e ", ":NvimTreeToggle<cr>")
 
 -- Navigate buffers
-keymap("n", "<S-TAB>", "<cmd>bprevious<CR>", OPTS)
-keymap("n", "<TAB>", "<cmd>bnext<CR>", OPTS)
+map("n", "<S-TAB>", "<cmd>bprevious<CR>")
+map("n", "<TAB>", "<cmd>bnext<CR>")
 
 -- new line
-keymap("n", "<leader>o ", "mzo<ESC>`z", OPTS)
-keymap("n", "<leader>oo", "mzO<ESC>`z", OPTS)
-keymap("n", "<leader>cl", "0d$", OPTS)
+map("n", "<leader>o ", "mzo<ESC>`z")
+map("n", "<leader>oo", "mzO<ESC>`z")
+map("n", "<leader>cl", "0d$")
 
 -- execute previous command
-keymap("n", "<leader>P", ":<Up><CR>", OPTS)
+map("n", "<leader>P", ":<Up><CR>")
 
 -- add semi-colon
-keymap("n", "<leader>;", "A;<esc>", OPTS)
+map("n", "<leader>;", "A;<esc>")
 
 -- Disbale 'ZZ' command to save and quit¬
-keymap("n", "Z", ':echom "--> :w :q <-- "<CR>', OPTS)
-keymap("n", "ZZ", ':echom "--> :w :q <-- "<CR>', OPTS)
+map("n", "Z", ':echom "--> :w :q <-- "<CR>')
+map("n", "ZZ", ':echom "--> :w :q <-- "<CR>')
 
 -- undo all changes in the buffer
-keymap("n", "<leader>U", "<cmd>edit!<CR>", OPTS)
+map("n", "<leader>U", "<cmd>edit!<CR>")
 
 -- reg menu
-keymap("n", "<leader>R", "<cmd>:reg<CR>", OPTS)
+map("n", "<leader>R", "<cmd>:reg<CR>")
 
 -- splits windows
-keymap("n", "<C-w>-", "<cmd>only<CR>", OPTS) -- kill all remaining splits
+map("n", "<C-w>-", "<cmd>only<CR>") -- kill all remaining splits
 
 -- window.split navigation
-keymap("n", "<leader>jh", "<C-w>h<CR>", OPTS)
-keymap("n", "<leader>jj", "<C-w>j<CR>", OPTS)
-keymap("n", "<leader>jk", "<C-w>k<CR>", OPTS)
-keymap("n", "<leader>jh", "<C-w>h<CR>", OPTS)
+map("n", "<leader>jh", "<C-w>h<CR>")
+map("n", "<leader>jj", "<C-w>j<CR>")
+map("n", "<leader>jk", "<C-w>k<CR>")
+map("n", "<leader>jh", "<C-w>h<CR>")
 
 -- Buffers
-keymap("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", OPTS) -- kill all remaining BufferLine tabs
-keymap("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>", OPTS) -- pick close current buffer
-keymap("n", "<leader>bq", "<cmd>Bdelete<CR>", OPTS) -- close buffer (by vim-bbye)
-keymap("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>", OPTS)
-keymap("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>", OPTS)
-keymap("n", "<leader>bg", "<cmd>BufferLinePick<CR>", OPTS) -- pick buffer / go to selcted buffer
-keymap("n", "C-b", "<cmd>bd<CR>", OPTS)
+map("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>") -- kill all remaining BufferLine tabs
+map("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>") -- pick close current buffer
+map("n", "<leader>bq", "<cmd>Bdelete<CR>") -- close buffer (by vim-bbye)
+map("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>")
+map("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>")
+map("n", "<leader>bg", "<cmd>BufferLinePick<CR>") -- pick buffer / go to selcted buffer
+map("n", "C-b", "<cmd>bd<CR>")
 
 -- treesitter playground
-keymap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", OPTS)
+map("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>")
 
 -- buffer list
-keymap("n", "<leader>bl", "<cmd>ls<cr>:b", OPTS)
+map("n", "<leader>bl", "<cmd>ls<cr>:b")
 -- save
-keymap("n", "<C-s>", ":w<CR>", OPTS)
+map("n", "<C-s>", ":w<CR>")
 -- quit
-keymap("n", "<leader>Q", ":q<CR>", OPTS)
+map("n", "<leader>Q", ":q<CR>")
 
 -- increment/descrement
-keymap("n", "-", "<C-x>", OPTS)
-keymap("n", "=", "<C-a>", OPTS)
+map("n", "-", "<C-x>")
+map("n", "=", "<C-a>")
 
 -- reload file
-keymap("n", "<leader>bR", "mZ:Bdelete<CR>`Z", OPTS)
+map("n", "<leader>bR", "mZ:Bdelete<CR>`Z")
 
 -- INSERT --
-keymap("i", "jj", "<ESC>", OPTS)
-keymap("i", "<C-j>", "<ESC>i", OPTS) -- move backwards
-keymap("i", "<C-k>", "<ESC>la", OPTS) -- move forwards
-keymap("i", "<C-h>", "<ESC>dbxi", OPTS) -- clear one word backwards
-keymap("i", "<C-l>", "<ESC>ldei", OPTS) -- clear one word forwards
+map("i", "jj", "<ESC>")
+map("i", "<C-j>", "<ESC>i") -- move backwards
+map("i", "<C-k>", "<ESC>la") -- move forwards
+map("i", "<C-h>", "<ESC>dbxi") -- clear one word backwards
+map("i", "<C-l>", "<ESC>ldei") -- clear one word forwards
 
 -- VISUAL --
-keymap("v", "<leader> ", "<ESC>", OPTS) -- clear search hightlight with <space><space>
+map("v", "<leader> ", "<ESC>") -- clear search hightlight with <space><space>
 -- Stay in indent mode
-keymap("v", "<", "<gv", OPTS)
-keymap("v", ">", ">gv", OPTS)
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 -- Move text up and down
-keymap("n", "<C-j>", ":m '>+1<CR>gv=gv", OPTS)
-keymap("n", "<C-k>", ":m '<-2<CR>gv=gv", OPTS)
-keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", OPTS)
-keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", OPTS)
+map("n", "<C-j>", ":m '>+1<CR>gv=gv")
+map("n", "<C-k>", ":m '<-2<CR>gv=gv")
+map("v", "<C-j>", ":m '>+1<CR>gv=gv")
+map("v", "<C-k>", ":m '<-2<CR>gv=gv")
 -- hightlight and paste, without copying
-keymap("v", "p", '"_dP', OPTS)
+map("v", "p", '"_dP')
 
 -- TERMINAL --
 -- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_OPTS)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_OPTS)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_OPTS)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_OPTS)
+map("t", "<C-h>", "<C-\\><C-N><C-w>h")
+map("t", "<C-j>", "<C-\\><C-N><C-w>j")
+map("t", "<C-k>", "<C-\\><C-N><C-w>k")
+map("t", "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- Sustitute --
 -- yank and mark at 'x'
---keymap("n", "<leader>s ", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x", term_OPTS)
---keymap("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x', term_OPTS)
+--map("n", "<leader>s ", "mx:%s/<C-r><C-w>/<C-r>0/g<cr>`x")
+--map("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x')
 
 -- Miscellaneous
-keymap("n", "<leader>so", "<cmd>source %<CR>", OPTS) -- source current file
-keymap("n", "<leader>Y", "<cmd>%y<CR>", OPTS) -- yank current file
-keymap("n", "<leader>rn", "<cmd>set number<cr><cmd>set relativenumber!<CR>", OPTS) -- toggle relativenumber
-keymap("n", "<leader>wr", "<cmd>set wrap!<CR>", OPTS) -- toggle relativenumber
+map("n", "<leader>so", "<cmd>source %<CR>") -- source current file
+map("n", "<leader>Y", "<cmd>%y<CR>") -- yank current file
+map("n", "<leader>rn", "<cmd>set number<cr><cmd>set relativenumber!<CR>") -- toggle relativenumber
+map("n", "<leader>wr", "<cmd>set wrap!<CR>") -- toggle relativenumber
 
 -- == PLUGINS == --
 -- ## icon-picker
-vim.keymap.set("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>", OPTS)
-vim.keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", OPTS) --> Yank the selected icon into register
+map("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>")
+map("n", "<Leader>iy", "<cmd>IconPickerYank<cr>") --> Yank the selected icon into register
 -- ## buffers
-vim.keymap.set("n", "<Leader>tc", "<cmd>tabclose<cr>", OPTS)
+map("n", "<Leader>tc", "<cmd>tabclose<cr>")
 -- package manager
-vim.keymap.set("n", "<leader>pp", ":Lazy sync<CR>", OPTS)
+map("n", "<leader>pp", ":Lazy sync<CR>")
 -- ## Telescope
-keymap("n", "<leader>f ", "<cmd>Telescope find_files<cr>", OPTS)
-keymap("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", OPTS)
-keymap("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>", OPTS)
-keymap("n", "<leader>bs", "<cmd>Telescope buffers<cr>", OPTS) -- buffers (tabs) list
+map("n", "<leader>f ", "<cmd>Telescope find_files<cr>")
+map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>")
+map("n", "<leader>bs", "<cmd>Telescope buffers<cr>") -- buffers (tabs) list
