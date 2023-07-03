@@ -296,11 +296,6 @@ let g:vim_json_conceal=0
 let g:markdown_syntax_conceal=0
 
 ""source $HOME/.vim/nerdcommenter.vim
-if has('nvim')
-    highlight Normal guibg=none
-    ""source $HOME/.vim/coc.vim
-endif
-
 colorscheme gruvbox " 'NeoSolarized', 'nord', 'gruvbox' 'one'
 highlight ColorColumn ctermbg=0 guibg=Grey40
 set bg=dark  " 'dark', 'light'
