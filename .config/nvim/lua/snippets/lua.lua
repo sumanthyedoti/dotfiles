@@ -8,6 +8,7 @@ local i = utils.i
 local t = utils.t
 local sn = utils.sn
 local c = utils.c
+local r = utils.r
 local filename = utils.filename
 local currentline = utils.currentline
 local same = utils.same
@@ -180,6 +181,84 @@ cs(
 	fmt("math.random(1, {})", {
 		i(1, "100"),
 	})
+)
+
+cs(
+	"var",
+	c(1, {
+		{
+			t("local "),
+			i(1, "name"),
+			t(" = "),
+			i(2, "value"),
+		},
+		fmt("_G.{} = {}", {
+			i(1, "name"),
+			i(2, "value"),
+		}),
+		fmt("{} = {}", {
+			i(1, "NAME"),
+			i(2, "value"),
+		}),
+	})
+)
+cs(
+	"req",
+	c(1, {
+		fmt('local {} = require("{}")', {
+			f(function(values)
+				local value = values[1][1]
+				local path = vim.split(value, "%.")
+				return path[#path] or ""
+			end, { 1 }),
+			r(1, "module_name"),
+		}),
+		fmt('local {} = require("{}")', {
+			f(function(values)
+				local value = values[1][1]
+				local path = vim.split(value, "%.")
+				return table.concat(path, "_")
+			end, { 1 }),
+			r(1, "module_name"),
+		}),
+	}),
+	{
+		stored = {
+			module_name = i(nil, "module_name"),
+		},
+	}
+)
+cs(
+	"fun",
+	c(1, {
+		fmt(
+			[[
+          function {}()
+            {}
+          end
+        ]],
+			{
+				r(1, "func_name"),
+				i(2),
+			}
+		),
+		fmt(
+			[[
+          local {} = function()
+            {}
+          end
+        ]],
+			{
+				r(1, "func_name"), -- here func_name is not placeholder, but identifier
+				i(2),
+			}
+		),
+	}),
+	{
+		stored = {
+			func_name = i(nil, "node"),
+		},
+	}
 )
 
 -- End Refactoring --
