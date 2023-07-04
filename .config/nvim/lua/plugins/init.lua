@@ -15,9 +15,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "z"
-
 if PACKMAN_BOOTSTRAP then
 	require("lazy").sync()
 end
@@ -336,13 +333,13 @@ local plugins = {
 		"Olical/conjure",
 		ft = conjure_filetypes,
 		keys = {
-			{ "<C-c>b", ":ConjureEvalBuf<cr>", mode = { "n" } },
-			{ "<C-c>p", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
-			{ "<C-c>P", ":ConjureEvalRootForm<cr>", mode = { "n" } },
-			{ "<C-c>c", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
-			{ "<C-c>C", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
-			{ "<C-c>v", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
-			{ "<C-c>w", ":ConjureEvalWord<cr>", mode = { "n" } },
+			{ ",cb", ":ConjureEvalBuf<cr>", mode = { "n" } },
+			{ ",cp", ":ConjureEvalCurrentForm<cr>", mode = { "n" } },
+			{ ",cr", ":ConjureEvalRootForm<cr>", mode = { "n" } },
+			{ ",cc", ":ConjureEvalCommentCurrentForm<cr>", mode = { "n" } },
+			{ ",cC", ":ConjureEvalCommentRootForm<cr>", mode = { "n" } },
+			{ ",cv", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" } },
+			{ ",cw", ":ConjureEvalWord<cr>", mode = { "n" } },
 		},
 	},
 	"tpope/vim-dispatch",
@@ -352,10 +349,10 @@ local plugins = {
 		"jpalardy/vim-slime",
 		ft = repl_filetypes,
 		keys = {
-			{ "<leader>sb", ":%SlimeSend<cr>", mode = { "n" } },
-			{ "<leader>sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
-			{ "<leader>sv", ":'<,'>SlimeSend<cr>", mode = { "v" } },
-			{ "<leader>sl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
+			{ ",sb", ":%SlimeSend<cr>", mode = { "n" } },
+			{ ",sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" } },
+			{ ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" } },
+			{ ",sl", ":SlimeSendCurrentLine<cr>", mode = { "n" } },
 		},
 		config = function()
 			vim.cmd([[let g:slime_target = "tmux"]])
@@ -447,13 +444,16 @@ local plugins = {
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 300
+			vim.o.timeoutlen = 500
 		end,
 		opts = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 		},
+		config = function()
+			require("plugins.which-key")
+		end,
 	},
 	{
 		"norcalli/nvim-colorizer.lua",

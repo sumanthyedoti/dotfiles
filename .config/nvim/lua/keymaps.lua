@@ -1,28 +1,12 @@
-OPTS = { noremap = true, silent = true } -- { nowait = true }
-local term_OPTS = { silent = true }
+local utils = require("utils")
 -- Shorten function names
-local function map(mode, key, action, opts)
-	local all_opts = {}
-	if opts then
-		for k, v in pairs(OPTS) do
-			all_opts[k] = v
-		end
-		for k, v in pairs(opts) do
-			all_opts[k] = v
-		end
-	else
-		all_opts = OPTS
-	end
-	local keymap = vim.api.nvim_set_keymap
-	keymap(mode, key, action, all_opts) -- next pane
-end
+local map = utils.map_key
 local is_mac = vim.fn.has("macunix")
 
 --Remap space as leader key
 map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
-vim.g.maplocalleader = "z"
--- vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 -- Modes
 --
@@ -51,9 +35,10 @@ map("n", "<S-TAB>", "<cmd>bprevious<CR>")
 map("n", "<TAB>", "<cmd>bnext<CR>")
 
 -- new line
-map("n", "<leader>o ", "mzo<ESC>`z")
-map("n", "<leader>oo", "mzO<ESC>`z", { desc = "Add line above" })
-map("n", "<leader>cl", "0d$", { desc = "Add line below" })
+map("n", "<leader>oo", "mzo<ESC>`z", { desc = "Add line below" })
+map("n", "<leader>oO", "mzO<ESC>`z", { desc = "Add line above" })
+map("n", "<leader>cl", "0d$", { desc = "Clear current line" })
+map("n", "<leader><C-g>", ":file<cr>", { desc = "Current file name" })
 
 -- execute previous command
 map("n", "<leader>P", ":<Up><CR>")
@@ -65,8 +50,7 @@ map("n", "<leader>;", "A;<esc>")
 map("n", "Z", ':echom "--> :w :q <-- "<CR>')
 map("n", "ZZ", ':echom "--> :w :q <-- "<CR>')
 
--- undo all changes in the buffer
-map("n", "<leader>U", "<cmd>edit!<CR>")
+map("n", "<leader>U", "<cmd>edit!<CR>", { desc = "undo all changes in the buffer" })
 
 -- reg menu
 map("n", "<leader>R", "<cmd>:reg<CR>")
@@ -139,8 +123,8 @@ map("t", "<C-l>", "<C-\\><C-N><C-w>l")
 --map("v", "<leader>s ", '"xymx:%s/<C-r>x/<C-r>0/g<cr>`x')
 
 -- Miscellaneous
-map("n", "<leader>so", "<cmd>source %<CR>") -- source current file
-map("n", "<leader>Y", "<cmd>%y<CR>") -- yank current file
+map("n", "<leader>so", "<cmd>source %<CR>", { desc = "source current file" })
+map("n", "<leader>Y", "<cmd>%y<CR>", { desc = "yank current file" })
 map("n", "<leader>rn", "<cmd>set number<cr><cmd>set relativenumber!<CR>") -- toggle relativenumber
 map("n", "<leader>wr", "<cmd>set wrap!<CR>") -- toggle relativenumber
 

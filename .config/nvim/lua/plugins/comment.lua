@@ -11,15 +11,15 @@ comment.setup({
 	ignore = nil,
 	---LHS of toggle mappings in NORMAL mode
 	toggler = {
-		line = "<leader>c ",
-		block = "<leader>b ",
+		line = "<leader>cc",
+		block = "<leader>CC",
 	},
 	---LHS of operator-pending mappings in NORMAL and VISUAL mode
 	opleader = {
 		---Line-comment keymap
 		line = "<leader>c",
 		---Block-comment keymap
-		block = "<leader>b",
+		block = "<leader>C",
 	},
 	---LHS of extra mappings
 	extra = {

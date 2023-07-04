@@ -1,3 +1,4 @@
+local wk = require("which-key")
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
 	return
@@ -53,74 +54,98 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	border = "rounded",
 })
 
-local keymap = vim.keymap
 -- local keymap = vim.api.nvim_set_keymap
 
 require("lsp.saga")
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
+local on_attach = function(client, bufnum)
 	-- keybind options
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-	-- HERE: LSP keybinds
-	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 	-- keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- see definition and make edits in window
-	keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>") -- see definition and make edits in window
-	keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>") -- see definition and make edits in window
-	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+	wk.register({
+		g = {
+			name = "Goto",
+			d = { "<cmd>Lspsaga goto_definition<CR>", "Goto type definition" },
+			t = { "<cmd>Lspsaga goto_type_definition<CR>", "Goto definition" },
+		},
+	}, { prefix = "" })
+
+	wk.register({
+		l = {
+			name = "LSP",
+			a = { "<cmd>Lspsaga code_action<CR>", "Code actions" },
+			r = { "<cmd>Lspsaga rename<CR>", "Rename" },
+			-- keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+			f = { "<cmd>Lspsaga lsp_finder<CR>", "LSP definition and references" },
+			o = { "<cmd>Lspsaga outline<CR>", "Outline ↔" },
+			-- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
 
 	--[[ Documentation and signature help ]]
 	-- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	wk.register({
+		lk = {
+			name = "LSP",
+			h = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
+			H = { "<cmd>Lspsaga hover_doc ++keep<CR>", "Hover Doc static ↔" },
+			s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
 
-	keymap.set("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>", opts) -- see definition and make edits in window
+	wk.register({
+		lg = {
+			name = "LSP goto",
+			-- D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
 
-	-- keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-	-- keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>")
-	keymap.set({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
+	wk.register({
+		lp = {
+			name = "LSP Peek",
+			d = { "<cmd>Lspsaga peek_definition<CR>", "Peek definition" },
+			c = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type definition" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
 
 	--[[ Diagnostics ]]
 	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
+	-- keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
-	keymap.set("n", "<leader>dl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>dc", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	keymap.set("n", "<leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts) -- show diagnostics for buffer
-	keymap.set("n", "<leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show diagnostics for workspace
 	-- keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
 	-- keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
-	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	---- Diagnostic jump with filters such as only jumping to an error
-	keymap.set("n", "[e", function()
-		require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-	end, opts)
-	keymap.set("n", "]e", function()
-		require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-	end, opts)
+	wk.register({
+		ld = {
+			name = "LSP Diagnostics",
+			l = { "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", "Line diagnostics" },
+			c = { "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", "Cursor diagnostics" },
+			f = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diafnostics" },
+			b = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Buffer diagnostics" },
+			w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace diagnostics" },
+			p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Previous diagnostic" },
+			n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
 
-	keymap.set("n", "<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-
-	keymap.set("n", "<leader>ol", "<cmd>Lspsaga outline<CR>", opts) -- toggle outline
-
-	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-
-	-- Call hierarchy
-	keymap.set("n", "<leader>Ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
-	keymap.set("n", "<leader>CO", "<cmd>Lspsaga outgoing_calls<CR>")
-
-	-- typescript specific keymaps (e.g. rename file and update imports)
+	wk.register({
+		lc = {
+			name = "LSP Calls hierarchy",
+			i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming calls" },
+			o = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing calls" },
+		},
+	}, { prefix = "<leader>", buffer = bufnum })
+	-- typescript specific keymaps
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
-		keymap.set("n", "<leader>ltf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
-		keymap.set("n", "<leader>lto", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ltx", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
-		keymap.set("n", "<leader>lti", ":TypescriptAddMissingImports<CR>", opts)
-		keymap.set("n", "<leader>lta", ":TypescriptFixAll<CR>", opts)
+		wk.register({
+			lt = {
+				name = "TypeScript", -- optional group name
+				f = { ":TypescriptRenameFile<CR>", "Rename file" },
+				o = { ":TypescriptOrganizeImports<CR>", "Organize imports" },
+				x = { ":TypescriptRemoveUnused<CR>", "Remove unused" },
+				i = { ":TypescriptAddMissingImports<CR>", "Add missing imports" },
+				a = { ":TypescriptFixAll<CR>", "Fix all" },
+			},
+		}, { prefix = "<leader>", buffer = bufnum })
 	end
 
 	-- == cursor hover

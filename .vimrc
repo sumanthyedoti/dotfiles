@@ -205,7 +205,6 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-fugitive'
 Plug 'APZelos/blamer.nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -220,19 +219,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'preservim/nerdcommenter'
 Plug 'machakann/vim-highlightedyank'
-Plug 'vim-test/vim-test'
-Plug 'tpope/vim-eunuch'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'rust-lang/rust.vim'
-Plug 'rescript-lang/vim-rescript'
-Plug 'elixir-editors/vim-elixir'
 
 " Themes
 Plug 'flazz/vim-colorschemes'
@@ -243,21 +234,6 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 let g:airline_powerline_fonts = 1  " arrowed blocks in status line
-"let g:coc_global_extensions = [
-    "\ 'coc-emmet',
-    "\ 'coc-css',
-    "\ 'coc-html',
-    "\ 'coc-json',
-    "\ 'coc-yaml',
-    "\ 'coc-prettier',
-    "\ 'coc-tsserver',
-    "\ 'coc-snippets',
-    "\ 'coc-pairs',
-    "\ 'coc-elixir',
-    "\ 'coc-tailwindcss',
-    "\ 'coc-styled-components',
-    "\]
-
 nnoremap <leader>ut :UndotreeToggle<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <S-b> :Buffers<CR>
@@ -274,18 +250,6 @@ nnoremap <Leader>R
   \ :cfdo %s/<C-r>s//g \| update
   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-nmap <leader>gd <Plug>(coc-defination)
-nmap <leader>gr <Plug>(coc-references)
-
-"" CoC Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-"" Coc Enable Disbale
-nnoremap <leader>C :CocEnable<CR>
-nnoremap <leader>D :CocDisable<CR>
-
-"" Git Blamer
 let g:blamer_delay = 500
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_show_in_visual_modes = 0
@@ -319,21 +283,12 @@ autocmd FileType nerdtree setlocal relativenumber
 
 let g:highlightedyank_highlight_duration = 350
 
-" vim-test mappings
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-v> :TestVisit<CR>
-" make test commands execute using dispatch.vim
-let test#strategy = "dispatch"
-
 " rescript
 """""""""""
-autocmd FileType rescript nnoremap <silent> <buffer> <leader>rf :RescriptFormat<CR>
-autocmd FileType rescript nnoremap <silent> <buffer> <leader>rt :RescriptTypeHint<CR>
-autocmd FileType rescript nnoremap <silent> <buffer> <leader>rb :RescriptBuild<CR>
-autocmd FileType rescript nnoremap <silent> <buffer> gd :RescriptJumpToDefinition<CR>
+" autocmd FileType rescript nnoremap <silent> <buffer> <leader>rf :RescriptFormat<CR>
+" autocmd FileType rescript nnoremap <silent> <buffer> <leader>rt :RescriptTypeHint<CR>
+" autocmd FileType rescript nnoremap <silent> <buffer> <leader>rb :RescriptBuild<CR>
+" autocmd FileType rescript nnoremap <silent> <buffer> gd :RescriptJumpToDefinition<CR>
 " Hooking up the ReScript autocomplete function
 set omnifunc=rescript#Complete
 " " When preview is enabled, omnicomplete will display additional information for a selected item

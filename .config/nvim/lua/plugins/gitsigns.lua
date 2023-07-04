@@ -90,7 +90,7 @@ gitsigns.setup({
 		map("n", "<leader>hb", function()
 			gs.blame_line({ full = true })
 		end)
-		map("n", "<leader>gb", gs.toggle_current_line_blame)
+		map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Git blame ↔" })
 		map("n", "<leader>hd", gs.diffthis)
 		map("n", "<leader>hD", function()
 			gs.diffthis("~")
