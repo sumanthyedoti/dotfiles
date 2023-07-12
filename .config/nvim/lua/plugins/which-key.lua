@@ -22,3 +22,9 @@ wk.register({
 		name = "Conjure",
 	},
 }, { prefix = "," })
+
+wk.register({
+	a = {
+		name = "AI",
+	},
+}, { prefix = "<leader>" })

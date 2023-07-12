@@ -110,7 +110,7 @@ local on_attach = function(client, bufnum)
 
 	--[[ Diagnostics ]]
 	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
-	-- keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	-- keymap.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
 	-- keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
 	-- keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')

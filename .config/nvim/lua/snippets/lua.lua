@@ -261,6 +261,22 @@ cs(
 	}
 )
 
+cs(
+	"pcall",
+	fmt(
+		[[
+  local cmp_status_ok, {} = pcall(require, "{}")
+  if not cmp_status_ok then
+    return
+  end
+]],
+		{
+			rep(1),
+			i(1, "module_name"),
+		}
+	)
+)
+
 -- End Refactoring --
 
 return snippets, autosnippets

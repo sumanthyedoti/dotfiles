@@ -456,6 +456,22 @@ local plugins = {
 		end,
 	},
 	{
+		"jackMort/ChatGPT.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>pc", ":ChatGPT<cr>", mode = { "n", "v" } },
+			{ "<leader>pa", ":ChatGPTActAs<cr>", mode = { "n", "v" } },
+			{ "<leader>ac", ":ChatGPTCompleteCode<cr>", mode = { "n", "v" } },
+			{ "<leader>ai", ":ChatGPTEditWithInstructions<cr>", mode = { "n", "v" } },
+		},
+		config = function()
+			require("plugins.chatgpt")
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
+	{
 		"norcalli/nvim-colorizer.lua",
 		event = "BufEnter",
 		config = function()

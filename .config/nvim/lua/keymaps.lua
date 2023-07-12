@@ -24,7 +24,7 @@ if is_mac then
 else
 	map("n", "<A-o>", "<C-w><C-w>") -- next pane
 end
-map("n", "<leader>a", "@q") -- macro @q
+map("n", "<leader>q", "@q") -- macro @q
 map("n", "<leader> ", "<cmd>noh<CR>") -- clear search hightlight with <space><space>
 
 -- NVim-tree
