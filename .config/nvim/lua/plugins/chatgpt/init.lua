@@ -38,6 +38,17 @@ chatgpt.setup({
 			toggle_system_role_open = "<C-s>",
 		},
 	},
+	popup_layout = {
+		default = "center",
+		center = {
+			width = "80%",
+			height = "80%",
+		},
+		right = {
+			width = "40%",
+			width_settings_open = "50%",
+		},
+	},
 	openai_params = {
 		model = "gpt-3.5-turbo",
 		frequency_penalty = 0,

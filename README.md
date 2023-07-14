@@ -85,6 +85,7 @@
 - ffmpeg
 
 ### CLI tools
+
 - starship
 - ripgrep
 - zoxide
@@ -102,5 +103,7 @@
 - tree-sitter `npm install -g tree-sitter-cli`
 - rsync
 - password store (pass)
+  - gpg
+  - pinentry
 - tldr
 - cht.sh
