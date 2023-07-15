@@ -49,17 +49,17 @@
 - alacritty
 - nvim
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
-  - install LSPs, formatters, linters
+  - install LSPs
     - stylua,
     - typescript, typescript-language-server
-    - eslint
-    - Prettier
     - vscode-languageserver
     - golangci-lint
     - rust-analyzer
+    - pyright
     - elixir-ls
     - [clojure-lsp](https://clojure-lsp.io/installation/)
-      - joker, clj-kondo, cljstyle
+  - install DAPs
+    - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
   - `prefix + I` to fetch the plugins

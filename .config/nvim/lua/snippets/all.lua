@@ -28,7 +28,7 @@ cs(
 		end),
 	})
 )
-cs("fn", t("$TM_FILENAME"))
+
 cs(
 	"loremp",
 	c(1, {

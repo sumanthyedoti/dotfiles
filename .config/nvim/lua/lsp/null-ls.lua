@@ -35,9 +35,14 @@ null_ls.setup({
 		formatting.golines,
 		diagnostics.golangci_lint,
 
-    -- ==clojure==
-    formatting.cljstyle,
-    diagnostics.clj_kondo,
+		-- = python =
+		diagnostics.mypy,
+		diagnostics.ruff,
+		formatting.black,
+
+		-- ==clojure==
+		formatting.cljstyle,
+		diagnostics.clj_kondo,
 
 		-- = elixir =
 		formatting.mix,

@@ -20,19 +20,23 @@ end
 --]]
 
 local servers = { -- HEREL: LSP servers
+	"marksman",
 	"lua_ls",
 	"clangd",
-  "clojure_lsp",
+	"clojure_lsp",
 	"rust_analyzer",
 	-- "gopls",
 	-- "golangci_lint_ls",
+	--[[ Python ]]
+	"pyright",
 	"elixirls",
+	-- "debugpy",
+	--[[ JS, HTML, CSS ]]
 	"jsonls",
 	"tsserver",
 	"html",
 	"cssls",
 	"tailwindcss",
-	"marksman",
 }
 
 local settings = {

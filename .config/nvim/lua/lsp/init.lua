@@ -79,51 +79,31 @@ local on_attach = function(client, bufnum)
 			f = { "<cmd>Lspsaga lsp_finder<CR>", "LSP definition and references" },
 			o = { "<cmd>Lspsaga outline<CR>", "Outline ↔" },
 			-- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
-		},
-	}, { prefix = "<leader>", buffer = bufnum })
+			-- D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 
-	--[[ Documentation and signature help ]]
-	-- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	wk.register({
-		lk = {
-			name = "LSP",
+			--[[ Diagnostics ]]
+			-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
+			-- keymap.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+			-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
+			-- keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
+			-- keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
+			j = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
+			k = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
+			l = { "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", "Line Diagnostics" },
+			c = { "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", "Cursor diagnostics" },
+			-- f = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diafnostics" },
+			b = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Buffer Diagnostics" },
+			w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace Diagnostics" },
+
+			--[[ Help ]]
+			-- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 			h = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 			H = { "<cmd>Lspsaga hover_doc ++keep<CR>", "Hover Doc static ↔" },
 			s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
-		},
-	}, { prefix = "<leader>", buffer = bufnum })
 
-	wk.register({
-		lg = {
-			name = "LSP goto",
-			-- D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
-		},
-	}, { prefix = "<leader>", buffer = bufnum })
-
-	wk.register({
-		lp = {
-			name = "LSP Peek",
-			d = { "<cmd>Lspsaga peek_definition<CR>", "Peek definition" },
-			c = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type definition" },
-		},
-	}, { prefix = "<leader>", buffer = bufnum })
-
-	--[[ Diagnostics ]]
-	-- keymap.set( "n", "dl", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', opts)
-	-- keymap.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	-- keymap.set( "n", "dc", '<cmd>lua vim.lsp.diagnostic.show_cursor_diagnostics({ border = "rounded" })<CR>', opts)
-	-- keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
-	-- keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
-	wk.register({
-		ld = {
-			name = "LSP Diagnostics",
-			l = { "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>", "Line diagnostics" },
-			c = { "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", "Cursor diagnostics" },
-			f = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diafnostics" },
-			b = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Buffer diagnostics" },
-			w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace diagnostics" },
-			p = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Previous diagnostic" },
-			n = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic" },
+			--[[ Peek ]]
+			p = { "<cmd>Lspsaga peek_definition<CR>", "Peek definition" },
+			t = { "<cmd>Lspsaga peek_type_definition<CR>", "Peek type definition" },
 		},
 	}, { prefix = "<leader>", buffer = bufnum })
 
@@ -230,6 +210,9 @@ lspconfig["lua_ls"].setup({
 					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
+			completion = {
+				callSnippet = "Replace",
+			},
 		},
 	},
 })
@@ -271,6 +254,13 @@ lspconfig.gopls.setup({
 			staticcheck = true,
 		},
 	},
+})
+
+lspconfig["pyright"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
 })
 
 lspconfig["clangd"].setup({

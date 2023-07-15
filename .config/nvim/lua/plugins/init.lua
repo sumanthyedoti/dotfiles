@@ -39,7 +39,6 @@ end
   Wansmer/treesj
   dail.nvim
   doom.nvim
-  nvim-dap (mason)
   anuvyklack/windows.nvim
   pretty-fold.nvim
   fold-preview.nvim
@@ -243,6 +242,17 @@ local plugins = {
 	{ "mattn/emmet-vim", ft = { "html", "css" } },
 	{ "mg979/vim-visual-multi" },
 
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("plugins.neodev")
+		end,
+	},
+
+	--[[ Debugging ]]
+	-- use("mfussenegger/nvim-dap")
+	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "" }, config = "require 'plugins.dapui'" })
+
 	--[[ LSP ]]
 	{ "neovim/nvim-lspconfig", event = "BufEnter" }, -- config lsp servers
 	{ "glepnir/lspsaga.nvim", branch = "main", event = "BufEnter" },
@@ -270,6 +280,34 @@ local plugins = {
 			require("plugins.rust-tools")
 		end,
 	},
+
+	--[[ DAP ]]
+	{
+		"mfussenegger/nvim-dap",
+		keys = {
+			{ "<leader>db", ":DapToggleBreakpoint<cr>", mode = { "n" } },
+		},
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = "mfussenegger/nvim-dap",
+		config = function()
+			require("plugins.dapui")
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = "python",
+		keys = {
+			{ "<localleader>dr", ":lua require('dap-python').test_method()<cr>", mode = { "n" } },
+		},
+		dependencies = { "nvim-dap", "rcarriga/nvim-dap-ui" },
+		config = function(_, opts)
+			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python "
+			require("dap-python").setup(path)
+		end,
+	},
+
 	{
 		"ThePrimeagen/harpoon",
 		config = function()
@@ -323,10 +361,6 @@ local plugins = {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 	}, --snippet engine
-
-	--[[ Debugging ]]
-	-- use("mfussenegger/nvim-dap")
-	-- use({ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" }, config = "require 'plugins.dapui'" })
 
 	{
 		-- 🌐  https://github.com/Olical/conjure/wiki/
