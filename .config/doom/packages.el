@@ -59,3 +59,4 @@
 ;;; integration with a Clojure REPL
 (package! cider)
 (package! inf-elixir)
+(package! org-tree-slide)

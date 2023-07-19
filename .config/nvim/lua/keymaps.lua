@@ -55,8 +55,10 @@ map("n", "<leader>U", "<cmd>edit!<CR>", { desc = "undo all changes in the buffer
 -- reg menu
 map("n", "<leader>R", "<cmd>:reg<CR>")
 
--- splits windows
+-- windows
 map("n", "<C-w>-", "<cmd>only<CR>") -- kill all remaining splits
+map("n", "<leader>w2", "<C-w><C-w><C-w><C-w>") -- kill all remaining splits
+map("n", "<leader>w1", "<C-w><C-w>") -- kill all remaining splits
 
 -- window.split navigation
 map("n", "<leader>jh", "<C-w>h<CR>")
@@ -125,8 +127,6 @@ map("t", "<C-l>", "<C-\\><C-N><C-w>l")
 -- Miscellaneous
 map("n", "<leader>so", "<cmd>source %<CR>", { desc = "source current file" })
 map("n", "<leader>Y", "<cmd>%y<CR>", { desc = "yank current file" })
-map("n", "<leader>rn", "<cmd>set number<cr><cmd>set relativenumber!<CR>") -- toggle relativenumber
-map("n", "<leader>wr", "<cmd>set wrap!<CR>") -- toggle relativenumber
 
 -- == PLUGINS == --
 -- ## icon-picker

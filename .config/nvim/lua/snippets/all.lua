@@ -29,6 +29,8 @@ cs(
 	})
 )
 
+cs("hw", t("Hello, World!"))
+
 cs(
 	"loremp",
 	c(1, {

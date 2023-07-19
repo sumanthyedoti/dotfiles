@@ -143,7 +143,7 @@ local plugins = {
 	},
 	{
 		"AndrewRadev/switch.vim",
-		vent = "BufEnter",
+		event = "BufEnter",
 		config = function()
 			require("plugins.switch")
 		end,
@@ -200,8 +200,8 @@ local plugins = {
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ "<C-y>", ":ToggleTerm<CR>", mode = { "n", "t" } },
-			{ "<leader>tt", ":Lspsaga term_toggle<CR>", mode = { "n", "t" } },
+			{ "<leader>tt", ":ToggleTerm<CR>", mode = { "n", "t" } },
+			-- { "<leader>tt", ":Lspsaga term_toggle<CR>", mode = { "n", "t" } },
 			{ "<leader>tg", ":lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>th", ":lua _HTOP_TOGGLE()<CR>", mode = { "n", "t" } },
 			{ "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
@@ -239,7 +239,10 @@ local plugins = {
 		end,
 	},
 
-	{ "mattn/emmet-vim", ft = { "html", "css" } },
+	{
+		"mattn/emmet-vim",
+		ft = { "html", "css" },
+	},
 	{ "mg979/vim-visual-multi" },
 
 	{

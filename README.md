@@ -51,8 +51,8 @@
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
   - install LSPs
     - stylua,
-    - typescript, typescript-language-server
-    - vscode-languageserver
+    - typescript, typescript-language-server,
+    - vscode-html-languageserver, vscode-css-languageserver
     - golangci-lint
     - rust-analyzer
     - pyright

@@ -52,3 +52,29 @@ wk.register({
 		name = "AI",
 	},
 }, { prefix = "<leader>" })
+
+wk.register({
+	y = {
+		name = "Terminal",
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	t = {
+		name = "Terminal",
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	T = {
+		name = "Toggle",
+		w = { "<cmd>set wrap!<CR>", "Line Wrap ↔" },
+		r = { "<cmd>set number<cr><cmd>set relativenumber!<CR>", "Relative Number ↔" },
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	w = {
+		name = "Windfow",
+	},
+}, { prefix = "<leader>" })

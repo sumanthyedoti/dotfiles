@@ -136,7 +136,7 @@
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("x" . "src latex"))
   (add-to-list 'org-structure-template-alist '("js" . "src js"))
@@ -191,6 +191,28 @@
       :desc "sp-backward-barf-sexp"
       "b b" 'sp-backward-barf-sexp)
 
+(defun ots/presentation-setup ()
+  (hide-mode-line-mode 1)
+  (setq text-scale-mode-amount 2.4)
+  (text-scale-mode 1))
+(defun ots/presentation-end ()
+  (hide-mode-line-mode 0)
+  (text-scale-mode 0))
+(use-package! org-tree-slide
+  :hook ((org-tree-slide-play . ots/presentation-setup)
+         (org-tree-slide-stop . ots/presentation-end))
+  :config
+  (setq org-image-actual-width nil)
+  (setq org-tree-slide-slide-in-effect t)
+  (setq org-tree-slide-activate-message "Presentation started!")
+  (setq org-tree-slide-deactivate-message "Presentation finished!")
+  (setq org-tree-slide-header nil)
+  (setq org-tree-slide-slide-in-blank-lines 5)
+  (setq org-tree-slide-heading-emphasis t)
+  (setq org-tree-slide-slide-in-waiting 0.02)
+  (setq org-tree-slide-breadcrumbs " > ")
+  (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
+  (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree))
 
 ;;;;;
 ;; Elixir

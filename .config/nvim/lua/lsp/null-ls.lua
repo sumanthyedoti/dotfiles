@@ -20,10 +20,10 @@ null_ls.setup({
 	sources = { -- HERE: list
 		-- = rust =
 		formatting.rustfmt,
+		formatting.stylua,
 		-- = JS/TS =
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		formatting.prettierd,
-		formatting.stylua,
 		diagnostics.eslint_d,
 
 		-- = c/cpp =
