@@ -36,16 +36,16 @@ Hydra({
 Hydra({
 	name = "Change / Resize Window",
 	mode = { "n" },
-	body = "<C-w>",
+	body = "<leader>W",
 	config = {
 		-- color = "pink",
 	},
 	heads = {
 		-- move between windows
-		{ "<left>", "<C-w>h" },
-		{ "<down>", "<C-w>j" },
-		{ "<up>", "<C-w>k" },
-		{ "<right>", "<C-w>l" },
+		{ "<left>", "<C-w>1>" },
+		{ "<right>", "<C-w>1<" },
+		{ "<up>", "<C-w>1+" },
+		{ "<down>", "<C-w>1-" },
 
 		-- split
 		{ "s", ":split<CR>" },

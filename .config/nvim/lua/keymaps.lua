@@ -56,7 +56,15 @@ map("n", "<leader>U", "<cmd>edit!<CR>", { desc = "undo all changes in the buffer
 map("n", "<leader>R", "<cmd>:reg<CR>")
 
 -- windows
-map("n", "<C-w>-", "<cmd>only<CR>") -- kill all remaining splits
+map("n", "<C-w>_", "<cmd>only<CR>") -- kill all remaining splits
+map("n", "<C-w>-", "<cmd>vertical resize -4<CR>") -- decrease width
+map("n", "<C-w>=", "<cmd>vertical resize +4<CR>") -- increase width
+map("n", "<C-w>.", "<cmd>resize -4<CR>") -- decrease height
+map("n", "<C-w>,", "<cmd>resize +4<CR>") -- increase height
+map("n", "<C-h>", "<cmd>vertical resize -1<CR>") -- decrease width
+map("n", "<C-l>", "<cmd>vertical resize +1<CR>") -- increase width
+map("n", "<C-j>", "<cmd>resize -1<CR>") -- decrease height
+map("n", "<C-k>", "<cmd>resize +1<CR>") -- increase height
 map("n", "<leader>w2", "<C-w><C-w><C-w><C-w>") -- kill all remaining splits
 map("n", "<leader>w1", "<C-w><C-w>") -- kill all remaining splits
 
@@ -105,10 +113,12 @@ map("v", "<leader> ", "<ESC>") -- clear search hightlight with <space><space>
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 -- Move text up and down
-map("n", "<C-j>", ":m '>+1<CR>gv=gv")
-map("n", "<C-k>", ":m '<-2<CR>gv=gv")
-map("v", "<C-j>", ":m '>+1<CR>gv=gv")
-map("v", "<C-k>", ":m '<-2<CR>gv=gv")
+map("n", "<a-j>", ":m .+1<CR>==")
+map("n", "<a-k>", ":m .-2<CR>==")
+map("i", "<a-j>", "<Esc>:m .+1<CR>==gi")
+map("i", "<a-k>", "<Esc>:m .-2<CR>==gi")
+map("v", "<a-j>", ":m '>+1<CR>gv=gv")
+map("v", "<a-k>", ":m '<-2<CR>gv=gv")
 -- hightlight and paste, without copying
 map("v", "p", '"_dP')
 
@@ -127,6 +137,20 @@ map("t", "<C-l>", "<C-\\><C-N><C-w>l")
 -- Miscellaneous
 map("n", "<leader>so", "<cmd>source %<CR>", { desc = "source current file" })
 map("n", "<leader>Y", "<cmd>%y<CR>", { desc = "yank current file" })
+
+-- numerical operations
+map(
+	"n",
+	"<localleader>a",
+	"<cmd>s/-\\?\\d\\+/\\=submatch(0) + 1/g<CR>:noh<Cr>",
+	{ desc = "increase numbers in the line by 1" }
+)
+map(
+	"n",
+	"<localleader>x",
+	"<cmd>s/-\\?\\d\\+/\\=submatch(0) - 1/g<CR>:noh<Cr>",
+	{ desc = "descrease numbers in the line by 1" }
+)
 
 -- == PLUGINS == --
 -- ## icon-picker
