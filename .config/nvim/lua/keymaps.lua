@@ -27,8 +27,13 @@ end
 map("n", "<leader>q", "@q") -- macro @q
 map("n", "<leader> ", "<cmd>noh<CR>") -- clear search hightlight with <space><space>
 
--- NVim-tree
-map("n", "<leader>e ", ":NvimTreeToggle<cr>")
+--[[ Find ]]
+map("n", "<leader>fe", ":NvimTreeToggle<cr>", { desc = "File Explorer" })
+-- ## Telescope
+map("n", "<leader>f ", "<cmd>Telescope find_files<cr>")
+map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>")
+map("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- buffers (tabs) list
 
 -- Navigate buffers
 map("n", "<S-TAB>", "<cmd>bprevious<CR>")
@@ -53,7 +58,9 @@ map("n", "ZZ", ':echom "--> :w :q <-- "<CR>')
 map("n", "<leader>U", "<cmd>edit!<CR>", { desc = "undo all changes in the buffer" })
 
 -- reg menu
-map("n", "<leader>R", "<cmd>:reg<CR>")
+map("n", "<leader>or", "<cmd>reg<CR>", { desc = "Registers" })
+-- reload nvim conig
+map("n", "<leader>R", "<cmd>luafile ~/.config/nvim/init.lua<CR>", { desc = "Reload config" })
 
 -- windows
 map("n", "<C-w>_", "<cmd>only<CR>") -- kill all remaining splits
@@ -160,8 +167,3 @@ map("n", "<Leader>iy", "<cmd>IconPickerYank<cr>") --> Yank the selected icon int
 map("n", "<Leader>tc", "<cmd>tabclose<cr>")
 -- package manager
 map("n", "<leader>pp", ":Lazy sync<CR>")
--- ## Telescope
-map("n", "<leader>f ", "<cmd>Telescope find_files<cr>")
-map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>")
-map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>")
-map("n", "<leader>bs", "<cmd>Telescope buffers<cr>") -- buffers (tabs) list

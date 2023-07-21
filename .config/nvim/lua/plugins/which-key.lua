@@ -21,6 +21,13 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register({
+	f = {
+		name = "Find",
+		-- keys are defined in `plugins/init.lua`
+	},
+}, { prefix = "," })
+
+wk.register({
 	d = {
 		name = "DAP",
 		-- keys are defined in `plugins/init.lua`
