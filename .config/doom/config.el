@@ -121,7 +121,7 @@
      ;(ocaml . t)
      ;(haskell . t)
      ;(rust . t)
-     ;(elixir . t)
+     ;(elixir . t) ; ⚠
      (java . t)
      (C . t)
      ;(cpp . t)

@@ -60,7 +60,7 @@ cs("f_isObjectEmpty", {
 	t("}"),
 })
 cs("f_randInRange", {
-	t({ "function f_randomNumberInRange(min, max) {" }),
+	t({ "function randomNumberInRange(min, max) {" }),
 	t({ "  min = Math.ceil(min)", "" }),
 	t({ "  max = Math.floor(max)", "" }),
 	t({ "  return Math.floor(Math.random() * (max - min + 1)) + min", "" }),
@@ -79,6 +79,11 @@ cs("f_uniqueValues", {
 	t("}"),
 })
 cs("f_client_scrollToTop", t("const scrollToTop = () => window.scrollTo(0, 0)"))
+cs("f_randomizeArray", {
+	t({ "function randomizeArray(arr) {" }),
+	t({ "  return arr.sort(() => 0.5 - Math.random())", "" }),
+	t("}"),
+})
 
 -- Testting
 cs(
