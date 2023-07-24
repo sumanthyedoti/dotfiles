@@ -49,7 +49,7 @@
 - alacritty
 - nvim
   - [lua-language-server](https://github.com/sumneko/lua-language-server/wiki/Getting-Started)
-  - install LSPs
+  - LSPs
     - stylua,
     - typescript, typescript-language-server,
     - vscode-html-languageserver, vscode-css-languageserver
@@ -58,7 +58,7 @@
     - pyright
     - elixir-ls
     - [clojure-lsp](https://clojure-lsp.io/installation/)
-  - install DAPs
+  - DAPs
     - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)

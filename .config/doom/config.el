@@ -1,4 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;;
+;;;Org packages here → ~/.emacs.d/.local/straight/build-29.0.60/org/
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -177,7 +179,10 @@
 ;;; 'key-bindings'
 (map! :leader
       :desc "Insert right arrow"
-      "I a" (lambda () (interactive) (insert "→")))
+      "I a" (lambda () (interactive) (insert "→"))
+      "I p" (lambda () (interactive) (insert "📄"))
+      "I y" (lambda () (interactive) (insert ""))
+      "I v" (lambda () (interactive) (insert "")))
 (map! :prefix "C-c"
       :desc "sp-forward-slurp-sexp"
       "s f" 'sp-forward-slurp-sexp)

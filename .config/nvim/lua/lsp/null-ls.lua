@@ -18,33 +18,32 @@ null_ls.setup({
 	-- 🌐 https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
 	-- 🌐 https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 	sources = { -- HERE: list
-		-- = rust =
+		--[[ rust ]]
 		formatting.rustfmt,
 		formatting.stylua,
-		-- = JS/TS =
-		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-		formatting.prettierd,
+		--[[ JS/TS ]]
+		formatting.prettierd.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
 		diagnostics.eslint_d,
 
-		-- = c/cpp =
+		--[[ c/cpp ]]
 		formatting.clang_format,
 
-		-- = go =
+		--[[ go ]]
 		formatting.gofmt,
 		formatting.goimports,
 		formatting.golines,
 		diagnostics.golangci_lint,
 
-		-- = python =
+		--[[ python ]]
 		diagnostics.mypy,
 		diagnostics.ruff,
 		formatting.black,
 
-		-- ==clojure==
+		--[[ clojure ]]
 		formatting.cljstyle,
 		diagnostics.clj_kondo,
 
-		-- = elixir =
+		--[[ elixir ]]
 		formatting.mix,
 		-- diagnostics.credo,
 

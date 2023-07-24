@@ -241,7 +241,7 @@ local plugins = {
 
 	{
 		"mattn/emmet-vim",
-		ft = { "html", "css" },
+		ft = { "html", "css", "javascriptreact", "typescriptreact" },
 	},
 	{ "mg979/vim-visual-multi" },
 
@@ -275,6 +275,16 @@ local plugins = {
 			require("plugins.prettier")
 		end,
 	},
+	-- {
+	-- 	"elixir-tools/elixir-tools.nvim",
+	-- 	ft = { "elixir" },
+	-- 	config = function()
+	-- 		require("plugins.elixir-tools")
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- },
 	{ "fatih/vim-go", ft = { "go" } },
 	{
 		"simrat39/rust-tools.nvim",
@@ -349,7 +359,7 @@ local plugins = {
 			"hrsh7th/cmp-cmdline", -- cmdline completions
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua", -- for neovim Lua API
-			"hrsh7th/cmp-emoji",
+			-- "hrsh7th/cmp-emoji",
 			"onsails/lspkind.nvim",
 			"petertriho/cmp-git",
 		},

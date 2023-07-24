@@ -29,7 +29,7 @@ local servers = { -- HEREL: LSP servers
 	-- "golangci_lint_ls",
 	--[[ Python ]]
 	"pyright",
-	"elixirls",
+	"elixirls", -- elixir-tools
 	-- "debugpy",
 	--[[ JS, HTML, CSS ]]
 	"jsonls",

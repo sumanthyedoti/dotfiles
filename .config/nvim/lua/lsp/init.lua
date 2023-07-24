@@ -117,7 +117,7 @@ local on_attach = function(client, bufnum)
 	-- typescript specific keymaps
 	if client.name == "tsserver" then -- HERE: typescript LSP keymaps
 		wk.register({
-			lt = {
+			lT = {
 				name = "TypeScript", -- optional group name
 				f = { ":TypescriptRenameFile<CR>", "Rename file" },
 				o = { ":TypescriptOrganizeImports<CR>", "Organize imports" },

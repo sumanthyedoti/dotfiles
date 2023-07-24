@@ -37,14 +37,18 @@ wk.register({
 wk.register({
 	s = {
 		name = "Slime",
-		-- keys are defined in `plugins/init.lua`
 	},
 }, { prefix = "," })
 
 wk.register({
 	c = {
 		name = "Conjure",
-		-- keys are defined in `plugins/init.lua`
+	},
+}, { prefix = "," })
+
+wk.register({
+	e = {
+		name = "Elixir",
 	},
 }, { prefix = "," })
 
