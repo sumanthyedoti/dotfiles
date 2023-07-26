@@ -111,14 +111,14 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{
 			name = "nvim_lsp",
-			max_item_count = 4,
+			max_item_count = 6,
 			entry_filter = function(entry)
 				return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
 			end,
 		},
-		{ name = "nvim_lua", max_item_count = 3 },
+		{ name = "nvim_lua", max_item_count = 4 },
 		{ name = "path", keyword_length = 1, max_item_count = 6 },
-		{ name = "luasnip", max_item_count = 4 },
+		{ name = "luasnip", max_item_count = 6 },
 		{ name = "emoji", max_item_count = 6 },
 		{ name = "cmp_git" },
 	}, {

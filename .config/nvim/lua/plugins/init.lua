@@ -474,6 +474,12 @@ local plugins = {
 		},
 	},
 	{
+		"laytan/tailwind-sorter.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+		build = "cd formatter && npm i && npm run build",
+		config = true,
+	},
+	{
 		"nvim-orgmode/orgmode",
 		config = function()
 			require("plugins.orgmode")
@@ -500,15 +506,6 @@ local plugins = {
 		},
 		config = function()
 			require("plugins.which-key")
-		end,
-	},
-	{
-		"chipsenkbeil/distant.nvim",
-		branch = "v0.2",
-		config = function()
-			require("distant").setup({
-				["*"] = require("distant.settings").chip_default(),
-			})
 		end,
 	},
 	{

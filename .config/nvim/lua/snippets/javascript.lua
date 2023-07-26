@@ -16,7 +16,19 @@ local currentline = utils.currentline
 local same = utils.same
 
 local snippets, autosnippets = {}, {}
-local cs = utils.create_snippet(snippets, autosnippets)
+local javascript, react = {}, {}
+
+local create_snippet = function(table)
+	return function(trigger, nodes, opts)
+		local snippet = s(trigger, nodes, opts)
+		table.insert(table, snippet)
+	end
+end
+
+local cs = utils.create_snippet(snippets)
+local cas = utils.create_snippet(snippets)
+local cs_js = utils.create_snippet(javascript)
+local cs_react = utils.create_snippet(react)
 
 -- Start Refactoring --
 cs(
