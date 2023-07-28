@@ -14,6 +14,7 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 import XMonad.Actions.NoBorders
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
 
@@ -90,6 +91,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Resize viewed windows to the correct size
     , ((modm,               xK_r     ), refresh)
 
+
+
     -- Move focus to the next window
     -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
@@ -151,6 +154,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((0, XF86AudioLowerVolume),  spawn "amixer -D pulse sset Master 10%-")
     -- , ((0, XF86AudioMute),         spawn "amixer -D pulse sset Master toggle")
     , ((modm .|. shiftMask, xK_f), sendMessage ToggleStruts)
+
+  -- go to previous workspace
+  , ((modm,               xK_o),     toggleWS)
     ]
     ++
 
