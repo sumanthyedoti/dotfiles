@@ -7,10 +7,15 @@ vim.g.switch_custom_definitions = {
 	{ "null", "undefined" },
 	{ "true", "false" },
 	{ "True", "False" },
-	{ "t", "nil" },
 	{ "foo", "bar", "baz" },
-	{ "one", "two" },
-	{ "One", "Two" },
+	{ "absolute", "relative" },
+	{ "width", "height" },
+	{ "padding", "margin" },
+	{ "top", "bottom" },
+	{ "left", "right" },
+	{ "front", "back" },
+	{ "up", "down" },
+	{ "number", "string" },
 }
 
 vim.cmd([[
