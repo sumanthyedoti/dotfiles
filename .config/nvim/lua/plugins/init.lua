@@ -371,7 +371,7 @@ local plugins = {
 		config = function()
 			require("plugins.luasnip")
 		end,
-		-- install jsregexp (optional!).
+		dependencies = { "rafamadriz/friendly-snippets" },
 		build = "make install_jsregexp",
 	}, --snippet engine
 
