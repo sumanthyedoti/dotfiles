@@ -8,18 +8,22 @@
 --
 
 import XMonad
+import XMonad.ManageHook
 import Data.Monoid
 import System.Exit
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
+import XMonad.Util.NamedScratchpad
 import XMonad.Actions.NoBorders
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Actions.Submap
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -36,7 +40,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 2
+myBorderWidth   = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -108,9 +112,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
 
-    -- Toogle borders for the current workspace
-    -- , ((modm .|. shiftMask,  xK_b),   withFocused toggleBorder)
-
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
 
@@ -135,8 +136,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm .|. shiftMask, xK_f), sendMessage ToggleStruts)
 
     -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -153,12 +153,22 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((0, XF86AudioRaiseVolume),  spawn "amixer -D pulse sset Master 9%+")
     -- , ((0, XF86AudioLowerVolume),  spawn "amixer -D pulse sset Master 10%-")
     -- , ((0, XF86AudioMute),         spawn "amixer -D pulse sset Master toggle")
-    , ((modm .|. shiftMask, xK_f), sendMessage ToggleStruts)
 
   -- go to previous workspace
   , ((modm,               xK_o),     toggleWS)
-    ]
-    ++
+
+  -- scratchpads
+  , ((modm, xK_s), submap . M.fromList $
+      [ ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
+      , ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
+      , ((modm, xK_h), namedScratchpadAction myScratchPads "htop")
+      , ((modm, xK_n), namedScratchpadAction myScratchPads "node")
+      , ((modm, xK_x), namedScratchpadAction myScratchPads "elixir")
+      , ((modm, xK_p), namedScratchpadAction myScratchPads "python")
+      , ((modm, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+      ])
+  ]
+  ++
 
     --
     -- mod-[1..9], Switch to workspace N
@@ -239,10 +249,11 @@ myLayout = tiled ||| Full
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
+    [ className =? "Google-chrome"        --> doShift "<action=xdotool key super+2>www</action>"
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore
+    ] <+> namedScratchpadManageHook myScratchPads
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -275,6 +286,23 @@ myStartupHook = do
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom --experimental-backends &"
 
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                , NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm
+                , NS "node" (myTerminal ++ " -t node -e node") (title =? "node") manageTerm
+                , NS "python" (myTerminal ++ " -t python -e python") (title =? "python") manageTerm
+                , NS "elixir" (myTerminal ++ " -t elixir -e iex") (title =? "elixir") manageTerm
+                , NS "pavucontrol" "pavucontrol" (className =? "Pavucontrol") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
+                 ]
+  where
+    spawnTerm  = myTerminal ++ " -t scratchpad"
+    findTerm   = title =? "scratchpad"
+    manageTerm = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.9
+                 w = 0.9
+                 t = 0.95 -h
+                 l = 0.95 -w
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
