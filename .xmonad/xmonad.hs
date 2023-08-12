@@ -20,11 +20,11 @@ import XMonad.Actions.Submap
 import XMonad.Actions.Search as S
 import XMonad.Prompt
 import System.Process
-import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
 import Graphics.X11.ExtraTypes.XF86
 
+import qualified XMonad.Actions.CycleWS as C
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -174,7 +174,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer --unmute && pamixer -i 5")
 
   -- go to previous workspace
-  , ((modm,               xK_o),     toggleWS)
+  , ((modm,               xK_o),     C.toggleWS)
+  , ((modm,               xK_Down), C.prevWS)
+  , ((modm,               xK_Up),    C.nextWS)
+  , ((modm .|. shiftMask, xK_Down),  C.shiftToPrev)
+  , ((modm .|. shiftMask, xK_Up),    C.shiftToNext)
 
   {- scratchpads -}
   {- With submenu -}
