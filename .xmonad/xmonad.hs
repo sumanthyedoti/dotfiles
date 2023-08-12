@@ -22,6 +22,7 @@ import XMonad.Prompt
 import System.Process
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
+import XMonad.Hooks.WindowSwallowing
 import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.Actions.CycleWS as C
@@ -303,7 +304,7 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook = swallowEventHook (className =? "kitty") (return True)
 
 ------------------------------------------------------------------------
 -- Status bars and logging

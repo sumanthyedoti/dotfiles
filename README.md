@@ -83,6 +83,7 @@
 - sxhkd
 - mpv
   - yt-dlp
+- feh
 - ffmpeg
 
 ### CLI tools
