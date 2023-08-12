@@ -17,13 +17,32 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Actions.NoBorders
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Actions.Submap
+import XMonad.Actions.Search as S
+import XMonad.Prompt
+import System.Process
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, ToggleStruts(..))
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+myXPConfig :: XPConfig
+myXPConfig = def
+    { font = "xft:monospace:size=10"
+    , bgColor = "black"
+    , fgColor = "#00FF00"
+    , bgHLight = "#FFFF00"
+    , fgHLight = "black"
+    , borderColor = "#00FFFF"
+    , promptBorderWidth = 2
+    , position = Top
+    , height = 40
+    , historySize = 30
+    , historyFilter = deleteConsecutive
+    , defaultText = ""
+    }
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -147,28 +166,45 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
 
-    ----- ==== custom keybindings ====
+    {- ==== custom keybindings ==== -}
     , ((modm .|. shiftMask, xK_q), removeWorkspace)
-    -- volume
-    -- , ((0, XF86AudioRaiseVolume),  spawn "amixer -D pulse sset Master 9%+")
-    -- , ((0, XF86AudioLowerVolume),  spawn "amixer -D pulse sset Master 10%-")
-    -- , ((0, XF86AudioMute),         spawn "amixer -D pulse sset Master toggle")
+    {- volume -}
+    , ((0, xF86XK_AudioMute),  spawn "pamixer -t")
+    , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer --unmute && pamixer -d 5")
+    , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer --unmute && pamixer -i 5")
 
   -- go to previous workspace
   , ((modm,               xK_o),     toggleWS)
 
-  -- scratchpads
+  {- scratchpads -}
+  {- With submenu -}
+  -- , ((modm, xK_s), submap . M.fromList $
+  --     [ ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
+  --     , ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
+  --     , ((modm, xK_h), namedScratchpadAction myScratchPads "htop")
+  --     , ((modm, xK_n), namedScratchpadAction myScratchPads "node")
+  --     , ((modm, xK_x), namedScratchpadAction myScratchPads "elixir")
+  --     , ((modm, xK_p), namedScratchpadAction myScratchPads "python")
+  --     , ((modm, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+  --     -- , ((0, xK_a), namedScratchpadAction myScratchPads "pavucontrol") -- only the key
+  --     ])
+  , ((modm .|. controlMask, xK_Return), namedScratchpadAction myScratchPads "terminal")
+  , ((modm .|. controlMask, xK_m), namedScratchpadAction myScratchPads "mpv")
+  , ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop")
+  , ((modm .|. controlMask, xK_n), namedScratchpadAction myScratchPads "node")
+  , ((modm .|. controlMask, xK_x), namedScratchpadAction myScratchPads "elixir")
+  , ((modm .|. controlMask, xK_p), namedScratchpadAction myScratchPads "python")
+  , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+
+  , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+
   , ((modm, xK_s), submap . M.fromList $
-      [ ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
-      , ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
-      , ((modm, xK_h), namedScratchpadAction myScratchPads "htop")
-      , ((modm, xK_n), namedScratchpadAction myScratchPads "node")
-      , ((modm, xK_x), namedScratchpadAction myScratchPads "elixir")
-      , ((modm, xK_p), namedScratchpadAction myScratchPads "python")
-      , ((modm, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+      [ ((0, xK_y), promptSearch myXPConfig S.youtube)
+      , ((0, xK_g), promptSearch myXPConfig S.google)
+      , ((0, xK_w), promptSearch myXPConfig S.wikipedia)
       ])
-  ]
-  ++
+    ]
+    ++
 
     --
     -- mod-[1..9], Switch to workspace N
@@ -249,8 +285,7 @@ myLayout = tiled ||| Full
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Google-chrome"        --> doShift "<action=xdotool key super+2>www</action>"
-    , className =? "Gimp"           --> doFloat
+    [ className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     ] <+> namedScratchpadManageHook myScratchPads
@@ -288,6 +323,7 @@ myStartupHook = do
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                , NS "mpv" (myTerminal ++ " -t mpv"  )(title =? "mpv") manageTerm
                 , NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm
                 , NS "node" (myTerminal ++ " -t node -e node") (title =? "node") manageTerm
                 , NS "python" (myTerminal ++ " -t python -e python") (title =? "python") manageTerm
@@ -303,6 +339,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
