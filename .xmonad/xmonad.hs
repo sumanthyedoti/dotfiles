@@ -100,9 +100,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "rofi -show drun")
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
-
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
@@ -163,6 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm  , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    -- , ((modm  , xK_q     ), spawn "xmonad --recompile; killall xmobar; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -173,6 +171,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioMute),  spawn "pamixer -t")
     , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer --unmute && pamixer -d 5")
     , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer --unmute && pamixer -i 5")
+    , ((0, xF86XK_MonBrightnessUp),  spawn "brightnessctl set +5%")
+    , ((0, xF86XK_MonBrightnessDown),  spawn "brightnessctl set 5%-")
 
   -- go to previous workspace
   , ((modm,               xK_o),     C.toggleWS)
@@ -182,17 +182,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   , ((modm .|. shiftMask, xK_Up),    C.shiftToNext)
 
   {- scratchpads -}
-  {- With submenu -}
-  -- , ((modm, xK_s), submap . M.fromList $
-  --     [ ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
-  --     , ((modm, xK_Return), namedScratchpadAction myScratchPads "terminal")
-  --     , ((modm, xK_h), namedScratchpadAction myScratchPads "htop")
-  --     , ((modm, xK_n), namedScratchpadAction myScratchPads "node")
-  --     , ((modm, xK_x), namedScratchpadAction myScratchPads "elixir")
-  --     , ((modm, xK_p), namedScratchpadAction myScratchPads "python")
-  --     , ((modm, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
-  --     -- , ((0, xK_a), namedScratchpadAction myScratchPads "pavucontrol") -- only the key
-  --     ])
   , ((modm .|. controlMask, xK_Return), namedScratchpadAction myScratchPads "terminal")
   , ((modm .|. controlMask, xK_m), namedScratchpadAction myScratchPads "mpv")
   , ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop")
@@ -328,7 +317,7 @@ myStartupHook = do
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "mpv" (myTerminal ++ " -t mpv"  )(title =? "mpv") manageTerm
+                , NS "mpv" (myTerminal ++ " -t mpv"  ) (title =? "mpv") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
                 , NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm
                 , NS "node" (myTerminal ++ " -t node -e node") (title =? "node") manageTerm
                 , NS "python" (myTerminal ++ " -t python -e python") (title =? "python") manageTerm

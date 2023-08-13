@@ -18,7 +18,7 @@ end
 alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
-alias ...="cd ../../.."
+alias ....="cd ../../.."
 alias lsf="ls -p | grep -v /"
 alias llf="ls -lp | grep -v /"
 alias sudo='sudo '
@@ -53,7 +53,7 @@ set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 
 # doom emacs
-set -x PATH "$HOME/.emacs.d/bin:$PATH"
+set -x PATH "$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 set -Ux CALIBRE_USE_DARK_PALETTE 1

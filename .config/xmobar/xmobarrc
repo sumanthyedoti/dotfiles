@@ -5,7 +5,7 @@ Config { font = "xft:Ubuntu Mono:pixelsize=19:antialias=true:hinting=true"
        , bgColor = "black"
        , fgColor = "grey"
        , alpha = 255
-       , position = Static { xpos = 0, ypos = 0, width = 3840, height = 26 }
+       , position = Static { xpos = 0, ypos = 0, width = 1920, height = 26 }
        , textOffset = -1
        , iconOffset = -1
        , iconRoot = "."

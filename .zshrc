@@ -11,7 +11,7 @@ mkcd () {
 alias .="pwd"
 alias ..="cd .."
 alias ...="cd ../.."
-alias ...="cd ../../.."
+alias ....="cd ../../.."
 alias lsf="ls -p | grep -v /"
 alias llf="ls -lp | grep -v /"
 alias sudo='sudo '
@@ -42,7 +42,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH=$HOME/.emacs.d/bin:$PATH
+export PATH "$HOME/.config/emacs/bin:$PATH"
 
 #### emacs
 # vterm

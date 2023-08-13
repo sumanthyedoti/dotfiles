@@ -1,0 +1,40 @@
+ls
+ls | reverse
+ls
+ls | reverse
+help ls
+nu pwd
+help pwd
+ls
+ls | where type = dir
+ls | where type=dir
+ls | where type == dir
+ls | where type == dir && size >= 32.8kb
+ls | where type == dir | where size >= 32.8kb
+ls | where type == dir | where size > 30kb
+ls | where type == dir | where size >= 20kb
+ls | where type == dir | where size >= 32kb
+help mv
+help cp
+help rsync
+date now
+date now | data to-table
+date now | date to-table
+sys
+hostname
+hostnamectl 
+uname -r
+ls
+ls | tree
+ls -a | tree
+tree
+ls -a | tree
+bat .zshrc
+bat .zprofile
+ls -a | tree
+ls -a | table
+ps
+sys
+sys | tree
+sys 
+ps | tree
