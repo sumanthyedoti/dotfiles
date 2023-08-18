@@ -119,6 +119,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
+    , ((modm,               xK_q     ), windows W.focusDown)
 
     -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
@@ -159,7 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm  , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm  , xK_z     ), spawn "xmonad --recompile; xmonad --restart")
     -- , ((modm  , xK_q     ), spawn "xmonad --recompile; killall xmobar; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
@@ -175,7 +176,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_MonBrightnessDown),  spawn "brightnessctl set 5%-")
 
   -- go to previous workspace
-  , ((modm,               xK_o),     C.toggleWS)
+  , ((modm,               xK_Tab),     C.toggleWS)
   , ((modm,               xK_Down), C.prevWS)
   , ((modm,               xK_Up),    C.nextWS)
   , ((modm .|. shiftMask, xK_Down),  C.shiftToPrev)

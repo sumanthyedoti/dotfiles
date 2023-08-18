@@ -42,9 +42,10 @@ export PATH=$HOME/.cargo/bin:$PATH
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH "$HOME/.config/emacs/bin:$PATH"
 
 #### emacs
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
 # vterm
 vterm_printf() {
     if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then

@@ -49,7 +49,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # doom emacs
-export PATH "$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
@@ -79,3 +79,4 @@ fi
 # chmod 755 ~/.dotfiles/.scripts/*
 # bash ~/.dotfiles/.scripts/autostart.sh
 . "$HOME/.cargo/env"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
