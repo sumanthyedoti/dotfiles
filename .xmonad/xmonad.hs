@@ -172,8 +172,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioMute),  spawn "pamixer -t")
     , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer --unmute && pamixer -d 5")
     , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer --unmute && pamixer -i 5")
-    , ((0, xF86XK_MonBrightnessUp),  spawn "brightnessctl set +5%")
-    , ((0, xF86XK_MonBrightnessDown),  spawn "brightnessctl set 5%-")
+    , ((0, xF86XK_MonBrightnessUp),  spawn "brightnessctl set +10%")
+    , ((0, xF86XK_MonBrightnessDown),  spawn "brightnessctl set 10%-")
 
   -- go to previous workspace
   , ((modm,               xK_Tab),     C.toggleWS)

@@ -511,6 +511,7 @@ local plugins = {
 	{
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
+		commit = "24bcca7",
 		keys = {
 			{ "<leader>pc", ":ChatGPT<cr>", mode = { "n", "v" } },
 			{ "<leader>pC", ":ChatGPT<cr>:ChatGPT<cr><C-w><C-w>", mode = { "n", "v" } },
