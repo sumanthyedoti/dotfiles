@@ -155,6 +155,12 @@
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
   (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
 
+;;;; latex
+
+
+(setq org-preview-latex-default-process 'dvisvgm)
+
+
 ;;;; dired
 (after! dired
  (setq delete-by-moving-to-trash t))

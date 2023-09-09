@@ -4,27 +4,15 @@ if not status_ok then
 end
 
 local elixirls = require("elixir.elixirls")
+
 elixir.setup({
-	nextls = {
-		enable = false, -- defaults to false
-		on_attach = function(client, bufnr)
-			-- custom keybinds
-		end,
-	},
-	credo = {
-		enable = true, -- defaults to true
-		on_attach = function(client, bufnr)
-			-- custom keybinds
-		end,
-	},
+	nextls = { enable = true },
+	credo = {},
 	elixirls = {
 		enable = true,
-		-- cmd = "/usr/local/bin/elixir-ls.sh",
 		settings = elixirls.settings({
-			dialyzerEnabled = true,
-			fetchDeps = false,
+			dialyzerEnabled = false,
 			enableTestLenses = false,
-			suggestSpecs = false,
 		}),
 		on_attach = function(client, bufnr)
 			vim.keymap.set("n", "<localleader>eP", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })

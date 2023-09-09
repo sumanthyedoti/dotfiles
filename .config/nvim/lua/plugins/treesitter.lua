@@ -30,16 +30,16 @@ treesitter.setup({
 		"javascript",
 		"jsdoc",
 		"json",
-		"kotlin",
+		-- "kotlin",
 		"latex",
 		"llvm",
 		"lua",
 		"make",
 		"markdown",
 		"markdown_inline",
-		"ocaml",
-		"ocaml_interface",
-		"ocamllex",
+		-- "ocaml",
+		-- "ocaml_interface",
+		-- "ocamllex",
 		"org",
 		"prisma",
 		"python",
@@ -49,7 +49,6 @@ treesitter.setup({
 		"scss",
 		"sql",
 		"svelte",
-		"swift",
 		"toml",
 		"tsx",
 		"typescript",
@@ -61,7 +60,7 @@ treesitter.setup({
 	sync_install = false,
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	highlight = {
-		enable = false, -- false will disable the whole extension -- HERE:
+		enable = true, -- false will disable the whole extension -- HERE:
 		disable = { "" }, -- list of language that will be disabled
 		additional_vim_regex_highlighting = { "org" },
 	},

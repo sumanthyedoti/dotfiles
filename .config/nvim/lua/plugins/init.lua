@@ -278,6 +278,8 @@ local plugins = {
 	-- {
 	-- 	"elixir-tools/elixir-tools.nvim",
 	-- 	ft = { "elixir" },
+	-- 	version = "*",
+	-- 	event = { "BufReadPre", "BufNewFile" },
 	-- 	config = function()
 	-- 		require("plugins.elixir-tools")
 	-- 	end,
@@ -366,7 +368,7 @@ local plugins = {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		version = "<CurrentMajor>.*", -- follow latest release.
+		version = "2.*",
 		event = "InsertEnter",
 		config = function()
 			require("plugins.luasnip")
