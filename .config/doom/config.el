@@ -123,7 +123,7 @@
      ;(ocaml . t)
      ;(haskell . t)
      ;(rust . t)
-     ;(elixir . t) ; ⚠
+     (elixir . t) ; ⚠
      (java . t)
      (C . t)
      ;(cpp . t)
@@ -157,9 +157,7 @@
 
 ;;;; latex
 
-
 (setq org-preview-latex-default-process 'dvisvgm)
-
 
 ;;;; dired
 (after! dired

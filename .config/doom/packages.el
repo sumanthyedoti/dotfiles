@@ -61,3 +61,4 @@
 (package! inf-elixir)
 (package! org-tree-slide)
 (package! ob-typescript)
+(package! ob-elixir)
