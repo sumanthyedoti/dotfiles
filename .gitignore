@@ -12,3 +12,5 @@
 .lsp
 .clj-kondo
 .nrepl-port
+.gnupg
+.ssh
