@@ -37,6 +37,7 @@ local servers = { -- HEREL: LSP servers
 	"html",
 	"cssls",
 	"tailwindcss",
+  "prismals",
 }
 
 local settings = {

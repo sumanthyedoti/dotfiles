@@ -52,6 +52,7 @@
   - LSPs
     - stylua,
     - typescript, typescript-language-server,
+    - @prisma/language-server,
     - vscode-html-languageserver, vscode-css-languageserver
     - golangci-lint
     - rust-analyzer

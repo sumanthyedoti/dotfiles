@@ -272,6 +272,18 @@ lspconfig["clangd"].setup({
 	offset_encoding = "utf-32",
 })
 
+lspconfig["prismals"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = { "prisma-language-server", "--stdio" },
+  root_dir = util.root_pattern(".git", "package.json"),
+  settings = {
+  prisma = {
+    prismaFmtBinPath = ""
+  }
+}
+})
+
 lspconfig["rust_analyzer"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,

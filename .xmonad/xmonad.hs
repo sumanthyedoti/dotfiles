@@ -82,7 +82,7 @@ myModMask       = superMask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["\61729","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["code","write","browse","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -115,14 +115,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
     -- Move focus to the next window
-    -- , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
-    , ((modm,               xK_q     ), windows W.focusDown)
-
+    , ((modm .|. shiftMask, xK_q     ), windows $ W.focusDown)
     -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
+
+    -- map to workspace 9
+    , ((modm,               xK_q     ), windows $ W.greedyView "9")
 
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
@@ -167,7 +169,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
 
     {- ==== custom keybindings ==== -}
-    , ((modm .|. shiftMask, xK_q), removeWorkspace)
+    -- , ((modm .|. controlMask, xK_q), removeWorkspace)
     {- volume -}
     , ((0, xF86XK_AudioMute),  spawn "pamixer -t")
     , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer --unmute && pamixer -d 5")
@@ -189,8 +191,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   , ((modm .|. controlMask, xK_n), namedScratchpadAction myScratchPads "node")
   , ((modm .|. controlMask, xK_x), namedScratchpadAction myScratchPads "elixir")
   , ((modm .|. controlMask, xK_p), namedScratchpadAction myScratchPads "python")
-  , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
-
   , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
 
   , ((modm, xK_s), submap . M.fromList $
@@ -316,7 +316,7 @@ myStartupHook = do
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom --experimental-backends &"
 
-myScratchPads :: [NamedScratchpad]
+myScratchPads :: [NamedScratchpad] -- use 'xprop' for window className
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "mpv" (myTerminal ++ " -t mpv"  ) (title =? "mpv") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
                 , NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm

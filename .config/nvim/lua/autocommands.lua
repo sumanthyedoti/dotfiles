@@ -24,7 +24,7 @@ vim.cmd([[
     autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=250}
   augroup END
 
-  " -- Remember position of last edit and return on reopen
+  "" -- Remember position of last edit and return on reopen
   augroup lastPosition
     if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
