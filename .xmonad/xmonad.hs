@@ -31,12 +31,13 @@ import qualified Data.Map        as M
 
 myXPConfig :: XPConfig
 myXPConfig = def
-    { font = "xft:monospace:size=10"
+    { font = "xft:monospace:size=12"
     , bgColor = "black"
     , fgColor = "#00FF00"
+    , borderColor = "#00FFFF"
     , bgHLight = "#FFFF00"
     , fgHLight = "black"
-    , borderColor = "#00FFFF"
+    , alwaysHighlight = True
     , promptBorderWidth = 2
     , position = Top
     , height = 40
@@ -115,7 +116,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
@@ -192,11 +193,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   , ((modm .|. controlMask, xK_x), namedScratchpadAction myScratchPads "elixir")
   , ((modm .|. controlMask, xK_p), namedScratchpadAction myScratchPads "python")
   , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
+  , ((modm .|. controlMask, xK_s), namedScratchpadAction myScratchPads "spotify")
 
   , ((modm, xK_s), submap . M.fromList $
       [ ((0, xK_y), promptSearch myXPConfig S.youtube)
       , ((0, xK_g), promptSearch myXPConfig S.google)
       , ((0, xK_w), promptSearch myXPConfig S.wikipedia)
+      , ((0, xK_i), promptSearch myXPConfig S.images)
+      , ((0, xK_m), promptSearch myXPConfig S.maps)
+      , ((0, xK_d), promptSearch myXPConfig S.duckduckgo)
+      , ((0, xK_e), promptSearch myXPConfig S.dictionary)
       ])
     ]
     ++
@@ -324,6 +330,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "python" (myTerminal ++ " -t python -e python") (title =? "python") manageTerm
                 , NS "elixir" (myTerminal ++ " -t elixir -e iex") (title =? "elixir") manageTerm
                 , NS "pavucontrol" "pavucontrol" (className =? "Pavucontrol") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
+                , NS "spotify" "spotify" (className =? "Spotify") manageTerm
                  ]
   where
     spawnTerm  = myTerminal ++ " -t scratchpad"
