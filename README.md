@@ -106,7 +106,6 @@
 - git-delta
 - [roswell](https://github.com/roswell/roswell)
 - [hyperfine](https://github.com/sharkdp/hyperfine)
-- [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - [fzf](https://github.com/junegunn/fzf)
 - tree-sitter `npm install -g tree-sitter-cli`
 - rsync
