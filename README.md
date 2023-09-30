@@ -59,6 +59,9 @@
     - pyright
     - elixir-ls
     - [clojure-lsp](https://clojure-lsp.io/installation/)
+  - Language tools
+    - JS/TS
+      - eslint_d
   - DAPs
     - debugpy
 - tmux

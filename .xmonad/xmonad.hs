@@ -127,8 +127,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
 
-    -- map to workspace 9
+    -- map to workspace 9 & 8
     , ((modm,               xK_q     ), windows $ W.greedyView "9")
+    , ((modm,               xK_a     ), windows $ W.greedyView "8")
 
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
