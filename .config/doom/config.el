@@ -186,6 +186,7 @@
 (map! :leader
       :desc "Insert right arrow"
       "I a" (lambda () (interactive) (insert "→"))
+      "I b" (lambda () (interactive) (insert ""))
       "I p" (lambda () (interactive) (insert "📄"))
       "I y" (lambda () (interactive) (insert ""))
       "I v" (lambda () (interactive) (insert "")))

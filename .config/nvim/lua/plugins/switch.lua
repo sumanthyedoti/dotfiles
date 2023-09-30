@@ -16,6 +16,7 @@ vim.g.switch_custom_definitions = {
 	{ "front", "back" },
 	{ "up", "down" },
 	{ "number", "string" },
+	{ "log", "warn", "error" },
 }
 
 vim.cmd([[
@@ -30,3 +31,4 @@ let b:switch_custom_definitions = [
       \   }
       \ ]
 ]])
+

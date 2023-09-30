@@ -117,6 +117,7 @@ cmp.setup({
 			end,
 		},
 		{ name = "nvim_lua", max_item_count = 4 },
+    {name = "vim-dadbod-completion"},
 		{ name = "path", keyword_length = 1, max_item_count = 6 },
 		{ name = "luasnip", max_item_count = 6 },
 		{ name = "emoji", max_item_count = 6 },

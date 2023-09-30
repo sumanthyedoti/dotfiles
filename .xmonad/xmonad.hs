@@ -46,6 +46,9 @@ myXPConfig = def
     , defaultText = ""
     }
 
+-- Search Prompts (custom)
+engToTel = S.searchEngine "eng-to-tel" "https://translate.google.co.in/?sl=auto&tl=te&text="
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -92,7 +95,7 @@ myFocusedBorderColor = "#0ff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
---
+
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
@@ -203,6 +206,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       , ((0, xK_m), promptSearch myXPConfig S.maps)
       , ((0, xK_d), promptSearch myXPConfig S.duckduckgo)
       , ((0, xK_e), promptSearch myXPConfig S.dictionary)
+      , ((0, xK_t), promptSearch myXPConfig engToTel)
       ])
     ]
     ++

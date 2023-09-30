@@ -114,10 +114,18 @@ treesitter.setup({
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+        ["ai"] = "@conditional.outer",
+        ["ii"] = "@conditional.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+        ["ac"] = "@comment.outer",
+
+				["aC"] = "@class.outer",
 				-- You can optionally set descriptions to the mappings (used in the desc parameter of
 				-- nvim_buf_set_keymap) which plugins like which-key display
-				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+				["iC"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 				-- You can also use captures from other query groups like `locals.scm`
 				["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
 			},
@@ -147,17 +155,17 @@ treesitter.setup({
 		swap = {
 			enable = true,
 			swap_next = {
-				["<leader>oj"] = "@parameter.inner",
+				["<localleader>j"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["<leader>ok"] = "@parameter.inner",
+				["<localleader>k"] = "@parameter.inner",
 			},
 		},
 		move = {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				["]m"] = "@function.outer",
+				["]f"] = "@function.outer",
 				["]]"] = { query = "@class.outer", desc = "Next class start" },
 				--
 				-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -170,25 +178,28 @@ treesitter.setup({
 				["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 			},
 			goto_next_end = {
-				["]M"] = "@function.outer",
+				["]F"] = "@function.outer",
 				["]["] = "@class.outer",
+				["]Z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
 			},
 			goto_previous_start = {
-				["[m"] = "@function.outer",
+				["[f"] = "@function.outer",
 				["[["] = "@class.outer",
+				["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
 			},
 			goto_previous_end = {
-				["[M"] = "@function.outer",
+				["[F"] = "@function.outer",
 				["[]"] = "@class.outer",
+				["[Z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
 			},
 			-- Below will go to either the start or the end, whichever is closer.
 			-- Use if you want more granular movements
 			-- Make it even more gradual by adding multiple queries and regex.
 			goto_next = {
-				["]d"] = "@conditional.outer",
+				["]q"] = "@conditional.outer",
 			},
 			goto_previous = {
-				["[d"] = "@conditional.outer",
+				["[q"] = "@conditional.outer",
 			},
 		},
 		lsp_interop = {

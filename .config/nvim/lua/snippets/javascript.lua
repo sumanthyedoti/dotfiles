@@ -16,7 +16,6 @@ local currentline = utils.currentline
 local same = utils.same
 
 local snippets, autosnippets = {}, {}
-local javascript, react = {}, {}
 
 local create_snippet = function(table)
 	return function(trigger, nodes, opts)
@@ -25,10 +24,7 @@ local create_snippet = function(table)
 	end
 end
 
-local cs = utils.create_snippet(snippets)
-local cas = utils.create_snippet(snippets)
-local cs_js = utils.create_snippet(javascript)
-local cs_react = utils.create_snippet(react)
+local cs = utils.create_snippet(snippets, autosnippets)
 
 -- Start Refactoring --
 cs(
@@ -54,7 +50,11 @@ cs(
 )
 
 cs("cl", { t("console.log("), i(1, ""), t(")") }, { "<leader>cl" })
+cs("cll", { t("console.log("), i(1, ""), t(")") }, { "<leader>cl" }, true)
+cs("cw", { t("console.warn("), i(1, ""), t(")") }, { "<leader>ce" })
+cs("cww", { t("console.warn("), i(1, ""), t(")") }, { "<leader>ce" }, true)
 cs("ce", { t("console.error("), i(1, ""), t(")") }, { "<leader>ce" })
+cs("cee", { t("console.error("), i(1, ""), t(")") }, { "<leader>ce" }, true)
 -- ## Util Function
 cs("f_isEven", t("const isEven = num => num % 2 === 0"))
 cs("f_isOdd", t("const isOdd = num => num % 2 !== 0"))
@@ -261,8 +261,33 @@ cs( -- useAnimatedStyle with translation
 	)
 )
 
+-- ## class
+cs(
+  "constructor",
+  fmt(
+    [[
+    constructor({}) {{{}}}
+    ]],
+    {
+      c(1, {
+        i(0, ""),
+        fmt([[
+        {} {}
+        ]], {
+            c(1, {
+              t("private"),
+              t("public"),
+            }),
+            i(2, "name"),
+          }),
+      }),
+      i(2, "")
+    }
+  )
+)
+
 -- End Refactoring --
 
-ls.filetype_extend("javascript", { "javascriptreact", "typescript", "typescriptreact" })
+-- ls.filetype_extend("javascript", { "javascriptreact", "typescript", "typescriptreact" })
 
 return snippets, autosnippets
