@@ -105,7 +105,7 @@ map("n", "-", "<C-x>")
 map("n", "=", "<C-a>")
 
 -- reload file
-map("n", "<leader>bR", "mZ:Bdelete<CR>`Z")
+map("n", "<leader>bR", "mZ:Bdelete<CR>`Z", { desc = "Reload the current file" })
 
 -- INSERT --
 map("i", "jj", "<ESC>")

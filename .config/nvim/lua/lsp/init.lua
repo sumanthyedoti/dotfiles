@@ -153,7 +153,7 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
--- configure typescript server with plugin
+--[[ configure typescript server with plugin ]]
 typescript.setup({
 	capabilities = capabilities,
 	server = {
@@ -165,7 +165,12 @@ typescript.setup({
 -- lspconfig.tsserver.setup({
 -- 	capabilities = capabilities,
 -- 	on_attach = on_attach,
--- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+-- 	filetypes = { "typescript", "typescriptreact", "typescript", "javascript", "javascriptreact" },
+-- 	init_options = {
+-- 		preference = {
+-- 			disableSuggestions = true,
+-- 		},
+-- 	},
 -- 	cmd = { "typescript-language-server", "--stdio" },
 -- })
 
@@ -211,6 +216,8 @@ lspconfig["lua_ls"].setup({
 					[vim.fn.stdpath("config") .. "/lua"] = true,
 				},
 			},
+			telemetry = { enable = false },
+			hint = { enable = true }, -- inlay hints
 			completion = {
 				callSnippet = "Replace",
 			},
@@ -276,12 +283,12 @@ lspconfig["prismals"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = { "prisma-language-server", "--stdio" },
-  root_dir = util.root_pattern(".git", "package.json"),
-  settings = {
-  prisma = {
-    prismaFmtBinPath = ""
-  }
-}
+	root_dir = util.root_pattern(".git", "package.json"),
+	settings = {
+		prisma = {
+			prismaFmtBinPath = "",
+		},
+	},
 })
 
 lspconfig["rust_analyzer"].setup({
@@ -311,4 +318,6 @@ lspconfig["rust_analyzer"].setup({
 })
 
 require("lsp.mason")
-require("lsp.null-ls")
+--[[ require("lsp.null-ls") ]]
+require("lsp.lint")
+require("lsp.format")

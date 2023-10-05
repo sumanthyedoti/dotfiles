@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/sumanthyedoti/learn/awesome-react-app
-- /home/sumanthyedoti/org
 - /home/sumanthyedoti/.dotfiles
-startuppopupversion: 0
+- /home/sumanthyedoti/org
+startuppopupversion: 5
 customcommandshistory: []
 hidecommandlog: false
+ignorewhitespaceindiffview: false

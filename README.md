@@ -98,6 +98,7 @@
 - bat
 - exa
 - fd
+- ncdu
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer

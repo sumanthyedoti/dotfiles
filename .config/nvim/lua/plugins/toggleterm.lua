@@ -49,6 +49,11 @@ function _NODE_TOGGLE()
 	node:toggle()
 end
 
+local elixir = Terminal:new({ cmd = "iex", hidden = true })
+function _ELIXIR_TOGGLE()
+	elixir:toggle()
+end
+
 local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
 function _NCDU_TOGGLE()
 	ncdu:toggle()

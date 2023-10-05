@@ -65,18 +65,25 @@ wk.register({
 }, { prefix = "<leader>" })
 
 wk.register({
-D = {
-      name = "Database",
-      u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
-      f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
-      r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
-      q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
-    },
+	D = {
+		name = "Database",
+		u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+		f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+		r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+		q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
+	},
 })
 
 wk.register({
 	y = {
 		name = "Terminal",
+	},
+}, { prefix = "<leader>" })
+
+wk.register({
+	v = {
+		name = "Vim",
+		r = { ":reg<Cr>", "Registers" },
 	},
 }, { prefix = "<leader>" })
 

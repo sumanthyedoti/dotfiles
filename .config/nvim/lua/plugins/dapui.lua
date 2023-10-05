@@ -4,13 +4,14 @@ if not status_ok then
 end
 
 local ui_status_ok, dapui = pcall(require, "dapui")
-if not status_ok then
+if not ui_status_ok then
 	return
 end
 
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
+	print("sdfsdf")
 	dapui.open()
 end
 

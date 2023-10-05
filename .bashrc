@@ -28,6 +28,9 @@ alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5"
 alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
 alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
+## tmux
+alias txn="tmux new"
+alias txa="tmux attach"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"

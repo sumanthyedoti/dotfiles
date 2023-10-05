@@ -21,7 +21,9 @@ end
 
 local servers = { -- HEREL: LSP servers
 	"marksman",
+	--[[ lua ]]
 	"lua_ls",
+	-- "stylua", --
 	"clangd",
 	"clojure_lsp",
 	"rust_analyzer",
@@ -34,10 +36,13 @@ local servers = { -- HEREL: LSP servers
 	--[[ JS, HTML, CSS ]]
 	"jsonls",
 	"tsserver",
+	-- "eslint-lsp", --
+	-- "eslint_d", --
+	-- "prettierd", --
 	"html",
 	"cssls",
 	"tailwindcss",
-  "prismals",
+	"prismals",
 }
 
 local settings = {
