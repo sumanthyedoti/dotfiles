@@ -103,6 +103,7 @@
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer
 - pandoc
+- git-delta
 - [roswell](https://github.com/roswell/roswell)
 - [hyperfine](https://github.com/sharkdp/hyperfine)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
