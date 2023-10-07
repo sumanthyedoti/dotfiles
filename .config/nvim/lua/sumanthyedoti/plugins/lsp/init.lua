@@ -258,7 +258,7 @@ return {
 			root_pattern = { "project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn" },
 		})
 
-    -- require("sumanthyedoti.plugins.lsp.elixir-tools")
+		-- require("sumanthyedoti.plugins.lsp.elixir-tools")
 		lspconfig.elixirls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -344,8 +344,8 @@ return {
 		})
 
 		require("sumanthyedoti.plugins.lsp.mason")
-		--[[ require("plugins.lsp.null-ls") ]]
-		require("sumanthyedoti.plugins.lsp.lint")
-		require("sumanthyedoti.plugins.lsp.format")
+		require("sumanthyedoti.plugins.lsp.null-ls")
+		-- require("sumanthyedoti.plugins.lsp.lint")
+		-- require("sumanthyedoti.plugins.lsp.format")
 	end,
 }
