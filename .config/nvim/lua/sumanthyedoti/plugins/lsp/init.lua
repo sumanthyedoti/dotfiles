@@ -258,6 +258,7 @@ return {
 			root_pattern = { "project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git", "bb.edn" },
 		})
 
+    -- require("sumanthyedoti.plugins.lsp.elixir-tools")
 		lspconfig.elixirls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
