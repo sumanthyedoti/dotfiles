@@ -1,6 +1,6 @@
 return {
   "AndrewRadev/switch.vim",
-  event = "BufEnter",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     vim.api.nvim_set_keymap("n", "<leader>`", ":Switch<CR>", OPTS)
     vim.api.nvim_set_keymap("n", "<leader>~", ":SwitchReverse<CR>", OPTS)
@@ -35,6 +35,5 @@ return {
     \   }
     \ ]
     ]])
-
-        end,
+  end,
 }

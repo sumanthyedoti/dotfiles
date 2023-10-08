@@ -1,12 +1,11 @@
 local utils = require("sumanthyedoti.utils")
--- Shorten function names
 local map = utils.map_key
 local is_mac = vim.fn.has("macunix")
 
 --Remap space as leader key
 map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "z"
 
 -- Modes
 --
@@ -20,29 +19,16 @@ vim.g.maplocalleader = ","
 -- NORMAL --
 -- loops throught windows
 if is_mac then
-	map("n", "ø", "<C-w><C-w>") -- next pane
+  map("n", "ø", "<C-w><C-w>") -- next pane
 else
-	map("n", "<A-o>", "<C-w><C-w>") -- next pane
+  map("n", "<A-o>", "<C-w><C-w>") -- next pane
 end
 map("n", "<leader>q", "@q") -- macro @q
 map("n", "<leader> ", "<cmd>noh<CR>") -- clear search hightlight with <space><space>
 
---[[ Find ]]
--- ## Telescope
-map("n", "<leader>f ", "<cmd>Telescope find_files<cr>")
-map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>")
-map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<cr>")
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- buffers (tabs) list
-
 -- Navigate buffers
 map("n", "<S-TAB>", "<cmd>bprevious<CR>")
 map("n", "<TAB>", "<cmd>bnext<CR>")
-
--- new line
-map("n", "<leader>oo", "mzo<ESC>`z", { desc = "Add line below" })
-map("n", "<leader>oO", "mzO<ESC>`z", { desc = "Add line above" })
-map("n", "<leader>cl", "0d$", { desc = "Clear current line" })
-map("n", "<leader><C-g>", ":file<cr>", { desc = "Current file name" })
 
 -- execute previous command
 map("n", "<leader>P", ":<Up><CR>")
@@ -83,7 +69,7 @@ map("n", "<leader>jh", "<C-w>h<CR>")
 -- Buffers
 map("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>") -- kill all remaining BufferLine tabs
 map("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>") -- pick close current buffer
-map("n", "<leader>bq", "<cmd>Bdelete<CR>") -- close buffer (by vim-bbye)
+map("n", "<leader>bw", "<cmd>Bdelete<CR>") -- close buffer (by vim-bbye)
 map("n", "<leader>bR", "<cmd>BufferLineCloseRight<CR>")
 map("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>")
 map("n", "<leader>bg", "<cmd>BufferLinePick<CR>") -- pick buffer / go to selcted buffer
@@ -146,16 +132,16 @@ map("n", "<leader>Y", "<cmd>%y<CR>", { desc = "yank current file" })
 
 -- numerical operations
 map(
-	"n",
-	"<localleader>a",
-	"<cmd>s/-\\?\\d\\+/\\=submatch(0) + 1/g<CR>:noh<Cr>",
-	{ desc = "increase numbers in the line by 1" }
+  "n",
+  "<localleader>a",
+  "<cmd>s/-\\?\\d\\+/\\=submatch(0) + 1/g<CR>:noh<Cr>",
+  { desc = "increase numbers in the line by 1" }
 )
 map(
-	"n",
-	"<localleader>x",
-	"<cmd>s/-\\?\\d\\+/\\=submatch(0) - 1/g<CR>:noh<Cr>",
-	{ desc = "descrease numbers in the line by 1" }
+  "n",
+  "<localleader>x",
+  "<cmd>s/-\\?\\d\\+/\\=submatch(0) - 1/g<CR>:noh<Cr>",
+  { desc = "descrease numbers in the line by 1" }
 )
 
 -- == PLUGINS == --

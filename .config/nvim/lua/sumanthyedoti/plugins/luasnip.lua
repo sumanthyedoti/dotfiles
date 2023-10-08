@@ -1,5 +1,5 @@
 -- Snippets engine
-return	{
+return {
   "L3MON4D3/LuaSnip",
   version = "2.*",
   event = "InsertEnter",
@@ -8,7 +8,7 @@ return	{
   config = function()
     local ls = require("luasnip")
     require("luasnip.loaders.from_vscode").lazy_load()
-    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets/" })
+    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/sumanthyedoti/snippets" })
     require("luasnip").config.setup({ store_selection_keys = "<A-p>" })
 
     vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]) --}}}
@@ -73,7 +73,5 @@ return	{
     set("n", "<leader>So", "<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>", OPTS)
     -- - enter into custom snippit creation area in the file
     vim.cmd([[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>kko<Esc>o]]) -- HERE !
-
-
   end,
 }

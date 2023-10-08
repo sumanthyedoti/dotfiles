@@ -2,7 +2,7 @@
 
 return {
   "folke/todo-comments.nvim",
-  event = "BufEnter",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local todo_comments = require("todo-comments")
     todo_comments.setup({
@@ -77,4 +77,3 @@ return {
     end, { desc = "Previous todo comment" })
   end,
 }
-

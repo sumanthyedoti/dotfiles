@@ -1,5 +1,4 @@
-local ls = require("luasnip")
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local d = utils.d
@@ -19,9 +18,9 @@ local cs = utils.create_snippet(snippets, autosnippets)
 -- Start Refactoring --
 
 cs( -- [while] JS While Loop snippet{{{
-	"main",
-	fmt(
-		[[
+  "main",
+  fmt(
+    [[
 package main
 
 import (
@@ -32,8 +31,8 @@ func main() {{
 	fmt.Println("Hello world")
 }}
   ]],
-		{}
-	)
+    {}
+  )
 )
 
 -- End Refactoring --

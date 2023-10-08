@@ -1,5 +1,4 @@
-local ls = require("luasnip")
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local d = utils.d

@@ -1,4 +1,4 @@
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local fmt = utils.fmt
@@ -20,23 +20,23 @@ cs("defvar", fmt([[ (defvar *{}* {}) ]], { i(1, "x"), i(2, "10") }))
 cs("defparameter", fmt([[ (defparameter *{}* {}) ]], { i(1, "x"), i(2, "10") }))
 
 cs(
-	"defun",
-	fmt(
-		[[
+  "defun",
+  fmt(
+    [[
   (defun {} ({})
     ({})) ]],
-		{ i(1, "funame"), i(2, ""), i(3, "") }
-	)
+    { i(1, "funame"), i(2, ""), i(3, "") }
+  )
 )
 
 cs(
-	"defmacro",
-	fmt(
-		[[
+  "defmacro",
+  fmt(
+    [[
   (demacro {} ({})
     ({})) ]],
-		{ i(1, "mname"), i(2, ""), i(3, "") }
-	)
+    { i(1, "mname"), i(2, ""), i(3, "") }
+  )
 )
 
 -- End Refactoring --

@@ -1,4 +1,4 @@
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local fmt = utils.fmt
@@ -17,17 +17,17 @@ local cs = utils.create_snippet(snippets, autosnippets)
 -- Start Refactoring --
 
 cs(
-	"#s",
-	fmt(
-		[[
+  "#s",
+  fmt(
+    [[
 #!/bin/bash
 
 
   ]],
-		{}
-	),
-	{},
-	true
+    {}
+  ),
+  {},
+  true
 )
 
 -- End Refactoring --

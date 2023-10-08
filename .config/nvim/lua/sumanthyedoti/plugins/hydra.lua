@@ -1,7 +1,7 @@
 -- submodes and menus
 return {
   "anuvyklack/hydra.nvim",
-  event = "BufEnter",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local status_ok, Hydra = pcall(require, "hydra")
 
@@ -72,6 +72,5 @@ return {
         { "<Esc>", nil, { exit = true, nowait = true } },
       },
     })
-
   end,
-} 
+}

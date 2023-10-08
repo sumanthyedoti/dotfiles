@@ -116,7 +116,7 @@ local conjure_filetypes = {
 }
 
 local options = {
-	install = { missing = true, colorscheme = { "nightfly" } },
+	install = { missing = true, colorscheme = { COLORSCHEME } },
 	checker = { enabled = true, notify = false },
 	change_detection = {
 		enabled = true,

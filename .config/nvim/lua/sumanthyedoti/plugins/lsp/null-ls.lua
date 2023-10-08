@@ -22,7 +22,7 @@ null_ls.setup({
 		formatting.rustfmt,
 		formatting.stylua,
 		--[[ JS/TS ]]
-		formatting.prettierd.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettierd,
 		diagnostics.eslint_d,
 
 		--[[ c/cpp ]]

@@ -91,8 +91,8 @@ return {
     }, { prefix = "<leader>" })
 
     wk.register({
-      v = {
-        name = "Vim",
+      n = {
+        name = "Native Vim",
         r = { ":reg<Cr>", "Registers" },
       },
     }, { prefix = "<leader>" })
@@ -116,6 +116,5 @@ return {
         name = "Windfow",
       },
     }, { prefix = "<leader>" })
-
   end,
 }

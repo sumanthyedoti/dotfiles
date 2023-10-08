@@ -1,4 +1,4 @@
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local fmt = utils.fmt
@@ -19,22 +19,22 @@ local cs = utils.create_snippet(snippets, autosnippets)
 cs("stringlength", fmt([[ {}.chars().count() ]], { i(1, "str") }))
 
 cs(
-	"readline",
-	fmt(
-		[[
+  "readline",
+  fmt(
+    [[
     let mut {} = String::new();
     io::stdin()
         .read_line(&mut {})
         .expect("Failed to read line");
 ]],
-		{ i(1, "str"), same(1) }
-	)
+    { i(1, "str"), same(1) }
+  )
 )
 
 cs(
-	"flush",
-	fmt(
-		[[
+  "flush",
+  fmt(
+    [[
 use std::io;
 use std::io::Write;
 
@@ -42,8 +42,8 @@ fn flush() {{
     io::stdout().flush().unwrap();
 }}
 ]],
-		{}
-	)
+    {}
+  )
 )
 
 -- End Refactoring --

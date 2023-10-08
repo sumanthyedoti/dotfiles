@@ -1,4 +1,4 @@
-local utils = require("snippets.utils")
+local utils = require("sumanthyedoti.snippets.utils")
 local s = utils.s
 local f = utils.f
 local fmt = utils.fmt
@@ -17,23 +17,23 @@ local cs = utils.create_snippet(snippets, autosnippets)
 -- Start Refactoring --
 
 cs(
-	"#s",
-	fmt(
-		[[
+  "#s",
+  fmt(
+    [[
 #!/usr/bin/python
 
 
   ]],
-		{}
-	),
-	{},
-	true
+    {}
+  ),
+  {},
+  true
 )
 
 cs("get_cmd_output", {
-	t({ "def get_cmd_output(cmd: str):", "" }),
-	t({ "    result = subprocess.check_output(cmd, shell=True)", "" }),
-	t({ "    return result.decode().strip()", "" }),
+  t({ "def get_cmd_output(cmd: str):", "" }),
+  t({ "    result = subprocess.check_output(cmd, shell=True)", "" }),
+  t({ "    return result.decode().strip()", "" }),
 })
 
 -- End Refactoring --

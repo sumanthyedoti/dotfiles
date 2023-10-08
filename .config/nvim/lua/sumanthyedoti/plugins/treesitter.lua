@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   lazy = true,
   build = ":TSUpdate",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "HiPhish/nvim-ts-rainbow2",
     "nvim-treesitter/playground",
@@ -66,8 +67,8 @@ return {
         "yaml",
       },
       matchup = {
-        enable = true,              -- mandatory, false will disable the whole extension
-        disable = {},  -- optional, list of language that will be disabled
+        enable = true, -- mandatory, false will disable the whole extension
+        disable = {}, -- optional, list of language that will be disabled
         -- [options]
       },
       auto_install = true,
@@ -81,6 +82,15 @@ return {
       indent = {
         enable = true,
         -- disable = { "yaml" },
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<BS>",
+        },
       },
       autotag = {
         enable = true,
@@ -126,20 +136,26 @@ return {
 
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-            ["ai"] = "@conditional.outer",
-            ["ii"] = "@conditional.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["ac"] = "@comment.outer",
+            ["a="] = { query = "@assignment.outer", desc = "Select Assignment outer" },
+            ["i="] = { query = "@assignment.inner", desc = "Select Assignment inner" },
+            ["l="] = { query = "@assignment.lhs", desc = "Select Assignment outer" },
+            ["r="] = { query = "@assignment.rhs", desc = "Select Assignment innrer" },
+            ["ai"] = { query = "@call.outer", desc = "Select Function outer" },
+            ["ii"] = { query = "@call.inner", desc = "Select Function inner" },
+            ["af"] = { query = "@function.outer", desc = "Select Function/Method outer" },
+            ["if"] = { query = "@function.inner", desc = "Select Function/Method inner" },
+            ["aa"] = { query = "@parameter.outer", desc = "Select Parameter outer" },
+            ["ia"] = { query = "@parameter.inner", desc = "Select Parameter innrer" },
+            ["ab"] = { query = "@conditional.outer", desc = "Select Conditional outer" },
+            ["ib"] = { query = "@conditional.inner", desc = "Select Conditional inner" },
+            ["al"] = { query = "@loop.outer", desc = "Select Loop outer" },
+            ["il"] = { query = "@loop.inner", desc = "Select Loop inner" },
+            ["ac"] = { query = "@comment.outer", desc = "Select Comment" },
 
-            ["aC"] = "@class.outer",
+            ["am"] = "@class.outer",
             -- You can optionally set descriptions to the mappings (used in the desc parameter of
             -- nvim_buf_set_keymap) which plugins like which-key display
-            ["iC"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            ["im"] = { query = "@class.inner", desc = "Select inner part of a class region" },
             -- You can also use captures from other query groups like `locals.scm`
             ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
           },
@@ -170,50 +186,47 @@ return {
           enable = true,
           swap_next = {
             ["<localleader>j"] = "@parameter.inner",
+            ["<localleader>n"] = "@function.outer",
           },
           swap_previous = {
             ["<localleader>k"] = "@parameter.inner",
+            ["<localleader>m"] = "@function.outer",
           },
         },
         move = {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]]"] = { query = "@class.outer", desc = "Next class start" },
-            --
-            -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
-            ["]o"] = "@loop.*",
-            -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
-            --
-            -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
-            -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-            ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+            ["]i"] = { query = "@call.outer", desc = "Goto next Call" },
+            ["]f"] = { query = "@function.outer", desc = "Goto next Function start" },
+            ["]m"] = { query = "@class.outer", desc = "Next Class start" },
+            ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope start" },
+          },
+          goto_previous_start = {
+            ["[i"] = { query = "@call.outer", desc = "prev Call" },
+            ["[f"] = { query = "@function.outer", desc = "Prev Function start" },
+            ["[m"] = { query = "@class.outer", desc = "Prev Class start" },
+            ["[s"] = { query = "@scope", query_group = "locals", desc = "Prev scope start" },
           },
           goto_next_end = {
             ["]F"] = "@function.outer",
-            ["]["] = "@class.outer",
-            ["]Z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
-          },
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[["] = "@class.outer",
-            ["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
+            ["]M"] = "@class.outer",
+            ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope end" },
           },
           goto_previous_end = {
             ["[F"] = "@function.outer",
-            ["[]"] = "@class.outer",
-            ["[Z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
+            ["[M"] = "@class.outer",
+            ["[S"] = { query = "@scope", query_group = "locals", desc = "Prev scope end" },
           },
-          -- Below will go to either the start or the end, whichever is closer.
-          -- Use if you want more granular movements
-          -- Make it even more gradual by adding multiple queries and regex.
           goto_next = {
-            ["]q"] = "@conditional.outer",
+            ["]b"] = "@conditional.outer",
+            ["]o"] = "@loop.*",
+            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
           goto_previous = {
-            ["[q"] = "@conditional.outer",
+            ["[b"] = "@conditional.outer",
+            ["[o"] = "@loop.*",
+            ["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
           },
         },
         lsp_interop = {
@@ -229,7 +242,7 @@ return {
     })
 
     --[[ make the movements repeatable with ; and , ]]
-    local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+    local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
     -- Repeat movement with ; and ,
     -- ensure ; goes forward and , goes backward regardless of the last direction
@@ -237,8 +250,8 @@ return {
     vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
 
     -- vim way: ; goes to the direction you were moving.
-    -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-    -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+    vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+    vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
     -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
     vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
