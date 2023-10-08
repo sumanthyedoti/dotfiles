@@ -66,6 +66,7 @@
     - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
+  - acpi (for battery status)
   - `prefix + r` - reload
   - `prefix + I` to fetch the plugins
 - emacs
@@ -98,7 +99,9 @@
 - bat
 - exa
 - fd
+- xh
 - ncdu
+- duf
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer
