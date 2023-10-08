@@ -2,27 +2,27 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-	PACKMAN_BOOTSTRAP = vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-	print("Installing Lazy.nvim, close and reopen Neovim...")
+  PACKMAN_BOOTSTRAP = vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+  print("Installing Lazy.nvim, close and reopen Neovim...")
 end
 
 vim.opt.rtp:prepend(lazypath)
 
 if PACKMAN_BOOTSTRAP then
-	require("lazy").sync()
+  require("lazy").sync()
 end
 
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
-	return
+  return
 end
 
 --########################################
@@ -41,6 +41,7 @@ end
   doom.nvim
   anuvyklack/windows.nvim
   pretty-fold.nvim
+  text-case.nvim
   fold-preview.nvim
   cphealper
     CompetiTest.nvim
@@ -88,72 +89,72 @@ end
 
 local lisp_filetypes = { "lisp", "lsp", "el" }
 local repl_filetypes = {
-	"lisp",
-	"lsp",
-	"scheme",
-	"el",
-	"clojure",
-	"haskell",
-	"elm",
-	"ocaml",
-	"javascript",
-	"javascriptreact",
-	"typescript",
-	"typescriptreact",
-	"python",
-	"elixir",
+  "lisp",
+  "lsp",
+  "scheme",
+  "el",
+  "clojure",
+  "haskell",
+  "elm",
+  "ocaml",
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  "python",
+  "elixir",
 }
 local conjure_filetypes = {
-	"lisp",
-	"lsp",
-	"clojure",
-	"clojurescript",
-	"haskell",
-	"scheme",
-	"rust",
-	"python",
-	"lua",
+  "lisp",
+  "lsp",
+  "clojure",
+  "clojurescript",
+  "haskell",
+  "scheme",
+  "rust",
+  "python",
+  "lua",
 }
 
 local options = {
-	install = { missing = true, colorscheme = { COLORSCHEME } },
-	checker = { enabled = true, notify = false },
-	change_detection = {
-		enabled = true,
-		notify = false,
-	},
-	ui = {
-		-- a number <1 is a percentage., >1 is a fixed size
-		size = { width = 0.8, height = 0.8 },
-		wrap = true, -- wrap the lines in the ui
-		-- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-		border = "none",
-		icons = {
-			cmd = " ",
-			config = "",
-			event = "",
-			ft = " ",
-			init = " ",
-			import = " ",
-			keys = " ",
-			lazy = "∾ ",
-			loaded = "●",
-			not_loaded = "○",
-			plugin = " ",
-			runtime = " ",
-			source = " ",
-			start = "",
-			task = "✔ ",
-			list = {
-				"●",
-				"➜",
-				"★",
-				"‒",
-			},
-		},
-	},
+  install = { missing = true, colorscheme = { COLORSCHEME } },
+  checker = { enabled = true, notify = false },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+  ui = {
+    -- a number <1 is a percentage., >1 is a fixed size
+    size = { width = 0.8, height = 0.8 },
+    wrap = true, -- wrap the lines in the ui
+    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+    border = "none",
+    icons = {
+      cmd = " ",
+      config = "",
+      event = "",
+      ft = " ",
+      init = " ",
+      import = " ",
+      keys = " ",
+      lazy = "∾ ",
+      loaded = "●",
+      not_loaded = "○",
+      plugin = " ",
+      runtime = " ",
+      source = " ",
+      start = "",
+      task = "✔ ",
+      list = {
+        "●",
+        "➜",
+        "★",
+        "‒",
+      },
+    },
+  },
 }
 
 lazy.setup({
-	{ import = "sumanthyedoti.plugins" },
+  { import = "sumanthyedoti.plugins" },
 }, options)

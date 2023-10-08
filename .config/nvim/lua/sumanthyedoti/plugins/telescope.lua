@@ -10,6 +10,7 @@ return {
       build = "make",
     },
     "nvim-tree/nvim-web-devicons",
+    "ThePrimeagen/harpoon",
   },
   keys = {
     { "<leader>ff", ":Telescope find_files<cr>", desc = "Find file" },

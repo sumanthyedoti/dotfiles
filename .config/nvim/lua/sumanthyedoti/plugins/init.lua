@@ -18,6 +18,22 @@ return {
     build = "cd formatter && npm i && npm run build",
     config = true,
   },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>TU", ":UndotreeToggle<cr>", mode = { "n", "v" }, desc = "UndoTree" },
+    },
+  },
+  {
+    "michaelb/sniprun",
+    build = "sh ./install.sh",
+    keys = {
+      { "<leader>sr", ":SnipRun<cr>", mode = { "n", "v" }, desc = "Snip Run" },
+      { "<leader>sR", ":SnipReset<cr>", mode = { "n", "v" }, desc = "Snip Reset" },
+    },
+  },
+  { "jbyuki/venn.nvim", cmd = "VBox" },
+
   --[[ vim plugins ]]
   { "tpope/vim-surround", event = { "BufReadPre", "BufNewFile" } },
   { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } },
@@ -41,9 +57,8 @@ return {
   {
     "moll/vim-bbye",
     keys = {
-      { "<leader>bw", ":Bdelete<cr>", mode = { "n", "v" } },
+      { "<leader>bw", ":Bdelete<cr>", mode = { "n", "v" }, desc = "Delete current buffer" },
     },
-    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "dstein64/vim-startuptime",
