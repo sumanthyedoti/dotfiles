@@ -99,8 +99,8 @@ return {
           l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
           b = { "<cmd>Telescope diagnostics bufnr=0<CR>", "Buffer Diagnostics" },
           w = { "<cmd>Telescope diagnostics<CR>", "Workspace Diagnostics" },
-          j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Previous Diagnostic" },
-          k = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic" },
+          -- j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+          -- k = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic" },
 
           --[[ Help ]]
           s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature help" },
@@ -109,6 +109,8 @@ return {
           R = { "<cmd>:LspRestart<CR>", "Restart LSP" },
         },
       }, { prefix = "<leader>", buffer = bufnum })
+      map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Next Diagnostic" })
+      map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous Diagnostic" })
 
       wk.register({
         lc = {

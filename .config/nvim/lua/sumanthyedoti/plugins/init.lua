@@ -32,6 +32,7 @@ return {
       { "<leader>sR", ":SnipReset<cr>", mode = { "n", "v" }, desc = "Snip Reset" },
     },
   },
+  { "christoomey/vim-tmux-navigator" },
   { "jbyuki/venn.nvim", cmd = "VBox" },
 
   --[[ vim plugins ]]

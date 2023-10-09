@@ -201,12 +201,14 @@ return {
             ["]f"] = { query = "@function.outer", desc = "Goto next Function start" },
             ["]m"] = { query = "@class.outer", desc = "Next Class start" },
             ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope start" },
+            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
           goto_previous_start = {
             ["[i"] = { query = "@call.outer", desc = "prev Call" },
             ["[f"] = { query = "@function.outer", desc = "Prev Function start" },
             ["[m"] = { query = "@class.outer", desc = "Prev Class start" },
             ["[s"] = { query = "@scope", query_group = "locals", desc = "Prev scope start" },
+            ["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
           },
           goto_next_end = {
             ["]F"] = "@function.outer",
@@ -221,12 +223,10 @@ return {
           goto_next = {
             ["]b"] = "@conditional.outer",
             ["]o"] = "@loop.*",
-            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
           goto_previous = {
             ["[b"] = "@conditional.outer",
             ["[o"] = "@loop.*",
-            ["[z"] = { query = "@fold", query_group = "folds", desc = "Prev fold" },
           },
         },
         lsp_interop = {

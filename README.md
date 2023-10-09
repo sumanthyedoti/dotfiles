@@ -66,7 +66,8 @@
     - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
-  - acpi (for battery status)
+  - [tmux2html] (https://github.com/tweekmonster/tmux2html)
+  - [powerline-fonts] (https://github.com/powerline/fonts)
   - `prefix + r` - reload
   - `prefix + I` to fetch the plugins
 - emacs
