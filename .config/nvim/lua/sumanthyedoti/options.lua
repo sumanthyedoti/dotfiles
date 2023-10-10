@@ -9,7 +9,7 @@ o.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 o.conceallevel = 0 -- so that `` is visible in markdown files
 o.fileencoding = "utf-8" -- the encoding written to a file
 o.hlsearch = true -- highlight all matches on previous search pattern
-o.smartcase = true -- smart case
+o.smartcase = true
 o.backspace = "indent,eol,start"
 o.title = true
 o.mouse = "a" -- allow the mouse to be used in neovim
@@ -35,21 +35,21 @@ o.wildignore:append({ "*/node_modules/*" }) -- find files searching into subfold
 o.background = "dark"
 ---- setting options with for loop by iteratings a k-v pair in a table
 local options = {
-	expandtab = true, -- convert tabs to spaces
-	shiftwidth = 2, -- the number of spaces inserted for each indentation
-	tabstop = 2, -- insert 2 spaces for a tab
-	cursorline = true, -- highlight the current line
-	number = true, -- set numbered lines
-	textwidth = 80,
-	relativenumber = true, -- set relative numbered lines
-	numberwidth = 2, -- set number column width to 2 {default 4}
-	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-	wrap = false, -- display lines as one long line
-	scrolloff = 8, -- number of screen lines to keep above and below the cursor
-	sidescrolloff = 4,
+  expandtab = true, -- convert tabs to spaces
+  shiftwidth = 2, -- the number of spaces inserted for each indentation
+  tabstop = 2, -- insert 2 spaces for a tab
+  cursorline = true, -- highlight the current line
+  number = true, -- set numbered lines
+  textwidth = 80,
+  relativenumber = true, -- set relative numbered lines
+  numberwidth = 2, -- set number column width to 2 {default 4}
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
+  wrap = false, -- display lines as one long line
+  scrolloff = 8, -- number of screen lines to keep above and below the cursor
+  sidescrolloff = 4,
 }
 for k, v in pairs(options) do
-	vim.opt[k] = v
+  vim.opt[k] = v
 end
 
 -- vim.cmd to pass vim-script as string

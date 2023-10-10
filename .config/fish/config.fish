@@ -20,6 +20,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+alias clr="clear"
+
 alias l="exa -F --icons"
 alias ll="exa -lF --icons --git"
 alias lla="exa -lF --icons --git -a"
@@ -29,6 +31,9 @@ alias lt="exa -F --level=2  --tree --icons --git"
 alias llt="exa -lF --level=2 --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
+
+alias fz="fzf --height 30%"
+alias fzh="find . | fzf --height 50%"
 
 alias sudo='sudo '
 alias g="git"
@@ -50,7 +55,7 @@ alias txa="tmux attach"
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 
-starship init fish | source
+# starship init fish | source
 zoxide init fish | source
 
 # Setting PATH for Python 3.10

@@ -126,6 +126,7 @@
      (elixir . t) ; ⚠
      (java . t)
      (C . t)
+     (lua . t)
      ;(cpp . t)
      (js . t)
      (typescript . t)

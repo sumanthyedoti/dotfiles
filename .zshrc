@@ -13,6 +13,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+alias clr="clear"
+
 alias ls="ls --color=auto"
 alias l="exa -F --icons"
 alias ll="exa -lF --icons --git"
@@ -23,6 +25,9 @@ alias lt="exa -F --level=2  --tree --icons --git"
 alias llt="exa -lF --level=2 --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
+
+alias fz="fzf --height 30%"
+alias fzh="find . | fzf --height 50%"
 
 alias sudo='sudo '
 alias g="git"

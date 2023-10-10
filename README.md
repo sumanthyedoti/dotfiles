@@ -43,6 +43,14 @@
   - [fisher](https://github.com/jorgebucaran/fisher)
     - [nvm](https://github.com/jorgebucaran/nvm.fish)
     - [fzf](https://github.com/PatrickF1/fzf.fish)
+    - [docker](https://github.com/halostatue/fish-docker)
+    - [tide](https://github.com/IlanCosman/tide)
+      - `tide configure`
+    - [sponge](https://github.com/meaningful-ooo/sponge)
+    - [gitnow](https://github.com/joseluisq/gitnow)
+    - [done](https://github.com/franciscolourenco/done)
+    - [autopair](https://github.com/jorgebucaran/autopair.fish)
+    - [replay](https://github.com/jorgebucaran/replay.fish)
   - [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
     - [pyenv](https://github.com/oh-my-fish/plugin-pyenv)
 - kitty
@@ -103,6 +111,8 @@
 - xh
 - ncdu
 - duf
+- jq
+- ranger
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer
