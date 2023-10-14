@@ -30,7 +30,6 @@ end
 --  packages are stored in '~/.local/share/nvim/lazy'
 --[[ PACKAGES
   dispatch
-  neogit
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
   colortils
     color-picker.nvim
@@ -47,9 +46,7 @@ end
     CompetiTest.nvim
   alpha-nvim
     neovim-session-manager
-  telescope-media-files
   telescope-file-browser
-  vim-tmux-navigator
   vim-maximizer
   vim-illuminate
   vim-clap
@@ -57,12 +54,12 @@ end
   hologram.nvim
   sleuth.vim
   nvim-notify
-  neogit
   overseer.nvim
   GitHub Copilot
   neoformat
   nvim-peekup
   nabla.nvim
+  Rnvimr
   Markdown:
   - vim-markdown
   - vim-markdown-toc

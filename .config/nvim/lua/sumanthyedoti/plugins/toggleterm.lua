@@ -1,15 +1,18 @@
 return {
   "akinsho/toggleterm.nvim",
   keys = {
-    { "<leader>tt", ":ToggleTerm<CR>", mode = { "n", "t" } },
-    -- { "<leader>tt", ":Lspsaga term_toggle<CR>", mode = { "n", "t" } },
-    { "<leader>tg", ":lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>th", ":lua _HTOP_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>tn", ":lua _NODE_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>tx", ":lua _ELIXIR_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>tp", ":lua _PYTHON_TOGGLE()<CR>", mode = { "n", "t" } },
-    { "<leader>tc", ":lua _CHT_SH()<CR>", mode = { "n", "t" } },
+    { "<leader>tt", ":ToggleTerm<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tl", ":ToggleTermSendCurrentLine<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tv", ":ToggleTermSendVisualLines<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tc", ":ToggleTermSendVisualSelection<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tb", "mzggVG:ToggleTermSendVisualSelection<CR>`z", mode = { "n", "v", "t" } },
+    { "<leader>tg", ":lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>th", ":lua _HTOP_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tf", ":lua _LF_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tn", ":lua _NODE_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tx", ":lua _ELIXIR_TOGGLE()<CR>", mode = { "n", "v", "t" } },
+    { "<leader>tp", ":lua _PYTHON_TOGGLE()<CR>", mode = { "n", "v", "t" } },
   },
   config = function()
     local toggleterm = require("toggleterm")
@@ -24,7 +27,8 @@ return {
       start_in_insert = true,
       insert_mappings = true,
       persist_size = false,
-      direction = "float",
+      persist_mode = false,
+      direction = "horizontal", -- vertical/horizontal/tab/float
       close_on_exit = true,
       shell = vim.o.shell,
       float_opts = {

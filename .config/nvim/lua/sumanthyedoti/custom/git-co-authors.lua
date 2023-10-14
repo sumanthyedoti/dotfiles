@@ -22,4 +22,4 @@ local list_co_authors = function()
   end
 end
 
-vim.keymap.set("n", "<leader>gC", list_co_authors)
+vim.keymap.set("n", "<leader>gC", list_co_authors, { desc = "Add git Co-Author" })

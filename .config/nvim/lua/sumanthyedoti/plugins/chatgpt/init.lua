@@ -1,4 +1,5 @@
-return {
+return {}
+--[[ return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
   dependencies = {
@@ -77,4 +78,4 @@ return {
       predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/sumanthyedoti/dotfiles/main/.config/nvim/lua/plugins/chatgpt/prompts.csv",
     })
   end,
-}
+} ]]

@@ -51,6 +51,8 @@ cs(
   )
 )
 
+cs("Something", t("Something went wrong! Please try again."))
+
 -- End Refactoring --
 
 return snippets, autosnippets

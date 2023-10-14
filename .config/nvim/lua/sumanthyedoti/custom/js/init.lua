@@ -19,4 +19,4 @@ local function custom_options()
   end)
 end
 
-vim.keymap.set("n", "<leader>js", custom_options)
+vim.keymap.set("n", "<leader>js", custom_options, { desc = "Select JS TreeSitter edit" })
