@@ -19,15 +19,19 @@ alias ls="ls --color=auto"
 alias l="exa -F --icons"
 alias ll="exa -lF --icons --git"
 alias lla="exa -lF --icons --git -a"
-alias lf="exa -1F --icons --git | grep -v /"
+alias lsf="exa -1F --icons --git | grep -v /"
 alias llf="exa -lF --icons --git | grep -v /"
-alias lt="exa -F --level=2  --tree --icons --git"
+alias lst="exa -F --level=2  --tree --icons --git"
 alias llt="exa -lF --level=2 --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
 
+alias rm="trash-put"
+
+alias lf="lfu ."
+
 alias fz="fzf --height 30%"
-alias fzh="find . | fzf --height 50%"
+alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
 
 alias sudo='sudo '
 alias g="git"
@@ -48,6 +52,9 @@ alias txa="tmux attach"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
+
+export view=nvim
+export EDITOR=nvim
 
 # NVM
 if [[ $(uname) == "Darwin" ]]; then

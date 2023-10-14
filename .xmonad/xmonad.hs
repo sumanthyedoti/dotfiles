@@ -193,9 +193,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   , ((modm .|. controlMask, xK_Return), namedScratchpadAction myScratchPads "terminal")
   , ((modm .|. controlMask, xK_m), namedScratchpadAction myScratchPads "mpv")
   , ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop")
-  , ((modm .|. controlMask, xK_n), namedScratchpadAction myScratchPads "node")
-  , ((modm .|. controlMask, xK_x), namedScratchpadAction myScratchPads "elixir")
-  , ((modm .|. controlMask, xK_p), namedScratchpadAction myScratchPads "python")
   , ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol")
   , ((modm .|. controlMask, xK_s), namedScratchpadAction myScratchPads "spotify")
 
@@ -331,9 +328,6 @@ myScratchPads :: [NamedScratchpad] -- use 'xprop' for window className
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "mpv" (myTerminal ++ " -t mpv"  ) (title =? "mpv") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
                 , NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm
-                , NS "node" (myTerminal ++ " -t node -e node") (title =? "node") manageTerm
-                , NS "python" (myTerminal ++ " -t python -e python") (title =? "python") manageTerm
-                , NS "elixir" (myTerminal ++ " -t elixir -e iex") (title =? "elixir") manageTerm
                 , NS "pavucontrol" "pavucontrol" (className =? "Pavucontrol") (customFloating $ W.RationalRect (1/4) (1/4) (2/4) (2/4))
                 , NS "spotify" "spotify" (className =? "Spotify") manageTerm
                  ]

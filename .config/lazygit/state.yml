@@ -3,6 +3,7 @@ recentrepos:
 - /home/sumanthyedoti/.dotfiles
 - /home/sumanthyedoti/org
 startuppopupversion: 5
-customcommandshistory: []
+customcommandshistory:
+- q
 hidecommandlog: false
 ignorewhitespaceindiffview: false

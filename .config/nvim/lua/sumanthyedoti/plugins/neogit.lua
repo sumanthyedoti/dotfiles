@@ -6,8 +6,10 @@ return {
     "sindrets/diffview.nvim",
   },
   keys = {
-    { "<leader>gn", ":Neogit<cr>", mode = { "n", "v" }, desc = "Neogit" },
-    { "<leader>gN", ":NeogitResetState<cr>", mode = { "n", "v" }, desc = "Neogit reset" },
+    { "<leader>gg", ":Neogit<cr>", mode = { "n", "v" }, desc = "Neogit" },
+    { "<leader>gR", ":NeogitResetState<cr>", mode = { "n", "v" }, desc = "Neogit reset" },
+    { "<leader>gp", ":Neogit pull<cr>", mode = { "n", "v" }, desc = "Neogit pull" },
+    { "<leader>gl", ":Neogit log<cr>", mode = { "n", "v" }, desc = "Neogit log" },
   },
   config = function()
     local neogit = require("neogit")
@@ -114,12 +116,11 @@ return {
       integrations = {
         -- If enabled, use telescope for menu selection rather than vim.ui.select.
         -- Allows multi-select and some things that vim.ui.select doesn't.
-        telescope = nil,
+        telescope = true,
         -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `diffview`.
         -- The diffview integration enables the diff popup.
-        --
         -- Requires you to have `sindrets/diffview.nvim` installed.
-        diffview = nil,
+        diffview = true,
 
         -- If enabled, uses fzf-lua for menu selection. If the telescope integration
         -- is also selected then telescope is used instead

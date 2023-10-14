@@ -113,6 +113,9 @@
 - duf
 - jq
 - ranger
+- lf
+  - lf-gadgets
+- trash-cli
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
 - glow - markdown previewer
@@ -127,4 +130,4 @@
   - gpg
   - pinentry
 - tldr
-- cht.sh
+- github-cli (https://cli.github.com/manual/gh)

@@ -1,6 +1,6 @@
 return {
-  'glepnir/dashboard-nvim',
-  event = 'VimEnter',
+  "glepnir/dashboard-nvim",
+  event = "VimEnter",
   config = function()
     local dashboard = require("dashboard")
     local quotes = {
@@ -39,13 +39,13 @@ return {
           -- lo
           -- "⠀⠀⠀⠀⠀⠀⠀⠈⠙⠶⢦⣤⣄⣀⣀⣀⣀⣠⣤⣾⡿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀",
           -- "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-          "÷------------------------------------------------÷",
+          "❇————————————————————————————————————————————————❇",
           "│                                                │",
           "│                                                │",
           "│        ( < neovim {} sumanthyedoti /> )        │",
           "│                                                │",
           "│                                                │",
-          "÷------------------------------------------------÷",
+          "❇————————————————————————————————————————————————❇",
           "",
           "",
           "",
@@ -57,20 +57,26 @@ return {
         },
         center = {
           {
-            icon = " ",
+            icon = " ",
             desc = desc("Find File"),
             key = "f",
             action = "Telescope find_files find_command=rg,--files",
           },
           {
-            icon = " ",
+            icon = " ",
+            desc = desc("Find Recent file"),
+            key = "r",
+            action = "Telescope oldfiles",
+          },
+          {
+            icon = "🔍 ",
             desc = desc("Find Word"),
-            key = "w",
+            key = "s",
             action = "Telescope live_grep",
           },
           { icon = " ", desc = desc("File Explorer"), key = "e", action = "NvimTreeOpen" },
           {
-            icon = "﬒ ",
+            icon = "﬒ ",
             desc = desc("Find Hidden File"),
             key = ".",
             action = "Telescope find_files find_command=rg,--hidden,--files",
@@ -86,5 +92,5 @@ return {
       },
     })
   end,
-  dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  dependencies = { { "nvim-tree/nvim-web-devicons" } },
 }

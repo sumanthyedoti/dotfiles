@@ -1,0 +1,95 @@
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(exa -ld --icons --color=always "$f")\""
+}}
+
+set icons true
+set ignorecase true
+set number true
+set relativenumber true
+set shell fish
+set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
+
+map <enter> open
+map y copy
+map x cut
+map p paste
+map R reload
+
+## remove some defaults
+map d
+map n
+
+## editor
+map <c-e> $sudo $EDITOR "$f"
+map <c-v> %bat "$f"
+
+## mkdir
+cmd mkdir ${{
+  printf "Directory name: "
+  read ans
+  mkdir -p $ans
+}}
+## mkfile
+cmd mkfile ${{
+  printf "File name: "
+  read ans
+  $EDITOR $ans
+}}
+
+# fzf
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map <c-f> :fzf_jump
+
+# ripgrep
+cmd fzf_search ${{
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    res="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+    )"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map gs :fzf_search
+
+# run node scripts
+cmd node_script ${{
+    script=$(cat package.json | jq -r '.scripts | keys[] ' | sort | fzf --height 20%) && npm run $(echo "$script")
+}}
+
+## trash
+cmd trash %trash-put $fx
+cmd trash_list $trash-list
+cmd trash_empty %trash-empty
+cmd trash_restore $trash-restore
+map DD :trash
+
+## archive/unarchive
+cmd unarchive ${{
+  case "$f" in
+    *.zip) unzip "$f" ;;
+    *.tar.gz) tar -xzvf "$f" ;;
+    *.tar.bz2) tar -xjvf "$f" ;;
+    *.tar) tar -xvf "$f" ;;
+    *.rar) unrar "$f" ;;
+    *) echo "Unsupported format" ;;
+}}
+cmd zip %zip -r "$f.zip" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cvjf "$f.tar.bz2" "$f"
+
+set previewer lf-ueberzug-previewer
+set cleaner lf-ueberzug-cleaner

@@ -6,7 +6,6 @@ return {
     { "<leader>tv", ":ToggleTermSendVisualLines<CR>", mode = { "n", "v", "t" } },
     { "<leader>tc", ":ToggleTermSendVisualSelection<CR>", mode = { "n", "v", "t" } },
     { "<leader>tb", "mzggVG:ToggleTermSendVisualSelection<CR>`z", mode = { "n", "v", "t" } },
-    { "<leader>tg", ":lua _LAZYGIT_TOGGLE()<CR>", mode = { "n", "v", "t" } },
     { "<leader>th", ":lua _HTOP_TOGGLE()<CR>", mode = { "n", "v", "t" } },
     { "<leader>tf", ":lua _LF_TOGGLE()<CR>", mode = { "n", "v", "t" } },
     { "<leader>td", ":lua _NCDU_TOGGLE()<CR>", mode = { "n", "v", "t" } },
@@ -54,39 +53,34 @@ return {
 
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-    function _LAZYGIT_TOGGLE()
-      lazygit:toggle()
-    end
-
-    local node = Terminal:new({ cmd = "node", hidden = true })
+    local node = Terminal:new({ cmd = "node" })
     function _NODE_TOGGLE()
       node:toggle()
     end
 
-    local elixir = Terminal:new({ cmd = "iex", hidden = true })
+    local elixir = Terminal:new({ cmd = "iex" })
     function _ELIXIR_TOGGLE()
       elixir:toggle()
     end
 
-    local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
+    local ncdu = Terminal:new({ cmd = "ncdu", direction = "float" })
     function _NCDU_TOGGLE()
       ncdu:toggle()
     end
 
-    local htop = Terminal:new({ cmd = "htop", hidden = true })
+    local htop = Terminal:new({ cmd = "htop", direction = "float" })
     function _HTOP_TOGGLE()
       htop:toggle()
     end
 
-    local python = Terminal:new({ cmd = "python", hidden = true })
-    function _PYTHON_TOGGLE()
-      python:toggle()
+    local lf = Terminal:new({ cmd = "lf .", direction = "float" })
+    function _LF_TOGGLE()
+      lf:toggle()
     end
 
-    local cht = Terminal:new({ cmd = "cht.sh --shell", hidden = true })
-    function _CHT_SH()
-      cht:toggle()
+    local python = Terminal:new({ cmd = "python" })
+    function _PYTHON_TOGGLE()
+      python:toggle()
     end
   end,
 }

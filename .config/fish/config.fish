@@ -25,15 +25,19 @@ alias clr="clear"
 alias l="exa -F --icons"
 alias ll="exa -lF --icons --git"
 alias lla="exa -lF --icons --git -a"
-alias lf="exa -1F --icons --git | grep -v /"
+alias lsf="exa -1F --icons --git | grep -v /"
 alias llf="exa -lF --icons --git | grep -v /"
-alias lt="exa -F --level=2  --tree --icons --git"
+alias lst="exa -F --level=2  --tree --icons --git"
 alias llt="exa -lF --level=2 --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
 
 alias fz="fzf --height 30%"
-alias fzh="find . | fzf --height 50%"
+alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
+
+alias rm="trash-put"
+
+alias lf="lfu ."
 
 alias sudo='sudo '
 alias g="git"
@@ -54,6 +58,9 @@ alias txa="tmux attach"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
+
+export view=nvim
+export EDITOR=nvim
 
 # starship init fish | source
 zoxide init fish | source
@@ -92,6 +99,21 @@ function vterm_printf;
         printf "\eP\e]%s\007\e\\" "$argv"
     else
         printf "\e]%s\e\\" "$argv"
+    end
+end
+# lf
+function lfcd
+    set tmp (mktemp)
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    command lf -last-dir-path=$tmp $argv
+    if test -f "$tmp"
+        set dir (cat $tmp)
+        rm -f $tmp
+        if test -d "$dir"
+            if test "$dir" != (pwd)
+                cd $dir
+            end
+        end
     end
 end
 # vterm clear scrollback

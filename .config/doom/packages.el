@@ -52,6 +52,8 @@
 
 ;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
 (package! paredit)
+(package! org-appear)
+
 ;;; key bindings and code colorization for Clojure
 (package! clojure-mode)
 ;;; extra syntax highlighting for clojure

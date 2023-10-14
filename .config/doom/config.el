@@ -108,6 +108,8 @@
    '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
    '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+  (add-hook 'org-mode-hook 'org-appear-mode)
+
 
   ;;;; org-babel
   (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
@@ -226,6 +228,7 @@
   (setq org-tree-slide-breadcrumbs " > ")
   (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
   (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree))
+
 
 ;;;;;
 ;; Elixir

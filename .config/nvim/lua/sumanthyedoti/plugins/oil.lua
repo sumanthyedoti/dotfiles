@@ -1,5 +1,8 @@
 return {
   "stevearc/oil.nvim",
+  keys = {
+    { "<leader>eE", ":Oil<CR>", mode = { "n", "t" }, desc = "Oil file edits" },
+  },
   opts = {
     -- See :help oil-actions for a list of all available actions
     keymaps = {

@@ -1,7 +1,8 @@
 return {
   "sindrets/diffview.nvim",
   keys = {
-    { "<leader>gg", ":DiffviewOpen<cr>", mode = { "n", "v" }, desc = "Open diffview" },
+    { "<leader>gd", ":DiffviewOpen<cr>", mode = { "n", "v" }, desc = "Open diffview" },
+    { "<leader>gD", ":DiffviewOpen main<cr>", mode = { "n", "v" }, desc = "Open diffview" },
     { "<leader>g ", ":DiffviewClose<cr>", mode = { "n", "v" }, desc = "Close diffview" },
     { "<leader>gh", ":DiffviewFileHistory<cr>", mode = { "n", "v" }, desc = "Open diffview File History" },
   },
