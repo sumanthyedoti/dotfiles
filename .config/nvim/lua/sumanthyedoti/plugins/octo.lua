@@ -10,7 +10,7 @@ return {
     { "<leader>gO", ":Octo<CR>", mode = { "n", "t" }, desc = "Octo - issues and PRs" },
   },
   config = function()
-    require("octo").setup({ enable_builtin = true })
+    require("octo").setup({ enable_builtin = true, timeout = 15000 })
     -- vim.cmd([[hi OctoEditable guibg=none]])
   end,
 }

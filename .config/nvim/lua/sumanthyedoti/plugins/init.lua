@@ -21,7 +21,12 @@ return {
   {
     "mbbill/undotree",
     keys = {
-      { "<leader>TU", ":UndotreeToggle<cr>", mode = { "n", "v" }, desc = "UndoTree" },
+      {
+        "<leader>TU",
+        ":UndotreeToggle<CR><C-w><C-w>:set number relativenumber<CR>",
+        mode = { "n", "v" },
+        desc = "UndoTree",
+      },
     },
   },
   {

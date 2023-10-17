@@ -38,6 +38,13 @@
 (setq
  projectile-project-search-path  '("~/org/" "~/.dotfiles"))
 
+; open buffers in vertical split
+(setq display-buffer-alist
+      '(("\\*.*\\*"
+         (display-buffer-in-side-window)
+         (window-width . 0.45)  ; You can adjust the width as needed
+         (side . right))))
+
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -67,6 +74,16 @@
 ;;   - Setting variables which explicitly tell you to set them before their
 ;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
 ;;   - Setting doom variables (which start with 'doom-' or '+').
+
+;;;; org-captured
+(setq +org-capture-todo-file "~/org/TODO.org")
+(setq +org-capture-notes-file "~/org/NOTES.org")
+(setq +org-capture-changelog-file "~/org/CHANGELOG.org")
+(setq +org-capture-journal-file "~/org/JOURNAL.org")
+;; org-capture templtes
+;(add-to-list 'org-capture-templates
+;  '("T" "Task" entry (file+headline "~/org/org-mode.org" "org-capture")
+;     "* TODO %?\n  %U\n  %a"))
 
 ;;;; org
 (setq org-directory "~/org/")
@@ -193,6 +210,14 @@
       "I p" (lambda () (interactive) (insert "📄"))
       "I y" (lambda () (interactive) (insert ""))
       "I v" (lambda () (interactive) (insert "")))
+; org agenda
+(global-set-key (kbd "C-c a") 'org-agenda)
+;; window navigation
+;(global-set-key (kbd "C-l") 'windmove-right)
+;(global-set-key (kbd "C-h") 'windmove-left)
+;(global-set-key (kbd "C-j") 'windmove-down)
+;(global-set-key (kbd "C-k") 'windmove-up)
+
 (map! :prefix "C-c"
       :desc "sp-forward-slurp-sexp"
       "s f" 'sp-forward-slurp-sexp)
@@ -229,6 +254,15 @@
   (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
   (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree))
 
+
+(use-package! org-drill
+  :config (progn
+            (add-to-list 'org-modules 'org-drill)
+            (setq org-drill-add-random-noise-to-intervals-p t)
+            (setq org-drill-hind-separator "||")
+            (setq org-drill-left-cloze-delimiter "<[")
+            (setq org-drill-right-cloze-delimiter "<]")
+            (setq org-drill-learn-fraction 0.25)))
 
 ;;;;;
 ;; Elixir

@@ -53,10 +53,6 @@ map("n", "<C-w>-", "<cmd>vertical resize -4<CR>") -- decrease width
 map("n", "<C-w>=", "<cmd>vertical resize +4<CR>") -- increase width
 map("n", "<C-w>.", "<cmd>resize -4<CR>") -- decrease height
 map("n", "<C-w>,", "<cmd>resize +4<CR>") -- increase height
-map("n", "<C-h>", "<cmd>vertical resize -1<CR>") -- decrease width
-map("n", "<C-l>", "<cmd>vertical resize +1<CR>") -- increase width
-map("n", "<C-j>", "<cmd>resize -1<CR>") -- decrease height
-map("n", "<C-k>", "<cmd>resize +1<CR>") -- increase height
 map("n", "<leader>w2", "<C-w><C-w><C-w><C-w>") -- kill all remaining splits
 map("n", "<leader>w1", "<C-w><C-w>") -- kill all remaining splits
 
@@ -65,7 +61,6 @@ map("n", "<leader>jh", "<C-w>h<CR>")
 map("n", "<leader>jj", "<C-w>j<CR>")
 map("n", "<leader>jk", "<C-w>k<CR>")
 map("n", "<leader>jh", "<C-w>h<CR>")
-
 -- Buffers
 map("n", "<leader>bo", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>") -- kill all remaining BufferLine tabs
 map("n", "<leader>bd", "<cmd>BufferLinePickClose<CR>") -- pick close current buffer
@@ -94,8 +89,8 @@ map("n", "<leader>bR", "mZ:Bdelete<CR>`Z", { desc = "Reload the current file" })
 
 -- INSERT --
 map("i", "jj", "<ESC>")
-map("i", "<C-j>", "<ESC>i") -- move backwards
-map("i", "<C-k>", "<ESC>la") -- move forwards
+map("i", "<C-j>", "<ESC>la") -- move forwards
+map("i", "<C-k>", "<ESC>i") -- move backwards
 map("i", "<C-h>", "<ESC>dbxi") -- clear one word backwards
 map("i", "<C-l>", "<ESC>ldei") -- clear one word forwards
 

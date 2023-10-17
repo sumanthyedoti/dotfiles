@@ -15,4 +15,3 @@ return {
     map("n", "<leader>ms", ":Telescope harpoon marks<cr>", OPTS)
   end,
 }
-

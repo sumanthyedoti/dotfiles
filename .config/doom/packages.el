@@ -53,6 +53,7 @@
 ;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
 (package! paredit)
 (package! org-appear)
+(package! org-drill)
 
 ;;; key bindings and code colorization for Clojure
 (package! clojure-mode)

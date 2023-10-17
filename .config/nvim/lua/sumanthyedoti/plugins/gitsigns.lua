@@ -1,7 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
-  config = function ()
-
+  config = function()
     local gitsigns = require("gitsigns")
 
     gitsigns.setup({
@@ -102,5 +101,5 @@ return {
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
       end,
     })
-  end
+  end,
 }
