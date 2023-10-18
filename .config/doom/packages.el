@@ -51,6 +51,7 @@
 
 
 ;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+(package! mermaid-mode)
 (package! paredit)
 (package! org-appear)
 (package! org-drill)

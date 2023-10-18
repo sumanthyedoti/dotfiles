@@ -80,10 +80,13 @@
 (setq +org-capture-notes-file "~/org/NOTES.org")
 (setq +org-capture-changelog-file "~/org/CHANGELOG.org")
 (setq +org-capture-journal-file "~/org/JOURNAL.org")
+
 ;; org-capture templtes
 ;(add-to-list 'org-capture-templates
-;  '("T" "Task" entry (file+headline "~/org/org-mode.org" "org-capture")
-;     "* TODO %?\n  %U\n  %a"))
+;             '("T" "Task" entry (file+headline "~/org/TASKS.org")
+;               "* TODO %?\n  %U\n  %a")
+;             '("J" "Journal" entry (file+datetree "~/org/JOURNAL.org")
+;               "*** %U %?  %?"))
 
 ;;;; org
 (setq org-directory "~/org/")
@@ -126,6 +129,8 @@
    '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
   (add-hook 'org-mode-hook 'org-appear-mode)
+;; ob-mermaid
+(setq ob-mermaid-cli-path (shell-command-to-string "which mmdc"))
 
 
   ;;;; org-babel
@@ -138,6 +143,7 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
+     (mermaid . t)
      ;(lua . t)
      ;(ocaml . t)
      ;(haskell . t)
@@ -160,7 +166,7 @@
   (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src bash"))
   (add-to-list 'org-structure-template-alist '("x" . "src latex"))
   (add-to-list 'org-structure-template-alist '("js" . "src js"))
   (add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
@@ -173,7 +179,8 @@
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
   (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
-  (add-to-list 'org-structure-template-alist '("sql" . "src sql")))
+  (add-to-list 'org-structure-template-alist '("sql" . "src sql"))
+  (add-to-list 'org-structure-template-alist '("mmd" . "src mermaid :file test.png")))
 
 ;;;; latex
 
@@ -210,8 +217,12 @@
       "I p" (lambda () (interactive) (insert "📄"))
       "I y" (lambda () (interactive) (insert ""))
       "I v" (lambda () (interactive) (insert "")))
+; save file
+(global-set-key (kbd "C-s") 'save-buffer) 
 ; org agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
 ;; window navigation
 ;(global-set-key (kbd "C-l") 'windmove-right)
 ;(global-set-key (kbd "C-h") 'windmove-left)

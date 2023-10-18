@@ -29,11 +29,30 @@ cmd mkdir ${{
   read ans
   mkdir -p $ans
 }}
+
 ## mkfile
 cmd mkfile ${{
   printf "File name: "
   read ans
   $EDITOR $ans
+}}
+
+## chmod
+cmd chmod ${{
+  printf "Permission: "
+  read ans
+  chmod $ans $f
+}}
+
+## zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
+}}
+
+cmd zi ${{
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 # fzf

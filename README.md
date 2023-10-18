@@ -2,7 +2,7 @@
 
 - Install the Tools and Dependecies first
 - git clone this repo into `~/.dotfiles`
-- run `stow .`
+- run `stow .`R
 - Install Fonts
   - Hack (nerd)
   - Jetbrains Mono (nerd)
@@ -82,15 +82,8 @@
   - `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
+  - install `mermaid-cli `(@mermaid-js/mermaid-cli)
 - cmake
-- [XMonad WM](https://xmonad.org/download.html)
-  - xmonad-contrib (community library for additional features)
-  - xmobar
-    - after change, `killall xmobar` and reload(`M-q`) XMonad
-  - dmenu
-  - xterm
-  - nitrogen
-  - picom
 
 ### Linux WM
 
@@ -131,3 +124,19 @@
   - pinentry
 - tldr
 - github-cli (https://cli.github.com/manual/gh)
+
+#### Linux
+
+- [XMonad WM](https://xmonad.org/download.html)
+  - xmonad-contrib (community library for additional features)
+  - xmobar
+    - after change, `killall xmobar` and reload(`M-q`) XMonad
+  - dmenu
+  - xterm
+  - nitrogen
+  - picom
+- dunst
+- scrot
+- pamixer
+- cronie
+- tesseract, tesseract-data-eng

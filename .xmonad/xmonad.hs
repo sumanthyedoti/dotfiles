@@ -101,8 +101,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
+    -- launch rofi
     , ((modm,               xK_p     ), spawn "rofi -show drun")
+    , ((modm,               xK_o     ), spawn "rofi -modi emoji -show emoji")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -176,9 +177,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     {- ==== custom keybindings ==== -}
     -- , ((modm .|. controlMask, xK_q), removeWorkspace)
     {- volume -}
-    , ((0, xF86XK_AudioMute),  spawn "pamixer -t")
-    , ((0, xF86XK_AudioLowerVolume),  spawn "pamixer --unmute && pamixer -d 5")
-    , ((0, xF86XK_AudioRaiseVolume),  spawn "pamixer --unmute && pamixer -i 5")
+    , ((0, xF86XK_AudioMute),  spawn "~/.scripts/volume.sh mute")
+    , ((0, xF86XK_AudioLowerVolume),  spawn "~/.scripts/volume.sh down")
+    , ((0, xF86XK_AudioRaiseVolume),  spawn "~/.scripts/volume.sh up")
     , ((0, xF86XK_MonBrightnessUp),  spawn "brightnessctl set +10%")
     , ((0, xF86XK_MonBrightnessDown),  spawn "brightnessctl set 10%-")
 
@@ -205,6 +206,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       , ((0, xK_d), promptSearch myXPConfig S.duckduckgo)
       , ((0, xK_e), promptSearch myXPConfig S.dictionary)
       , ((0, xK_t), promptSearch myXPConfig engToTel)
+      ])
+
+  , ((modm .|. shiftMask,   xK_s), submap . M.fromList $
+      [ ((0, xK_s), spawn "~/.scripts/screenshot.sh select")
+      , ((0, xK_w), spawn "~/.scripts/screenshot.sh window")
+      , ((0, xK_t), spawn "~/.scripts/extract-text-from-image.sh")
+      , ((shiftMask, xK_w), spawn "scrot")
       ])
     ]
     ++

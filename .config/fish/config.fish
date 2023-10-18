@@ -133,3 +133,8 @@ end
 
 # Created by `pipx` on 2023-10-09 15:44:25
 set PATH $PATH /home/sumanthyedoti/.local/bin
+
+#### plugin variables
+## done
+set -U __done_min_cmd_duration 5000
+set -U __done_exclude '(^git (?!push|pull|fetch)|lg*|fzf*|lf*|feh*|mpv*|man*)'

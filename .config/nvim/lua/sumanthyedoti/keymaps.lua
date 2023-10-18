@@ -70,8 +70,9 @@ map("n", "<leader>bL", "<cmd>BufferLineCloseLeft<CR>")
 map("n", "<leader>bg", "<cmd>BufferLinePick<CR>") -- pick buffer / go to selcted buffer
 map("n", "C-b", "<cmd>bd<CR>")
 
--- treesitter playground
-map("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>")
+-- new line without insert mode
+map("n", "[ ", "mzO<Esc>`z", { desc = "Add line above" })
+map("n", "] ", "mzo<Esc>`z", { desc = "Add line below" })
 
 -- buffer list
 map("n", "<leader>bl", "<cmd>ls<cr>:b")

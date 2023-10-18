@@ -21,3 +21,4 @@ while true; do
     send_null_packet
     sleep "$INTERVAL_SECONDS"
 done
+

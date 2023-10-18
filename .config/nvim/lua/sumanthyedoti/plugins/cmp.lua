@@ -1,4 +1,4 @@
-return	{
+return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
@@ -18,7 +18,7 @@ return	{
     local lspkind = require("lspkind")
 
     require("cmp_git").setup()
-    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
     lspkind.init({
       mode = "text_symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
@@ -61,10 +61,7 @@ return	{
       return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
     end
 
-    cmp.event:on(
-    'confirm_done',
-    cmp_autopairs.on_confirm_done()
-    )
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     -- 🌐 https://github.com/neovim/nvim-lspconfig/wiki/Snippets
     cmp.setup({
@@ -127,10 +124,10 @@ return	{
           end,
         },
         { name = "nvim_lua", max_item_count = 4 },
-        {name = "vim-dadbod-completion"},
+        { name = "vim-dadbod-completion" },
         { name = "path", keyword_length = 1, max_item_count = 6 },
         { name = "luasnip", max_item_count = 6 },
-        { name = "emoji", max_item_count = 6 },
+        -- { name = "emoji", max_item_count = 6 },
         { name = "git" },
       }, {
         { name = "buffer", max_item_count = 4, keyword_length = 3 },
@@ -144,7 +141,7 @@ return	{
             nvim_lua = "[nLua]",
             luasnip = "[snip]",
             buffer = "[buff]",
-            emoji = "emoji",
+            -- emoji = "emoji",
             path = "[path]",
             cmp_git = "[git]",
           },

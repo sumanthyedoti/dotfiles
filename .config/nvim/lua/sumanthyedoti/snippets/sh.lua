@@ -20,7 +20,7 @@ cs(
   "#s",
   fmt(
     [[
-#!/bin/bash
+#!/bin/sh
 
 
   ]],
