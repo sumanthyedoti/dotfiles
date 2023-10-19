@@ -87,7 +87,6 @@
 
 ### Linux WM
 
-- sxhkd
 - mpv
   - yt-dlp
 - feh
@@ -139,4 +138,5 @@
 - scrot
 - pamixer
 - cronie
+- sxhkd
 - tesseract, tesseract-data-eng

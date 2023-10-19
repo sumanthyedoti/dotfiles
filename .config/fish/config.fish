@@ -62,7 +62,7 @@ alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 export view=nvim
 export EDITOR=nvim
 
-# starship init fish | source
+starship init fish | source
 zoxide init fish | source
 
 # Setting PATH for Python 3.10
