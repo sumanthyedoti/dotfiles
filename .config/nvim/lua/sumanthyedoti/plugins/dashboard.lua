@@ -8,6 +8,7 @@ return {
       "Start creating..",
       "Delete some code",
       "ABC -- Always Be Coding",
+      "You must have the discipline to do less",
     }
 
     local function desc(content)

@@ -1,5 +1,5 @@
-return {}
---[[ return {
+-- return {}
+return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
   dependencies = {
@@ -51,8 +51,8 @@ return {}
       popup_layout = {
         default = "center",
         center = {
-          width = "80%",
-          height = "80%",
+          width = "96%",
+          height = "90%",
         },
         right = {
           width = "40%",
@@ -78,4 +78,4 @@ return {}
       predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/sumanthyedoti/dotfiles/main/.config/nvim/lua/plugins/chatgpt/prompts.csv",
     })
   end,
-} ]]
+}

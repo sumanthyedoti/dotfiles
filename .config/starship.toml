@@ -9,9 +9,13 @@ right_format = """$all"""
 palette = "catppuccin_mocha"
 
 # A minimal left prompt
+# format = """
+# [$directory $git_branch $git_metrics](white bold bg:#708090)\
+# [](#708090)
+# $character
+# """
 format = """
-[$directory $git_branch](white bold bg:#708090)\
-[](#708090)
+$directory $git_branch $git_metrics
 $character
 """
 
@@ -22,8 +26,8 @@ vicmd_symbol = "[\ue62b](white)" # 
 error_symbol = "[\uf467\uf460](red)" # 
 
 [directory]
-style = "white bold bg:#708090"
-format = "[ $path ]($style)"
+# style = "white bg:#708090"
+# format = "[ $path ]($style)"
 truncation_length = 2
 truncation_symbol = ".../"
 [directory.substitutions]
@@ -41,7 +45,6 @@ disabled = false
 disabled = false
 
 [aws]
-disabled = true
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'
 symbol = " "
@@ -50,7 +53,7 @@ symbol = " "
 disabled = false
 
 [git_branch]
-style = "#00FFFF bold bg:#708090"
+# style = "#00FFFF bold bg:#708090"
 disabled = false
 
 [git_commit]
@@ -65,11 +68,6 @@ disabled = false
 [git_status]
 disabled = false
 
-
-# [aws]
-# format = 'on [$symbol($profile )(\($region\) )]($style)'
-# style = 'bold blue'
-# symbol = " "
 
 [golang]
 format = '[ $version](bold cyan) '

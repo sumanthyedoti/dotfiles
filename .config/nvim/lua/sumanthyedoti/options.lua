@@ -9,13 +9,14 @@ o.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 o.conceallevel = 0 -- so that `` is visible in markdown files
 o.fileencoding = "utf-8" -- the encoding written to a file
 o.hlsearch = true -- highlight all matches on previous search pattern
+o.incsearch = true
 o.smartcase = true
 o.backspace = "indent,eol,start"
 o.title = true
 o.mouse = "a" -- allow the mouse to be used in neovim
 o.pumheight = 10 -- pop up menu height
 o.gp = "git grep -n"
--- o.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
+o.showmode = true -- NORMAL | INSERT | VISUAL
 o.showtabline = 2 -- always show tabs
 o.smartindent = true -- make indenting smarter
 o.splitbelow = true -- force all horizontal splits to go below current window
@@ -48,7 +49,7 @@ local options = {
   wrap = false, -- display lines as one long line
   linebreak = true,
   scrolloff = 4, -- number of screen lines to keep above and below the cursor
-  sidescrolloff = 4,
+  sidescrolloff = 12,
 }
 for k, v in pairs(options) do
   vim.opt[k] = v
