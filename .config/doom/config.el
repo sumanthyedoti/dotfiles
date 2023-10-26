@@ -26,9 +26,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono" :size 30)
-     doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 36))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14 :weight 'semi-light)
+     doom-variable-pitch-font (font-spec :family "Hack Nerd Font Mono" :size 20)
+     doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 26))
 (after! doom-theme
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -239,7 +239,7 @@
       "I y" (lambda () (interactive) (insert ""))
       "I v" (lambda () (interactive) (insert "")))
 ; save file
-(global-set-key (kbd "C-s") 'save-buffer) 
+(global-set-key (kbd "C-s") 'save-buffer)
 ; org agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
