@@ -101,7 +101,7 @@
         org-log-done 'time
         ;; before "|" are active, after are done
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "|" "DONE(o)")
-                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")
+                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d)" "DEV-DONE(v)" "TESTING(c)" "|" "STAGED(s)" "DEPLOYED(y)")
                             (sequence "GOAL(g)" "|" "REACHED(h)")
                             (sequence "IDEA(i)" "|"))
         org-priority-faces '((65 :foreground "#e45649") ; ASCII 65, same as writing ?A
@@ -170,12 +170,11 @@
 
   (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;;; `<s` to begin src block
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src bash"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("sh" . "src bash"))
   (add-to-list 'org-structure-template-alist '("x" . "src latex"))
   (add-to-list 'org-structure-template-alist '("js" . "src js"))
   (add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
