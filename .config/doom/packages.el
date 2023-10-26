@@ -55,6 +55,9 @@
 (package! paredit)
 (package! org-appear)
 (package! org-drill)
+(package! anki-editor)
+(package! calfw)
+(package! calfw-org)
 
 ;;; key bindings and code colorization for Clojure
 (package! clojure-mode)

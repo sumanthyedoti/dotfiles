@@ -20,6 +20,46 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+    # `command` is needed in case `lfcd` is aliased to `lf`
+alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
+# aliases for scripts
+alias txa="tmux attach"
+alias txss="tmux new-session -d -s (pwd | sed 's/.*\///g') && tmux switch-client -t (pwd | sed 's/.*\///g')"
+alias txnn="tmux new -s (pwd | sed 's/.*\///g')"
+alias txn="tmux new"
+alias mpi="mpv --keep-open=yes"
+alias gap="git add -p"
+alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
+alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5" ghcr.io/filbranden/vimgolf'
+alias docker-ip="sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
+alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+alias rsync="rsync -h --progress"
+alias emacs="emacs -mm"
+alias http="xh"
+alias m="mpv"
+alias z="zoxide"
+alias lg="lazygit"
+alias g="git"
+alias sudo='sudo '
+alias lf="lfu ."
+alias rm="trash-put"
+alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
+alias fz="fzf --height 30%"
+alias lltr="exa -lF --tree --icons --git"
+alias ltr="exa -F --tree --icons --git"
+alias llt="exa -lF --level=2 --tree --icons --git"
+alias lst="exa -F --level=2  --tree --icons --git"
+alias llf="exa -lF --icons --git | grep -v /"
+alias lsf="exa -1F --icons --git | grep -v /"
+alias lla="exa -lF --icons --git -a"
+alias ll="exa -lF --icons --git"
+alias l="exa -F --icons"
+alias clr="clear"
+alias ....="cd ../../.."
+alias ...="cd ../.."
+alias ..="cd .."
+alias .="pwd"
+# ALIASES
 alias clr="clear"
 
 alias l="exa -F --icons"
@@ -35,14 +75,13 @@ alias lltr="exa -lF --tree --icons --git"
 alias fz="fzf --height 30%"
 alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
 
-alias rm="trash-put"
-
 alias lf="lfu ."
 
 alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
+alias m="mpv"
 alias http="xh"
 alias emacs="emacs -mm"
 alias rsync="rsync -h --progress"
@@ -54,6 +93,8 @@ alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
 ## tmux
 alias txn="tmux new"
+alias txnn="tmux new -s (pwd | sed 's/.*\///g')"
+alias txss="tmux new-session -d -s (pwd | sed 's/.*\///g') && tmux switch-client -t (pwd | sed 's/.*\///g')"
 alias txa="tmux attach"
 
 # aliases for scripts

@@ -153,6 +153,13 @@ return {
 
     -- 🌐 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     -- configure html server
+    lspconfig["bashls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = { "bash-language-server", "start" },
+      filetypes = { "sh" },
+    })
+
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,

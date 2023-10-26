@@ -40,6 +40,8 @@ local servers = { -- HERE: LSP servers
   "tailwindcss",
   "prismals",
   "graphql",
+  --[[ bash ]]
+  "bashls",
 }
 
 local tools = { -- HERE: Linters and Formatters

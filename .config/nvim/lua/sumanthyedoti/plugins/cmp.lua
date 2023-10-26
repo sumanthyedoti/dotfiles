@@ -127,6 +127,7 @@ return {
         { name = "vim-dadbod-completion" },
         { name = "path", keyword_length = 1, max_item_count = 6 },
         { name = "luasnip", max_item_count = 6 },
+        { name = "orgmode" },
         -- { name = "emoji", max_item_count = 6 },
         { name = "git" },
       }, {

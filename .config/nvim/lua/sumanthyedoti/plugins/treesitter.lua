@@ -74,11 +74,6 @@ return {
       auto_install = true,
       sync_install = false,
       ignore_install = { "" }, -- List of parsers to ignore installing
-      highlight = {
-        enable = true, -- false will disable the whole extension -- HERE:
-        disable = { "" }, -- list of language that will be disabled
-        additional_vim_regex_highlighting = { "org" },
-      },
       indent = {
         enable = true,
         -- disable = { "yaml" },

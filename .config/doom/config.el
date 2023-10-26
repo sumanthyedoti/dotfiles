@@ -38,12 +38,12 @@
 (setq
  projectile-project-search-path  '("~/org/" "~/.dotfiles"))
 
-; open buffers in vertical split
-(setq display-buffer-alist
-      '(("\\*.*\\*"
-         (display-buffer-in-side-window)
-         (window-width . 0.45)  ; You can adjust the width as needed
-         (side . right))))
+;;; open buffers in vertical split
+;(setq display-buffer-alist
+;      '(("\\*.*\\*"
+;         (display-buffer-in-side-window)
+;         (window-width . 0.45)  ; You can adjust the width as needed
+;         (side . right))))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -91,6 +91,7 @@
 ;;;; org
 (setq org-directory "~/org/")
 (after! org
+  (use-package! calfw-org)
   (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
         org-hide-emphasis-markers t
         org-deadline-warning-days 3
@@ -99,14 +100,17 @@
         org-agenda-skip-scheduled-if-done t
         org-log-done 'time
         ;; before "|" are active, after are done
-        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "|" "DONE(d)")
-                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(i)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)"))
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "|" "DONE(o)")
+                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d)" "DEV-DONE(v)" "TESTING(t)" "|" "STAGED(s)" "DEPLOYED(y)")
+                            (sequence "GOAL(g)" "|" "REACHED(h)")
+                            (sequence "IDEA(i)" "|"))
         org-priority-faces '((65 :foreground "#e45649") ; ASCII 65, same as writing ?A
                              (66 :foreground "#da8548")
                              (67 :foreground "#0098dd"))
         org-log-into-drawer t
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts t
         org-agenda-files '("~/org")
-                                        ; org-pretty-entities t
         org-clock-display-default-range 'thisweek
         org-latex-compiler "xelatex")
   (set-face-attribute 'org-link nil
@@ -129,8 +133,14 @@
    '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
   (add-hook 'org-mode-hook 'org-appear-mode)
-;; ob-mermaid
-(setq ob-mermaid-cli-path (shell-command-to-string "which mmdc"))
+  ; (setq org-appear-autolinks t)
+  (setq org-appear-autosubmarkers t)
+  (setq org-appear-autoentities t)
+  (setq org-appear-autokeywords t)
+  (setq org-appear-inside-latex t)
+  (setq org-appear-delay 0.15)
+  ;; ob-mermaid
+  (setq ob-mermaid-cli-path (shell-command-to-string "which mmdc"))
 
 
   ;;;; org-babel
@@ -144,7 +154,6 @@
    '((emacs-lisp . t)
      (python . t)
      (mermaid . t)
-     ;(lua . t)
      ;(ocaml . t)
      ;(haskell . t)
      ;(rust . t)
@@ -174,6 +183,8 @@
   (add-to-list 'org-structure-template-alist '("cpp" . "src cpp"))
   (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
   (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
+  (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+  (add-to-list 'org-structure-template-alist '("json" . "src json"))
   (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
   (add-to-list 'org-structure-template-alist '("ex" . "src elixir"))
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
@@ -270,10 +281,16 @@
   :config (progn
             (add-to-list 'org-modules 'org-drill)
             (setq org-drill-add-random-noise-to-intervals-p t)
-            (setq org-drill-hind-separator "||")
-            (setq org-drill-left-cloze-delimiter "<[")
-            (setq org-drill-right-cloze-delimiter "<]")
-            (setq org-drill-learn-fraction 0.25)))
+            ;(setq org-drill-hind-separator "||")
+            ;(setq org-drill-left-cloze-delimiter "<[")
+            ;(setq org-drill-right-cloze-delimiter "<]")
+            ))
+(use-package! anki-editor
+  :after org-noter
+  :config
+  (setq anki-editor-create-decks 't))
+
+(use-package! calfw)
 
 ;;;;;
 ;; Elixir

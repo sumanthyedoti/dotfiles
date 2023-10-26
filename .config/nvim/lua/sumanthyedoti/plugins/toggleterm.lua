@@ -43,6 +43,7 @@ return {
     function _G.set_terminal_keymaps()
       local opts = { noremap = true }
       vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+      vim.api.nvim_buf_set_keymap(0, "t", "jj", [[<C-\><C-n>]], opts)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
@@ -53,7 +54,7 @@ return {
 
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local node = Terminal:new({ cmd = "node" })
+    local node = Terminal:new({ cmd = "node", hidden = true })
     function _NODE_TOGGLE()
       node:toggle()
     end

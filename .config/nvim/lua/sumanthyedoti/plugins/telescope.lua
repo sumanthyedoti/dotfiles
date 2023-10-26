@@ -19,6 +19,7 @@ return {
     { "<leader>fs", ":Telescope live_grep<cr>", desc = "Find string" },
     { "<leader>fc", ":Telescope grep_string<cr>", desc = "Find string under cursor" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
   },
   config = function()
     local telescope = require("telescope")

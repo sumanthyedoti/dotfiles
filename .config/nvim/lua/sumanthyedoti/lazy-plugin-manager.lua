@@ -31,6 +31,7 @@ end
 --[[ PACKAGES
   dispatch
   neo-minimap  - https://youtu.be/vNyQBWfSh7c
+  neoclip
   colortils
     color-picker.nvim
   syntax-tree-surfer
@@ -56,6 +57,7 @@ end
   nvim-notify
   overseer.nvim
   GitHub Copilot
+  git-conflict.nvim
   neoformat
   nvim-peekup
   nabla.nvim
@@ -76,42 +78,9 @@ end
   - vim-dotoo
   - Taskwarrior + VimWiki + TaskWiki
   - telekasten.nvim
-  - Obsidian.nvim
   michaelb/sniprun *
   codi.vim
-  TODO:
-  - configure gitsigns
-  - configure hydra
 ]]
-
-local lisp_filetypes = { "lisp", "lsp", "el" }
-local repl_filetypes = {
-  "lisp",
-  "lsp",
-  "scheme",
-  "el",
-  "clojure",
-  "haskell",
-  "elm",
-  "ocaml",
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "typescriptreact",
-  "python",
-  "elixir",
-}
-local conjure_filetypes = {
-  "lisp",
-  "lsp",
-  "clojure",
-  "clojurescript",
-  "haskell",
-  "scheme",
-  "rust",
-  "python",
-  "lua",
-}
 
 local options = {
   install = { missing = true, colorscheme = { COLORSCHEME } },

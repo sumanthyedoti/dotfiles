@@ -84,6 +84,8 @@
   - install `coreutils` (in mac, for dired)
   - install `mermaid-cli `(@mermaid-js/mermaid-cli)
 - cmake
+- docker
+  - docker-buildx
 
 ### Linux WM
 
@@ -123,9 +125,11 @@
   - pinentry
 - tldr
 - github-cli (https://cli.github.com/manual/gh)
+- `npm i -g @343dev/optimizt`
 
 #### Linux
 
+- xrandr
 - [XMonad WM](https://xmonad.org/download.html)
   - xmonad-contrib (community library for additional features)
   - xmobar
@@ -139,4 +143,5 @@
 - pamixer
 - cronie
 - sxhkd
+- xdotool
 - tesseract, tesseract-data-eng

@@ -26,8 +26,6 @@ alias llt="exa -lF --level=2 --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
 
-alias rm="trash-put"
-
 alias lf="lfu ."
 
 alias fz="fzf --height 30%"
@@ -37,6 +35,7 @@ alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"
 alias z="zoxide"
+alias m="mpv"
 alias http="xh"
 alias emacs="emacs -mm"
 alias rsync="rsync -h --progress"
@@ -48,6 +47,8 @@ alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
 ## tmux
 alias txn="tmux new"
+alias txnn="tmux new -s (pwd | sed 's/.*\///g')"
+alias txss="tmux new-session -d -s (pwd | sed 's/.*\///g') && tmux switch-client -t (pwd | sed 's/.*\///g')"
 alias txa="tmux attach"
 
 # aliases for scripts
