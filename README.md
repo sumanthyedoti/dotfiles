@@ -39,6 +39,7 @@
 - python
   - pip
   - pyenv (?)
+  - jupyter
 - fish
   - [fisher](https://github.com/jorgebucaran/fisher)
     - [nvm](https://github.com/jorgebucaran/nvm.fish)
@@ -87,13 +88,6 @@
 - docker
   - docker-buildx
 
-### Linux WM
-
-- mpv
-  - yt-dlp
-- feh
-- ffmpeg
-
 ### CLI tools
 
 - starship
@@ -112,6 +106,7 @@
 - trash-cli
 - lazygit
   - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
+- csvlens
 - glow - markdown previewer
 - pandoc
 - git-delta
@@ -127,6 +122,10 @@
 - github-cli (https://cli.github.com/manual/gh)
 - `npm i -g @343dev/optimizt`
 
+#### Dev Tools
+
+- postgresql
+
 #### Linux
 
 - xrandr
@@ -140,6 +139,10 @@
   - picom
 - dunst
 - scrot
+- mpv
+- yt-dlp
+- feh
+- ffmpeg
 - pamixer
 - cronie
 - sxhkd

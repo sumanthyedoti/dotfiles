@@ -4,7 +4,7 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 # move the rest of the prompt to the right
-right_format = """$all"""
+# right_format = """$all"""
 
 palette = "catppuccin_mocha"
 
@@ -14,10 +14,10 @@ palette = "catppuccin_mocha"
 # [](#708090)
 # $character
 # """
-format = """
-$directory $git_branch $git_metrics
-$character
-"""
+# format = """
+# $directory $git_branch $git_metrics
+# $character
+# """
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character]
@@ -31,7 +31,7 @@ error_symbol = "[\uf467\uf460](red)" # 
 truncation_length = 2
 truncation_symbol = ".../"
 [directory.substitutions]
-"Downloads" = "📥 "
+"Downloads" = "📥"
 "Pictures" = "📷"
 
 # Disable the package module, hiding it from the prompt completely

@@ -54,7 +54,7 @@ return {
       end
     end)
     -- set(mode, "<A-y>", "<Esc>o", { silent = true })
-    --
+
     -- set(mode, "<a-k>", function()
     -- 	if ls.jumpable(1) then
     -- 		ls.jump(1)
@@ -70,7 +70,7 @@ return {
     -- - to go to correspoding snippet file
     set("n", "<leader>Sn", "<cmd>LuaSnipEdit<cr>", OPTS)
     -- reload all snippets
-    set("n", "<leader>So", "<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>", OPTS)
+    set("n", "<leader>So", "<cmd>source ~/.config/nvim/lua/sumanthyedoti/plugins/luasnip.lua<cr>", OPTS)
     -- - enter into custom snippit creation area in the file
     vim.cmd([[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>kko<Esc>o]]) -- HERE !
   end,

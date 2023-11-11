@@ -54,10 +54,12 @@
 (package! mermaid-mode)
 (package! paredit)
 (package! org-appear)
+(package! org-journal)
 (package! org-drill)
-(package! anki-editor)
+(package! anki-editor) ; make sure 'ankiconnect' add-on in installed in Anki
 (package! calfw)
 (package! calfw-org)
+(package! org-tree-slide)
 
 ;;; key bindings and code colorization for Clojure
 (package! clojure-mode)
@@ -66,6 +68,5 @@
 ;;; integration with a Clojure REPL
 (package! cider)
 (package! inf-elixir)
-(package! org-tree-slide)
 (package! ob-typescript)
 (package! ob-elixir)

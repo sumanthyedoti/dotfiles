@@ -2,7 +2,6 @@ return {
   "akinsho/toggleterm.nvim",
   keys = {
     { "<leader>tt", ":ToggleTerm<CR>", mode = { "n", "v", "t" } },
-    { "<leader>tl", ":ToggleTermSendCurrentLine<CR>", mode = { "n", "v", "t" } },
     { "<leader>tv", ":ToggleTermSendVisualLines<CR>", mode = { "n", "v", "t" } },
     { "<leader>tc", ":ToggleTermSendVisualSelection<CR>", mode = { "n", "v", "t" } },
     { "<leader>tb", "mzggVG:ToggleTermSendVisualSelection<CR>`z", mode = { "n", "v", "t" } },
@@ -54,12 +53,12 @@ return {
 
     local Terminal = require("toggleterm.terminal").Terminal
 
-    local node = Terminal:new({ cmd = "node", hidden = true })
+    local node = Terminal:new({ cmd = "node", start_in_insert = false })
     function _NODE_TOGGLE()
       node:toggle()
     end
 
-    local elixir = Terminal:new({ cmd = "iex" })
+    local elixir = Terminal:new({ cmd = "iex", start_in_insert = false })
     function _ELIXIR_TOGGLE()
       elixir:toggle()
     end
@@ -69,14 +68,9 @@ return {
       ncdu:toggle()
     end
 
-    local htop = Terminal:new({ cmd = "htop", direction = "float" })
+    local htop = Terminal:new({ cmd = "htop", direction = "float", start_in_insert = false })
     function _HTOP_TOGGLE()
       htop:toggle()
-    end
-
-    local lf = Terminal:new({ cmd = "lf .", direction = "float" })
-    function _LF_TOGGLE()
-      lf:toggle()
     end
 
     local python = Terminal:new({ cmd = "python" })

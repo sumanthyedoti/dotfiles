@@ -237,7 +237,7 @@ return {
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      filetypes = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "heex" },
     })
 
     -- configure lua server (with special settings)

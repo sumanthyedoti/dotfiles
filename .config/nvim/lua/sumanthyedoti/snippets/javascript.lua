@@ -54,47 +54,6 @@ cs("cw", { t("console.warn("), i(1, ""), t(")") }, { "<leader>ce" })
 cs("cww", { t("console.warn("), i(1, ""), t(")") }, { "<leader>ce" }, true)
 cs("ce", { t("console.error("), i(1, ""), t(")") }, { "<leader>ce" })
 cs("cee", { t("console.error("), i(1, ""), t(")") }, { "<leader>ce" }, true)
--- ## Util Function
-cs("f_isEven", t("const isEven = num => num % 2 === 0"))
-cs("f_isOdd", t("const isOdd = num => num % 2 !== 0"))
-cs("f_isNumber", {
-  t({ "function isNumber(num) {", "" }),
-  t({ "  return !isNaN(parseFloat(num)) && isFinite(num)", "" }),
-  t("}"),
-})
-cs("f_isObjectEmpty", {
-  t({ "const isObjectEmpty = (object) => {", "" }),
-  t({ "  if (object.constructor !== Object) return false;", "" }),
-  t({ "  // if key exists, return false", "" }),
-  t({ "  for (_ in object) return false", "" }),
-  t({ "  return true;", "" }),
-  t("}"),
-})
-cs("f_randInRange", {
-  t({ "function randomNumberInRange(min, max) {" }),
-  t({ "  min = Math.ceil(min)", "" }),
-  t({ "  max = Math.floor(max)", "" }),
-  t({ "  return Math.floor(Math.random() * (max - min + 1)) + min", "" }),
-  t("}"),
-})
-cs("f_uniqueValues", {
-  t({ "const uniqueValues = (array) => {", "" }),
-  t({ "  const uniqueValues = []", "" }),
-  t({ "  const seenMap = {}", "" }),
-  t({ "  for (const item of array) {", "" }),
-  t({ "    if (seenMap[item]) continue", "" }),
-  t({ "    seenMap[item] = true", "" }),
-  t({ "    uniqueValues.push(item)", "" }),
-  t({ "  }", "" }),
-  t({ "  return uniqueValues;", "" }),
-  t("}"),
-})
-cs("f_client_scrollToTop", t("const scrollToTop = () => window.scrollTo(0, 0)"))
-cs("f_randomizeArray", {
-  t({ "function randomizeArray(arr) {" }),
-  t({ "  return arr.sort(() => 0.5 - Math.random())", "" }),
-  t("}"),
-})
 
 -- Testting
 cs(

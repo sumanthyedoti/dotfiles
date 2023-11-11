@@ -30,11 +30,17 @@ map("n", "<leader> ", "<cmd>noh<CR>") -- clear search hightlight with <space><sp
 map("n", "<S-TAB>", "<cmd>bprevious<CR>")
 map("n", "<TAB>", "<cmd>bnext<CR>")
 
+-- Navigate tabs
+map("n", "<leader><S-TAB>", "<cmd>tabnext<CR>")
+map("n", "<leader><TAB>", "<cmd>tabprevious<CR>")
+
 -- execute previous command
 map("n", "<leader>P", ":<Up><CR>")
 
 -- add semi-colon
 map("n", "<leader>;", "A;<esc>")
+
+map("n", "cL", '0"_d$<esc>', { desc = "Clear line" })
 
 -- Disbale 'ZZ' command to save and quit¬
 map("n", "Z", ':echom "--> :w :q <-- "<CR>')
@@ -144,7 +150,5 @@ map(
 -- ## icon-picker
 map("n", "<Leader>ii", "<cmd>IconPickerNormal<cr>")
 map("n", "<Leader>iy", "<cmd>IconPickerYank<cr>") --> Yank the selected icon into register
--- ## buffers
-map("n", "<Leader>tc", "<cmd>tabclose<cr>")
 -- package manager
 map("n", "<leader>pp", ":Lazy sync<CR>")

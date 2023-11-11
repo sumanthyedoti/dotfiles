@@ -44,7 +44,6 @@ cs( -- {}
   ),
   { pattern = "*/snippets/*.lua", "<leader>xs" }
 ) --}}}
-
 cs( -- [luaSnippet] LuaSnippet{{{
   "luaSnippet",
   fmt(
@@ -57,7 +56,7 @@ cs("{}", fmt( -- {}
   }}){})
     ]=],
     {
-      i(1, ""),
+      i(1, "trigger"),
       i(2, "Description"),
       i(3, ""),
       i(4, ""),
@@ -141,9 +140,28 @@ local firstFuncNode = s({ trig = "t_funn" }, {
     return "from fucntion"
   end),
 })
-local funcNodeWithCapture = s({ trig = "t-d(%d)(%d)", regTrig = true }, {
+
+local secondAutoSnippet = s({ trig = "digit(%d)(%d)", regTrig = true }, {
   f(function(_, snip)
-    return "# " .. snip.captures[1] .. " & " .. snip.captures[2]
+    return snip.captures[1] .. " and "
+  end),
+  f(function(_, snip)
+    return snip.captures[2]
+  end),
+})
+
+local funcWithArg = s({ trig = "digita(%d)(%d)", regTrig = true }, {
+  t('"'),
+  i(1, "let's try this"),
+  f(function(arg, snip)
+    print(vim.inspect(arg))
+    return " -- " .. arg[1][1]:upper() .. '"'
+  end, 1),
+})
+
+local funcNodeWithCapture = s({ trig = "t_d(%d)(%d)", regTrig = true }, {
+  f(function(_, snip)
+    return "Sum of " .. snip.captures[1] .. " & " .. snip.captures[2] .. " is: " .. snip.captures[1] + snip.captures[2]
   end),
 })
 local funcNodeWithArgs = s({ trig = "t_arg1", regTrig = true }, {
@@ -171,6 +189,8 @@ local funcNodeWithArgs2 = s({ trig = "t_arg2", regTrig = true }, {
 })
 
 table.insert(autosnippets, firstFuncNode)
+table.insert(autosnippets, secondAutoSnippet)
+table.insert(autosnippets, funcWithArg)
 table.insert(autosnippets, funcNodeWithCapture)
 table.insert(autosnippets, funcNodeWithArgs)
 table.insert(autosnippets, funcNodeWithRep)

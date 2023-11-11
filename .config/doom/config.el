@@ -275,7 +275,7 @@
   (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
   (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree))
 
-
+(use-package! org-journal)
 (use-package! org-drill
   :config (progn
             (add-to-list 'org-modules 'org-drill)

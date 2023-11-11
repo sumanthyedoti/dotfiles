@@ -10,6 +10,7 @@ o.conceallevel = 0 -- so that `` is visible in markdown files
 o.fileencoding = "utf-8" -- the encoding written to a file
 o.hlsearch = true -- highlight all matches on previous search pattern
 o.incsearch = true
+o.foldcolumn = "2"
 o.smartcase = true
 o.backspace = "indent,eol,start"
 o.title = true

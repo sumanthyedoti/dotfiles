@@ -7,8 +7,9 @@ output="$output_dir/$timestamp-screenshot.png"
 
 echo $output
 
+
 notify() {
-    notify-send "Screenshot taken." -t 2000
+  notify-send "Screenshot taken." -t 2000
 }
 
 case "$1" in

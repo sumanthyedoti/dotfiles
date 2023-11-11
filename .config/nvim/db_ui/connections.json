@@ -1,1 +1,1 @@
-[{"url": "postgresql://user:password@172.17.0.2:5432/", "name": "hello"}]
+[{"url": "postgresql://postgres:password@localhost:4321/taskmanagement", "name": "taskmanagement"}]

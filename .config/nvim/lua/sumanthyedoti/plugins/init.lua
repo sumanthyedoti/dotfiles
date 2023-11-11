@@ -45,7 +45,7 @@ return {
   { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } },
   {
     "mattn/emmet-vim",
-    ft = { "html", "css", "javascriptreact", "typescriptreact" },
+    ft = { "html", "css", "javascriptreact", "typescriptreact", "heex" },
     config = function()
       vim.cmd([[
       let g:user_emmet_leader_key='<C->'

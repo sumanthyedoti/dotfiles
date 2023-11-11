@@ -10,6 +10,7 @@ return {
       build = "make",
     },
     "nvim-tree/nvim-web-devicons",
+    "LukasPietzschmann/telescope-tabs",
     "ThePrimeagen/harpoon",
   },
   keys = {
@@ -19,6 +20,7 @@ return {
     { "<leader>fs", ":Telescope live_grep<cr>", desc = "Find string" },
     { "<leader>fc", ":Telescope grep_string<cr>", desc = "Find string under cursor" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>" },
+    { "<leader>ft", "<cmd>Telescope telescope-tabs list_tabs<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
   },
   config = function()
