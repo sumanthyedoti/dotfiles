@@ -31,6 +31,7 @@ alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head 
 
 alias lf="lfu ."
 
+alias trm="trash-put"
 alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"

@@ -42,7 +42,7 @@ alias lg="lazygit"
 alias g="git"
 alias sudo='sudo '
 alias lf="lfu ."
-alias rm="trash-put"
+alias trm="trash-put"
 alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
 alias fz="fzf --height 30%"
 alias lltr="exa -lF --tree --icons --git"

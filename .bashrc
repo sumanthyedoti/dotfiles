@@ -31,6 +31,7 @@ alias lf="lfu ."
 alias fz="fzf --height 30%"
 alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
 
+alias trm="trash-put"
 alias sudo='sudo '
 alias g="git"
 alias lg="lazygit"
