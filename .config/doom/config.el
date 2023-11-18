@@ -223,7 +223,11 @@
 (map! :leader
       :desc "Insert right arrow"
       "I a" (lambda () (interactive) (insert "→"))
-      "I b" (lambda () (interactive) (insert ""))
+      "I o" (lambda () (interactive) (insert "↪"))
+      "I l" (lambda () (interactive) (insert "🔗"))
+      "I b" (lambda () (interactive) (insert "🔔"))
+      "I i" (lambda () (interactive) (insert "🖼"))
+      "I d" (lambda () (interactive) (insert "📖"))
       "I p" (lambda () (interactive) (insert "📄"))
       "I y" (lambda () (interactive) (insert ""))
       "I v" (lambda () (interactive) (insert "")))
