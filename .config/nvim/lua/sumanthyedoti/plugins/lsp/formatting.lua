@@ -12,6 +12,7 @@ conform.setup({
     typescriptreact = { { "prettierd", "prettier" } },
     svelte = { { "prettierd", "prettier" } },
     css = { { "prettierd", "prettier" } },
+    elixir = { { "mix" } },
     html = { { "prettierd", "prettier" } },
     json = { { "prettierd", "prettier" } },
     yaml = { { "prettierd", "prettier" } },

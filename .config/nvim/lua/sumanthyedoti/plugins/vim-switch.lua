@@ -25,6 +25,7 @@ return {
       { "log", "warn", "error" },
       { "top", "bottom" },
       { "left", "right" },
+      { "public", "private", "protected" },
       { "foo", "bar", "baz" },
       -- english opposite words
       { "always", "never" },
