@@ -34,6 +34,7 @@ alias lf="lfu ."
 alias trm="trash-put"
 alias sudo='sudo '
 alias g="git"
+alias d="docker"
 alias lg="lazygit"
 alias z="zoxide"
 alias m="mpv"
@@ -45,6 +46,8 @@ alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5"
 alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
 alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
+## AWS
+alias awsauto="aws --cli-auto-prompt"
 ## tmux
 alias txn="tmux new"
 alias txnn="tmux new -s (pwd | sed 's/.*\///g')"

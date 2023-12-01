@@ -48,6 +48,7 @@ myXPConfig = def
 
 -- Search Prompts (custom)
 engToTel = S.searchEngine "eng-to-tel" "https://translate.google.co.in/?sl=auto&tl=te&text="
+pip = S.searchEngine "pip" "https://pypi.org/search/?q="
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -206,6 +207,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
       , ((0, xK_d), promptSearch myXPConfig S.duckduckgo)
       , ((0, xK_e), promptSearch myXPConfig S.dictionary)
       , ((0, xK_t), promptSearch myXPConfig engToTel)
+      , ((0, xK_p), promptSearch myXPConfig pip)
       ])
 
   , ((modm .|. shiftMask,   xK_s), submap . M.fromList $

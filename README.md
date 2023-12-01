@@ -96,6 +96,7 @@
 - bat
 - exa
 - fd
+- proc
 - xh
 - ncdu
 - duf
