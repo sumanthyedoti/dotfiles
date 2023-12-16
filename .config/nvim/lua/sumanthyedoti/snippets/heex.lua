@@ -16,7 +16,7 @@ local snippets, autosnippets = {}, {}
 local cs = utils.create_snippet(snippets, autosnippets)
 
 -- Start Refactoring --
-cs("tag", fmt([[<%= {} %>]], { i(1, "") }))
+cs("=", fmt([[<%= {} %>]], { i(1, "") }))
 
 -- End Refactoring --
 

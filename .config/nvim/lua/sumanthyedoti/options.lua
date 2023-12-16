@@ -18,6 +18,7 @@ o.mouse = "a" -- allow the mouse to be used in neovim
 o.pumheight = 10 -- pop up menu height
 o.gp = "git grep -n"
 o.showmode = true -- NORMAL | INSERT | VISUAL
+o.nrformats = { "bin", "octal", "hex", "alpha" } -- alpha to increment alphabets
 o.showtabline = 2 -- always show tabs
 o.smartindent = true -- make indenting smarter
 o.splitbelow = true -- force all horizontal splits to go below current window

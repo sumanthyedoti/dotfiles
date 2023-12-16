@@ -74,4 +74,6 @@ return {
     end,
   },
   { "mattn/webapi-vim", event = "BufEnter" },
+  { "elixir-editors/vim-elixir", ft = { "elixir", "heex" } },
+  { "mfussenegger/nvim-jdtls", ft = { "java" } },
 }

@@ -19,6 +19,7 @@ return {
     { "mfussenegger/nvim-lint" },
     { "stevearc/conform.nvim" },
     "jose-elias-alvarez/typescript.nvim",
+    "mfussenegger/nvim-jdtls",
     "b0o/schemastore.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     "nvim-telescope/telescope.nvim",
@@ -93,7 +94,7 @@ return {
           t = { "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions" },
           o = { "<cmd>SymbolsOutline<CR>", "Outline ↔" },
           -- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
-          -- D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
+          d = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 
           --[[ Diagnostics ]]
           l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
@@ -129,6 +130,19 @@ return {
             x = { ":TypescriptRemoveUnused<CR>", "Remove unused" },
             i = { ":TypescriptAddMissingImports<CR>", "Add missing imports" },
             a = { ":TypescriptFixAll<CR>", "Fix all" },
+          },
+        }, { prefix = "<leader>", buffer = bufnum })
+      end
+
+      if client.name == "jdtls" then
+        local jdtls = require("jdtls")
+        wk.register({
+          lJ = {
+            name = "JDTLS", -- optional group name
+            o = { jdtls.organize_imports, "Organize imports" },
+            ev = { jdtls.extract_variable, "Organize imports" },
+            ec = { jdtls.extract_constant, "Organize imports" },
+            em = { ":lua require('jdtls').extract_method(true)<CR>", "Organize imports" },
           },
         }, { prefix = "<leader>", buffer = bufnum })
       end
@@ -266,6 +280,25 @@ return {
       },
     })
 
+    lspconfig.jdtls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "java" },
+      cmd = { "jdtls" },
+      single_file_support = true,
+      root_pattern = {
+        -- Single-module projects
+        {
+          "build.xml", -- Ant
+          "pom.xml", -- Maven
+          "settings.gradle", -- Gradle
+          "settings.gradle.kts", -- Gradle
+        },
+        -- Multi-module projects
+        { "build.gradle", "build.gradle.kts" },
+      } or vim.fn.getcwd(),
+    })
+
     lspconfig.clojure_lsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -302,6 +335,20 @@ return {
             unusedparams = true,
           },
           staticcheck = true,
+        },
+      },
+    })
+
+    lspconfig.hls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "haskell", "lhaskell", "cabal" },
+      root_dir = util.root_pattern("hie.yaml", "stack.yaml", "cabal.project", "*.cabal", "package.yaml"),
+      single_file_support = true,
+      settings = {
+        haskell = {
+          cabalFormattingProvider = "cabalfmt",
+          formattingProvider = "ormolu",
         },
       },
     })

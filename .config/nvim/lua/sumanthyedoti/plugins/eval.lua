@@ -39,8 +39,8 @@ return {
       { ",sb", ":%SlimeSend<cr>", mode = { "n" }, desc = "Slime Buffer" },
       { ",sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" }, desc = "Slime Root Form (Function)" },
       { ",ss", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
-      { ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
-      { ",sl", ":SlimeSendCurrentLine<cr>", mode = { "n" }, desc = "Slime Current Line" },
+      { ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "SlimeVisual" },
+      { ",ss", ":SlimeSendCurrentLine<cr>", mode = { "n" }, desc = "Slime Current Line" },
     },
     config = function()
       vim.cmd([[let g:slime_target = "tmux"]])
@@ -58,7 +58,7 @@ return {
       { ",cC", ":ConjureEvalCommentRootForm<cr>", mode = { "n", "v" }, desc = "Eval Root Form and Comment" },
       { ",cc", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" }, desc = "Eval Visual" },
       { ",cv", ":'<,'>ConjureEvalVisual<cr>", mode = { "v" }, desc = "Eval Visual" },
-      { ",cl", "mzV:ConjureEvalVisual<cr><esc>`z", mode = { "n" }, desc = "Eval Current Line" },
+      { ",cc", "mzV:ConjureEvalVisual<cr><esc>`z", mode = { "n" }, desc = "Eval Current Line" },
       { ",cm", ":ConjureEvalMotion<cr>", mode = { "n" }, desc = "Eval Motion" },
       { ",cw", ":ConjureEvalWord<cr>", mode = { "n" }, desc = "Eval Word" },
     },

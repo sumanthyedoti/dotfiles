@@ -1,7 +1,5 @@
 -- ## available servers list
 -- 爵 https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
--- ## servers configuraion
--- 爵 https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 --   packages are stored in '~/.local/share/nvim/mason/'
 
 local m_status_ok, mason = pcall(require, "mason")
@@ -42,6 +40,8 @@ local servers = { -- HERE: LSP servers
   "graphql",
   --[[ bash ]]
   "bashls",
+  --[[ java ]]
+  "jdtls",
 }
 
 local tools = { -- HERE: Linters and Formatters

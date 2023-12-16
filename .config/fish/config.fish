@@ -90,6 +90,7 @@ alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/ma
 alias docker-ip="sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5" ghcr.io/filbranden/vimgolf'
 alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
+alias safe-hibernate-dwm="sudo swapoff /dev/nvme2n1p3 && sudo swapon /dev/nvme2n1p3 && systemctl hibernate"
 alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
 ## AWS
@@ -182,3 +183,5 @@ set PATH $PATH /home/sumanthyedoti/.local/bin
 ## done
 set -U __done_min_cmd_duration 5000
 set -U __done_exclude '(^git (?!push|pull|fetch)|lg*|fzf*|lf*|feh*|mpv*|man*)'
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/sumanthyedoti/.ghcup/bin $PATH # ghcup-env

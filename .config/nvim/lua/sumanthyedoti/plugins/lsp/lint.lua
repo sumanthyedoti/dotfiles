@@ -3,6 +3,8 @@ if not m_status_ok then
   return
 end
 
+-- 🌐 https://github.com/mfussenegger/nvim-lint
+
 lint.linters_by_ft = {
   --[[ JS ]]
   javascript = { "eslint_d" },
