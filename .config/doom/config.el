@@ -90,6 +90,7 @@
 
 ;;;; org
 (setq org-directory "~/org/")
+(setq org-export-with-smart-quotes t)
 (after! org
   (use-package! calfw-org)
   (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
@@ -290,11 +291,11 @@
 (use-package! org-drill
   :config (progn
             (add-to-list 'org-modules 'org-drill)
-            (setq org-drill-add-random-noise-to-intervals-p t)
+            (setq org-drill-add-random-noise-to-intervals-p t)))
             ;(setq org-drill-hind-separator "||")
             ;(setq org-drill-left-cloze-delimiter "<[")
             ;(setq org-drill-right-cloze-delimiter "<]")
-            ))
+
 (use-package! anki-editor
   :after org-noter
   :config
