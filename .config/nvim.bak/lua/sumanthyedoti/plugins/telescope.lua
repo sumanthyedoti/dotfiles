@@ -29,6 +29,8 @@ return {
 
     telescope.setup({
       defaults = {
+        -- layout_strategy = "vertical",
+        layout_strategy = "flex",
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },

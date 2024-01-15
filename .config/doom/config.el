@@ -166,6 +166,7 @@
 ;;;; org
 (setq org-directory "~/org/")
 (setq org-num-skip-commented t)
+(setq org-export-with-smart-quotes t)
 (after! org
   (use-package! calfw-org)
   (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
@@ -685,7 +686,7 @@
             ;(setq org-drill-hind-separator "||")
             ;(setq org-drill-left-cloze-delimiter "<[")
             ;(setq org-drill-right-cloze-delimiter "<]")
-            
+            ))
 (use-package! anki-editor
   :after org-noter
   :config

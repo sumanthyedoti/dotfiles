@@ -99,6 +99,7 @@ export PATH="$HOME/.luarocks/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
+export CALIBRE_USE_DARK_PALETTE=1
 export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
 
 #### emacs
