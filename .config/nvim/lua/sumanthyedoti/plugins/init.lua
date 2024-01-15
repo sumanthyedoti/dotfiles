@@ -1,3 +1,5 @@
+-- neo-tree
+-- telescope-ui-select
 return {
   "nvim-lua/plenary.nvim", -- lua utility functions used by lots of plugins
   {
@@ -38,6 +40,7 @@ return {
     },
   },
   { "christoomey/vim-tmux-navigator" },
+  { "editorconfig/editorconfig-vim" },
   { "jbyuki/venn.nvim", cmd = "VBox" },
 
   --[[ vim plugins ]]

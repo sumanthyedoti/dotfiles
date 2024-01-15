@@ -15,7 +15,7 @@ return {
         require("sumanthyedoti.plugins.lsp.symobol-outline")
       end,
     },
-    -- { "jose-elias-alvarez/null-ls.nvim", event = "BufEnter" }, -- for formatters and linters
+    { "nvimtools/none-ls.nvim", event = "BufEnter" }, -- for formatters and linters
     { "mfussenegger/nvim-lint" },
     { "stevearc/conform.nvim" },
     "jose-elias-alvarez/typescript.nvim",
@@ -90,10 +90,10 @@ return {
           a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
           r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
           f = { "<cmd>Telescope lsp_references<CR>", "Show LSP references" },
+          -- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
           i = { "<cmd>Telescope lsp_implementations<CR>", "Show LSP implementations" },
           t = { "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions" },
           o = { "<cmd>SymbolsOutline<CR>", "Outline ↔" },
-          -- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
           d = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 
           --[[ Diagnostics ]]
@@ -247,11 +247,20 @@ return {
       on_attach = on_attach,
     })
 
-    -- configure tailwindcss server
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "heex" },
+    })
+
+    lspconfig["eslint"].setup({
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
     })
 
     -- configure lua server (with special settings)

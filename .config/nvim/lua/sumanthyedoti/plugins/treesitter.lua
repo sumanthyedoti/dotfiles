@@ -22,11 +22,11 @@ return {
         "commonlisp",
         "cpp",
         "css",
-        "dart",
+        -- "dart",
         "dockerfile",
         "eex",
         "elixir",
-        "elm",
+        -- "elm",
         "erlang",
         "fish",
         "go",
@@ -42,7 +42,7 @@ return {
         "json",
         -- "kotlin",
         "latex",
-        "llvm",
+        -- "llvm",
         "lua",
         "make",
         "markdown",
@@ -65,6 +65,16 @@ return {
         "vim",
         "vue",
         "yaml",
+      },
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
+      playground = {
+        enable = true,
+        updatetime = 25,
       },
       matchup = {
         enable = true, -- mandatory, false will disable the whole extension
@@ -235,6 +245,32 @@ return {
         },
       },
     })
+
+    --[[ Folds ]]
+    -- local group = vim.api.nvim_create_augroup("FoldsWithTreesitter", { clear = true })
+    -- local parsers = require("nvim-treesitter.parsers").available_parsers()
+    -- local additional_file_types = {
+    --   "typescriptreact",
+    -- }
+    --
+    -- local all_file_types = {}
+    --
+    -- for _, filetype in ipairs(parsers) do
+    --   table.insert(all_file_types, filetype)
+    -- end
+    --
+    -- for _, filetype in ipairs(additional_file_types) do
+    --   table.insert(all_file_types, filetype)
+    -- end
+    --
+    -- for _, filetype in ipairs(all_file_types) do
+    --   vim.api.nvim_create_autocmd("FileType", {
+    --     pattern = filetype,
+    --     command = "setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()",
+    --     group = group,
+    --   })
+    -- end
+    --[[ Folds - end ]]
 
     --[[ make the movements repeatable with ; and , ]]
     local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
