@@ -90,8 +90,28 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
+<<<<<<< HEAD
 export CALIBRE_USE_DARK_PALETTE=1
 export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/default)
+||||||| parent of fe53ba5 (Format)
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
+=======
+<<<<<<< HEAD
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
+||||||| parent of 58486fd (Format)
+<<<<<<< Updated upstream
+||||||| Stash base
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
+=======
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/default)
+>>>>>>> Stashed changes
+=======
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/default)
+>>>>>>> 58486fd (Format)
+>>>>>>> fe53ba5 (Format)
 
 #### emacs
 # vterm
