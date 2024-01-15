@@ -87,6 +87,8 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
 
 #### emacs
 # vterm
