@@ -28,6 +28,7 @@ alias txss="tmux new-session -d -s (pwd | sed 's/.*\///g') && tmux switch-client
 alias txnn="tmux new -s (pwd | sed 's/.*\///g')"
 alias txn="tmux new"
 alias mpi="mpv --keep-open=yes"
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias gap="git add -p"
 alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
 alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5" ghcr.io/filbranden/vimgolf'

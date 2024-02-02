@@ -48,6 +48,7 @@ alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia
 alias safe-hibernate-dwm="sudo swapoff /dev/nvme2n1p3 && sudo swapon /dev/nvme2n1p3 && systemctl hibernate"
 alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 ## AWS
 alias awsauto="aws --cli-auto-prompt"
 ## tmux
