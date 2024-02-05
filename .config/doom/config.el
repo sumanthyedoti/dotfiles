@@ -170,7 +170,7 @@
 
   (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;;; `<s` to begin src block
-  (add-to-list 'org-structure-template-alist '("sh" . "src bash"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src bash :results output"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))

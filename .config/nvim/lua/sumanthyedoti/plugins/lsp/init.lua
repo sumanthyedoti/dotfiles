@@ -196,6 +196,7 @@ return {
     --[[ configure typescript server with plugin ]]
     typescript.setup({
       capabilities = capabilities,
+      filetypes = { "typescript", "typescriptreact", "typescript", "javascript", "javascriptreact", "astro" },
       server = {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -261,6 +262,14 @@ return {
           command = "EslintFixAll",
         })
       end,
+    })
+
+    lspconfig["astro"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "astro" },
+      cmd = { "astro-ls", "--stdio" },
+      root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
     })
 
     -- configure lua server (with special settings)
@@ -413,6 +422,14 @@ return {
           },
         },
       },
+    })
+
+    lspconfig["solidity_ls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = { "solidity-language-server", "--stdio" },
+      filetypes = { "solidity" },
+      root_dir = util.root_pattern(".git", "package.json"),
     })
 
     require("sumanthyedoti.plugins.lsp.mason")

@@ -15,13 +15,14 @@ notify() {
 case "$1" in
 	"select")
     scrot "$output" --select --freeze --line mode=edge\
-      && optimizt $output\
+      && magick mogrify -resize 75% $output\
+      && pngquant --quality=20-40 --force $output -o $output \
       && notify\
       || exit
     ;;
 	"window")
     scrot "$output" --focused --border\
-      && optimizt $output\
+      && magick mogrify -resize 80% $output\
       && notify\
       || exit
     ;;

@@ -71,7 +71,7 @@ disabled = false
 
 [golang]
 format = '[ $version](bold cyan) '
-detect_file = ['go.mod']
+detect_files = ['go.mod']
 
 [kubernetes]
 symbol = '☸'

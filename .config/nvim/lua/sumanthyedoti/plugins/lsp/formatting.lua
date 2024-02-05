@@ -10,6 +10,7 @@ conform.setup({
     typescript = { { "prettierd", "prettier" } },
     javascriptreact = { { "prettierd", "prettier" } },
     typescriptreact = { { "prettierd", "prettier" } },
+    astro = { { "prettierd", "prettier" } },
     svelte = { { "prettierd", "prettier" } },
     css = { { "prettierd", "prettier" } },
     elixir = { { "mix" } },

@@ -21,6 +21,7 @@ local mason_tool_installer = require("mason-tool-installer")
 
 local servers = { -- HERE: LSP servers
   "marksman",
+  "mdx_analyzer", -- mdx
   --[[ lua ]]
   "lua_ls",
   "clangd",
@@ -34,10 +35,12 @@ local servers = { -- HERE: LSP servers
   "tsserver",
   "html",
   "cssls",
+  "astro",
   "emmet_ls",
   "tailwindcss",
   "prismals",
   "graphql",
+  "solidity",
   --[[ bash ]]
   "bashls",
   --[[ java ]]

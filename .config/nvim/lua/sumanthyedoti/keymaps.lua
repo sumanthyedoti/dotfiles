@@ -41,6 +41,7 @@ map("n", "<leader>P", ":<Up><CR>")
 map("n", "<leader>;", "A;<esc>")
 
 map("n", "cL", '0"_d$<esc>', { desc = "Clear line" })
+map("n", "<localleader>F", "<esc>mzggVG=`z", { desc = "Format file" })
 
 -- Disbale 'ZZ' command to save and quit¬
 map("n", "Z", ':echom "--> :w :q <-- "<CR>')
@@ -114,7 +115,7 @@ map("i", "<a-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<a-j>", ":m '>+1<CR>gv=gv")
 map("v", "<a-k>", ":m '<-2<CR>gv=gv")
 -- hightlight and paste, without copying
-map("v", "p", '"_dP')
+map("v", "p", '<Esc>`>a <Esc>gv"_dPl"_x')
 
 -- TERMINAL --
 -- Better terminal navigation

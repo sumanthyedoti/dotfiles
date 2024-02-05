@@ -48,7 +48,7 @@ return {
   { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } },
   {
     "mattn/emmet-vim",
-    ft = { "html", "css", "javascriptreact", "typescriptreact", "heex" },
+    ft = { "html", "css", "javascriptreact", "typescriptreact", "heex", "astro" },
     config = function()
       vim.cmd([[
       let g:user_emmet_leader_key='<C->'
@@ -79,4 +79,12 @@ return {
   { "mattn/webapi-vim", event = "BufEnter" },
   { "elixir-editors/vim-elixir", ft = { "elixir", "heex" } },
   { "mfussenegger/nvim-jdtls", ft = { "java" } },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }

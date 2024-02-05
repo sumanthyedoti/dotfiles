@@ -15,6 +15,7 @@ return {
 
     treesitter.setup({
       ensure_installed = {
+        "astro",
         "bash",
         "c",
         "clojure",
@@ -57,6 +58,7 @@ return {
         "rust",
         "scheme",
         "scss",
+        "solidity",
         "sql",
         "svelte",
         "toml",
