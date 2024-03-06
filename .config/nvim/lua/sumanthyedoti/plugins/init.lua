@@ -14,6 +14,35 @@ return {
     end,
   },
   {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  },
+  {
+    "junegunn/fzf",
+    run = function()
+      vim.fn["fzf#install"]()
+    end,
+  },
+  -- animations
+  {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      opts.scroll = {
+        enable = false,
+      }
+    end,
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "junegunn/fzf" },
+  },
+  {
     "laytan/tailwind-sorter.nvim",
     ft = { "html", "css", "javascriptreact", "typescriptreact" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
@@ -44,11 +73,12 @@ return {
   { "jbyuki/venn.nvim", cmd = "VBox" },
 
   --[[ vim plugins ]]
-  { "tpope/vim-surround", event = { "BufReadPre", "BufNewFile" } },
   { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } },
+  { "tpope/vim-unimpaired" },
   {
     "mattn/emmet-vim",
     ft = { "html", "css", "javascriptreact", "typescriptreact", "heex", "astro" },
+    -- { "tpope/vim-surround", event = { "BufReadPre", "BufNewFile" } },
     config = function()
       vim.cmd([[
       let g:user_emmet_leader_key='<C->'

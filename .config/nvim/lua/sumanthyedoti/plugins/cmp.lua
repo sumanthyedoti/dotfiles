@@ -123,6 +123,7 @@ return {
             return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
           end,
         },
+        { name = "codeium" },
         { name = "nvim_lua", max_item_count = 4 },
         { name = "vim-dadbod-completion" },
         { name = "path", keyword_length = 1, max_item_count = 6 },
@@ -139,6 +140,7 @@ return {
           with_text = true,
           menu = {
             nvim_lsp = "[lsp]",
+            codeium = "[co]",
             nvim_lua = "[nLua]",
             luasnip = "[snip]",
             buffer = "[buff]",
@@ -146,7 +148,6 @@ return {
             path = "[path]",
             cmp_git = "[git]",
           },
-          maxwidth = 50,
           ellipsis_char = "...",
           -- The function below will be called before any actual modifications from lspkind
           before = function(_entry, vim_item)

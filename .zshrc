@@ -1,6 +1,6 @@
 eval "$(starship init zsh)"
 # zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init zsh)"
 
 # mkdir and cd
 mkcd () {

@@ -74,8 +74,8 @@ return {
         top_p = 1,
         n = 1,
       },
-      api_key_cmd = "pass show api-tokens/openai/sumanthy14",
-      predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/sumanthyedoti/dotfiles/main/.config/nvim/lua/plugins/chatgpt/prompts.csv",
+      api_key_cmd = "pass show api-tokens/openai/sumanth.yedoti",
+      predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/sumanthyedoti/dotfiles/main/.config/nvim/lua/sumanthyedoti/plugins/chatgpt/prompts.csv",
     })
   end,
 }

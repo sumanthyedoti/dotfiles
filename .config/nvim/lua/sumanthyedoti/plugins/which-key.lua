@@ -104,7 +104,7 @@ return {
     }, { prefix = "<leader>" })
 
     wk.register({
-      T = {
+      t = {
         name = "Toggle",
         w = { "<cmd>set wrap!<CR>", "Line Wrap ↔" },
         r = { "<cmd>set number<cr><cmd>set relativenumber!<CR>", "Relative Number ↔" },

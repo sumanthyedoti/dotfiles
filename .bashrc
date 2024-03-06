@@ -45,7 +45,7 @@ alias netspeed="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/ma
 alias docker-ip="sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 alias dockvimgolf='docker run --rm -it -e "key=0da1a0709b69c31106b2c8a7900ce6f5" ghcr.io/filbranden/vimgolf'
 alias no-nvidia-screen-tearing='nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"'
-alias safe-hibernate-dwm="sudo swapoff /dev/nvme2n1p3 && sudo swapon /dev/nvme2n1p3 && systemctl hibernate"
+alias safe-hibernate-dwm="sudo swapoff /dev/nvme1n1p3 && sudo swapon /dev/nvme1n1p3 && systemctl hibernate"
 alias gap="git add -p"
 alias mpi="mpv --keep-open=yes"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
@@ -59,6 +59,7 @@ alias txa="tmux attach"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
+alias d2="~/.dotfiles/.scripts/mount-d2.sh"
 
 export view=nvim
 export EDITOR=nvim

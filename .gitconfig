@@ -91,3 +91,6 @@
   root = rev-parse --show-toplevel
 [pull]
 	rebase = true
+[maintenance]
+	repo = /home/sumanthyedoti/org
+	repo = /home/sumanthyedoti/Calibre

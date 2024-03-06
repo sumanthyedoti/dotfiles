@@ -92,7 +92,8 @@ return {
           f = { "<cmd>Telescope lsp_references<CR>", "Show LSP references" },
           -- i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
           i = { "<cmd>Telescope lsp_implementations<CR>", "Show LSP implementations" },
-          t = { "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions" },
+          t = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover doc" },
+          T = { "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions" },
           o = { "<cmd>SymbolsOutline<CR>", "Outline ↔" },
           d = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 

@@ -133,6 +133,8 @@
    '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
    '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
   (add-hook 'org-mode-hook 'org-appear-mode)
+  (add-hook 'org-mode-hook 'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook 'org-modern-agenda)
   ; (setq org-appear-autolinks t)
   (setq org-appear-autosubmarkers t)
   (setq org-appear-autoentities t)
@@ -156,15 +158,15 @@
      (mermaid . t)
      ;(ocaml . t)
      (haskell . t)
-     ;(rust . t)
+     (rust . t)
      (elixir . t) ; ⚠
      (java . t)
      (C . t)
      (lua . t)
-     ;(cpp . t)
+     (cpp . t)
      (js . t)
      (typescript . t)
-     ;(go . t)
+     (go . t)
      (shell . t)
      (clojure . t)))
 
@@ -178,14 +180,15 @@
   (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
   (add-to-list 'org-structure-template-alist '("js" . "src js :result output"))
   (add-to-list 'org-structure-template-alist '("ts" . "src typescript :results output"))
-  (add-to-list 'org-structure-template-alist '("cl" . "src C"))
-  (add-to-list 'org-structure-template-alist '("java" . "src java"))
-  (add-to-list 'org-structure-template-alist '("cpp" . "src cpp"))
+  (add-to-list 'org-structure-template-alist '("java" . "src java :results output"))
+  (add-to-list 'org-structure-template-alist '("cpp" . "src C++ :includes '(<iostream> <stdio.h>) :results output"))
   (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
   (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
   (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("json" . "src json"))
   (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
+  (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
+  (add-to-list 'org-structure-template-alist '("go" . "src go :imports '(\"fmt\")"))
   (add-to-list 'org-structure-template-alist '("ex" . "src elixir :results output"))
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
   (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
@@ -196,6 +199,9 @@
 ;;;; latex
 
 (setq org-preview-latex-default-process 'dvisvgm)
+
+;;;; emacs-ipython-notebook (ein)
+(setq ein:output-area-inlined-images t)
 
 ;;;; dired
 (after! dired
@@ -346,3 +352,12 @@
 ;;;;; Elixir - End
 
 (message "Loaded your config")
+
+; DOCS
+; ====
+; Olivetti
+; --------
+; to center org content
+; set width - `C-c |'
+; expand - `C-c } } }'
+; shrink - `C-c { { {'

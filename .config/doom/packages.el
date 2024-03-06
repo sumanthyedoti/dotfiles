@@ -69,4 +69,15 @@
 (package! cider)
 (package! inf-elixir)
 (package! ob-typescript)
+(package! ob-rust)
 (package! ob-elixir)
+(package! pdf-tools)
+(package! ein)
+
+;;; org
+(package! olivetti)
+(package! org-modern)
+
+;;; explore packages
+;;; ----------------
+;;; https://github.com/alphapapa/org-super-agenda

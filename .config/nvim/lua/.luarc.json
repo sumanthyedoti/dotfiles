@@ -1,7 +1,8 @@
 {
     "diagnostics.globals": [
         "vim",
-        "nd"
+        "nd",
+        "local"
     ],
     "workspace.library": [
         "/home/sumanthyedoti/.local/share/nvim/lazy/neodev.nvim/types/stable",

@@ -255,6 +255,49 @@ cs(
   )
 )
 
+-- [[ ==== Test ====]]
+cs(
+  "ivitest",
+  fmt(
+    [[
+import {{ describe, expect, it }} from "vitest";
+]],
+    {}
+  )
+)
+cs(
+  "tdescribe",
+  fmt(
+    [[
+    describe("{}", () => {{
+      it("{}", () => {{
+        {}
+      }})
+    }})
+]],
+    {
+      i(1, "Group"),
+      i(2, "Should"),
+      i(3, ""),
+    }
+  )
+)
+
+cs(
+  "tit",
+  fmt(
+    [[
+    it("{}", () => {{
+      {}
+    }})
+]],
+    {
+      i(1, "Should"),
+      i(2, ""),
+    }
+  )
+)
+
 --[[ ==== Nestjs ==== ]]
 cs(
   "postdto",

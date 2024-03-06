@@ -43,5 +43,9 @@ exec xmonad
 # Wallpaper
 nitrogen --restore &
 
+if [ ! -d /dev/d2 ]; then
+  sudo mkdir /dev/d2
+fi
+
 # Compositior
 picom -f &

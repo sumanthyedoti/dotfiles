@@ -195,10 +195,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ( (modm .|. shiftMask, xK_s),
         submap . M.fromList $
           [ ((0, xK_s), spawn "~/.scripts/screenshot.sh select"),
+            ((0, xK_p), spawn "~/.scripts/screenshot.sh select-good"),
             ((0, xK_w), spawn "~/.scripts/screenshot.sh window"),
             ((0, xK_t), spawn "~/.scripts/extract-text-from-image.sh"),
-            ((0, xK_y), spawn "~/.scripts/download-yt-video-and-mpv.sh"),
-            ((shiftMask, xK_w), spawn "scrot")
+            ((0, xK_y), spawn "~/.scripts/download-yt-video-and-mpv.sh")
           ]
       )
     ]

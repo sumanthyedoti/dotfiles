@@ -14,6 +14,7 @@ map y copy
 map x cut
 map p paste
 map R reload
+map . set hidden!
 
 ## remove some defaults
 map d

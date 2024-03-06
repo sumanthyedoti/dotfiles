@@ -27,6 +27,7 @@ local servers = { -- HERE: LSP servers
   "clangd",
   "clojure_lsp",
   "rust_analyzer",
+  "gopls",
   --[[ Python ]]
   "pyright",
   "elixirls", -- if 'elixir-tools' not enabled

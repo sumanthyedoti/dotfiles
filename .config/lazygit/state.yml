@@ -1,12 +1,12 @@
 lastupdatecheck: 0
 recentrepos:
-  - /home/sumanthyedoti/.dotfiles
-  - /home/sumanthyedoti/org
-  - /home/sumanthyedoti/dev/vyom
-  - /home/sumanthyedoti/learn/learn-nestjs
-  - /home/sumanthyedoti/work/crh
+- /home/sumanthyedoti/Calibre
+- /home/sumanthyedoti/.dotfiles
+- /home/sumanthyedoti/org
+- /home/sumanthyedoti/learn/learn-nestjs
+- /home/sumanthyedoti/work/crh
 startuppopupversion: 5
 customcommandshistory:
-  - q
+- q
 hidecommandlog: false
 ignorewhitespaceindiffview: false

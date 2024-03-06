@@ -16,13 +16,20 @@ case "$1" in
 	"select")
     scrot "$output" --select --freeze --line mode=edge\
       && magick mogrify -resize 75% $output\
-      && pngquant --quality=20-40 --force $output -o $output \
+      && pngquant --quality=40-60 --force $output -o $output \
+      && notify\
+      || exit
+    ;;
+	"select-good")
+    scrot "$output" --select --freeze --line mode=edge\
+      && magick mogrify -resize 80% $output\
       && notify\
       || exit
     ;;
 	"window")
     scrot "$output" --focused --border\
       && magick mogrify -resize 80% $output\
+      && pngquant --quality=80-90 --force $output -o $output \
       && notify\
       || exit
     ;;
