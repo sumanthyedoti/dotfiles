@@ -21,7 +21,7 @@ return {
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
     lspkind.init({
-      mode = "text_symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
+      mode = "symbol", -- 'text', 'text_symbol', 'symbol_text', 'symbol'
       preset = "codicons",
       symbol_map = {
         Text = "󰉿",
@@ -49,6 +49,8 @@ return {
         Event = "",
         Operator = "󰆕",
         TypeParameter = "",
+        Codeium = "",
+        Dadbod = "",
       },
     })
 

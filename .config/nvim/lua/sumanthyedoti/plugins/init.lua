@@ -27,16 +27,6 @@ return {
       vim.fn["fzf#install"]()
     end,
   },
-  -- animations
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      opts.scroll = {
-        enable = false,
-      }
-    end,
-  },
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
