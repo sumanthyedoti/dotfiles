@@ -87,6 +87,14 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
+<<<<<<< Updated upstream
+||||||| Stash base
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
+=======
+export CALIBRE_USE_DARK_PALETTE=1
+export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/default)
+>>>>>>> Stashed changes
 
 #### emacs
 # vterm
