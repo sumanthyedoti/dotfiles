@@ -35,6 +35,9 @@ alias trm="trash-put"
 alias sudo='sudo '
 alias g="git"
 alias d="docker"
+alias dc="docker compose"
+alias p="pnpm"
+alias y="yarn"
 alias lg="lazygit"
 alias z="zoxide"
 alias m="mpv"
@@ -87,14 +90,7 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
-<<<<<<< Updated upstream
-||||||| Stash base
-export CALIBRE_USE_DARK_PALETTE=1
 export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
-=======
-export CALIBRE_USE_DARK_PALETTE=1
-export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/default)
->>>>>>> Stashed changes
 
 #### emacs
 # vterm
