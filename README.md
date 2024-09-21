@@ -149,3 +149,4 @@
 - sxhkd
 - xdotool
 - tesseract, tesseract-data-eng
+- copyq

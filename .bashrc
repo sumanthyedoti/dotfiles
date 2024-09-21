@@ -59,7 +59,7 @@ alias txa="tmux attach"
 
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
-alias d2="~/.dotfiles/.scripts/mount-d2.sh"
+alias wifi="~/.dotfiles/.scripts/wifi.sh"
 
 export view=nvim
 export EDITOR=nvim

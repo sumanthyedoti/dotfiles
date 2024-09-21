@@ -425,6 +425,14 @@ return {
       },
     })
 
+    lspconfig["terraformls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = { "terraform-ls", "serve" },
+      filetypes = { "terraform", "terraform-vars" },
+      root_dir = util.root_pattern(".terraform", ".git"),
+    })
+
     lspconfig["solidity_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,

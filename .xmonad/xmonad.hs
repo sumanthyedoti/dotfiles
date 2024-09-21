@@ -7,13 +7,13 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import qualified Data.Map as M
+import Data.Map qualified as M
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.Process
 import XMonad
-import qualified XMonad.Actions.CycleWS as C
+import XMonad.Actions.CycleWS qualified as C
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Search as S
@@ -23,7 +23,7 @@ import XMonad.Hooks.WindowSwallowing
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.ManageHook
 import XMonad.Prompt
-import qualified XMonad.StackSet as W
+import XMonad.StackSet qualified as W
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
@@ -229,7 +229,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ( (modm, button1),
         ( \w ->
-            focus w >> mouseMoveWindow w
+            focus w
+              >> mouseMoveWindow w
               >> windows W.shiftMaster
         )
       ),
@@ -238,7 +239,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
       -- mod-button3, Set the window to floating mode and resize by dragging
       ( (modm, button3),
         ( \w ->
-            focus w >> mouseResizeWindow w
+            focus w
+              >> mouseResizeWindow w
               >> windows W.shiftMaster
         )
       )
@@ -332,7 +334,7 @@ myScratchPads =
     NS "mpv" (myTerminal ++ " -t mpv") (title =? "mpv") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
     NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm,
     NS "nmtui" (myTerminal ++ " -t nmtui -e nmtui") (title =? "nmtui") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
-    NS "pavucontrol" "pavucontrol" (className =? "Pavucontrol") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
+    NS "pavucontrol" "pavucontrol" (className =? "pavucontrol") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
     NS "spotify" "spotify" (className =? "Spotify") manageTerm
   ]
   where
