@@ -10,6 +10,7 @@ return {
       { "null", "undefined" },
       { "true", "false" },
       { "True", "False" },
+      { "tobeTruthy", "tobeFalsy" },
       { "const", "let" },
       { "int", "float" },
       { "||", "&&" },
@@ -72,17 +73,18 @@ return {
       { "Light", "Dark" },
     }
 
-    vim.cmd([[
-    let b:switch_custom_definitions = [
-    \   {
-    \     '\<[a-z0-9]\+_\k\+\>': {
-    \       '_\(.\)': '\U\1'
-    \     },
-    \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
-    \       '\([A-Z]\)': '_\l\1'
-    \     },
-    \   }
-    \ ]
-    ]])
+    -- toggle camel-case and snake-case
+    -- vim.cmd([[
+    -- let b:switch_custom_definitions = [
+    -- \   {
+    -- \     '\<[a-z0-9]\+_\k\+\>': {
+    -- \       '_\(.\)': '\U\1'
+    -- \     },
+    -- \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+    -- \       '\([A-Z]\)': '_\l\1'
+    -- \     },
+    -- \   }
+    -- \ ]
+    -- ]])
   end,
 }

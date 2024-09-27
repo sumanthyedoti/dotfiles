@@ -34,9 +34,6 @@ map("n", "<TAB>", "<cmd>bnext<CR>")
 map("n", "<leader><S-TAB>", "<cmd>tabnext<CR>")
 map("n", "<leader><TAB>", "<cmd>tabprevious<CR>")
 
--- execute previous command
-map("n", "<leader>P", ":<Up><CR>")
-
 -- add semi-colon
 map("n", "<leader>;", "A;<esc>")
 
