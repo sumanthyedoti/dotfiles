@@ -205,16 +205,40 @@ return {
     })
 
     -- lspconfig.tsserver.setup({
-    -- 	capabilities = capabilities,
-    -- 	on_attach = on_attach,
-    -- 	filetypes = { "typescript", "typescriptreact", "typescript", "javascript", "javascriptreact" },
-    -- 	init_options = {
-    -- 		preference = {
-    -- 			disableSuggestions = true,
-    -- 		},
-    -- 	},
-    -- 	cmd = { "typescript-language-server", "--stdio" },
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   filetypes = { "typescript", "typescriptreact", "typescript", "javascript", "javascriptreact" },
+    --   init_options = {
+    --     preference = {
+    --       disableSuggestions = true,
+    --     },
+    --   },
+    --   cmd = { "typescript-language-server", "--stdio" },
     -- })
+
+    lspconfig.ts_ls.setup({
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+            languages = { "javascript", "typescript" },
+          },
+        },
+      },
+      cmd = { "typescript-language-server", "--stdio" },
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+        "astro",
+      },
+      root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+      single_file_support = true,
+    })
 
     lspconfig.jsonls.setup({
       settings = {
@@ -255,15 +279,15 @@ return {
       filetypes = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "heex" },
     })
 
-    lspconfig["eslint"].setup({
-      capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "EslintFixAll",
-        })
-      end,
-    })
+    -- lspconfig["eslint"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = function(client, bufnr)
+    --     vim.api.nvim_create_autocmd("BufWritePre", {
+    --       buffer = bufnr,
+    --       command = "EslintFixAll",
+    --     })
+    --   end,
+    -- })
 
     lspconfig["astro"].setup({
       capabilities = capabilities,

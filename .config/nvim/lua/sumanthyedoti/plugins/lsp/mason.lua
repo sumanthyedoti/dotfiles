@@ -33,7 +33,7 @@ local servers = { -- HERE: LSP servers
   "elixirls", -- if 'elixir-tools' not enabled
   --[[ JS, HTML, CSS ]]
   "jsonls",
-  "tsserver",
+  "ts_ls",
   "html",
   "cssls",
   "astro",
