@@ -1,12 +1,16 @@
 return {
   "vim-test/vim-test",
+  dependencies = {
+    "preservim/vimux",
+  },
   config = function()
-    vim.cmd([[
-      nmap <silent> ctt :TestNearest<CR>
-      nmap <silent> ctf :TestFile<CR>
-      nmap <silent> cta :TestSuite<CR>
-      nmap <silent> ctl :TestLast<CR>
-      nmap <silent> ctg :TestVisit<CR>
-    ]])
+    vim.keymap.set("n", "ctt", ":TestNearest<CR>")
+    vim.keymap.set("n", "ctf", ":TestFile<CR>")
+    vim.keymap.set("n", "cta", ":TestSuite<CR>")
+    vim.keymap.set("n", "ctl", ":TestLast<CR>")
+    vim.keymap.set("n", "ctg", ":TestVisit<CR>")
+
+    vim.cmd("let test#strategy = 'vimux'")
+    vim.cmd("let test#preserve_screen = 0")
   end,
 }

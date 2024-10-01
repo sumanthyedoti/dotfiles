@@ -59,6 +59,7 @@ return {
     },
   },
   { "christoomey/vim-tmux-navigator" },
+  { "preservim/vimux" },
   { "editorconfig/editorconfig-vim" },
   { "jbyuki/venn.nvim", cmd = "VBox" },
 
@@ -106,5 +107,41 @@ return {
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+  },
+
+  -- [[ FUN ]]
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "tamton-aquib/duck.nvim",
+    keys = {
+      {
+        "cfdh",
+        function()
+          require("duck").hatch()
+        end,
+        mode = { "n", "v" },
+        desc = "Hatch",
+      },
+      {
+        "cfdc",
+        function()
+          require("duck").cook()
+        end,
+        mode = { "n", "v" },
+        desc = "Cook",
+      },
+      {
+        "cfda",
+        function()
+          require("duck").cook_all()
+        end,
+        mode = { "n", "v" },
+        desc = "Cook All",
+      },
+    },
   },
 }
