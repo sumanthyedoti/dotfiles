@@ -30,6 +30,7 @@ return {
         -- "elm",
         "erlang",
         "fish",
+        "fsharp",
         "go",
         "graphql",
         "haskell",

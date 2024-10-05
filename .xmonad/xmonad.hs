@@ -10,6 +10,7 @@
 import Data.Map qualified as M
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
+import HsLua.REPL (setup)
 import System.Exit
 import System.Process
 import XMonad
@@ -17,6 +18,7 @@ import XMonad.Actions.CycleWS qualified as C
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Search as S
+import XMonad.Actions.SpawnOn
 import XMonad.Actions.Submap
 import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks)
 import XMonad.Hooks.WindowSwallowing
@@ -90,7 +92,7 @@ myModMask = superMask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["code", "write", "browse", "4", "5", "6", "7", "8", "9"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -103,8 +105,18 @@ myFocusedBorderColor = "#0ff"
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
-    -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
+    [ -- workspace 1
+      ((modm .|. controlMask, xK_1), spawn "alacritty"),
+      -- workspace 2
+      ((modm .|. controlMask, xK_2), spawn "emac"),
+      -- workspace 3
+      ((modm .|. controlMask, xK_3), spawn "brave"),
+      -- workspace 4
+      ((modm .|. controlMask, xK_4), spawn "kitty"),
+      -- workspace 9
+      ((modm .|. controlMask, xK_9), spawn "kitty"),
+      -- launch a terminal
+      ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- launch rofi
       ((modm, xK_p), spawn "rofi -show drun"),
       ((modm, xK_o), spawn "rofi -modi emoji -show emoji"),
@@ -210,15 +222,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       [ ((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
           (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
-      ]
-      ++
-      --
-      -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-      -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-      --
-      [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..],
-          (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
       ]
 
 ------------------------------------------------------------------------
