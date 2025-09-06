@@ -51,6 +51,7 @@
 
 
 ;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+;(package! mermaid-mode)
 (package! mermaid-mode)
 (package! paredit)
 (package! org-appear)
@@ -77,7 +78,15 @@
 ;;; org
 (package! olivetti)
 (package! org-modern)
+(package! org-download)
+(package! org-yt
+  :recipe (:host github :repo "TobiasZawada/org-yt"))
+(package! org-super-agenda)
+;(package! perspecitve)
 
 ;;; explore packages
 ;;; ----------------
 ;;; https://github.com/alphapapa/org-super-agenda
+;;; https://github.com/thisirs/openwith
+;;; https://github.com/nobiot/org-transclusion
+;;; https://github.com/emacsmirror/org-gcal

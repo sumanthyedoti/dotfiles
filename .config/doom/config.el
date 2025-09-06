@@ -88,6 +88,29 @@
 ;             '("J" "Journal" entry (file+datetree "~/org/JOURNAL.org")
 ;               "*** %U %?  %?"))
 
+;(setq deft-directory "~/org"
+;      deft-extensions '("org" "txt")
+;      deft-recursive t)
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/org")
+  (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+   '(("d" "default" plain
+      "%?"
+      :if-new (file+head "${slug}-%<%Y%m%d%H%M%S>.org" "#+title: ${title}\n#+date: %U\n")
+      :unnarrowed t)
+     ("b" "book notes" plain
+      (file "~/org/roam/templates/book.org")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)))
+  :bind (("C-c r 1" . org-roam-buffer-toggle)
+         ("C-c r f" . org-roam-node-find)
+         ("C-c r i" . org-roam-node-insert)))
+
+
 ;;;; org
 (setq org-directory "~/org/")
 (after! org
@@ -98,21 +121,66 @@
         fill-column 100
         org-agenda-start-with-log-mode t
         org-agenda-skip-scheduled-if-done t
-        org-log-done 'time
+
+        org-log-done 'time ; nil / 'time
+
         ;; before "|" are active, after are done
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "IN-PROGRESS(p)" "|" "DONE(o)")
-                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d)" "DEV-DONE(v)" "TESTING(c)" "|" "STAGED(s)" "DEPLOYED(y)")
+                            (sequence "BACKLOG(b)" "REFINED(r)" "IN-DEV(d!)" "DEV-DONE(v!)" "TESTING(c!)" "|" "STAGED(s!)" "DEPLOYED(y!)") ; ! means to log the timestamp
                             (sequence "GOAL(g)" "|" "REACHED(h)")
                             (sequence "IDEA(i)" "|"))
         org-priority-faces '((65 :foreground "#e45649") ; ASCII 65, same as writing ?A
                              (66 :foreground "#da8548")
                              (67 :foreground "#0098dd"))
-        org-log-into-drawer t
+        org-log-into-drawer "LOGBOOK"
         org-pretty-entities t
         org-pretty-entities-include-sub-superscripts t
         org-agenda-files '("~/org")
+
+
         org-clock-display-default-range 'thisweek
         org-latex-compiler "xelatex")
+
+  (use-package! org-super-agenda
+    :after org-agenda
+    :config
+    ;(setq org-super-agenda-groups '((:name "Today"
+    ;                                :time-grid t
+    ;                                :scheduled today)
+    ;                               (:name "Due Today"
+    ;                                :deadline today)
+    ;                               (:name "Overdue"
+    ;                                :deadline past)
+    ;                               (:name "Due Tomorrow"
+    ;                                :deadline tomorrow)))
+    (org-super-agenda-mode))
+
+
+  ;; Planning custom config
+  (setq org-agenda-custom-commands
+        '(("p" "Planning"
+           ((tags-todo "+Planning"
+                       ((org-agenda-overriding-header "Planning Tasks")))
+            (tags-todo "ALLTAGS=\"\""
+                       ((org-agenda-overriding-header "Untagged Tasks")))
+            (todo ".*" ((org-agenda-files '("~/.org/inbox.org"))
+                        (org-agenda-overriding-header "Unprocessed Inbox Items")))))
+          ("d" "Daily Agenda"
+           ((agenda "" ((org-agenda-span 'day)
+                        (org-deadline-warning-days 7)))
+            (tags-todo "+PRIORITY=\"A\""
+                       ((org-agenda-overriding-header "High Priority Tasks")))))
+          ("w" "Weekly Review"
+           ((agenda ""
+                    ((org-agenda-overriding-header "Completed Tasks")
+                     (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
+                     (org-agenda-span 'week)))
+            (agenda ""
+                    ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
+                     (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                     (org-agenda-span 'week)))))))
+
+
   (set-face-attribute 'org-link nil
                       :weight 'normal
                       :background nil)
@@ -160,6 +228,8 @@
      (haskell . t)
      (rust . t)
      (elixir . t) ; ⚠
+     (fsharp . t) ; ⚠
+     (csharp . t)
      (java . t)
      (C . t)
      (lua . t)
@@ -175,6 +245,8 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src bash :results output"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
+  (add-to-list 'org-structure-template-alist '("fs" . "src fsharp"))
+  (add-to-list 'org-structure-template-alist '("cs" . "src csharp :results output"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("x" . "src latex"))
   (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
@@ -187,17 +259,30 @@
   (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
   (add-to-list 'org-structure-template-alist '("json" . "src json"))
   (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
-  (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
   (add-to-list 'org-structure-template-alist '("go" . "src go :imports '(\"fmt\")"))
   (add-to-list 'org-structure-template-alist '("ex" . "src elixir :results output"))
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
   (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell :results output"))
   (add-to-list 'org-structure-template-alist '("sql" . "src sql"))
-  (add-to-list 'org-structure-template-alist '("mmd" . "src mermaid :file test.png")))
+  (add-to-list 'org-structure-template-alist '("mmd" . "src mermaid :file ~/org/mermaid/diagram.png")))
+
+
+(use-package! org-download
+  :after org
+  :init
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir "~/org/images")
+  (setq org-download-image-org-width 600)
+  (setq org-download-link-format "[[file:%s]]\n" org-download-abbreviate-filename-function #'file-relative-name)
+  (setq org-download-link-format-function #'org-download-link-format-function-default)
+  :config
+  (add-hook 'dired-mode-hook 'org-download-enable))
+
+(use-package! org-yt
+  :after org)
 
 ;;;; latex
-
 (setq org-preview-latex-default-process 'dvisvgm)
 
 ;;;; emacs-ipython-notebook (ein)
@@ -205,7 +290,20 @@
 
 ;;;; dired
 (after! dired
+ (add-hook 'dired-mode-hook 'org-download-enable)
  (setq delete-by-moving-to-trash t))
+
+;(use-package! perspective
+;  ; commands
+;  ; persp-switch -> create new or switch to a perspective
+;  ; C-c p -> perspective commands
+;  :bind
+;  ("C-x M-b" . persp-list-buffers)
+;  :custom
+;  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+;  :init
+;  (persp-mode))
+
 
 ;; Here are some additional functions/macros that will help you configure Doom.
 ;;
@@ -317,7 +415,6 @@
          ("C-c i b" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-buffer)))
          ("C-c i R" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))
          ("C-c i L" . 'inf-elixir-send-line)
-         ("C-c i R" . 'inf-elixir-send-region)
          ("C-c i R" . 'inf-elixir-send-region)
          ("C-c i B" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-send-buffer)))
          ("C-c i R" . (lambda () (interactive) (inf-elixir-other-window 'inf-elixir-reload-module)))))
