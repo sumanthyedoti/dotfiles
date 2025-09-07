@@ -64,7 +64,7 @@
 	user = sumanthyedoti
 [alias]
   s = status
-  ss = status --short
+  ss = diff --name-only --cached # shows only staged file names
   a = add
   co = checkout
   f = fetch

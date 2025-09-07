@@ -82,7 +82,9 @@
 (package! org-yt
   :recipe (:host github :repo "TobiasZawada/org-yt"))
 (package! org-super-agenda)
-;(package! perspecitve)
+(unpin! org-roam)
+(package! websocket)
+(package! org-roam-ui)
 
 ;;; explore packages
 ;;; ----------------

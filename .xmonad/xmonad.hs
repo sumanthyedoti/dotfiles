@@ -108,11 +108,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     [ -- workspace 1
       ((modm .|. controlMask, xK_1), spawn "alacritty"),
       -- workspace 2
-      ((modm .|. controlMask, xK_2), spawn "emac"),
+      ((modm .|. controlMask, xK_2), spawn "emacs" >> spawn "calibre"),
       -- workspace 3
       ((modm .|. controlMask, xK_3), spawn "brave"),
       -- workspace 4
       ((modm .|. controlMask, xK_4), spawn "kitty"),
+      -- workspace 5
+      ((modm .|. controlMask, xK_5), spawn "qbittorrent"),
       -- workspace 9
       ((modm .|. controlMask, xK_9), spawn "kitty"),
       -- launch a terminal
@@ -190,7 +192,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop"),
       ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol"),
       ((modm .|. controlMask, xK_s), namedScratchpadAction myScratchPads "spotify"),
-      ((modm .|. controlMask, xK_n), namedScratchpadAction myScratchPads "nmtui"),
+      ((modm .|. controlMask, xK_c), namedScratchpadAction myScratchPads "copyq"),
       ( (modm, xK_s),
         submap . M.fromList $
           [ ((0, xK_y), promptSearch myXPConfig S.youtube),
@@ -209,9 +211,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
           [ ((0, xK_s), spawn "~/.scripts/screenshot.sh select"),
             ((0, xK_p), spawn "~/.scripts/screenshot.sh select-good"),
             ((0, xK_w), spawn "~/.scripts/screenshot.sh window"),
-            ((0, xK_t), spawn "~/.scripts/extract-text-from-image.sh"),
-            ((0, xK_y), spawn "~/.scripts/download-yt-video-and-mpv.sh")
+            ((0, xK_c), spawn "~/.scripts/screenshot.sh clipboard"),
+            ((0, xK_t), spawn "~/.scripts/extract-text-from-image.sh")
           ]
+      ),
+      ( (modm .|. shiftMask, xK_v),
+        submap . M.fromList $
+        [ ((0, xK_y), spawn "~/.scripts/download-yt-video-and-mpv.sh") ]
       )
     ]
       ++
@@ -336,8 +342,8 @@ myScratchPads =
   [ NS "terminal" spawnTerm findTerm manageTerm,
     NS "mpv" (myTerminal ++ " -t mpv") (title =? "mpv") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
     NS "htop" (myTerminal ++ " -t htop -e htop") (title =? "htop") manageTerm,
-    NS "nmtui" (myTerminal ++ " -t nmtui -e nmtui") (title =? "nmtui") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
     NS "pavucontrol" "pavucontrol" (className =? "pavucontrol") (customFloating $ W.RationalRect (1 / 4) (1 / 4) (2 / 4) (2 / 4)),
+    NS "copyq" "copyq" (className =? "copyq") manageTerm,
     NS "spotify" "spotify" (className =? "Spotify") manageTerm
   ]
   where

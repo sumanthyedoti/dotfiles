@@ -23,6 +23,7 @@
 - rbenv (Mac)
 - node
   - nvm
+- asdf
 - elixir
 - haskell
   - ghcup
@@ -75,15 +76,15 @@
     - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
-  - [tmux2html] (https://github.com/tweekmonster/tmux2html)
-  - [powerline-fonts] (https://github.com/powerline/fonts)
+  - [tmux2html] (<https://github.com/tweekmonster/tmux2html>)
+  - [powerline-fonts] (<https://github.com/powerline/fonts>)
   - `prefix + r` - reload
   - `prefix + I` to fetch the plugins
 - emacs
   - `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
-  - install `mermaid-cli `(@mermaid-js/mermaid-cli)
+  - install `mermaid-cli`(@mermaid-js/mermaid-cli)
 - cmake
 - docker
   - docker-buildx
@@ -106,7 +107,7 @@
   - lf-gadgets
 - trash-cli
 - lazygit
-  - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
+  - link macos config file manually (<https://github.com/jesseduffield/lazygit/issues/1341>)
 - csvlens
 - glow - markdown previewer
 - pandoc
@@ -120,7 +121,7 @@
   - gpg
   - pinentry
 - tldr
-- github-cli (https://cli.github.com/manual/gh)
+- github-cli (<https://cli.github.com/manual/gh>)
 - `npm i -g @343dev/optimizt`
 
 #### Dev Tools
@@ -141,6 +142,7 @@
 - dunst
 - scrot
 - mpv
+- mov-cli
 - yt-dlp
 - feh
 - ffmpeg

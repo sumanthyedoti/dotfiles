@@ -3,8 +3,8 @@ eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
 # mkdir and cd
-mkcd () {
-    mkdir -p -- "$1" && cd -P -- "$1"
+mkcd() {
+  mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 # ALIASES
@@ -63,15 +63,16 @@ alias txa="tmux attach"
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 alias wifi="~/.dotfiles/.scripts/wifi.sh"
+alias livebook="~/.dotfiles/.scripts/livebook.sh"
 
 export view=nvim
 export EDITOR=nvim
 
 # NVM
 if [[ $(uname) == "Darwin" ]]; then
-export NVM_DIR="$HOME/.nvm"
-  [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
-  [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"                                       # This loads nvm
+  [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 else
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -88,6 +89,9 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 # doom emacs
 export PATH="$HOME/.config/emacs/bin:$PATH"
 
+# dotnet
+export PATH="$HOME/.dotnet/tools:$PATH"
+
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
 export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
@@ -95,42 +99,52 @@ export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
 #### emacs
 # vterm
 vterm_printf() {
-    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
-        # Tell tmux to pass the escape sequences through
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
+  if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
+    # Tell tmux to pass the escape sequences through
+    printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+  elif [ "${TERM%%-*}" = "screen" ]; then
+    # GNU screen (screen, screen-256color, screen-256color-bce)
+    printf "\eP\e]%s\007\e\\" "$1"
+  else
+    printf "\e]%s\e\\" "$1"
+  fi
 }
+
+# lazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 # vterm clear scrollback `C-C c_l`
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-    function clear() {
-        vterm_printf "51;Evterm-clear-scrollback";
-        tput clear;
-    }
-    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+  function clear() {
+    vterm_printf "51;Evterm-clear-scrollback"
+    tput clear
+  }
+  alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 fi
 
 # chmod 755 ~/.dotfiles/.scripts/*
 # bash ~/.dotfiles/.scripts/autostart.sh
 . "$HOME/.cargo/env"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/sumanthyedoti/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/sumanthyedoti/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/home/sumanthyedoti/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/sumanthyedoti/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/sumanthyedoti/miniconda3/bin:$PATH"
-    fi
+  if [ -f "/home/sumanthyedoti/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/sumanthyedoti/miniconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/sumanthyedoti/miniconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-

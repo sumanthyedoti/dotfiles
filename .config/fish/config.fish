@@ -9,9 +9,9 @@ function mkcd
 end
 
 # Mac config
-if test (uname) = "Darwin"
-  # Set PATH, MANPATH, etc., for Homebrew.
-  eval (/opt/homebrew/bin/brew shellenv)
+if test (uname) = Darwin
+    # Set PATH, MANPATH, etc., for Homebrew.
+    eval (/opt/homebrew/bin/brew shellenv)
 end
 
 # ALIASES
@@ -20,7 +20,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-    # `command` is needed in case `lfcd` is aliased to `lf`
+# `command` is needed in case `lfcd` is aliased to `lf`
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 # aliases for scripts
 alias txa="tmux attach"
@@ -44,8 +44,6 @@ alias g="git"
 alias sudo='sudo '
 alias lf="lfu ."
 alias trm="trash-put"
-alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
-alias fz="fzf --height 30%"
 alias lltr="exa -lF --tree --icons --git"
 alias ltr="exa -F --tree --icons --git"
 alias llt="exa -lF --level=2 --tree --icons --git"
@@ -74,7 +72,7 @@ alias ltr="exa -F --tree --icons --git"
 alias lltr="exa -lF --tree --icons --git"
 
 alias fz="fzf --height 30%"
-alias fzfp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
+alias fzp='fzf --preview "bat --style numbers,changes --color=always {} | head -200"' ## with preview
 
 alias lf="lfu ."
 
@@ -108,6 +106,7 @@ alias txa="tmux attach"
 # aliases for scripts
 alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 alias wifi="~/.dotfiles/.scripts/wifi.sh"
+alias livebook="~/.dotfiles/.scripts/livebook.sh"
 
 export view=nvim
 export EDITOR=nvim
@@ -132,6 +131,9 @@ set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 # doom emacs
 set -x PATH "$HOME/.config/emacs/bin:$PATH"
 
+# doom emacs
+set -x PATH "$HOME/.dotnet/tools:$PATH"
+
 # calibre
 set -Ux CALIBRE_USE_DARK_PALETTE 1
 
@@ -140,8 +142,10 @@ set -Ux CALIBRE_USE_DARK_PALETTE 1
 
 #### emacs
 # vterm
-function vterm_printf;
-    if begin; [  -n "$TMUX" ]  ; and  string match -q -r "screen|tmux" "$TERM"; end
+function vterm_printf
+    if begin
+            [ -n "$TMUX" ]; and string match -q -r "screen|tmux" "$TERM"
+        end
         # tell tmux to pass the escape sequences through
         printf "\ePtmux;\e\e]%s\007\e\\" "$argv"
     else if string match -q -- "screen*" "$TERM"
@@ -151,17 +155,29 @@ function vterm_printf;
         printf "\e]%s\e\\" "$argv"
     end
 end
+
 # lf
 function lfcd --wraps="lf" --description="lf - Terminal file manager (changing directory on exit)"
     # `command` is needed in case `lfcd` is aliased to `lf`.
     # Quotes will cause `cd` to not change directory if `lf` prints nothing to stdout due to an error.
     cd "$(command lf -print-last-dir $argv)"
 end
+
+# yazi
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
+
 # vterm clear scrollback
-if [ "$INSIDE_EMACS" = 'vterm' ]
+if [ "$INSIDE_EMACS" = vterm ]
     function clear
-        vterm_printf "51;Evterm-clear-scrollback";
-        tput clear;
+        vterm_printf "51;Evterm-clear-scrollback"
+        tput clear
     end
 end
 
@@ -180,4 +196,5 @@ set PATH $PATH /home/sumanthyedoti/.local/bin
 set -U __done_min_cmd_duration 5000
 set -U __done_exclude '(^git (?!push|pull|fetch)|lg*|fzf*|lf*|feh*|mpv*|man*)'
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/sumanthyedoti/.ghcup/bin $PATH # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+set -gx PATH $HOME/.cabal/bin /home/sumanthyedoti/.ghcup/bin $PATH # ghcup-env

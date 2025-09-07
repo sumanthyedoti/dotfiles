@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 SS_dir=/home/sumanthyedoti/Pictures/Screenshots/
 mkdir -p /home/sumanthyedoti/Pictures/Screenshots/
 output=~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png
@@ -10,7 +9,7 @@ last_SS() {
   ls -t | head -n 1
 }
 
-scrot "$output" --select --freeze --line mode=edge
+scrot "$output" --select --freeze --line style=dash
 if [ $? -ne 0 ]; then
   notify-send " Failed to take screen shot" -u critical -t 2000
   exit
