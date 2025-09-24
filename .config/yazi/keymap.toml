@@ -1,5 +1,5 @@
 # default-config: 🌐https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/keymap-default.toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "m" ]
 run = "plugin relative-motions"
 desc = "Trigger a new relative motion"

@@ -110,6 +110,7 @@ alias livebook="~/.dotfiles/.scripts/livebook.sh"
 
 export view=nvim
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 
 starship init fish | source
 zoxide init fish | source

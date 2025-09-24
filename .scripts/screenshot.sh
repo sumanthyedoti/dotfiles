@@ -25,6 +25,8 @@ case "$1" in
   ;;
 "clipboard")
   scrot --select --freeze --line style=dash -o /tmp/screenshot.png &&
+    magick mogrify -resize 75% /tmp/screenshot.png &&
+    pngquant --quality=40-60 --force /tmp/screenshot.png -o /tmp/screenshot.png &&
     xclip -selection clipboard -t image/png -i /tmp/screenshot.png &&
     notify || exit
   ;;

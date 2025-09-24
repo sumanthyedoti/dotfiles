@@ -67,6 +67,7 @@ alias livebook="~/.dotfiles/.scripts/livebook.sh"
 
 export view=nvim
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 
 # NVM
 if [[ $(uname) == "Darwin" ]]; then
@@ -148,3 +149,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+source '/home/sumanthyedoti/.bash_completions/comfy.sh'
+
+

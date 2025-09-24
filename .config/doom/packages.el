@@ -85,6 +85,10 @@
 (unpin! org-roam)
 (package! websocket)
 (package! org-roam-ui)
+(package! org-alert)
+;;; slow UI, so disabled
+;(package! vertico-posframe)
+(package! all-the-icons)
 
 ;;; explore packages
 ;;; ----------------

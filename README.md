@@ -120,13 +120,14 @@
 - password store (pass)
   - gpg
   - pinentry
-- tldr
+- tealdeer (tldr)
 - github-cli (<https://cli.github.com/manual/gh>)
 - `npm i -g @343dev/optimizt`
 
 #### Dev Tools
 
 - postgresql
+- pgcli
 
 #### Linux
 
@@ -139,11 +140,13 @@
   - xterm
   - nitrogen
   - picom
-- dunst
+- dunst & notify-send
 - scrot
 - mpv
-- mov-cli
 - yt-dlp
+- mov-cli
+- ani-cli
+- [roc-toolkit]()
 - feh
 - ffmpeg
 - pamixer
@@ -152,3 +155,4 @@
 - xdotool
 - tesseract, tesseract-data-eng
 - copyq
+- [copyparty](https://github.com/9001/copyparty)

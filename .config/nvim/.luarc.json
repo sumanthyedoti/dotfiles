@@ -1,12 +1,8 @@
 {
-  "workspace.library": [
-    "/home/sumanthyedoti/.local/share/nvim/lazy/neodev.nvim/types/stable",
-    "/usr/share/nvim/runtime/lua",
-    "/home/sumanthyedoti/.local/share/nvim/lazy/nvim-treesitter/lua",
-    "/home/sumanthyedoti/.local/share/nvim/lazy/telescope.nvim/lua",
-    "/home/sumanthyedoti/.dotfiles/.config/nvim/lua",
-    "${3rd}/luv/library",
-    "${3rd}/luassert/library"
-  ]
+    "diagnostics.globals": [
+        "stat"
+    ],
+    "diagnostics.disable": [
+        "undefined-global"
+    ]
 }
-
