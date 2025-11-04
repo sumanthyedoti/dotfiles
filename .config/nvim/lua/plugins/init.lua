@@ -18,4 +18,7 @@ return {
     },
   },
   { "preservim/vimux" },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+  },
 }

@@ -3,26 +3,29 @@
 -- Add any additional keymaps here
 
 local utils = require("sumanthyedoti.utils")
-local map = utils.map_key
+local map_key = utils.map_key
 -- Navigate buffers
 --map("n", "<S-TAB>", "<cmd>bprevious<CR>")
 --map("n", "<TAB>", "<cmd>bnext<CR>")
 
 -- INSERT --
-map("i", "jj", "<ESC>")
+map_key("i", "jj", "<ESC>")
 
 -- Disable s (substitute) in normal and visual mode
-vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+-- vim.keymap.set({ "n", "x" }, "s", "<Nop>")
 
 -- Navigate tabs
-map("n", "<leader><TAB>n", "<cmd>tabnew<CR>", { desc = "New Tab" })
-map("n", "<leader><TAB>1", "1gt")
-map("n", "<leader><TAB>2", "2gt")
-map("n", "<leader><TAB>3", "3gt")
-map("n", "<leader><TAB>4", "4gt")
-map("n", "<leader><TAB>5", "5gt")
+map_key("n", "<leader><TAB>n", "<cmd>tabnew<CR>", { desc = "New Tab" })
+map_key("n", "<leader><TAB>1", "1gt")
+map_key("n", "<leader><TAB>2", "2gt")
+map_key("n", "<leader><TAB>3", "3gt")
+map_key("n", "<leader><TAB>4", "4gt")
+map_key("n", "<leader><TAB>5", "5gt")
 
--- map("n", ";", ":lua require('snacks').picker.registers()<CR>", { desc = "Registers" })
+map_key("n", "<leader>u;", ":messages<CR>", { desc = "Show messages" })
+
+map_key("n", "<localleader>dd", '"_dd', { desc = "Delete line without yanking" })
+map_key("n", "<localleader>dc", '"_ddO<ESC>', { desc = "Clear line without yanking" })
 
 -- Toggle tabs
 local last_tab = nil

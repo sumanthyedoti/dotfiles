@@ -93,6 +93,9 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 # dotnet
 export PATH="$HOME/.dotnet/tools:$PATH"
 
+# luarocks
+export PATH="$HOME/.luarocks/bin:$PATH"
+
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
 export GITHUB_TOKEN=$(pass show tokens/github/sumanth.yedoti/six-invest)
@@ -151,5 +154,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 source '/home/sumanthyedoti/.bash_completions/comfy.sh'
-
-

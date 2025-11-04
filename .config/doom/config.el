@@ -75,19 +75,6 @@
 ;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
 ;;   - Setting doom variables (which start with 'doom-' or '+').
 
-;;;; org-captured
-(setq +org-capture-todo-file "~/org/TODO.org")
-(setq +org-capture-notes-file "~/org/NOTES.org")
-(setq +org-capture-changelog-file "~/org/CHANGELOG.org")
-(setq +org-capture-journal-file "~/org/JOURNAL.org")
-
-
-;;; org-capture templtes
-;(add-to-list 'org-capture-templates
-;             '("T" "Task" entry (file+headline "~/org/TASKS.org")
-;               "* TODO %?\n  %U\n  %a")
-;             '("J" "Journal" entry (file+datetree "~/org/JOURNAL.org")
-;               "*** %U %?  %?"))
 
 ;;; deft
 ;(setq deft-directory "~/org"
@@ -211,6 +198,7 @@
           ("overspill" . ?o)
           ("next" . ?n)
           ("in_progess" . ?_)
+          ("growth" . ?g)
           ("idea" . ?i)))
 
 
@@ -264,6 +252,9 @@
   (add-hook 'org-mode-hook 'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook 'org-modern-agenda)
                                         ; (setq org-appear-autolinks t)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-latex-preview '(16)))) ;; 16 = preview whole buffer
   (setq org-appear-autosubmarkers t)
   (setq org-appear-autoentities t)
   (setq org-appear-autokeywords t)
@@ -272,13 +263,14 @@
   ;; ob-mermaid
   (setq ob-mermaid-cli-path (shell-command-to-string "which mmdc"))
 
-
   ;;;; org-babel
   (setq org-confirm-babel-evaluate nil) ; do not ask for confirmation to evaluate src-block
-  ;; configure the languages that can be executed inside org-mode code blocks
-  (use-package! ob-clojure
-    :init
-    (setq org-babel-clojure-backend 'cider))
+  ;;;; configure the languages that can be executed inside org-mode code blocks
+  ;; (use-package! ob-clojure
+  ;;   :init
+  ;;   (setq org-babel-clojure-backend 'cider))
+;; (setq org-babel-clojure-backend 'cider)
+(setq org-babel-clojure-backend 'clj)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -305,14 +297,17 @@
   (add-to-list 'org-structure-template-alist '("sh" . "src bash :results output"))
   (add-to-list 'org-structure-template-alist '("shn" . "src bash :eval never"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("elx" . "src elixir"))
+  (add-to-list 'org-structure-template-alist '("ex" . "src elixir"))
+  (add-to-list 'org-structure-template-alist '("elx" . "src elixir :results output"))
   (add-to-list 'org-structure-template-alist '("fs" . "src fsharp"))
   (add-to-list 'org-structure-template-alist '("cs" . "src csharp :results output"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("x" . "src latex"))
   (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
   (add-to-list 'org-structure-template-alist '("js" . "src js :result output"))
+  (add-to-list 'org-structure-template-alist '("jsn" . "src js :eval never"))
   (add-to-list 'org-structure-template-alist '("ts" . "src typescript :results output"))
+  (add-to-list 'org-structure-template-alist '("tsn" . "src typescript :eval never"))
   (add-to-list 'org-structure-template-alist '("java" . "src java :results output"))
   (add-to-list 'org-structure-template-alist '("cpp" . "src C++ :includes '(<iostream> <stdio.h>) :results output"))
   (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
@@ -321,12 +316,102 @@
   (add-to-list 'org-structure-template-alist '("json" . "src json"))
   (add-to-list 'org-structure-template-alist '("rs" . "src rust"))
   (add-to-list 'org-structure-template-alist '("go" . "src go :imports '(\"fmt\")"))
-  (add-to-list 'org-structure-template-alist '("ex" . "src elixir :results output"))
+  (add-to-list 'org-structure-template-alist '("gon" . "src go :eval never"))
+  (add-to-list 'org-structure-template-alist '("html" . "src html"))
+  (add-to-list 'org-structure-template-alist '("html" . "src html"))
   (add-to-list 'org-structure-template-alist '("css" . "src css"))
   (add-to-list 'org-structure-template-alist '("scss" . "src scss"))
+  (add-to-list 'org-structure-template-alist '("md" . "src markdown"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell :results output"))
   (add-to-list 'org-structure-template-alist '("sql" . "src sql"))
   (add-to-list 'org-structure-template-alist '("mmd" . "src mermaid :file ~/org/mermaid/diagram.png"))
+
+;;;; org-capture
+(setq +org-capture-todo-file "~/org/TODO.org")
+(setq +org-capture-notes-file "~/org/NOTES.org")
+(setq +org-capture-changelog-file "~/org/CHANGELOG.org")
+(setq +org-capture-journal-file "~/org/JOURNAL.org")
+
+(after! cider
+  ;; open cider-repl to right
+  (set-popup-rule! "^\\*cider-repl"
+    :side 'right
+    :size 0.4
+    :select t
+    :quit nil)
+  (defun my/cider-connect-local (&optional port) ;; for custom port, Eval → M-: → (my/cider-connect-local <PORT>)
+    "Start a headless REPL and connect to it.
+     PORT defaults to 7888 if not provided."
+    (interactive "P")
+    (let* ((port (or port 
+                     (if current-prefix-arg
+                         (read-number "Port: " 7888)
+                       7888)))
+           (project-dir (clojure-project-dir))
+           (process-name (format "lein-repl-headless-%d" port)))
+      ;; Kill existing process if any
+      (when-let ((proc (get-process process-name)))
+        (delete-process proc))
+      ;; Start headless REPL
+      (start-process process-name
+                     (format "*lein-repl-%d*" port)
+                     "lein"
+                     "repl" ":headless"
+                     ":host" "localhost"
+                     ":port" (number-to-string port))
+      (message "Starting REPL on port %d..." port)
+      ;; Wait a bit for REPL to start, then connect
+      (run-at-time "3 sec" nil
+                   (lambda ()
+                     (cider-connect-clj `(:host "localhost" :port ,port)))))))
+
+(map! :after cider
+      :leader
+      :desc "Eval last sexp"   "e e" 'cider-eval-last-sexp
+      :desc "Eval last defun at point"   "e s" 'cider-eval-defun-at-point
+      :desc "Eval last defun up to point"   "e d" 'cider-eval-defun-up-to-point
+      :desc "Eval last region"   "e r" 'cider-eval-region
+      :desc "Eval last buffer"   "e b" 'cider-eval-buffer)
+
+
+;;;; parens
+(map! :after paredit
+      "C-M-s" #'paredit-split-sexp
+      "C-M-j" #'paredit-join-sexps)
+(map! :after smartparens
+      "S-<left>" #'sp-backward-sexp
+      "S-<right>" #'sp-forward-sexp
+      "C-)" #'sp-forward-slurp-sexp
+      "C-(" #'sp-backward-slurp-sexp
+      "C-\"" #'sp-add-to-next-sexp
+      "C-:" #'sp-add-to-previous-sexp
+      "C-}" #'sp-forward-barf-sexp
+      "C-{" #'sp-backward-barf-sexp)
+(defun reverse-transpose-sexps (arg)
+  (interactive "*p")
+  (transpose-sexps (- arg)))
+(global-set-key (kbd "C-M-y") 'transpose-sexps) ;; bind default to 'y'
+(global-set-key (kbd "C-M-t") 'reverse-transpose-sexps)
+
+;;;; cider
+
+;;; org-capture templtes
+;;; Template expansion sequences:
+;;; %?  - cursor position after template expansion
+;;; %t  - timestamp, date only
+;;; %T  - timestamp with date and time
+;;; %u  - inactive timestamp, date only
+;;; %U  - inactive timestamp with date and time
+;;; %i  - initial content (selected region when capture was called)
+;;; %a  - annotation (typically the link to the current location)
+;;; %x  - clipboard content
+;;; %^{prompt}  - prompt for string
+;;; %^g - prompt for tags
+;;; %^t - date prompt
+;;; %^T - date and time prompt
+(add-to-list 'org-capture-templates
+             '("M" "Musing" entry (file+headline "~/org/MUSINGS.org" "Musings")
+               "* %? \n:PROPERTIES:\n:TIMESTAMP: %U\n:END:\n"))
 
   (defun +org/split-heading-at-point ()
     "Split the current Org heading at point into two headings at the same level."
@@ -342,7 +427,7 @@
         (beginning-of-line))))
 
   (map! :map org-mode-map
-        "C-c C-|" #'+org/split-heading-at-point))
+        "C-c C-?" #'+org/split-heading-at-point))
 
 (defun +org/split-item-at-point ()
   "Split the current Org list item at point into two items with the same bullet."
@@ -427,9 +512,9 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;;; key-bindings for inserting emojis
-(map! :leader
+(map! :leader ;;; key-bindings for inserting emojis
       :desc "Insert right arrow →"    "I a" (lambda () (interactive) (insert "→"))
+      :desc "Insert right triagle"    "I r" (lambda () (interactive) (insert "▶"))
       :desc "Insert right hook ↪"     "I o" (lambda () (interactive) (insert "↪"))
       :desc "Insert right hook "     "I g" (lambda () (interactive) (insert ""))
       :desc "Insert link 🔗"           "I l" (lambda () (interactive) (insert "🔗"))
@@ -473,19 +558,6 @@
 ;(global-set-key (kbd "C-h") 'windmove-left)
 ;(global-set-key (kbd "C-j") 'windmove-down)
 ;(global-set-key (kbd "C-k") 'windmove-up)
-
-(map! :prefix "C-c"
-      :desc "sp-forward-slurp-sexp"
-      "s f" 'sp-forward-slurp-sexp)
-(map! :prefix "C-c"
-      :desc "sp-backward-slurp-sexp"
-      "s b" 'sp-backward-slurp-sexp)
-(map! :prefix "C-c"
-      :desc "sp-forward-barf-sexp"
-      "b f" 'sp-forward-barf-sexp)
-(map! :prefix "C-c"
-      :desc "sp-backward-barf-sexp"
-      "b b" 'sp-backward-barf-sexp)
 
 (defun ots/presentation-setup ()
   (hide-mode-line-mode 1)

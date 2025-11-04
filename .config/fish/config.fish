@@ -129,6 +129,9 @@ set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 
+# luarocks
+set -x PATH "$PATH:$HOME/.luarocks/bin"
+
 # doom emacs
 set -x PATH "$HOME/.config/emacs/bin:$PATH"
 

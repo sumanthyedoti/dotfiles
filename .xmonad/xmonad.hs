@@ -211,6 +211,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
           [ ((0, xK_s), spawn "~/.scripts/screenshot.sh select"),
             ((0, xK_p), spawn "~/.scripts/screenshot.sh select-good"),
             ((0, xK_w), spawn "~/.scripts/screenshot.sh window"),
+            ((0, xK_q), spawn "~/.scripts/screenshot.sh window-good"),
             ((0, xK_c), spawn "~/.scripts/screenshot.sh clipboard"),
             ((0, xK_t), spawn "~/.scripts/extract-text-from-image.sh")
           ]

@@ -94,3 +94,5 @@
 [maintenance]
 	repo = /home/sumanthyedoti/org
 	repo = /home/sumanthyedoti/Calibre
+[push]
+	default = simple

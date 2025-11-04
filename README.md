@@ -1,3 +1,10 @@
+<!--toc:start-->
+
+- [Setup](#setup)
+- [Dependecies](#dependecies)
+  - [CLI tools](#cli-tools) - [Dev Tools](#dev-tools) - [Linux](#linux)
+  <!--toc:end-->
+
 ## Setup
 
 - Install the Tools and Dependecies first
@@ -34,6 +41,7 @@
 - go
 - clojure
   - Leiningen
+  - babashka
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
   - quicklisp
   - sbcl
@@ -88,13 +96,14 @@
 - cmake
 - docker
   - docker-buildx
+- distrobox
 
 ### CLI tools
 
 - starship
 - ripgrep
 - zoxide
-- bat
+- bat, lolcat
 - exa
 - fd
 - proc
@@ -102,6 +111,7 @@
 - ncdu
 - duf
 - jq
+- curl, xh
 - ranger
 - lf
   - lf-gadgets
@@ -111,6 +121,8 @@
 - csvlens
 - glow - markdown previewer
 - pandoc
+- croc
+- ttyd
 - git-delta
 - [roswell](https://github.com/roswell/roswell)
 - [hyperfine](https://github.com/sharkdp/hyperfine)
@@ -120,6 +132,7 @@
 - password store (pass)
   - gpg
   - pinentry
+  - gpg-tui
 - tealdeer (tldr)
 - github-cli (<https://cli.github.com/manual/gh>)
 - `npm i -g @343dev/optimizt`

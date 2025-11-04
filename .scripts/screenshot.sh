@@ -17,11 +17,14 @@ case "$1" in
     notify || exit
   ;;
 "select-good")
-  scrot "$output" --select --freeze --line style=dash && magick mogrify -resize 80% $output && notify || exit
+  scrot "$output" --select --freeze --line style=dash && magick mogrify -resize 85% $output && notify || exit
   ;;
 "window")
-  scrot "$output" --focused --border && magick mogrify -resize 80% $output && pngquant --quality=80-90 --force $output -o $output &&
+  scrot "$output" --focused --border && magick mogrify -resize 75% $output && pngquant --quality=75-85 --force $output -o $output &&
     notify || exit
+  ;;
+"window-good")
+  scrot "$output" --focused --border $output && pngquant --quality=75-85 --force $output -o $output && notify || exit
   ;;
 "clipboard")
   scrot --select --freeze --line style=dash -o /tmp/screenshot.png &&
