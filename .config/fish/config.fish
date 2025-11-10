@@ -121,6 +121,9 @@ set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
+set -x PATH "$HOME/Library/Python/*/bin" "$PATH"
+
+
 # rust/cargo
 set PATH $HOME/.cargo/bin $PATH
 
@@ -140,6 +143,12 @@ set -x PATH "$HOME/.dotnet/tools:$PATH"
 
 # calibre
 set -Ux CALIBRE_USE_DARK_PALETTE 1
+
+# Mac config
+if test (uname) = "Darwin"
+  # Set PATH, MANPATH, etc., for Homebrew.
+  eval (/opt/homebrew/bin/brew shellenv)
+end
 
 # pyenv
 #pyenv init - | source
@@ -202,3 +211,10 @@ set -U __done_exclude '(^git (?!push|pull|fetch)|lg*|fzf*|lf*|feh*|mpv*|man*)'
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 set -gx PATH $HOME/.cabal/bin /home/sumanthyedoti/.ghcup/bin $PATH # ghcup-env
+
+# Added by Windsurf
+fish_add_path /Users/sumanthyedoti/.codeium/windsurf/bin
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
