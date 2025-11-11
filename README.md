@@ -31,6 +31,7 @@
 - node
   - nvm
 - asdf
+- jenv
 - elixir
 - haskell
   - ghcup
@@ -93,10 +94,12 @@
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
   - install `mermaid-cli`(@mermaid-js/mermaid-cli)
+- Calibre
 - cmake
 - docker
   - docker-buildx
 - distrobox
+- openscad
 
 ### CLI tools
 

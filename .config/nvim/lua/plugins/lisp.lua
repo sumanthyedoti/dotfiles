@@ -1,16 +1,23 @@
 local lisp_filetypes = { "lisp", "lsp", "el", "clojure" }
 
 return {
-  { "clojure-vim/vim-jack-in", dependencies = {
-    "tpope/vim-dispatch",
-  } },
+  {
+    "clojure-vim/vim-jack-in",
+    -- [[
+    -- :Lein [args]
+    -- :Clj [args]
+    -- :Boot [args]
+    -- ]]
+    dependencies = {
+      "tpope/vim-dispatch",
+    },
+  },
   -- ## lisp
   {
     -- 🌐 https://ersantana.com/Tools/Lunarvim/nvim_paredit
     "julienvincent/nvim-paredit",
     ft = lisp_filetypes,
-
-    keys = {
+    keys = { --
       --   ["<localleader>@"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice sexp" },
       --   [">)"] = { paredit.api.slurp_forwards, "Slurp forwards" },
       --   [">("] = { paredit.api.barf_backwards, "Barf backwards" },

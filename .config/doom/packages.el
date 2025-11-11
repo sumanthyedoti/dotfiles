@@ -58,8 +58,8 @@
 (package! org-journal)
 (package! org-drill)
 (package! anki-editor) ; make sure 'ankiconnect' add-on in installed in Anki
-(package! calfw)
-(package! calfw-org)
+;; (package! calfw) :app cal
+;; (package! calfw-org)
 (package! org-tree-slide)
 
 ;;; key bindings and code colorization for Clojure
@@ -72,7 +72,6 @@
 (package! ob-typescript)
 (package! ob-rust)
 (package! ob-elixir)
-(package! pdf-tools)
 (package! ein)
 
 ;;; org
@@ -89,6 +88,15 @@
 ;;; slow UI, so disabled
 ;(package! vertico-posframe)
 (package! all-the-icons)
+
+(package! parinfer-rust-mode)
+(package! rainbow-delimiters)
+
+;; (package! calibredb)
+;; (package! org-noter)
+;; (package! pdf-tools)
+;; (package! nov) ; epub reader
+
 
 ;;; explore packages
 ;;; ----------------

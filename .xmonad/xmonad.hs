@@ -29,6 +29,13 @@ import XMonad.StackSet qualified as W
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
+import XMonad.Actions.Minimize
+import XMonad.Layout.Minimize
+import qualified XMonad.Layout.BoringWindows as BW
+import XMonad.Layout.SubLayouts
+import XMonad.Layout.WindowNavigation
+-- import XMonad.Layout.Magnifier
+
 
 myXPConfig :: XPConfig
 myXPConfig =
@@ -130,19 +137,54 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf),
       -- Resize viewed windows to the correct size
       ((modm, xK_r), refresh),
-      -- Move focus to the next window
+      ---- Move focus to the next window
       -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
-      -- Move focus to the next window
-      ((modm, xK_j), windows W.focusDown),
+      ---- Move focus to the next window
       ((modm .|. shiftMask, xK_q), windows $ W.focusDown),
+      -- ((modm, xK_j), windows W.focusDown),
+      ((modm, xK_j), BW.focusDown),
       -- Move focus to the previous window
-      ((modm, xK_k), windows W.focusUp),
-      -- map to workspace 9 & 8
+      -- ((modm, xK_k), windows W.focusUp),
+      ((modm, xK_k), BW.focusUp),
+
+      -- ---- Minimize keybindings
+      ((modm, xK_m), withFocused minimizeWindow),
+      ((modm .|. shiftMask, xK_m), withFocused maximizeWindowAndFocus),
+
+
+      -- ---- Magnifier keybindings
+      -- ((modm .|. controlMask, xK_equal), sendMessage MagnifyMore),
+      -- ((modm .|. controlMask              , xK_minus), sendMessage MagnifyLess),
+      -- ((modm .|. controlMask              , xK_o    ), sendMessage Toggle     ),
+
+      ---- WindowNavigation keybindings
+      ((modm,                 xK_Right), sendMessage $ Go R),
+      ((modm,                 xK_Left ), sendMessage $ Go L),
+      ((modm,                 xK_Up   ), sendMessage $ Go U),
+      ((modm,                 xK_Down ), sendMessage $ Go D),
+      ((modm .|. shiftMask, xK_Right), sendMessage $ Swap R),
+      ((modm .|. shiftMask, xK_Left ), sendMessage $ Swap L),
+      ((modm .|. shiftMask, xK_Up   ), sendMessage $ Swap U),
+      ((modm .|. shiftMask, xK_Down ), sendMessage $ Swap D),
+
+      ---- subTabbed keybindings
+      ((modm .|. controlMask, xK_h), sendMessage $ pullGroup L),
+      ((modm .|. controlMask, xK_l), sendMessage $ pullGroup R),
+      ((modm .|. controlMask, xK_k), sendMessage $ pullGroup U),
+      ((modm .|. controlMask, xK_j), sendMessage $ pullGroup D),
+
+      ((modm .|. controlMask, xK_m), withFocused (sendMessage . MergeAll)),
+      ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge)),
+
+      ((modm .|. controlMask, xK_period), onGroup W.focusUp'),
+      ((modm .|. controlMask, xK_comma), onGroup W.focusDown'),
+      --
+      ---- map to workspace 9 & 8
       ((modm, xK_q), windows $ W.greedyView "9"),
       ((modm, xK_a), windows $ W.greedyView "8"),
       -- Move focus to the master window
-      ((modm, xK_m), windows W.focusMaster),
+      -- ((modm, xK_m), windows W.focusMaster),
       -- Swap the focused window and the master window
       ((modm, xK_Return), windows W.swapMaster),
       -- Swap the focused window with the next window
@@ -156,9 +198,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Push window back into tiling
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
-      ((modm, xK_comma), sendMessage (IncMasterN 1)),
+      ((modm .|. shiftMask, xK_comma), sendMessage (IncMasterN 1)),
       -- Deincrement the number of windows in the master area
-      ((modm, xK_period), sendMessage (IncMasterN (-1))),
+      ((modm .|. shiftMask, xK_period), sendMessage (IncMasterN (-1))),
       -- Toggle the status bar gap
       -- Use this binding with avoidStruts from Hooks.ManageDocks.
       -- See also the statusBar function from Hooks.DynamicLog.
@@ -188,8 +230,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_Up), C.shiftToNext),
       {- scratchpads -}
       ((modm .|. controlMask, xK_Return), namedScratchpadAction myScratchPads "terminal"),
-      ((modm .|. controlMask, xK_m), namedScratchpadAction myScratchPads "mpv"),
-      ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop"),
+      -- ((modm .|. controlMask, xK_h), namedScratchpadAction myScratchPads "htop"),
       ((modm .|. controlMask, xK_a), namedScratchpadAction myScratchPads "pavucontrol"),
       ((modm .|. controlMask, xK_s), namedScratchpadAction myScratchPads "spotify"),
       ((modm .|. controlMask, xK_c), namedScratchpadAction myScratchPads "copyq"),
@@ -269,7 +310,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- which denotes layout choice.
 --
 -- myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
-myLayout = tiled ||| Full
+
+-- myLayout = minimize . magnifier . windowNavigation $ subTabbed $ BW.boringWindows $ tiled ||| Full
+myLayout = minimize . windowNavigation $ subTabbed $ BW.boringWindows $ tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio

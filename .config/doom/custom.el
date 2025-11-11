@@ -10,6 +10,8 @@
      "8c7e832be864674c220f9a9361c851917a93f921fedb7717b1b5ece47690c098"
      "f1e8339b04aef8f145dd4782d03499d9d716fdc0361319411ac2efc603249326"
      "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" default))
+ '(elfeed-feeds
+   '("https://curiousprogrammer.net/feed.xml" "https://www.reddit.com/r/linux.rss"))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
    '("/home/sumanthyedoti/org/20250906164423-new.org"
