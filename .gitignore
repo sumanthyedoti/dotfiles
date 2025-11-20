@@ -16,3 +16,5 @@
 .gnupg
 .ssh
 .xmonad/prompt-history
+.config/nvim/.php-cs-fixer.cache
+

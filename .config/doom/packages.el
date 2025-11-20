@@ -51,14 +51,15 @@
 
 
 ;;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+;(package! mermaid-mode)
 (package! mermaid-mode)
 (package! paredit)
 (package! org-appear)
 (package! org-journal)
 (package! org-drill)
 (package! anki-editor) ; make sure 'ankiconnect' add-on in installed in Anki
-(package! calfw)
-(package! calfw-org)
+;; (package! calfw) :app cal
+;; (package! calfw-org)
 (package! org-tree-slide)
 
 ;;; key bindings and code colorization for Clojure
@@ -71,13 +72,35 @@
 (package! ob-typescript)
 (package! ob-rust)
 (package! ob-elixir)
-(package! pdf-tools)
 (package! ein)
 
 ;;; org
 (package! olivetti)
 (package! org-modern)
+(package! org-download)
+(package! org-yt
+  :recipe (:host github :repo "TobiasZawada/org-yt"))
+(package! org-super-agenda)
+(unpin! org-roam)
+(package! websocket)
+(package! org-roam-ui)
+(package! org-alert)
+;;; slow UI, so disabled
+;(package! vertico-posframe)
+(package! all-the-icons)
+
+(package! parinfer-rust-mode)
+(package! rainbow-delimiters)
+
+;; (package! calibredb)
+;; (package! org-noter)
+;; (package! pdf-tools)
+;; (package! nov) ; epub reader
+
 
 ;;; explore packages
 ;;; ----------------
 ;;; https://github.com/alphapapa/org-super-agenda
+;;; https://github.com/thisirs/openwith
+;;; https://github.com/nobiot/org-transclusion
+;;; https://github.com/emacsmirror/org-gcal

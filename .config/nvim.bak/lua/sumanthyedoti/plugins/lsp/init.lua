@@ -22,6 +22,12 @@ return {
     "mfussenegger/nvim-jdtls",
     "b0o/schemastore.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
+    -- {
+    --   "ionide/Ionide-vim",
+    --   config = function()
+    --     require("sumanthyedoti.plugins.ionide")
+    --   end,
+    -- },
     "nvim-telescope/telescope.nvim",
     "folke/which-key.nvim",
   },
@@ -122,18 +128,18 @@ return {
         },
       }, { prefix = "<leader>", buffer = bufnum })
       -- typescript specific keymaps
-      if client.name == "tsserver" then -- HERE: typescript LSP keymaps
-        wk.register({
-          lT = {
-            name = "TypeScript", -- optional group name
-            f = { ":TypescriptRenameFile<CR>", "Rename file" },
-            o = { ":TypescriptOrganizeImports<CR>", "Organize imports" },
-            x = { ":TypescriptRemoveUnused<CR>", "Remove unused" },
-            i = { ":TypescriptAddMissingImports<CR>", "Add missing imports" },
-            a = { ":TypescriptFixAll<CR>", "Fix all" },
-          },
-        }, { prefix = "<leader>", buffer = bufnum })
-      end
+      -- if client.name == "tsserver" then -- HERE: typescript LSP keymaps
+      --   wk.register({
+      --     lT = {
+      --       name = "TypeScript", -- optional group name
+      --       f = { ":TypescriptRenameFile<CR>", "Rename file" },
+      --       o = { ":TypescriptOrganizeImports<CR>", "Organize imports" },
+      --       x = { ":TypescriptRemoveUnused<CR>", "Remove unused" },
+      --       i = { ":TypescriptAddMissingImports<CR>", "Add missing imports" },
+      --       a = { ":TypescriptFixAll<CR>", "Fix all" },
+      --     },
+      --   }, { prefix = "<leader>", buffer = bufnum })
+      -- end
 
       if client.name == "jdtls" then
         local jdtls = require("jdtls")
@@ -216,29 +222,29 @@ return {
     --   cmd = { "typescript-language-server", "--stdio" },
     -- })
 
-    lspconfig.ts_ls.setup({
-      init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-            languages = { "javascript", "typescript" },
-          },
-        },
-      },
-      cmd = { "typescript-language-server", "--stdio" },
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "astro",
-      },
-      root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
-      single_file_support = true,
-    })
+    -- lspconfig.ts_ls.setup({
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = "@vue/typescript-plugin",
+    --         location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+    --         languages = { "javascript", "typescript" },
+    --       },
+    --     },
+    --   },
+    --   cmd = { "typescript-language-server", "--stdio" },
+    --   filetypes = {
+    --     "javascript",
+    --     "javascriptreact",
+    --     "javascript.jsx",
+    --     "typescript",
+    --     "typescriptreact",
+    --     "typescript.tsx",
+    --     "astro",
+    --   },
+    --   root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+    --   single_file_support = true,
+    -- })
 
     lspconfig.jsonls.setup({
       settings = {
@@ -463,6 +469,43 @@ return {
       cmd = { "solidity-language-server", "--stdio" },
       filetypes = { "solidity" },
       root_dir = util.root_pattern(".git", "package.json"),
+    })
+
+    -- require("ionide").setup({
+    --   on_attach = function(client, bufnr)
+    --     on_attach(client, bufnr)
+    --     vim.lsp.codelens.refresh()
+    --   end,
+    --   capabilities = capabilities,
+    -- })
+
+    lspconfig["fsautocomplete"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "fsharp" },
+      cmd = { "fsautocomplete", "--adaptive-lsp-server-enabled" },
+      init_options = { AutomaticWorkspaceInit = true },
+      root_dir = util.root_pattern(".git", "basics.fsproj"),
+      settings = {
+        FSharp = {
+          EnableReferenceCodeLens = true,
+          ExternalAutocomplete = false,
+          InterfaceStubGeneration = true,
+          InterfaceStubGenerationMethodBody = 'failwith "Not Implemented"',
+          InterfaceStubGenerationObjectIdentifier = "this",
+          Linter = true,
+          RecordStubGeneration = true,
+          RecordStubGenerationBody = 'failwith "Not Implemented"',
+          ResolveNamespaces = true,
+          SimplifyNameAnalyzer = true,
+          UnionCaseStubGeneration = true,
+          UnionCaseStubGenerationBody = 'failwith "Not Implemented"',
+          UnusedDeclarationsAnalyzer = true,
+          UnusedOpensAnalyzer = true,
+          UseSdkScripts = true,
+          keywordsAutocomplete = true,
+        },
+      },
     })
 
     require("sumanthyedoti.plugins.lsp.mason")

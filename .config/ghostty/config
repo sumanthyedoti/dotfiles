@@ -1,0 +1,5 @@
+theme = catppuccin-mocha
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 16
+gtk-titlebar = true
+keybind = global:cmd+s=toggle_quick_terminal

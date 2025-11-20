@@ -1,6 +1,2 @@
-require("sumanthyedoti.options")
-require("sumanthyedoti.keymaps")
-require("sumanthyedoti.autocommands")
-require("sumanthyedoti.lazy-plugin-manager")
-require("sumanthyedoti.theme")
-require("sumanthyedoti.custom")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")

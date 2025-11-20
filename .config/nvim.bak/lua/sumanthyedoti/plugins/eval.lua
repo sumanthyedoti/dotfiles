@@ -39,7 +39,7 @@ return {
       { ",sb", ":%SlimeSend<cr>", mode = { "n" }, desc = "Slime Buffer" },
       { ",sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" }, desc = "Slime Root Form (Function)" },
       { ",ss", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
-      { ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "SlimeVisual" },
+      { ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
       { ",ss", ":SlimeSendCurrentLine<cr>", mode = { "n" }, desc = "Slime Current Line" },
     },
     config = function()

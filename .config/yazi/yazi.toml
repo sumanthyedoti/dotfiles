@@ -1,0 +1,5 @@
+# default-config: 🌐https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/yazi-default.toml
+
+[preview]
+max_width = 1200
+max_height = 1800

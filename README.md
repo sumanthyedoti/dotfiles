@@ -1,3 +1,10 @@
+<!--toc:start-->
+
+- [Setup](#setup)
+- [Dependecies](#dependecies)
+  - [CLI tools](#cli-tools) - [Dev Tools](#dev-tools) - [Linux](#linux)
+  <!--toc:end-->
+
 ## Setup
 
 - Install the Tools and Dependecies first
@@ -23,6 +30,8 @@
 - rbenv (Mac)
 - node
   - nvm
+- asdf
+- jenv
 - elixir
 - haskell
   - ghcup
@@ -33,6 +42,7 @@
 - go
 - clojure
   - Leiningen
+  - babashka
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
   - quicklisp
   - sbcl
@@ -75,25 +85,28 @@
     - debugpy
 - tmux
   - [tpm](https://github.com/tmux-plugins/tpm)
-  - [tmux2html] (https://github.com/tweekmonster/tmux2html)
-  - [powerline-fonts] (https://github.com/powerline/fonts)
+  - [tmux2html] (<https://github.com/tweekmonster/tmux2html>)
+  - [powerline-fonts] (<https://github.com/powerline/fonts>)
   - `prefix + r` - reload
   - `prefix + I` to fetch the plugins
 - emacs
   - `M-x all-the-icons-install-fonts`
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
-  - install `mermaid-cli `(@mermaid-js/mermaid-cli)
+  - install `mermaid-cli`(@mermaid-js/mermaid-cli)
+- Calibre
 - cmake
 - docker
   - docker-buildx
+- distrobox
+- openscad
 
 ### CLI tools
 
 - starship
 - ripgrep
 - zoxide
-- bat
+- bat, lolcat
 - exa
 - fd
 - proc
@@ -101,15 +114,18 @@
 - ncdu
 - duf
 - jq
+- curl, xh
 - ranger
 - lf
   - lf-gadgets
 - trash-cli
 - lazygit
-  - link macos config file manually (https://github.com/jesseduffield/lazygit/issues/1341)
+  - link macos config file manually (<https://github.com/jesseduffield/lazygit/issues/1341>)
 - csvlens
 - glow - markdown previewer
 - pandoc
+- croc
+- ttyd
 - git-delta
 - [roswell](https://github.com/roswell/roswell)
 - [hyperfine](https://github.com/sharkdp/hyperfine)
@@ -119,13 +135,15 @@
 - password store (pass)
   - gpg
   - pinentry
-- tldr
-- github-cli (https://cli.github.com/manual/gh)
+  - gpg-tui
+- tealdeer (tldr)
+- github-cli (<https://cli.github.com/manual/gh>)
 - `npm i -g @343dev/optimizt`
 
 #### Dev Tools
 
 - postgresql
+- pgcli
 
 #### Linux
 
@@ -138,10 +156,13 @@
   - xterm
   - nitrogen
   - picom
-- dunst
+- dunst & notify-send
 - scrot
 - mpv
 - yt-dlp
+- mov-cli
+- ani-cli
+- [roc-toolkit]()
 - feh
 - ffmpeg
 - pamixer
@@ -150,3 +171,4 @@
 - xdotool
 - tesseract, tesseract-data-eng
 - copyq
+- [copyparty](https://github.com/9001/copyparty)

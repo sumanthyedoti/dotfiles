@@ -47,6 +47,8 @@ local servers = { -- HERE: LSP servers
   "bashls",
   --[[ java ]]
   "jdtls",
+  --
+  "fsautocomplete",
 }
 
 local tools = { -- HERE: Linters and Formatters
@@ -60,6 +62,7 @@ local tools = { -- HERE: Linters and Formatters
   "eslint-lsp",
   "eslint_d",
   "prettierd",
+  "fantomas",
 }
 
 local settings = {

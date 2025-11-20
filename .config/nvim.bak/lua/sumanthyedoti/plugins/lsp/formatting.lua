@@ -19,6 +19,7 @@ conform.setup({
     yaml = { { "prettierd", "prettier" } },
     markdown = { { "prettierd", "prettier" } },
     graphql = { { "prettierd", "prettier" } },
+    fsharp = { "fantomas" },
   },
   format_on_save = {
     lsp_fallback = true,
