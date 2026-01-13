@@ -92,6 +92,9 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
+      diagnostics = {
+        virtual_text = false,
+      },
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},

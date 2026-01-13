@@ -73,6 +73,7 @@
 (package! ob-rust)
 (package! ob-elixir)
 (package! ein)
+(package! slime)
 
 ;;; org
 (package! olivetti)
@@ -94,7 +95,7 @@
 
 ;; (package! calibredb)
 ;; (package! org-noter)
-;; (package! pdf-tools)
+(package! pdf-tools)
 ;; (package! nov) ; epub reader
 
 

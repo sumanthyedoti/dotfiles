@@ -46,7 +46,10 @@
 - common-lisp - [get-started](https://lisp-lang.org/learn/getting-started/) (use roswell instead)
   - quicklisp
   - sbcl
+- scheme
+- racket & DrRacket
 - python
+  - uv
   - pip
   - pyenv (?)
   - jupyter
@@ -94,6 +97,9 @@
     - install `libtool-bin`
   - install `coreutils` (in mac, for dired)
   - install `mermaid-cli`(@mermaid-js/mermaid-cli)
+- AI tools
+  - Claude Code
+  - ccusage
 - Calibre
 - cmake
 - docker
@@ -156,6 +162,7 @@
   - xterm
   - nitrogen
   - picom
+  - xprop
 - dunst & notify-send
 - scrot
 - mpv

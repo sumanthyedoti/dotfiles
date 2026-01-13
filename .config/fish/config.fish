@@ -104,9 +104,10 @@ alias txss="tmux new-session -d -s (pwd | sed 's/.*\///g') && tmux switch-client
 alias txa="tmux attach"
 
 # aliases for scripts
-alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
-alias wifi="~/.dotfiles/.scripts/wifi.sh"
-alias livebook="~/.dotfiles/.scripts/livebook.sh"
+alias gas="~/.scripts/git_auto_sync.sh"
+alias wifi="~/.scripts/wifi.sh"
+alias livebook="~/.scripts/livebook.sh"
+alias copyc="~/.scripts/copyc.sh"
 
 export view=nvim
 export EDITOR=nvim
@@ -123,7 +124,6 @@ set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
 set -x PATH "$HOME/Library/Python/*/bin" "$PATH"
 
-
 # rust/cargo
 set PATH $HOME/.cargo/bin $PATH
 
@@ -131,6 +131,9 @@ set PATH $HOME/.cargo/bin $PATH
 set -x ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/emulator"
 set -x PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
+
+# php composer
+set -x PATH $PATH (composer global config bin-dir --absolute)
 
 # luarocks
 set -x PATH "$PATH:$HOME/.luarocks/bin"
@@ -145,9 +148,9 @@ set -x PATH "$HOME/.dotnet/tools:$PATH"
 set -Ux CALIBRE_USE_DARK_PALETTE 1
 
 # Mac config
-if test (uname) = "Darwin"
-  # Set PATH, MANPATH, etc., for Homebrew.
-  eval (/opt/homebrew/bin/brew shellenv)
+if test (uname) = Darwin
+    # Set PATH, MANPATH, etc., for Homebrew.
+    eval (/opt/homebrew/bin/brew shellenv)
 end
 
 # pyenv

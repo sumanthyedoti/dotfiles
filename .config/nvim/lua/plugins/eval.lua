@@ -39,11 +39,48 @@ return {
     "jpalardy/vim-slime",
     ft = repl_filetypes,
     keys = {
-      { ",sb", ":%SlimeSend<cr>", mode = { "n" }, desc = "Slime Buffer" },
-      { ",sp", "mzvip:'<,'>SlimeSend<cr>`z", mode = { "n" }, desc = "Slime Root Form (Function)" },
-      { ",ss", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
-      { ",sv", ":'<,'>SlimeSend<cr>", mode = { "v" }, desc = "Slime Visual" },
-      { ",ss", ":SlimeSendCurrentLine<cr>", mode = { "n" }, desc = "Slime Current Line" },
+      {
+        "<localleader>sb",
+        function()
+          vim.cmd("silent %SlimeSend")
+        end,
+        mode = { "n" },
+        desc = "Slime Buffer",
+      },
+      {
+        "<localleader>sp",
+        function()
+          vim.cmd("normal! mzvip")
+          vim.cmd("silent '<,'>SlimeSend")
+          vim.cmd("normal! `z")
+        end,
+        mode = { "n" },
+        desc = "Slime Root Form (Function)",
+      },
+      {
+        "<localleader>ss",
+        function()
+          vim.cmd("silent '<,'>SlimeSend")
+        end,
+        mode = { "v" },
+        desc = "Slime Visual",
+      },
+      {
+        "<localleader>sv",
+        function()
+          vim.cmd("silent '<,'>SlimeSend")
+        end,
+        mode = { "v" },
+        desc = "Slime Visual",
+      },
+      {
+        "<localleader>ss",
+        function()
+          vim.cmd("silent SlimeSendCurrentLine")
+        end,
+        mode = { "n" },
+        desc = "Slime Current Line",
+      },
     },
     config = function()
       vim.cmd([[let g:slime_target = "tmux"]])

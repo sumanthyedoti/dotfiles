@@ -166,6 +166,7 @@
 
 ;;;; org
 (setq org-directory "~/org/")
+(setq org-num-skip-commented t)
 (after! org
   (use-package! calfw-org)
   (setq org-ellipsis " ⇣" ; ⤵⇁⥡⇣
@@ -322,7 +323,11 @@
     (typescript . t)
     (go . t)
     (shell . t)
-    (clojure . t)))
+    (clojure . t)
+    (scheme . t)
+    (common-lisp . t)
+    (racket . t)
+    (php . t)))
 
  (require 'org-tempo) ; by type `<sh<tab>`, code-block with shell appears
   ;;; `<s` to begin src block
@@ -335,6 +340,10 @@
  (add-to-list 'org-structure-template-alist '("cs" . "src csharp :results output"))
  (add-to-list 'org-structure-template-alist '("clj" . "src clojure :result value"))
  (add-to-list 'org-structure-template-alist '("cljn" . "src clojure :eval no"))
+ (add-to-list 'org-structure-template-alist '("scm" . "src scheme"))
+ (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
+ (add-to-list 'org-structure-template-alist '("rkt" . "src racket"))
+ (add-to-list 'org-structure-template-alist '("php" . "src php :results silent"))
  (add-to-list 'org-structure-template-alist '("x" . "src latex"))
  (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
  (add-to-list 'org-structure-template-alist '("js" . "src js :result output"))
@@ -343,7 +352,6 @@
  (add-to-list 'org-structure-template-alist '("tsn" . "src typescript :eval never"))
  (add-to-list 'org-structure-template-alist '("java" . "src java :results output"))
  (add-to-list 'org-structure-template-alist '("cpp" . "src C++ :includes '(<iostream> <stdio.h>) :results output"))
- (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
  (add-to-list 'org-structure-template-alist '("lua" . "src lua"))
  (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
  (add-to-list 'org-structure-template-alist '("json" . "src json"))
@@ -403,7 +411,7 @@
        :desc "Eval last sexp"   "e e" 'cider-eval-last-sexp
        :desc "Eval last defun at point"   "e s" 'cider-eval-defun-at-point ; Also C-c C-c / C-M-x
        :desc "Eval last defun up to point"   "e p" 'cider-eval-defun-up-to-point
-       :desc "Eval last defun up to point"   "e l" 'cider-eval-list-at-point
+       :desc "Eval list at point"   "e l" 'cider-eval-list-at-point
        :desc "Eval last region"   "e r" 'cider-eval-region
        :desc "Eval last expr and replace"   "e x" 'cider-eval-last-sexp-and-replace
        :desc "Eval last sexp in the context"   "e c" 'cider-eval-sexp-at-point-in-context
@@ -412,14 +420,25 @@
 
 
 ;;;; parens
+
+ (defun my/wrap-with-let ()
+  "Wrap current sexp with (let [] ...)"
+  (interactive)
+  (paredit-wrap-sexp)
+  (insert "let [] ")
+  (backward-char 1))
+
  (map! :after paredit
        "C-M-s" #'paredit-split-sexp
        "C-M-j" #'paredit-join-sexps
        :leader
+       :desc "Raise expr" "e z" 'paredit-raise-sexp
        :desc "Wrap sexp" "e w s" 'paredit-wrap-sexp
        :desc "Wrap curly" "e w c" 'paredit-wrap-curly
-       :desc "Wrap curly" "e w q" 'paredit-wrap-square
-       :desc "Wrap curly" "e w a" 'paredit-wrap-angled)
+       :desc "Wrap square" "e w q" 'paredit-wrap-square
+       :desc "Wrap angled" "e w a" 'paredit-wrap-angled
+       :desc "Wrap expr with let []" "e w l" 'my/wrap-with-let)
+       
 
 ;;;; clojure-mode
  (map! :after cider
@@ -597,6 +616,7 @@
       :desc "Insert hole 🕳"           "I h" (lambda () (interactive) (insert "🕳"))
       :desc "Insert bell 🔔"           "I b" (lambda () (interactive) (insert "🔔"))
       :desc "Insert image 🖼"          "I i" (lambda () (interactive) (insert "🖼"))
+      :desc "Insert warning ⚠️"          "I w" (lambda () (interactive) (insert "⚠️"))
       :desc "Insert book 📖"           "I d" (lambda () (interactive) (insert "📖"))
       :desc "Insert page 📄"           "I p" (lambda () (interactive) (insert "📄"))
       :desc "Insert YouTube "        "I y" (lambda () (interactive) (insert ""))
@@ -765,14 +785,53 @@
 (after! elfeed
   ;(elfeed-goodies/setup)
   (setq elfeed-search-filter "@1-month-ago +unread")
-  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
-  (setq elfeed-feeds
-        '(("https://curiousprogrammer.net/feed.xml" clojure programming)
-          ("https://clojurecivitas.github.io/posts.xml" clojure clojurescript)
-          ("https://yogthos.net/feed.xml" clojure clojurescript)
-          ("https://practical.li/feed_rss_created.xml" clojure)
-          ("https://feeds.feedburner.com/FlyingMachineStudios" clojure babashka)))
+  (setq rmh-elfeed-org-files '("~/org/elfeed.org"))
+  ;; (setq elfeed-feeds
+  ;;       '(("https://curiousprogrammer.net/feed.xml" clojure programming)
+  ;;         ("https://clojurecivitas.github.io/posts.xml" clojure clojurescript)
+  ;;         ("https://yogthos.net/feed.xml" clojure clojurescript)
+  ;;         ("https://practical.li/feed_rss_created.xml" clojure)
+  ;;         ("https://feeds.feedburner.com/FlyingMachineStudios" clojure babashka)
+  ;;         ("https://news.ycombinator.com/rss")
+  ;;         ("https://bsless.github.io/feed.xml" clojure)
+  ;;         ("https://www.dotkam.com/feed/" clojure)))
   (add-hook 'elfeed-search-mode-hook #'elfeed-update)) ;  Automatically updating feed when opening elfeedLink to this heading)
+;; (setq browse-url-browser-function 'eww-browse-url) ; set Emacs' default browser to EWW 
+
+(defun my/elfeed-video-open ()
+  "Open video links with mpv, others in browser."
+  (interactive)
+  (let ((link (or (get-text-property (point) 'shr-url)  ; link at point
+                  (elfeed-entry-link (or elfeed-show-entry 
+                                         (elfeed-search-selected :single))))))
+    (if (string-match-p "youtube\\|youtu\\.be\\|vimeo\\|twitch\\|\\.mp4\\|\\.mov\\|\\.webm\\|\\.mkv\\|\\.avi" link)
+        (start-process "mpv" nil "mpv" link)
+      (browse-url link))))
+
+
+(defun my/org-mode/load-prettify-symbols ()
+  (interactive)
+  (setq prettify-symbols-alist
+    '(("#+begin_src" . ?)
+      ("#+BEGIN_SRC" . ?)
+      ("#+end_src" . ?)
+      ("#+END_SRC" . ?)
+      ("#+begin_example" . ?)
+      ("#+BEGIN_EXAMPLE" . ?)
+      ("#+end_example" . ?)
+      ("#+END_EXAMPLE" . ?)
+      ("#+begin_quote" . ?“)
+      ("#+end_quote" . ?”)
+      ("#+header:" . ?)
+      ("#+HEADER:" . ?)
+      ("#+results:" . ?)
+      ("#+RESULTS:" . ?)
+      ("#+call:" . ?)
+      ("#+CALL:" . ?)
+      (":PROPERTIES:" . ?)))
+  (prettify-symbols-mode 1))
+(add-hook 'org-mode-hook 'my/org-mode/load-prettify-symbols)
+
 
 
 

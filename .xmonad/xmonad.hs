@@ -34,6 +34,7 @@ import XMonad.Layout.Minimize
 import qualified XMonad.Layout.BoringWindows as BW
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.WindowNavigation
+import XMonad.Layout.Spacing
 -- import XMonad.Layout.Magnifier
 
 
@@ -119,7 +120,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- workspace 3
       ((modm .|. controlMask, xK_3), spawn "brave"),
       -- workspace 4
-      ((modm .|. controlMask, xK_4), spawn "kitty"),
+      ((modm .|. controlMask, xK_4), spawn "kitty" >> spawn "easyeffects"),
       -- workspace 5
       ((modm .|. controlMask, xK_5), spawn "qbittorrent"),
       -- workspace 9
@@ -141,7 +142,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
       ---- Move focus to the next window
-      ((modm .|. shiftMask, xK_q), windows $ W.focusDown),
+      ((modm, xK_grave), windows $ W.focusDown),
       -- ((modm, xK_j), windows W.focusDown),
       ((modm, xK_j), BW.focusDown),
       -- Move focus to the previous window
@@ -150,7 +151,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 
       -- ---- Minimize keybindings
       ((modm, xK_m), withFocused minimizeWindow),
-      ((modm .|. shiftMask, xK_m), withFocused maximizeWindowAndFocus),
+      ((modm .|. shiftMask, xK_m), withLastMinimized maximizeWindowAndFocus),
 
 
       -- ---- Magnifier keybindings
@@ -311,8 +312,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 --
 -- myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 
--- myLayout = minimize . magnifier . windowNavigation $ subTabbed $ BW.boringWindows $ tiled ||| Full
 myLayout = minimize . windowNavigation $ subTabbed $ BW.boringWindows $ tiled ||| Full
+-- myLayout = smartSpacingWithEdge 10 $ minimize . windowNavigation $ subTabbed $ BW.boringWindows $ tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
@@ -379,7 +380,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce "nitrogen --restore &"
-  spawnOnce "picom --experimental-backends &"
+  spawnOnce "nohup picom --config ~/.config/picom.conf &"
 
 myScratchPads :: [NamedScratchpad] -- use 'xprop' for window className
 myScratchPads =
