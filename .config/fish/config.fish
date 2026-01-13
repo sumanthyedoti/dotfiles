@@ -113,6 +113,8 @@ export view=nvim
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 
+export HERD_PHP_82_INI_SCAN_DIR="/Users/sumanthyedoti/Library/Application Support/Herd/config/php/82/"
+
 starship init fish | source
 zoxide init fish | source
 

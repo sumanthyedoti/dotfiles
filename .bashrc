@@ -155,3 +155,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 source '/home/sumanthyedoti/.bash_completions/comfy.sh'
+
+. "$HOME/.local/bin/env"

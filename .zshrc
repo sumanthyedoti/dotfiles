@@ -102,3 +102,5 @@ fi
 
 # chmod 755 ~/.dotfiles/.scripts/*
 # bash ~/.dotfiles/.scripts/autostart.sh
+
+. "$HOME/.local/bin/env"
