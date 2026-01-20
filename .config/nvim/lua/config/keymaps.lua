@@ -2,6 +2,17 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- [[
+-- Folds
+-- zR - open all
+-- zM - close all
+-- zm - fold more
+-- zO - open all under cursor
+-- zo - open under cursor
+-- zc - close under cursor
+-- zC - close all under cursor
+-- ]]
+
 local utils = require("sumanthyedoti.utils")
 local map_key = utils.map_key
 -- Navigate buffers
