@@ -78,6 +78,11 @@ key = "Insert"
 mods = "Shift"
 
 [[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\n"
+
+[[keyboard.bindings]]
 action = "ResetFontSize"
 key = "Key0"
 mods = "Control"

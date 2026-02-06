@@ -27,5 +27,12 @@ return {
     opts.lsp.signature = {
       opts = { size = { max_height = 15 } },
     }
+    opts.lsp.hover = {
+      opts = {
+        border = {
+          style = "rounded",
+        },
+      },
+    }
   end,
 }

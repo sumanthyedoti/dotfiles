@@ -19,6 +19,11 @@ local map_key = utils.map_key
 --map("n", "<S-TAB>", "<cmd>bprevious<CR>")
 --map("n", "<TAB>", "<cmd>bnext<CR>")
 
+-- Disable <FN> key to prevent interference from speech-to-text hotkey
+vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F7>", "<Nop>")
+vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F8>", "<Nop>")
+vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F9>", "<Nop>")
+
 -- INSERT --
 map_key("i", "jj", "<ESC>")
 

@@ -100,6 +100,7 @@
 - AI tools
   - Claude Code
   - ccusage
+- faster whisper
 - Calibre
 - cmake
 - docker

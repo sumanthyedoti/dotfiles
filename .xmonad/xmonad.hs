@@ -35,6 +35,7 @@ import qualified XMonad.Layout.BoringWindows as BW
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Spacing
+import Network.Socket.ByteString (sendMany)
 -- import XMonad.Layout.Magnifier
 
 
@@ -142,7 +143,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- , ((modm,               xK_Tab   ), windows W.focusDown)
 
       ---- Move focus to the next window
-      ((modm, xK_grave), windows $ W.focusDown),
+      ((modm, xK_grave), BW.focusDown),
       -- ((modm, xK_j), windows W.focusDown),
       ((modm, xK_j), BW.focusDown),
       -- Move focus to the previous window
@@ -178,8 +179,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. controlMask, xK_m), withFocused (sendMessage . MergeAll)),
       ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge)),
 
-      ((modm .|. controlMask, xK_period), onGroup W.focusUp'),
-      ((modm .|. controlMask, xK_comma), onGroup W.focusDown'),
+      ((modm, xK_period), onGroup W.focusUp'),
+      ((modm, xK_comma), onGroup W.focusDown'),
       --
       ---- map to workspace 9 & 8
       ((modm, xK_q), windows $ W.greedyView "9"),
