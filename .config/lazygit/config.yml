@@ -3,6 +3,7 @@ keybinding:
     quit: "q"
     quitWithoutChangingDirectory: "<c-q>"
 gui:
+  nerdFontsVersion: "3"
   showIcons: true
   theme:
     activeBorderColor:

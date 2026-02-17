@@ -103,6 +103,7 @@
 - faster whisper
 - Calibre
 - cmake
+- [just](https://github.com/casey/just)
 - docker
   - docker-buildx
 - distrobox

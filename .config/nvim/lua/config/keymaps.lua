@@ -24,8 +24,24 @@ vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F7>", "<Nop>")
 vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F8>", "<Nop>")
 vim.keymap.set({ "i", "n", "s", "v", "c" }, "<F9>", "<Nop>")
 
+-- Yank file paths to system clipboard
+-- % - current file path
+-- :p - full/absolute path
+-- :t - tail (filename only)
+-- :h - head (directory)
+-- :r - root (remove extension)
+map_key("n", "<localleader>yp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Yank absolute path" })
+map_key("n", "<localleader>yr", '<cmd>let @+ = expand("%")<CR>', { desc = "Yank relative path" })
+map_key("n", "<localleader>yf", '<cmd>let @+ = expand("%:t")<CR>', { desc = "Yank filename only" })
+map_key("n", "<localleader>yd", '<cmd>let @+ = expand("%:p:h")<CR>', { desc = "Yank directory path" })
+map_key("n", "<localleader>yh", '<cmd>let @+ = expand("%:h")<CR>', { desc = "Yank relative directory" })
+
 -- INSERT --
 map_key("i", "jj", "<ESC>")
+
+-- TERMINAL --
+-- Prevent Space delay in terminal mode (bypasses leader key timeout)
+vim.keymap.set("t", "<Space>", "<Space>", { noremap = true })
 
 -- Disable s (substitute) in normal and visual mode
 -- vim.keymap.set({ "n", "x" }, "s", "<Nop>")

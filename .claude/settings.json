@@ -2,7 +2,8 @@
   "model": "claude-opus-4-5",
   "statusLine": {
     "type": "command",
-    "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
@@ -21,9 +22,21 @@
     "ralph-loop@claude-plugins-official": false,
     "claude-opus-4-5-migration@claude-code-plugins": true,
     "explanatory-output-style@claude-code-plugins": false,
-    "compound-engineering@every-marketplace": true,
     "ui-designer@cc-marketplace": true,
-    "dev-browser@dev-browser-marketplace": false
+    "dev-browser@dev-browser-marketplace": false,
+    "superpowers@claude-plugins-official": true,
+    "compound-engineering@every-marketplace": true,
+    "frontend-design@claude-code-plugins": true,
+    "frontend-developer@cc-marketplace": true,
+    "backend-architect@cc-marketplace": true,
+    "code-architect@cc-marketplace": true,
+    "data-privacy-engineer@cc-marketplace": true,
+    "deployment-engineer@cc-marketplace": true,
+    "feature-dev@claude-code-plugins": true,
+    "studio-producer@cc-marketplace": true,
+    "ux-researcher@cc-marketplace": true,
+    "web-dev@cc-marketplace": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "mcpServers": {
     "playwriter": {

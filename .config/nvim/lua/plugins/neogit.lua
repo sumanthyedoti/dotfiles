@@ -1,7 +1,7 @@
 return {
   "NeogitOrg/neogit",
   keys = {
-    { "<leader>gn", ":Neogit<CR>", mode = { "n", "t" }, desc = "Neogit" },
+    { "<leader>gn", ":Neogit<CR>", mode = "n", desc = "Neogit" },
 
     { "<leader>gd", group = "Diffview", desc = "Diffview" }, -- group
     -- Diffview

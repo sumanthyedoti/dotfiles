@@ -82,6 +82,7 @@
   d = diff
   d2 = diff @~..@ ; last two commits, can also use "show"
   sd = diff --staged
+  w = worktree
   ll = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s  %C(dim green)(%cr)  [%an]\" --abbrev-commit -30
   lg = !git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%an%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %s%C(reset)' --all
   last = log -1 HEAD --stat
