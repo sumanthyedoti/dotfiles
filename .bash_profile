@@ -23,3 +23,6 @@ export HERD_PHP_84_INI_SCAN_DIR="/Users/sumanthyedoti/Library/Application Suppor
 export HERD_PHP_82_INI_SCAN_DIR="/Users/sumanthyedoti/Library/Application Support/Herd/config/php/82/"
 
 . "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/sumanthyedoti/.antigravity/antigravity/bin:$PATH"

@@ -100,7 +100,12 @@
 - AI tools
   - Claude Code
   - ccusage
+<<<<<<< Updated upstream
 - faster whisper
+||||||| Stash base
+=======
+  - ccstatusline
+>>>>>>> Stashed changes
 - Calibre
 - cmake
 - [just](https://github.com/casey/just)
