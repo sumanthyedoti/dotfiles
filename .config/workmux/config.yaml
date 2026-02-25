@@ -1,0 +1,14 @@
+nerdfont: true
+worktree_dir: ./.worktrees
+merge_strategy: rebase
+agent: codex
+
+panes:
+  - command: <agent>
+    focus: true
+  - split: horizontal
+
+status_icons:
+  working: "🏗" # Agent is processing
+  waiting: "" # Agent needs input (auto-clears on focus)
+  done: "" # Agent finished (auto-clears on focus)

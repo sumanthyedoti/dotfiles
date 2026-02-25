@@ -90,6 +90,7 @@
   - [tpm](https://github.com/tmux-plugins/tpm)
   - [tmux2html] (<https://github.com/tweekmonster/tmux2html>)
   - [powerline-fonts] (<https://github.com/powerline/fonts>)
+  - workmux
   - `prefix + r` - reload
   - `prefix + I` to fetch the plugins
 - emacs
