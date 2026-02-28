@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ $# -eq 0 ]; then
+	printf '%s\n' "ueberzugpp-compat"
+	exit 0
+fi
+
+case "${1:-}" in
+--version|-V|version)
+	printf '%s\n' "ueberzugpp-compat"
+	exit 0
+	;;
+esac
+
+cmd="$1"
+shift
+
+if [ "$cmd" != "layer" ]; then
+	exec ueberzug "$cmd" "$@"
+fi
+
+fifo="$(mktemp -u "${TMPDIR:-/tmp}/yazi-ueberzugpp-XXXXXX.fifo")"
+mkfifo "$fifo"
+
+cleanup() {
+	exec 3>&- || true
+	kill "${pipe_pid:-}" >/dev/null 2>&1 || true
+	rm -f "$fifo"
+}
+trap cleanup EXIT INT HUP TERM
+
+# Keep a reader on the FIFO and forward to legacy ueberzug.
+tail -f "$fifo" | ueberzug layer --silent >/dev/null 2>&1 &
+pipe_pid=$!
+
+# Keep one writer fd open for fast non-blocking request forwarding.
+exec 3>"$fifo"
+
+while IFS= read -r line; do
+	if printf '%s\n' "$line" >&3; then
+		printf '%s\n' '{"type":"success"}'
+	else
+		printf '%s\n' '{"type":"error","error":"failed_to_forward"}'
+	fi
+done

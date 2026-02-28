@@ -64,6 +64,7 @@ alias gas="~/.dotfiles/.scripts/git_auto_sync.sh"
 
 export view=nvim
 export EDITOR=nvim
+export PATH="$HOME/.dotfiles/.scripts:$PATH"
 
 # NVM
 if [[ $(uname) == "Darwin" ]]; then

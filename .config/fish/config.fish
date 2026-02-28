@@ -113,6 +113,8 @@ export view=nvim
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 
+export ENABLE_EXPERIMENTAL_MCP_CLI=true
+
 export HERD_PHP_82_INI_SCAN_DIR="/Users/sumanthyedoti/Library/Application Support/Herd/config/php/82/"
 
 starship init fish | source
@@ -125,6 +127,8 @@ set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 
 set -x PATH "$HOME/Library/Python/*/bin" "$PATH"
+
+set -x PATH "$HOME/.dotfiles/.scripts:$PATH"
 
 # rust/cargo
 set PATH $HOME/.cargo/bin $PATH

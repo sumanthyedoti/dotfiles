@@ -69,6 +69,7 @@ alias copyc="~/.scripts/copyc.sh"
 export view=nvim
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
+export PATH="$HOME/.dotfiles/.scripts:$PATH"
 
 # NVM
 if [[ $(uname) == "Darwin" ]]; then
