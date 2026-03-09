@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Toggle Alacritty left/right (x) padding between normal and ~20% of screen width
+
+CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/alacritty.toml"
+NORMAL=10
+
+# macOS: bind this script via Karabiner-Elements, BetterTouchTool, or Raycast
+# Linux: bind via your WM (e.g. XMonad, i3, Hyprland)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    screen_width=$(osascript -e 'tell application "Finder" to get bounds of window of desktop' | awk -F',' '{print $3}' | tr -d ' ')
+else
+    screen_width=$(xrandr | awk '/ connected/ && /[0-9]+x[0-9]+\+/{match($0,/([0-9]+)x[0-9]+\+/,a); print a[1]; exit}')
+fi
+WIDE=$(( screen_width * 15 / 100 ))
+
+current=$(awk '/\[window\.padding\]/{found=1} found && /^\s*x\s*=/{match($0,/[0-9]+/); print substr($0,RSTART,RLENGTH); exit}' "$CONFIG")
+
+if [ "$current" = "$WIDE" ]; then
+    new=$NORMAL
+else
+    new=$WIDE
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' "/\[window\.padding\]/,/\[/ s/^\(\s*x\s*=\s*\)[0-9]*/\1$new/" "$CONFIG"
+else
+    sed -i "/\[window\.padding\]/,/\[/ s/^\(\s*x\s*=\s*\)[0-9]*/\1$new/" "$CONFIG"
+fi

@@ -128,6 +128,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. controlMask, xK_9), spawn "kitty"),
       -- launch a terminal
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
+      -- toggle alacritty padding
+      ((modm .|. shiftMask, xK_p), spawn "alacritty-toggle-padding"),
       -- launch rofi
       ((modm, xK_p), spawn "rofi -show drun"),
       ((modm, xK_o), spawn "rofi -modi emoji -show emoji"),
